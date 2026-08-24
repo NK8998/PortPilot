@@ -89,7 +89,7 @@ These rules are application-independent and run for future CMake candidates.
 
 ## Static review
 
-All 20 scanner findings now have source- and execution-backed dispositions in
+All 25 scanner findings now have source- and execution-backed dispositions in
 [whisper.cpp static finding dispositions](WHISPER_CPP_FINDING_DISPOSITIONS.md).
 PortPilot does not infer those dispositions from the successful build: its H7
 finding gate requires explicit rationale and evidence before linked remediation

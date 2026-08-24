@@ -62,7 +62,7 @@ verification gates.
 
 The H7 security review identified mutable Python package resolution in CI.
 Hashed dependency installation and explicit local PocketSphinx wheel input close
-that issue. The whisper.cpp static review records all 20 findings in
+that issue. The whisper.cpp static review records all 25 findings in
 [whisper.cpp static finding dispositions](WHISPER_CPP_FINDING_DISPOSITIONS.md).
 
 The hardened workflow passed end to end for both reference applications:

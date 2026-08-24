@@ -44,3 +44,8 @@ A reusable, agent-driven workflow that analyses, ports, tests, and packages open
 - [whisper.cpp native Windows Arm64 proof](docs/WHISPER_CPP_ARM64_PROOF.md)
 - [Reliability and review gates](docs/PORTPILOT_RELIABILITY.md)
 - [whisper.cpp static finding dispositions](docs/WHISPER_CPP_FINDING_DISPOSITIONS.md)
+- [PortPilot architecture](docs/PORTPILOT_ARCHITECTURE.md)
+- [Five-to-seven-minute hackathon demo](docs/HACKATHON_DEMO.md)
+- [Before-and-after evidence](docs/HACKATHON_EVIDENCE.md)
+- [New-user quickstart](docs/HACKATHON_QUICKSTART.md)
+- [Recording and offline fallback](docs/HACKATHON_FALLBACK.md)

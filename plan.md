@@ -129,4 +129,11 @@ H0 -> H1 -> H2 -> H3 -> H4 -> H5 -> H6 -> H7 -> H8
   [PocketSphinx run 32714075611](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32714075611)
   and
   [whisper.cpp run 32714080799](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32714080799).
-- H8 demo package: pending.
+- H8 demo package: implementation complete; final narrated recording capture is
+  a presenter action.
+- Demo package:
+  [architecture](docs/PORTPILOT_ARCHITECTURE.md),
+  [run of show](docs/HACKATHON_DEMO.md),
+  [before-and-after evidence](docs/HACKATHON_EVIDENCE.md),
+  [quickstart](docs/HACKATHON_QUICKSTART.md), and
+  [recording/offline fallback](docs/HACKATHON_FALLBACK.md).
