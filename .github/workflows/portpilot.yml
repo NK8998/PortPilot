@@ -78,7 +78,8 @@ jobs:
       - name: Install PortPilot
         shell: pwsh
         run: |
-          python -m pip install --require-hashes -r portpilot\requirements-ci.lock
+          python -m pip install --require-hashes -r portpilot/requirements-ci.lock
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python -m pip install --no-deps --no-build-isolation -e portpilot
 
       - name: Read manifest metadata
@@ -121,7 +122,8 @@ jobs:
       - name: Install PortPilot
         shell: pwsh
         run: |
-          python -m pip install --require-hashes -r portpilot\requirements-ci.lock
+          python -m pip install --require-hashes -r portpilot/requirements-ci.lock
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python -m pip install --no-deps --no-build-isolation -e portpilot
 
       - name: Install manifest dependencies
@@ -196,7 +198,8 @@ jobs:
       - name: Install PortPilot
         shell: pwsh
         run: |
-          python -m pip install --require-hashes -r portpilot\requirements-ci.lock
+          python -m pip install --require-hashes -r portpilot/requirements-ci.lock
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python -m pip install --no-deps --no-build-isolation -e portpilot
 
       - name: Install manifest dependencies
@@ -302,7 +305,8 @@ jobs:
       - name: Install PortPilot
         shell: pwsh
         run: |
-          python -m pip install --require-hashes -r portpilot\requirements-ci.lock
+          python -m pip install --require-hashes -r portpilot/requirements-ci.lock
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python -m pip install --no-deps --no-build-isolation -e portpilot
 
       - name: Download native evidence

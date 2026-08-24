@@ -47,8 +47,8 @@ re-execution attempts.
 
 ## CI supply-chain boundary
 
-`requirements-ci.lock` pins the Python 3.12 Windows x64 and Arm64 CI dependency
-set with SHA-256 hashes. Every reusable-workflow job installs it with
+`requirements-ci.lock` pins the Python 3.12 Linux x64 metadata and Windows x64
+and Arm64 CI dependency set with SHA-256 hashes. Every reusable-workflow job installs it with
 `--require-hashes`, then installs PortPilot with dependency and build isolation
 disabled. PocketSphinx wheel production names the pinned local checkout
 explicitly and uses the already verified build dependencies. Clean installation

@@ -209,7 +209,7 @@ class CiTests(unittest.TestCase):
         lock = (ROOT / "requirements-ci.lock").read_text(encoding="utf-8")
 
         self.assertNotIn("pip install -e portpilot", workflow)
-        self.assertIn("--require-hashes -r portpilot\\requirements-ci.lock", workflow)
+        self.assertIn("--require-hashes -r portpilot/requirements-ci.lock", workflow)
         self.assertNotIn("pip wheel pocketsphinx", legacy_workflow)
         self.assertIn("pip wheel .\\pocketsphinx", legacy_workflow)
         self.assertEqual(

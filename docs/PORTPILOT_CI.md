@@ -53,9 +53,9 @@ The consumer is skipped for manifests without a package contract.
 - The consumer executes only clean-install commands from the trusted workflow
   manifest, not producer-controlled state.
 - Every job uses the workflow's immutable commit rather than a moving branch.
-- Python 3.12 Windows x64 and Arm64 CI dependencies are exact and SHA-256
-  verified through `requirements-ci.lock`; editable PortPilot installation
-  cannot resolve additional dependencies.
+- Python 3.12 Linux metadata and Windows x64/Arm64 CI dependencies are exact
+  and SHA-256 verified through `requirements-ci.lock`; editable PortPilot
+  installation cannot resolve additional dependencies.
 - Python package builds name the pinned local application checkout explicitly
   and reuse the verified build environment rather than creating an unpinned
   isolated environment.
