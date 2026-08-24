@@ -98,3 +98,8 @@ validated the manifest-driven PocketSphinx pipeline:
 The report test gate is `passed`. Its overall verdict remains `not-ready`
 because H3 remediation tasks are still open; CI does not silently mark static
 findings resolved merely because runtime gates pass.
+
+H7 reran the same reference manifest with hashed Python dependencies and an
+explicit local package build. Public
+[run 32714075611](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32714075611)
+passed every producer and clean-consumer job.

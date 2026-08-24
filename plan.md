@@ -125,4 +125,8 @@ H0 -> H1 -> H2 -> H3 -> H4 -> H5 -> H6 -> H7 -> H8
 - H7 reliability and review: complete.
 - Reliability reference:
   [PortPilot Reliability and Review](docs/PORTPILOT_RELIABILITY.md).
+- Hardened reference proofs:
+  [PocketSphinx run 32714075611](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32714075611)
+  and
+  [whisper.cpp run 32714080799](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32714080799).
 - H8 demo package: pending.

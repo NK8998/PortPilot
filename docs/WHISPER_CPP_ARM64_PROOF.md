@@ -13,6 +13,10 @@ Public proof:
 The run used the same `.github/workflows/portpilot.yml` producer pipeline as
 PocketSphinx. No whisper-specific workflow fork was added.
 
+H7 hardened dependency installation and reran the proof unchanged in
+[run 32714080799](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32714080799);
+the x64 baseline and native Arm64 producer both passed.
+
 ## Native evidence
 
 | Gate | Result |

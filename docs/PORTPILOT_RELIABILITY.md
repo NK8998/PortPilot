@@ -64,3 +64,12 @@ The H7 security review identified mutable Python package resolution in CI.
 Hashed dependency installation and explicit local PocketSphinx wheel input close
 that issue. The whisper.cpp static review records all 20 findings in
 [whisper.cpp static finding dispositions](WHISPER_CPP_FINDING_DISPOSITIONS.md).
+
+The hardened workflow passed end to end for both reference applications:
+
+- [PocketSphinx run 32714075611](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32714075611):
+  x64 baseline, native Arm64 producer, audited wheel, and independent clean
+  install all passed.
+- [whisper.cpp run 32714080799](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32714080799):
+  x64 baseline and native Arm64 producer passed; the package consumer was
+  correctly skipped because the manifest has no package contract.
