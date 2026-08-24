@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from portpilot.analysis.common import load_manifest, read_json, write_json
+from portpilot.analysis.common import load_manifest, read_json, utc_now, write_json
 from portpilot.analysis.runner import analyze
 from portpilot.contracts import validate_contract
 from portpilot.planner import create_plan
@@ -23,6 +24,16 @@ TASK_TRANSITIONS = {
     "failed": {"ready"},
     "done": set(),
 }
+
+FINDING_TRANSITIONS = {
+    "open": {"in-progress", "accepted", "resolved", "wont-fix", "not-applicable"},
+    "in-progress": {"open", "accepted", "resolved", "wont-fix", "not-applicable"},
+    "accepted": {"in-progress"},
+    "resolved": {"in-progress"},
+    "wont-fix": {"in-progress"},
+    "not-applicable": {"in-progress"},
+}
+TERMINAL_FINDING_STATUSES = {"accepted", "resolved", "wont-fix", "not-applicable"}
 
 
 def default_run_id(manifest_path: Path) -> str:
@@ -188,6 +199,30 @@ def update_task_status(
                     f"task dependencies are incomplete: {', '.join(incomplete)}"
                 )
             task["attempts"] += 1
+        if new_status == "done" and task["findingIds"]:
+            findings = {
+                finding["id"]: finding
+                for finding in read_json(state.root / "findings.json")
+            }
+            missing = [
+                finding_id
+                for finding_id in task["findingIds"]
+                if finding_id not in findings
+            ]
+            if missing:
+                raise ValueError(
+                    f"task references unknown findings: {', '.join(missing)}"
+                )
+            unresolved = [
+                finding_id
+                for finding_id in task["findingIds"]
+                if findings[finding_id]["status"] not in TERMINAL_FINDING_STATUSES
+            ]
+            if unresolved:
+                raise ValueError(
+                    "task findings require dispositions: "
+                    + ", ".join(unresolved)
+                )
         task["status"] = new_status
         validate_contract("task.schema.json", task)
         write_json(task_path, task)
@@ -223,6 +258,55 @@ def update_task_status(
         (state.root / "report.json").unlink(missing_ok=True)
         state.save_project(project)
         return task
+
+
+def update_finding_status(
+    state: RunState,
+    finding_id: str,
+    new_status: str,
+    rationale: str | None = None,
+    evidence: list[str] | None = None,
+) -> dict[str, Any]:
+    if not re.fullmatch(r"[A-Z0-9]+-[A-Z0-9-]+-[0-9]{3}", finding_id):
+        raise ValueError(f"invalid finding ID: {finding_id}")
+    with state.lock():
+        findings = read_json(state.root / "findings.json")
+        matches = [finding for finding in findings if finding["id"] == finding_id]
+        if len(matches) != 1:
+            raise ValueError(f"unknown finding: {finding_id}")
+        finding = matches[0]
+        current_status = finding["status"]
+        if new_status not in FINDING_TRANSITIONS:
+            raise ValueError(f"invalid finding status: {new_status}")
+        if new_status not in FINDING_TRANSITIONS[current_status]:
+            raise ValueError(
+                f"invalid finding transition: {current_status} -> {new_status}"
+            )
+        if new_status in TERMINAL_FINDING_STATUSES:
+            cleaned_rationale = (rationale or "").strip()
+            cleaned_evidence = sorted(
+                {item.strip() for item in (evidence or []) if item.strip()}
+            )
+            if not cleaned_rationale or not cleaned_evidence:
+                raise ValueError(
+                    "terminal finding dispositions require rationale and evidence"
+                )
+            finding["disposition"] = {
+                "rationale": cleaned_rationale,
+                "evidence": cleaned_evidence,
+                "updatedAt": utc_now(),
+            }
+        else:
+            finding.pop("disposition", None)
+        finding["status"] = new_status
+        for item in findings:
+            validate_contract("finding.schema.json", item)
+        write_json(state.root / "findings.json", findings)
+        project = state.load_project()
+        project["stages"]["reporting"] = "pending"
+        state.save_project(project)
+        (state.root / "report.json").unlink(missing_ok=True)
+        return finding
 
 
 def print_json(value: Any) -> None:

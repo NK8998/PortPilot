@@ -150,8 +150,8 @@ jobs:
           New-Item -ItemType Directory -Force wheelhouse | Out-Null
 
           python -c "import platform, struct; print(f'Python machine: {platform.machine()}'); print(f'Pointer width: {struct.calcsize(""P"") * 8}')"
-          python -m pip install --upgrade pip
-          python -m pip wheel pocketsphinx --no-deps --wheel-dir wheelhouse
+          python -m pip install --require-hashes -r requirements-ci.lock
+          python -m pip wheel .\pocketsphinx --no-build-isolation --no-deps --wheel-dir wheelhouse
 
           $wheels = @(Get-ChildItem wheelhouse\pocketsphinx-*-win_arm64.whl)
           if ($wheels.Count -ne 1) {
@@ -211,9 +211,8 @@ jobs:
 
           python -m venv arm64-venv
           $venvPython = Resolve-Path arm64-venv\Scripts\python.exe
-          & $venvPython -m pip install --upgrade pip
-          & $venvPython -m pip install $wheels[0].FullName
-          & $venvPython -m pip install pytest memory_profiler
+          & $venvPython -m pip install --require-hashes -r requirements-ci.lock
+          & $venvPython -m pip install --no-deps $wheels[0].FullName
 
           & $venvPython -c "import platform, pocketsphinx, struct; print(f'Python machine: {platform.machine()}'); print(f'Pointer width: {struct.calcsize(""P"") * 8}'); print(f'PocketSphinx module: {pocketsphinx.__file__}')"
           & $venvPython -m pytest pocketsphinx\cython\test -q -p no:cacheprovider |

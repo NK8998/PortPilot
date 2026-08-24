@@ -172,7 +172,8 @@ validation:
         - -m
         - pip
         - wheel
-        - pocketsphinx
+        - .\pocketsphinx
+        - --no-build-isolation
         - --no-deps
         - --wheel-dir
         - wheelhouse
@@ -191,6 +192,7 @@ validation:
             - -m
             - pip
             - install
+            - --no-deps
             - ${wheel}
           timeoutMinutes: 10
           capture: evidence\package\install.txt
@@ -200,8 +202,9 @@ validation:
             - -m
             - pip
             - install
-            - pytest
-            - memory_profiler
+            - --require-hashes
+            - -r
+            - portpilot\requirements-ci.lock
           timeoutMinutes: 10
           capture: evidence\package\test-dependencies.txt
         - id: test-installed-wheel

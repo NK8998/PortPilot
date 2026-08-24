@@ -12,6 +12,7 @@ from portpilot.orchestrator import (
     run_planning_stage,
     run_reporting_stage,
     status_summary,
+    update_finding_status,
     update_task_status,
 )
 from portpilot.execution.runner import execute_phase, execution_is_complete
@@ -108,6 +109,23 @@ def build_parser() -> argparse.ArgumentParser:
             "blocked",
         ],
     )
+    finding_parser = subparsers.add_parser("finding")
+    finding_parser.add_argument("--run-directory", required=True, type=Path)
+    finding_parser.add_argument("--id", required=True)
+    finding_parser.add_argument(
+        "--set-status",
+        required=True,
+        choices=[
+            "open",
+            "in-progress",
+            "accepted",
+            "resolved",
+            "wont-fix",
+            "not-applicable",
+        ],
+    )
+    finding_parser.add_argument("--rationale")
+    finding_parser.add_argument("--evidence", action="append", default=[])
     return parser
 
 
@@ -211,6 +229,16 @@ def execute(args: argparse.Namespace) -> None:
             print_json(report)
     elif args.command == "task":
         print_json(update_task_status(state, args.id, args.set_status))
+    elif args.command == "finding":
+        print_json(
+            update_finding_status(
+                state,
+                args.id,
+                args.set_status,
+                args.rationale,
+                args.evidence,
+            )
+        )
 
 
 def main() -> int:

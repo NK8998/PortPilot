@@ -83,11 +83,10 @@ The reusable compatibility scanner now reports:
 
 These rules are application-independent and run for future CMake candidates.
 
-## Remaining review boundary
+## Static review
 
-The generated report remains `not-ready` even though its test gate is
-`passed`. Static analysis tasks for architecture-guarded x86, Arm, and optional
-backend code still require disposition. H7 will harden finding precision and
-review those tasks; PortPilot does not infer that every static finding is
-resolved merely because the selected build path succeeds.
-
+All 20 scanner findings now have source- and execution-backed dispositions in
+[whisper.cpp static finding dispositions](WHISPER_CPP_FINDING_DISPOSITIONS.md).
+PortPilot does not infer those dispositions from the successful build: its H7
+finding gate requires explicit rationale and evidence before linked remediation
+tasks can complete.

@@ -40,6 +40,7 @@ class Rule:
     impact: str
     proposed_skill: str
     extensions: frozenset[str] = frozenset(SOURCE_EXTENSIONS)
+    multiline: bool = False
 
 
 RULES = (
@@ -98,6 +99,7 @@ RULES = (
         "CMake configuration writes into the source tree and can invalidate reproducible build state.",
         "cmake-out-of-source",
         frozenset({".cmake"}),
+        True,
     ),
 )
 
@@ -135,9 +137,33 @@ def scan_repository(repository: Path, project_id: str) -> list[dict[str, object]
         for rule in RULES:
             if suffix not in rule.extensions and not is_cmake_lists:
                 continue
+            if rule.multiline:
+                search_text = "\n".join(
+                    "" if line.lstrip().startswith("#") else line
+                    for line in lines
+                )
+                match = rule.pattern.search(search_text)
+                if match:
+                    findings.append(
+                        {
+                            "category": rule.category,
+                            "severity": rule.severity,
+                            "path": relative,
+                            "line": search_text.count("\n", 0, match.start()) + 1,
+                            "evidence": " ".join(match.group(0).split())[:500],
+                            "impact": rule.impact,
+                            "proposedSkill": rule.proposed_skill,
+                        }
+                    )
+                continue
             for line_number, line in enumerate(lines, start=1):
                 stripped = line.strip()
                 if stripped.startswith(("//", "/*", "*")):
+                    continue
+                if (
+                    (is_cmake_lists or suffix in {".cmake", ".yml", ".yaml"})
+                    and stripped.startswith("#")
+                ):
                     continue
                 if rule.pattern.search(line):
                     findings.append(

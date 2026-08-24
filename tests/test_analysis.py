@@ -151,6 +151,70 @@ class AnalysisTests(unittest.TestCase):
             any("legacy-codec" in blocker for blocker in decision["blockers"])
         )
 
+    def test_multiline_source_tree_configuration_is_detected(self) -> None:
+        (self.repository / "CMakeLists.txt").write_text(
+            """
+            configure_file(
+                ${CMAKE_SOURCE_DIR}/input.in
+                ${CMAKE_SOURCE_DIR}/output.json
+            )
+            """,
+            encoding="utf-8",
+        )
+
+        findings = scan_repository(self.repository, "fixture")
+
+        matches = [
+            finding
+            for finding in findings
+            if finding.get("proposedSkill") == "cmake-out-of-source"
+        ]
+        self.assertEqual(1, len(matches))
+        self.assertEqual(2, matches[0]["line"])
+
+    def test_comments_and_binary_tree_output_do_not_create_findings(self) -> None:
+        (self.repository / "CMakeLists.txt").write_text(
+            """
+            # message(FATAL_ERROR "MSVC is not supported for ARM, use clang")
+            # configure_file(${CMAKE_SOURCE_DIR}/a ${CMAKE_SOURCE_DIR}/b)
+            configure_file(
+                ${CMAKE_SOURCE_DIR}/input.in
+                ${CMAKE_BINARY_DIR}/output.json
+            )
+            """,
+            encoding="utf-8",
+        )
+
+        findings = scan_repository(self.repository, "fixture")
+
+        self.assertNotIn("compiler", {item["category"] for item in findings})
+        self.assertNotIn(
+            "cmake-out-of-source",
+            {item.get("proposedSkill") for item in findings},
+        )
+
+    def test_c_preprocessor_guards_and_intrinsic_macros_are_scanned(self) -> None:
+        (self.repository / "src" / "guarded.h").write_text(
+            """
+            #ifdef __x86_64__
+            #define FAST_LOAD(ptr) _mm256_load_ps(ptr)
+            #endif
+            """,
+            encoding="utf-8",
+        )
+
+        findings = scan_repository(self.repository, "fixture")
+        header_findings = [
+            finding
+            for finding in findings
+            if finding.get("path") == "src/guarded.h"
+        ]
+
+        self.assertEqual(
+            {"architecture-guard", "x86-intrinsic"},
+            {finding["category"] for finding in header_findings},
+        )
+
     def test_unresolved_blocker_stops_architecture_selection(self) -> None:
         dependencies = inventory_dependencies(self.repository, "fixture")
         inventory = profile_repository(

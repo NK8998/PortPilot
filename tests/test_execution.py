@@ -378,6 +378,44 @@ class ExecutionTests(unittest.TestCase):
         )
         self.assertEqual("timeout", result["outcome"])
 
+    def test_timed_out_command_can_be_retried_without_stale_result(self) -> None:
+        command = {
+            "id": "retry",
+            "executable": "python",
+            "arguments": ["-c", "import time; time.sleep(2)"],
+            "timeoutMinutes": 0.001,
+        }
+        with self.assertRaisesRegex(RuntimeError, "timeout"):
+            execute_command(
+                command,
+                self.manifest(),
+                "baseline",
+                self.root,
+                self.run_directory,
+                "prepare-target-build",
+            )
+
+        command["arguments"] = ["-c", "print('recovered')"]
+        command["timeoutMinutes"] = 1
+        result = execute_command(
+            command,
+            self.manifest(),
+            "baseline",
+            self.root,
+            self.run_directory,
+            "prepare-target-build",
+        )
+
+        persisted = json.loads(
+            (self.run_directory / "results" / "baseline-retry.json").read_text()
+        )
+        self.assertEqual("success", result["outcome"])
+        self.assertEqual("success", persisted["outcome"])
+        self.assertIn(
+            "recovered",
+            (self.run_directory / result["stdoutPath"]).read_text(),
+        )
+
     def test_expected_failure_requires_parseable_test_failures(self) -> None:
         suite = {
             "id": "tests",

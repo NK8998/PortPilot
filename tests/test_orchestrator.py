@@ -13,6 +13,7 @@ from portpilot.analysis.common import read_json, write_json
 from portpilot.orchestrator import (
     run_analysis_stage,
     run_pipeline,
+    update_finding_status,
     update_task_status,
 )
 from portpilot.planner import assert_acyclic
@@ -143,8 +144,18 @@ class OrchestratorTests(unittest.TestCase):
         tests_gate = next(
             gate for gate in report["gates"] if gate["id"] == "tests"
         )
+        implementation_gate = next(
+            gate for gate in report["gates"] if gate["id"] == "implementation"
+        )
         self.assertEqual("not-applicable", tests_gate["status"])
+        self.assertEqual("blocked", implementation_gate["status"])
         self.assertIn("Execution evidence is incomplete.", report["remainingRisks"])
+        self.assertTrue(
+            any(
+                "finding requires disposition" in risk
+                for risk in report["remainingRisks"]
+            )
+        )
 
     def test_dirty_source_fails_analysis_without_success_state(self) -> None:
         state = self.create_state("dirty-run")
@@ -187,6 +198,47 @@ class OrchestratorTests(unittest.TestCase):
                 state,
                 "../../another-run/tasks/prepare-target-build",
                 "in-progress",
+            )
+
+    def test_finding_disposition_is_required_before_task_completion(self) -> None:
+        state = self.create_state()
+        run_pipeline(state)
+        update_task_status(state, "prepare-target-build", "in-progress")
+        update_task_status(state, "prepare-target-build", "review")
+        update_task_status(state, "prepare-target-build", "done")
+        task_id = "resolve-x86-simd-remediation"
+        task = read_json(state.root / "tasks" / f"{task_id}.json")
+        finding_id = task["findingIds"][0]
+        update_task_status(state, task_id, "in-progress")
+        update_task_status(state, task_id, "review")
+
+        with self.assertRaisesRegex(ValueError, "require dispositions"):
+            update_task_status(state, task_id, "done")
+        with self.assertRaisesRegex(ValueError, "rationale and evidence"):
+            update_finding_status(state, finding_id, "resolved", "Guarded")
+
+        disposition = update_finding_status(
+            state,
+            finding_id,
+            "not-applicable",
+            "The intrinsic is isolated to an x64-only implementation.",
+            ["src/main.c:3", "target-summary.json"],
+        )
+        self.assertEqual("not-applicable", disposition["status"])
+        self.assertFalse((state.root / "report.json").exists())
+        update_task_status(state, task_id, "done")
+
+    def test_invalid_finding_id_is_rejected(self) -> None:
+        state = self.create_state()
+        run_pipeline(state)
+
+        with self.assertRaisesRegex(ValueError, "invalid finding ID"):
+            update_finding_status(
+                state,
+                "../../findings",
+                "resolved",
+                "Invalid",
+                ["evidence"],
             )
 
     def test_run_lock_rejects_concurrent_writer(self) -> None:

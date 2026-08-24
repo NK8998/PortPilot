@@ -194,6 +194,39 @@ class CiTests(unittest.TestCase):
         self.assertTrue((output / "run" / "project.json").is_file())
         self.assertTrue((output / "artifact-index.json").is_file())
 
+    def test_ci_uses_hashed_dependencies_and_local_package_source(self) -> None:
+        workflow = (
+            ROOT / ".github" / "workflows" / "portpilot.yml"
+        ).read_text(encoding="utf-8")
+        legacy_workflow = (
+            ROOT / ".github" / "workflows" / "pocketsphinx-arm64.yml"
+        ).read_text(encoding="utf-8")
+        manifest = yaml.safe_load(
+            (
+                ROOT / "manifests" / "pocketsphinx" / "portpilot.yml"
+            ).read_text(encoding="utf-8")
+        )
+        lock = (ROOT / "requirements-ci.lock").read_text(encoding="utf-8")
+
+        self.assertNotIn("pip install -e portpilot", workflow)
+        self.assertIn("--require-hashes -r portpilot\\requirements-ci.lock", workflow)
+        self.assertNotIn("pip wheel pocketsphinx", legacy_workflow)
+        self.assertIn("pip wheel .\\pocketsphinx", legacy_workflow)
+        self.assertEqual(
+            ".\\pocketsphinx",
+            manifest["validation"]["package"]["buildCommand"]["arguments"][3],
+        )
+        self.assertIn(
+            "--no-build-isolation",
+            manifest["validation"]["package"]["buildCommand"]["arguments"],
+        )
+        package_lines = [
+            line for line in lock.splitlines()
+            if line and not line.startswith(("#", " ", "\t"))
+        ]
+        self.assertTrue(package_lines)
+        self.assertTrue(all("==" in line and line.endswith("\\") for line in package_lines))
+
 
 if __name__ == "__main__":
     unittest.main()

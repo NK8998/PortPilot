@@ -122,4 +122,7 @@ H0 -> H1 -> H2 -> H3 -> H4 -> H5 -> H6 -> H7 -> H8
 - whisper.cpp native proof:
   [Windows Arm64 proof](docs/WHISPER_CPP_ARM64_PROOF.md) and
   [GitHub Actions run 32389275726](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/actions/runs/32389275726).
-- H7-H8: pending.
+- H7 reliability and review: complete.
+- Reliability reference:
+  [PortPilot Reliability and Review](docs/PORTPILOT_RELIABILITY.md).
+- H8 demo package: pending.

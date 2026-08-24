@@ -42,3 +42,5 @@ A reusable, agent-driven workflow that analyses, ports, tests, and packages open
 - [Reusable Windows Arm CI](docs/PORTPILOT_CI.md)
 - [Second application candidate lock](docs/SECOND_APP_CANDIDATE.md)
 - [whisper.cpp native Windows Arm64 proof](docs/WHISPER_CPP_ARM64_PROOF.md)
+- [Reliability and review gates](docs/PORTPILOT_RELIABILITY.md)
+- [whisper.cpp static finding dispositions](docs/WHISPER_CPP_FINDING_DISPOSITIONS.md)

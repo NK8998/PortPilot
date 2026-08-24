@@ -38,11 +38,26 @@ def create_report(run_directory: Path) -> dict[str, Any]:
     failed = [
         task for task in tasks if task["status"] in {"blocked", "failed"}
     ]
+    accepted_risks = [
+        finding
+        for finding in findings
+        if finding["status"] in {"accepted", "wont-fix"}
+    ]
+    undisposed_findings = [
+        finding
+        for finding in findings
+        if finding["status"] not in {
+            "accepted",
+            "resolved",
+            "wont-fix",
+            "not-applicable",
+        }
+    ]
     implementation_status = (
         "passed"
-        if tasks and not unfinished
+        if tasks and not unfinished and not undisposed_findings
         else "blocked"
-        if failed
+        if failed or (tasks and undisposed_findings)
         else "not-applicable"
     )
     architecture_status = (
@@ -128,12 +143,30 @@ def create_report(run_directory: Path) -> dict[str, Any]:
         "remainingRisks": [
             f"{task['id']}: {task['title']}" for task in unfinished
         ]
+        + [
+            f"{finding['id']}: {finding['disposition']['rationale']}"
+            for finding in accepted_risks
+        ]
+        + [
+            f"{finding['id']}: finding requires disposition"
+            for finding in undisposed_findings
+        ]
         + ([] if execution_complete else ["Execution evidence is incomplete."]),
         "verdict": (
-            "ready"
+            "conditionally-ready"
             if (
                 tasks
                 and not unfinished
+                and not undisposed_findings
+                and architecture_status == "passed"
+                and execution_complete
+                and accepted_risks
+            )
+            else "ready"
+            if (
+                tasks
+                and not unfinished
+                and not undisposed_findings
                 and architecture_status == "passed"
                 and execution_complete
             )
