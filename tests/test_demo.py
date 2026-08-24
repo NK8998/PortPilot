@@ -17,6 +17,7 @@ class DemoPackageTests(unittest.TestCase):
             ROOT / "docs" / "HACKATHON_QUICKSTART.md",
             ROOT / "docs" / "HACKATHON_FALLBACK.md",
             ROOT / "scripts" / "demo.ps1",
+            ROOT / "scripts" / "build-fallback-recording.ps1",
         ]
         for path in required:
             self.assertTrue(path.is_file(), path)
