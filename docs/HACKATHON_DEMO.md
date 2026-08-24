@@ -55,3 +55,5 @@ pwsh -File scripts\demo.ps1 -SkipTests -OpenProofs
 
 The offline and recording fallback is in
 [Hackathon Recording and Offline Fallback](HACKATHON_FALLBACK.md).
+The ready-to-play public recording is available in
+[PortPilot Hackathon Demo 2026](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/releases/tag/hackathon-demo-2026).

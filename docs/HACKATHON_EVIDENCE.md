@@ -10,6 +10,10 @@
 Both runs used commit `2999abf` of the same reusable workflow with hashed
 Python dependencies.
 
+The complete narrated fallback is published in
+[PortPilot Hackathon Demo 2026](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/releases/tag/hackathon-demo-2026)
+with its editable deck and SHA-256 manifest.
+
 ## PocketSphinx
 
 | Before PortPilot | After PortPilot |

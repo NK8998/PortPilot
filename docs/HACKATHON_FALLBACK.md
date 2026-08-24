@@ -1,5 +1,28 @@
 # Hackathon Recording and Offline Fallback
 
+## Published fallback
+
+The narrated fallback is published in
+[PortPilot Hackathon Demo 2026](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/releases/tag/hackathon-demo-2026).
+
+| Record | Value |
+|---|---|
+| Video | `PortPilot-Hackathon-Fallback.mp4` |
+| Duration | 6 minutes 11 seconds |
+| Resolution | 1080p |
+| Slides | 8 |
+| Generator commit | `3be17abfcea24a703bdc0cde2899b85ecad7a39f` |
+| Video SHA-256 | `5d4e87cdb7a51ef4a7b7f570b0083145fb4e5353d889f9e25530b082090df0a7` |
+
+The release also contains the editable PowerPoint deck and
+`recording-manifest.json`. Regenerate it with:
+
+```powershell
+powershell.exe -Sta -NoProfile -ExecutionPolicy Bypass `
+  -File scripts\build-fallback-recording.ps1 `
+  -OutputDirectory C:\path\to\recording-output
+```
+
 ## Recording storyboard
 
 Record the same six-minute sequence as
@@ -54,5 +77,6 @@ remain GitHub Actions artifacts and are not committed.
 | Presenter machine is not Arm64 | Explain that native execution is intentionally delegated to `windows-11-arm` |
 | A report says `not-ready` | Show the passed tests gate, then explain the explicit disposition requirement |
 
-The recording file itself should be stored in the hackathon submission location
-or attached to the final pull request rather than committed as a large binary.
+The published release keeps large media outside Git history while providing a
+durable public download, editable source deck, duration, source commit, and
+content hash.

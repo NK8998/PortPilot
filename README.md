@@ -49,3 +49,4 @@ A reusable, agent-driven workflow that analyses, ports, tests, and packages open
 - [Before-and-after evidence](docs/HACKATHON_EVIDENCE.md)
 - [New-user quickstart](docs/HACKATHON_QUICKSTART.md)
 - [Recording and offline fallback](docs/HACKATHON_FALLBACK.md)
+- [Published narrated demo](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/releases/tag/hackathon-demo-2026)

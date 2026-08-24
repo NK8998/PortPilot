@@ -29,6 +29,7 @@ class DemoPackageTests(unittest.TestCase):
         )
         self.assertIn("32714075611", combined)
         self.assertIn("32714080799", combined)
+        self.assertIn("hackathon-demo-2026", combined)
         self.assertIn("0xAA64", combined)
         self.assertIn("not-ready", combined)
 
