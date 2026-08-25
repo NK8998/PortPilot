@@ -16,13 +16,19 @@
 # Adapted from the OpenCppCoverage port, which asserts the same pair in run 32396073242.
 #
 # TO USE: copy to .github/workflows/prove-native-arm64.yml in the ported repo, set BIN_NAME.
+#
+# This file lives in templates/ci/ rather than .github/workflows/ on purpose. It is a
+# template for a *ported* repository, not a gate for this workbench: it builds and runs a
+# specific Rust binary that does not exist here. Kept under .github/workflows/ with a
+# `push: branches: ["**"]` trigger, it fired on every push to every branch and failed.
 
 name: Prove native ARM64
 
 on:
   workflow_dispatch:
   push:
-    branches: ["**"]
+    branches: [main]
+  pull_request:
 
 permissions:
   contents: read

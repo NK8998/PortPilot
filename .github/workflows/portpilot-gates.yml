@@ -203,3 +203,11 @@ jobs:
             exit 1
           fi
           echo "correctly rejected a non-binary"
+
+      # The PowerShell PE verifier is the gate the Windows side leans on. Its
+      # self-test synthesises a PE with machine 0x8664 and asserts the verifier
+      # both ACCEPTS it as AMD64 and REJECTS it as ARM64 - a positive and a
+      # negative control in one. pwsh is preinstalled on ubuntu-latest.
+      - name: PE architecture verifier self-test
+        shell: pwsh
+        run: ./scripts/tests/Test-PeArchitectureVerifier.ps1

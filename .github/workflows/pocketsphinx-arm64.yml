@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - ".github/workflows/pocketsphinx-arm64.yml"
+      - "manifests/pocketsphinx/**"
       - "patches/pocketsphinx/**"
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
 
       - name: Test reusable PE verifier skill
         shell: pwsh
-        run: .\.github\skills\pe-architecture-verifier\tests\Test-PeArchitectureVerifier.ps1
+        run: .\scripts\tests\Test-PeArchitectureVerifier.ps1
 
       - name: Install native test dependencies
         shell: pwsh
@@ -81,7 +81,7 @@ jobs:
       - name: Verify PE architecture
         shell: pwsh
         run: |
-          & .\.github\skills\pe-architecture-verifier\scripts\Test-PeArchitecture.ps1 `
+          & .\scripts\Test-PeArchitecture.ps1 `
             -Path pocketsphinx\build\pocketsphinx.exe `
             -ExpectedMachine ARM64 `
             -OutputPath evidence\pe-architecture.json
@@ -157,7 +157,7 @@ jobs:
           if ($wheels.Count -ne 1) {
             throw "Expected exactly one win_arm64 wheel, found $($wheels.Count)."
           }
-          & .\.github\skills\python-native-wheel-arm64\scripts\Test-WheelArchitecture.ps1 `
+          & .\scripts\Test-WheelArchitecture.ps1 `
             -WheelPath $wheels[0].FullName `
             -OutputPath evidence\wheel-architecture.json
 
