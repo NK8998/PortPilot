@@ -18,3 +18,35 @@ A reusable, agent-driven workflow that analyses, ports, tests, and packages open
 4. Document the entire process.
 5. Use AI to improve the documentation.
 6. Create an agent.
+
+## Porting pilots
+
+- [PocketSphinx incremental porting process](docs/POCKETSPHINX_PORTING_PROCESS.md)
+- [PocketSphinx Arm64 findings and architecture decision](docs/POCKETSPHINX_ARM64_FINDINGS.md)
+- [PocketSphinx Windows Arm64 demo](docs/POCKETSPHINX_DEMO.md)
+
+## Reusable skills
+
+- `pe-architecture-verifier`: validates `.exe`, `.dll`, and `.pyd` PE machine
+  types and emits JSON evidence.
+- `python-native-wheel-arm64`: verifies a `win_arm64` wheel tag and audits every
+  bundled native binary.
+
+## Hackathon productization
+
+- [Approved workplan](plan.md)
+- [Manifest and run-state contracts](docs/PORTPILOT_CONTRACTS.md)
+- [Repository analysis skills](docs/PORTPILOT_ANALYSIS_SKILLS.md)
+- [Resumable PortPilot orchestrator](docs/PORTPILOT_ORCHESTRATOR.md)
+- [Build and validation adapters](docs/PORTPILOT_EXECUTION_ADAPTERS.md)
+- [Reusable Windows Arm CI](docs/PORTPILOT_CI.md)
+- [Second application candidate lock](docs/SECOND_APP_CANDIDATE.md)
+- [whisper.cpp native Windows Arm64 proof](docs/WHISPER_CPP_ARM64_PROOF.md)
+- [Reliability and review gates](docs/PORTPILOT_RELIABILITY.md)
+- [whisper.cpp static finding dispositions](docs/WHISPER_CPP_FINDING_DISPOSITIONS.md)
+- [PortPilot architecture](docs/PORTPILOT_ARCHITECTURE.md)
+- [Five-to-seven-minute hackathon demo](docs/HACKATHON_DEMO.md)
+- [Before-and-after evidence](docs/HACKATHON_EVIDENCE.md)
+- [New-user quickstart](docs/HACKATHON_QUICKSTART.md)
+- [Recording and offline fallback](docs/HACKATHON_FALLBACK.md)
+- [Published narrated demo](https://github.com/Kalunge/portpilot-pocketsphinx-arm64-validation/releases/tag/hackathon-demo-2026)
