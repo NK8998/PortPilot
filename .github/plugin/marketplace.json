@@ -1,0 +1,15 @@
+{
+	"name": "portpilot",
+	"metadata": {
+		"description": "Skills, agents, contracts and evidence gates guiding an AI coding agent through porting an existing application to native ARM64 on Windows.",
+		"version": "1.0.0"
+	},
+	"plugins": [
+		{
+			"name": "portpilot",
+			"description": "Assess, plan, retarget, migrate, verify, package and ship a native ARM64 port of an existing x64 application - with machine-checkable proof at every gate.",
+			"version": "1.0.0",
+			"source": "."
+		}
+	]
+}

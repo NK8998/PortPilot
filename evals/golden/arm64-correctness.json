@@ -1,0 +1,13 @@
+{
+  "skill": "arm64-correctness",
+  "fixtures": [
+    {
+      "name": "positive",
+      "expected": [
+        { "ruleId": "ARM-0001", "file": "BreakPoint.cpp", "line": 3 },
+        { "ruleId": "ARM-0002", "file": "BreakPoint.cpp", "line": 4 }
+      ]
+    },
+    { "name": "negative", "expected": [] }
+  ]
+}

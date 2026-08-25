@@ -1,0 +1,68 @@
+{
+  "skill": "port-packaging",
+  "rules": [
+    {
+      "id": "PKG-0001",
+      "pattern": "Compress-Archive\\s+.*-Path\\s+[^\\r\\n]*[\\\\/]\\*",
+      "flags": "i",
+      "extensions": [".ps1"],
+      "category": "packaging",
+      "severity": "high",
+      "explanation": "The package is created from a wildcard build tree rather than an explicit product allowlist.",
+      "recommendation": "Assemble a clean staging directory from named product files before compression.",
+      "arm64Impact": "blocker",
+      "effort": "S",
+      "confidence": "high"
+    },
+    {
+      "id": "PKG-0002",
+      "pattern": "Copy-Item\\s+.*(protoc|nuget)\\.exe",
+      "flags": "i",
+      "extensions": [".ps1"],
+      "category": "packaging",
+      "severity": "high",
+      "explanation": "A host dependency tool is copied into the product staging tree.",
+      "recommendation": "Keep host build tools outside the release allowlist and scan only final product contents.",
+      "arm64Impact": "blocker",
+      "effort": "S",
+      "confidence": "high"
+    },
+    {
+      "id": "PKG-0003",
+      "pattern": "Copy-Item\\s+[^\\r\\n]*Redist[\\\\/]MSVC[^\\r\\n]*\\*",
+      "flags": "i",
+      "extensions": [".ps1"],
+      "category": "packaging",
+      "severity": "blocker",
+      "explanation": "Redistributable runtime DLLs are copied by directory glob; the ARM64 CRT redist folder ships at least one x64 image (vcruntime140_1.dll), so a glob copy poisons an otherwise pure package.",
+      "recommendation": "Filter every redistributable by its PE machine value, assert that the required runtime DLLs survived the filter, and record accepted and rejected files in a manifest so the omission is auditable.",
+      "arm64Impact": "blocker",
+      "effort": "S",
+      "confidence": "high"
+    },
+    {
+      "id": "PKG-0004",
+      "detector": "package-e2e-missing",
+      "extensions": [".ps1"],
+      "category": "packaging",
+      "severity": "blocker",
+      "explanation": "The archive is re-expanded and inspected but no binary is executed from the expanded tree and the expanded path is never surfaced to a caller, so no downstream gate can detect a missing runtime dependency or a missing required directory.",
+      "recommendation": "Run an end-to-end invocation against the re-expanded package in addition to the build output; a PE purity scan proves architecture, never runnability.",
+      "arm64Impact": "blocker",
+      "effort": "M",
+      "confidence": "high"
+    },
+    {
+      "id": "PKG-0005",
+      "detector": "empty-required-directory",
+      "extensions": [".ps1"],
+      "category": "packaging",
+      "severity": "blocker",
+      "explanation": "A directory required at runtime is created in the staging tree but never receives a file, and a ZIP archive cannot store an empty directory, so it disappears from the shipped package.",
+      "recommendation": "Write a placeholder file into every runtime-required directory so it survives compression, and cover it with an end-to-end run of the re-expanded package.",
+      "arm64Impact": "blocker",
+      "effort": "S",
+      "confidence": "high"
+    }
+  ]
+}

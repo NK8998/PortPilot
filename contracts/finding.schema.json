@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/winport/winport/contracts/finding.schema.json",
+  "title": "PortPilot Finding Envelope",
+  "description": "The single envelope every PortPilot analysis and review skill emits. Frozen on Day 1 - changes require team consensus.",
+  "type": "object",
+  "required": ["skill", "schemaVersion", "target", "findings", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "skill": {
+      "type": "string",
+      "description": "Name of the emitting skill, matching its SKILL.md frontmatter name.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "target": {
+      "type": "object",
+      "required": ["repo", "commit"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": {
+          "type": "string",
+          "description": "Repository identity, e.g. github.com/owner/app"
+        },
+        "commit": {
+          "type": "string",
+          "description": "Exact commit the findings were produced against.",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        "path": {
+          "type": "string",
+          "description": "Optional local path the scan was run against."
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/finding" }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["blockers", "high", "medium", "low"],
+      "additionalProperties": false,
+      "properties": {
+        "blockers": { "type": "integer", "minimum": 0 },
+        "high": { "type": "integer", "minimum": 0 },
+        "medium": { "type": "integer", "minimum": 0 },
+        "low": { "type": "integer", "minimum": 0 },
+        "info": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": [
+        "id",
+        "file",
+        "line",
+        "evidence",
+        "category",
+        "severity",
+        "explanation",
+        "recommendation",
+        "arm64Impact",
+        "effort",
+        "confidence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable finding ID. Prefix identifies the emitting skill family, e.g. LNX-0007, ARM-0012, BLD-0003.",
+          "pattern": "^[A-Z]{3}-[0-9]{4}$"
+        },
+        "file": {
+          "type": "string",
+          "description": "Repo-relative path. Required - evidence or it didn't happen."
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "1-based line number of the matched evidence."
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The literal matched text from the source. Never paraphrased."
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "linux-api",
+            "build-system",
+            "ui-framework",
+            "native-dep",
+            "arch-lock",
+            "packaging",
+            "perf"
+          ]
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["blocker", "high", "medium", "low", "info"],
+          "description": "How badly this hurts the Windows port. Independent of arm64Impact."
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recommendation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "windowsAlternative": {
+          "type": "string",
+          "description": "Candidate Windows API or library. Omit rather than invent."
+        },
+        "arm64Impact": {
+          "type": "string",
+          "enum": ["none", "rebuild-required", "source-change-required", "blocker"],
+          "description": "First-class axis, deliberately separate from severity. A finding can be a Windows blocker and Arm64-neutral, or Windows-fine and Arm64-fatal."
+        },
+        "effort": {
+          "type": "string",
+          "enum": ["S", "M", "L", "XL"]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "low-confidence findings are advisory and are never auto-acted on by port-migration."
+        }
+      }
+    }
+  }
+}

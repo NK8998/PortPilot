@@ -1,0 +1,114 @@
+{
+  "skill": "build-retarget",
+  "fixtures": [
+    {
+      "name": "positive",
+      "expected": [
+        {
+          "ruleId": "BLD-0001",
+          "file": "OpenCppCoverage.sln",
+          "line": 2
+        },
+        {
+          "ruleId": "BLD-0002",
+          "file": "Dia.props",
+          "line": 2
+        },
+        {
+          "ruleId": "BLD-0003",
+          "file": "ToolchainProbe.ps1",
+          "line": 2
+        },
+        {
+          "ruleId": "BLD-0004",
+          "file": "installer.log",
+          "line": 1
+        },
+        {
+          "ruleId": "BLD-0005",
+          "file": "installer.log",
+          "line": 2
+        },
+        {
+          "ruleId": "BLD-0006",
+          "file": "installer.log",
+          "line": 3
+        },
+        {
+          "ruleId": "BLD-0007",
+          "file": "installer.log",
+          "line": 4
+        },
+        {
+          "ruleId": "BLD-0008",
+          "file": "installer.log",
+          "line": 5
+        },
+        {
+          "ruleId": "BLD-0009",
+          "file": "installer.log",
+          "line": 6
+        },
+        {
+          "ruleId": "BLD-0010",
+          "file": "installer.log",
+          "line": 7
+        },
+        {
+          "ruleId": "BLD-0008",
+          "file": "prefix-mismatch.log",
+          "line": 2
+        },
+        {
+          "ruleId": "BLD-0010",
+          "file": "prefix-mismatch.log",
+          "line": 4
+        },
+        {
+          "ruleId": "BLD-0011",
+          "file": "arm64-ci.yml",
+          "line": 3
+        },
+        {
+          "ruleId": "BLD-0012",
+          "file": "ReencodedSource.cpp",
+          "line": 3
+        },
+        {
+          "ruleId": "BLD-0013",
+          "file": "encoding-build.log",
+          "line": 2
+        },
+        {
+          "ruleId": "BLD-0014",
+          "file": "toolchain-build.log",
+          "line": 5
+        },
+        {
+          "ruleId": "BLD-0015",
+          "file": "CompareSourceBytes.ps1",
+          "line": 12
+        },
+        {
+          "ruleId": "BLD-0015",
+          "file": "CompareSourceBytes.ps1",
+          "line": 13
+        },
+        {
+          "ruleId": "BLD-0016",
+          "file": "CompareSourceBytes.ps1",
+          "line": 22
+        },
+        {
+          "ruleId": "BLD-0017",
+          "file": "pin-only.yml",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "name": "negative",
+      "expected": []
+    }
+  ]
+}

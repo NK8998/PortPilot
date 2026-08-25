@@ -1,0 +1,819 @@
+From https://github.com/microsoft/vcpkg
+ * branch                06d00ffa491e4668627728f14b891d22c6fea146 -> FETCH_HEAD
+HEAD is now at 06d00ffa4 [stdgpu] add new port (#53264)
+Downloading https://github.com/microsoft/vcpkg-tool/releases/download/2026-07-27/vcpkg.exe -> C:\Users\t-lsingoei\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe... done.
+Validating signature... done.
+
+vcpkg package management program version 2026-07-27-98d7cb0cf1f4686a3e43aa5672b6230c1d56bce8
+
+See LICENSE.txt for license information.
+Detecting compiler hash for triplet x64-windows...
+Compiler found: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe
+The following packages are already installed:
+  * abseil:x64-windows@20260107.1#3
+    protobuf:x64-windows@6.33.4#2
+  * utf8-range:x64-windows@6.33.4
+  * vcpkg-boost:x64-windows@2025-03-29
+  * vcpkg-cmake:x64-windows@2025-08-07
+  * vcpkg-cmake-config:x64-windows@2026-07-21
+The following packages will be removed:
+    abseil:x86-windows
+    boost-algorithm:x86-windows
+    boost-align:x86-windows
+    boost-any:x86-windows
+    boost-array:x86-windows
+    boost-asio:x86-windows
+    boost-assert:x86-windows
+    boost-atomic:x86-windows
+    boost-bind:x86-windows
+    boost-charconv:x86-windows
+    boost-chrono:x86-windows
+    boost-cmake:x86-windows
+    boost-compat:x86-windows
+    boost-concept-check:x86-windows
+    boost-config:x86-windows
+    boost-container:x86-windows
+    boost-container-hash:x86-windows
+    boost-context:x86-windows
+    boost-conversion:x86-windows
+    boost-core:x86-windows
+    boost-date-time:x86-windows
+    boost-describe:x86-windows
+    boost-detail:x86-windows
+    boost-dynamic-bitset:x86-windows
+    boost-endian:x86-windows
+    boost-exception:x86-windows
+    boost-filesystem:x86-windows
+    boost-function:x86-windows
+    boost-function-types:x86-windows
+    boost-functional:x86-windows
+    boost-fusion:x86-windows
+    boost-headers:x86-windows
+    boost-integer:x86-windows
+    boost-interprocess:x86-windows
+    boost-intrusive:x86-windows
+    boost-io:x86-windows
+    boost-iostreams:x86-windows
+    boost-iterator:x86-windows
+    boost-lexical-cast:x86-windows
+    boost-locale:x86-windows
+    boost-log:x86-windows
+    boost-move:x86-windows
+    boost-mp11:x86-windows
+    boost-mpl:x86-windows
+    boost-multi-index:x86-windows
+    boost-numeric-conversion:x86-windows
+    boost-optional:x86-windows
+    boost-parameter:x86-windows
+    boost-phoenix:x86-windows
+    boost-pool:x86-windows
+    boost-predef:x86-windows
+    boost-preprocessor:x86-windows
+    boost-program-options:x86-windows
+    boost-property-tree:x86-windows
+    boost-proto:x86-windows
+    boost-random:x86-windows
+    boost-range:x86-windows
+    boost-ratio:x86-windows
+    boost-regex:x86-windows
+    boost-scope:x86-windows
+    boost-serialization:x86-windows
+    boost-smart-ptr:x86-windows
+    boost-spirit:x86-windows
+    boost-static-assert:x86-windows
+    boost-system:x86-windows
+    boost-thread:x86-windows
+    boost-throw-exception:x86-windows
+    boost-tokenizer:x86-windows
+    boost-tuple:x86-windows
+    boost-type-index:x86-windows
+    boost-type-traits:x86-windows
+    boost-typeof:x86-windows
+    boost-uninstall:x86-windows
+    boost-unordered:x86-windows
+    boost-utility:x86-windows
+    boost-uuid:x86-windows
+    boost-variant:x86-windows
+    boost-variant2:x86-windows
+    boost-winapi:x86-windows
+    boost-xpressive:x86-windows
+    bzip2:x86-windows
+    ctemplate:x86-windows
+    gtest:x86-windows
+    liblzma:x86-windows
+    pcre2:x86-windows
+    poco:x86-windows
+    protobuf:x86-windows
+    utf8-range:x86-windows
+    utf8proc:x86-windows
+    zlib:x86-windows
+    zstd:x86-windows
+The following packages will be built and installed:
+    boost-algorithm:x64-windows@1.91.0
+  * boost-align:x64-windows@1.91.0
+  * boost-any:x64-windows@1.91.0
+  * boost-array:x64-windows@1.91.0
+  * boost-asio[core,deadline-timer,spawn]:x64-windows@1.91.0
+  * boost-assert:x64-windows@1.91.0
+  * boost-atomic:x64-windows@1.91.0
+  * boost-bind:x64-windows@1.91.0
+  * boost-charconv:x64-windows@1.91.0
+  * boost-chrono:x64-windows@1.91.0
+  * boost-cmake:x64-windows@1.91.0
+  * boost-compat:x64-windows@1.91.0
+  * boost-concept-check:x64-windows@1.91.0
+  * boost-config:x64-windows@1.91.0
+    boost-container:x64-windows@1.91.0
+  * boost-container-hash:x64-windows@1.91.0
+  * boost-context:x64-windows@1.91.0
+  * boost-conversion:x64-windows@1.91.0
+  * boost-core:x64-windows@1.91.0
+  * boost-date-time:x64-windows@1.91.0
+  * boost-describe:x64-windows@1.91.0
+  * boost-detail:x64-windows@1.91.0
+  * boost-dynamic-bitset:x64-windows@1.91.0
+  * boost-endian:x64-windows@1.91.0
+  * boost-exception:x64-windows@1.91.0
+    boost-filesystem:x64-windows@1.91.0
+  * boost-function:x64-windows@1.91.0
+  * boost-function-types:x64-windows@1.91.0
+  * boost-functional:x64-windows@1.91.0
+  * boost-fusion:x64-windows@1.91.0
+  * boost-headers:x64-windows@1.91.0
+  * boost-integer:x64-windows@1.91.0
+  * boost-interprocess:x64-windows@1.91.0
+  * boost-intrusive:x64-windows@1.91.0
+  * boost-io:x64-windows@1.91.0
+    boost-iostreams[bzip2,core,lzma,zlib,zstd]:x64-windows@1.91.0
+  * boost-iterator:x64-windows@1.91.0
+  * boost-lexical-cast:x64-windows@1.91.0
+    boost-locale:x64-windows@1.91.0
+    boost-log:x64-windows@1.91.0
+  * boost-move:x64-windows@1.91.0
+  * boost-mp11:x64-windows@1.91.0
+  * boost-mpl:x64-windows@1.91.0
+  * boost-multi-index:x64-windows@1.91.0
+  * boost-numeric-conversion:x64-windows@1.91.0
+    boost-optional:x64-windows@1.91.0
+  * boost-parameter:x64-windows@1.91.0
+  * boost-phoenix:x64-windows@1.91.0
+  * boost-pool:x64-windows@1.91.0
+  * boost-predef:x64-windows@1.91.0
+  * boost-preprocessor:x64-windows@1.91.0
+    boost-program-options:x64-windows@1.91.0
+    boost-property-tree:x64-windows@1.91.0
+  * boost-proto:x64-windows@1.91.0
+  * boost-random:x64-windows@1.91.0
+    boost-range:x64-windows@1.91.0
+  * boost-ratio:x64-windows@1.91.0
+    boost-regex:x64-windows@1.91.0
+  * boost-scope:x64-windows@1.91.0
+  * boost-serialization:x64-windows@1.91.0
+  * boost-smart-ptr:x64-windows@1.91.0
+    boost-spirit:x64-windows@1.91.0
+  * boost-static-assert:x64-windows@1.91.0
+  * boost-system:x64-windows@1.91.0
+  * boost-thread:x64-windows@1.91.0
+  * boost-throw-exception:x64-windows@1.91.0
+  * boost-tokenizer:x64-windows@1.91.0
+  * boost-tuple:x64-windows@1.91.0
+  * boost-type-index:x64-windows@1.91.0
+  * boost-type-traits:x64-windows@1.91.0
+  * boost-typeof:x64-windows@1.91.0
+  * boost-uninstall:x64-windows@1.91.0
+  * boost-unordered:x64-windows@1.91.0
+  * boost-utility:x64-windows@1.91.0
+    boost-uuid:x64-windows@1.91.0
+  * boost-variant:x64-windows@1.91.0
+  * boost-variant2:x64-windows@1.91.0
+  * boost-winapi:x64-windows@1.91.0
+  * boost-xpressive:x64-windows@1.91.0
+  * bzip2[core,tool]:x64-windows@1.0.8#6
+    ctemplate:x64-windows@2020-09-14#6 -- C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg-overlays/ports\ctemplate
+    gtest:x64-windows@1.18.0
+  * liblzma:x64-windows@5.8.3
+  * pcre2[core,jit,platform-default-features]:x64-windows@10.47#1
+    poco:x64-windows@1.14.1#2
+  * utf8proc:x64-windows@2.11.3
+  * zlib:x64-windows@1.3.2#2
+  * zstd:x64-windows@1.5.7
+Additional packages (*) will be modified to complete this operation.
+Restored 88 package(s) from C:\Users\t-lsingoei\AppData\Local\vcpkg\archives in 23 s. Use --debug to see more details.
+Removing 1/179 protobuf:x86-windows
+Elapsed time to handle protobuf:x86-windows: 206 ms
+Removing 2/179 utf8-range:x86-windows
+Elapsed time to handle utf8-range:x86-windows: 21.3 ms
+Removing 3/179 abseil:x86-windows
+Elapsed time to handle abseil:x86-windows: 590 ms
+Removing 4/179 poco:x86-windows
+Elapsed time to handle poco:x86-windows: 217 ms
+Removing 5/179 pcre2:x86-windows
+Elapsed time to handle pcre2:x86-windows: 127 ms
+Removing 6/179 utf8proc:x86-windows
+Elapsed time to handle utf8proc:x86-windows: 21.5 ms
+Removing 7/179 gtest:x86-windows
+Elapsed time to handle gtest:x86-windows: 95.6 ms
+Removing 8/179 ctemplate:x86-windows
+Elapsed time to handle ctemplate:x86-windows: 34.4 ms
+Removing 9/179 boost-uuid:x86-windows
+Elapsed time to handle boost-uuid:x86-windows: 60.2 ms
+Removing 10/179 boost-program-options:x86-windows
+Elapsed time to handle boost-program-options:x86-windows: 36.4 ms
+Removing 11/179 boost-log:x86-windows
+Elapsed time to handle boost-log:x86-windows: 272 ms
+Removing 12/179 boost-asio:x86-windows
+Elapsed time to handle boost-asio:x86-windows: 415 ms
+Removing 13/179 boost-context:x86-windows
+Elapsed time to handle boost-context:x86-windows: 43.3 ms
+Removing 14/179 boost-interprocess:x86-windows
+Elapsed time to handle boost-interprocess:x86-windows: 190 ms
+Removing 15/179 boost-parameter:x86-windows
+Elapsed time to handle boost-parameter:x86-windows: 92.3 ms
+Removing 16/179 boost-property-tree:x86-windows
+Elapsed time to handle boost-property-tree:x86-windows: 39.4 ms
+Removing 17/179 boost-any:x86-windows
+Elapsed time to handle boost-any:x86-windows: 18.5 ms
+Removing 18/179 boost-multi-index:x86-windows
+Elapsed time to handle boost-multi-index:x86-windows: 85.6 ms
+Removing 19/179 boost-serialization:x86-windows
+Elapsed time to handle boost-serialization:x86-windows: 135 ms
+Removing 20/179 boost-xpressive:x86-windows
+Elapsed time to handle boost-xpressive:x86-windows: 82.4 ms
+Removing 21/179 boost-spirit:x86-windows
+Elapsed time to handle boost-spirit:x86-windows: 700 ms
+Removing 22/179 boost-endian:x86-windows
+Elapsed time to handle boost-endian:x86-windows: 34 ms
+Removing 23/179 boost-phoenix:x86-windows
+Elapsed time to handle boost-phoenix:x86-windows: 247 ms
+Removing 24/179 boost-pool:x86-windows
+Elapsed time to handle boost-pool:x86-windows: 21.4 ms
+Removing 25/179 boost-proto:x86-windows
+Elapsed time to handle boost-proto:x86-windows: 174 ms
+Removing 26/179 boost-variant:x86-windows
+Elapsed time to handle boost-variant:x86-windows: 38 ms
+Removing 27/179 boost-type-index:x86-windows
+Elapsed time to handle boost-type-index:x86-windows: 25.8 ms
+Removing 28/179 boost-locale:x86-windows
+Elapsed time to handle boost-locale:x86-windows: 60.2 ms
+Removing 29/179 boost-charconv:x86-windows
+Elapsed time to handle boost-charconv:x86-windows: 40.8 ms
+Removing 30/179 boost-thread:x86-windows
+Elapsed time to handle boost-thread:x86-windows: 122 ms
+Removing 31/179 boost-chrono:x86-windows
+Elapsed time to handle boost-chrono:x86-windows: 51.5 ms
+Removing 32/179 boost-ratio:x86-windows
+Elapsed time to handle boost-ratio:x86-windows: 17.2 ms
+Removing 33/179 boost-date-time:x86-windows
+Elapsed time to handle boost-date-time:x86-windows: 121 ms
+Removing 34/179 boost-lexical-cast:x86-windows
+Elapsed time to handle boost-lexical-cast:x86-windows: 36.3 ms
+Removing 35/179 boost-static-assert:x86-windows
+Elapsed time to handle boost-static-assert:x86-windows: 16 ms
+Removing 36/179 boost-tokenizer:x86-windows
+Elapsed time to handle boost-tokenizer:x86-windows: 20.1 ms
+Removing 37/179 boost-iostreams:x86-windows
+Elapsed time to handle boost-iostreams:x86-windows: 143 ms
+Removing 38/179 bzip2:x86-windows
+Elapsed time to handle bzip2:x86-windows: 24 ms
+Removing 39/179 boost-numeric-conversion:x86-windows
+Elapsed time to handle boost-numeric-conversion:x86-windows: 38.4 ms
+Removing 40/179 boost-random:x86-windows
+Elapsed time to handle boost-random:x86-windows: 70.9 ms
+Removing 41/179 boost-dynamic-bitset:x86-windows
+Elapsed time to handle boost-dynamic-bitset:x86-windows: 16.7 ms
+Removing 42/179 boost-integer:x86-windows
+Elapsed time to handle boost-integer:x86-windows: 20.5 ms
+Removing 43/179 liblzma:x86-windows
+Elapsed time to handle liblzma:x86-windows: 39 ms
+Removing 44/179 zlib:x86-windows
+Elapsed time to handle zlib:x86-windows: 91.7 ms
+Removing 45/179 zstd:x86-windows
+Elapsed time to handle zstd:x86-windows: 44 ms
+Removing 46/179 boost-filesystem:x86-windows
+Elapsed time to handle boost-filesystem:x86-windows: 136 ms
+Removing 47/179 boost-atomic:x86-windows
+Elapsed time to handle boost-atomic:x86-windows: 158 ms
+Removing 48/179 boost-align:x86-windows
+Elapsed time to handle boost-align:x86-windows: 42.7 ms
+Removing 49/179 boost-scope:x86-windows
+Elapsed time to handle boost-scope:x86-windows: 29.9 ms
+Removing 50/179 boost-system:x86-windows
+Elapsed time to handle boost-system:x86-windows: 57.1 ms
+Removing 51/179 boost-compat:x86-windows
+Elapsed time to handle boost-compat:x86-windows: 21.9 ms
+Removing 52/179 boost-variant2:x86-windows
+Elapsed time to handle boost-variant2:x86-windows: 14.9 ms
+Removing 53/179 boost-winapi:x86-windows
+Elapsed time to handle boost-winapi:x86-windows: 143 ms
+Removing 54/179 boost-container:x86-windows
+Elapsed time to handle boost-container:x86-windows: 129 ms
+Removing 55/179 boost-intrusive:x86-windows
+Elapsed time to handle boost-intrusive:x86-windows: 100 ms
+Removing 56/179 boost-move:x86-windows
+Elapsed time to handle boost-move:x86-windows: 62.9 ms
+Removing 57/179 boost-algorithm:x86-windows
+Elapsed time to handle boost-algorithm:x86-windows: 89.3 ms
+Removing 58/179 boost-exception:x86-windows
+Elapsed time to handle boost-exception:x86-windows: 32.3 ms
+Removing 59/179 boost-range:x86-windows
+Elapsed time to handle boost-range:x86-windows: 119 ms
+Removing 60/179 boost-array:x86-windows
+Elapsed time to handle boost-array:x86-windows: 11.7 ms
+Removing 61/179 boost-conversion:x86-windows
+Elapsed time to handle boost-conversion:x86-windows: 12.9 ms
+Removing 62/179 boost-smart-ptr:x86-windows
+Elapsed time to handle boost-smart-ptr:x86-windows: 66.6 ms
+Removing 63/179 boost-iterator:x86-windows
+Elapsed time to handle boost-iterator:x86-windows: 199 ms
+Removing 64/179 boost-fusion:x86-windows
+Elapsed time to handle boost-fusion:x86-windows: 751 ms
+Removing 65/179 boost-functional:x86-windows
+Elapsed time to handle boost-functional:x86-windows: 19 ms
+Removing 66/179 boost-function:x86-windows
+Elapsed time to handle boost-function:x86-windows: 22.4 ms
+Removing 67/179 boost-bind:x86-windows
+Elapsed time to handle boost-bind:x86-windows: 26.4 ms
+Removing 68/179 boost-function-types:x86-windows
+Elapsed time to handle boost-function-types:x86-windows: 74.7 ms
+Removing 69/179 boost-detail:x86-windows
+Elapsed time to handle boost-detail:x86-windows: 24.3 ms
+Removing 70/179 boost-typeof:x86-windows
+Elapsed time to handle boost-typeof:x86-windows: 29.9 ms
+Removing 71/179 boost-mpl:x86-windows
+Elapsed time to handle boost-mpl:x86-windows: 859 ms
+Removing 72/179 boost-optional:x86-windows
+Elapsed time to handle boost-optional:x86-windows: 34.5 ms
+Removing 73/179 boost-utility:x86-windows
+Elapsed time to handle boost-utility:x86-windows: 38.5 ms
+Removing 74/179 boost-io:x86-windows
+Elapsed time to handle boost-io:x86-windows: 22.2 ms
+Removing 75/179 boost-regex:x86-windows
+Elapsed time to handle boost-regex:x86-windows: 71 ms
+Removing 76/179 boost-concept-check:x86-windows
+Elapsed time to handle boost-concept-check:x86-windows: 30.8 ms
+Removing 77/179 boost-preprocessor:x86-windows
+Elapsed time to handle boost-preprocessor:x86-windows: 381 ms
+Removing 78/179 boost-tuple:x86-windows
+Elapsed time to handle boost-tuple:x86-windows: 17.6 ms
+Removing 79/179 boost-type-traits:x86-windows
+Elapsed time to handle boost-type-traits:x86-windows: 186 ms
+Removing 80/179 boost-unordered:x86-windows
+Elapsed time to handle boost-unordered:x86-windows: 48.1 ms
+Removing 81/179 boost-container-hash:x86-windows
+Elapsed time to handle boost-container-hash:x86-windows: 26 ms
+Removing 82/179 boost-describe:x86-windows
+Elapsed time to handle boost-describe:x86-windows: 25 ms
+Removing 83/179 boost-core:x86-windows
+Elapsed time to handle boost-core:x86-windows: 385 ms
+Removing 84/179 boost-mp11:x86-windows
+Elapsed time to handle boost-mp11:x86-windows: 54.3 ms
+Removing 85/179 boost-predef:x86-windows
+Elapsed time to handle boost-predef:x86-windows: 205 ms
+Removing 86/179 boost-throw-exception:x86-windows
+Elapsed time to handle boost-throw-exception:x86-windows: 15.1 ms
+Removing 87/179 boost-assert:x86-windows
+Elapsed time to handle boost-assert:x86-windows: 22.3 ms
+Removing 88/179 boost-config:x86-windows
+Elapsed time to handle boost-config:x86-windows: 197 ms
+Removing 89/179 boost-headers:x86-windows
+Elapsed time to handle boost-headers:x86-windows: 16.5 ms
+Removing 90/179 boost-cmake:x86-windows
+Elapsed time to handle boost-cmake:x86-windows: 15.6 ms
+Removing 91/179 boost-uninstall:x86-windows
+Elapsed time to handle boost-uninstall:x86-windows: 9.33 ms
+Installing 92/179 boost-uninstall:x64-windows@1.91.0...
+boost-uninstall:x64-windows@1.91.0 package ABI: 69b8ff3afb82c1aba48d04bcef125f2962d528735a686de347acd75c15f927e3
+Elapsed time to handle boost-uninstall:x64-windows: 19.9 ms
+Installing 93/179 boost-cmake:x64-windows@1.91.0...
+boost-cmake:x64-windows@1.91.0 package ABI: ec463a741d704a68275b2a37558dd30324b48bfb20f7ab35138e7b23362ec3d8
+Elapsed time to handle boost-cmake:x64-windows: 98.4 ms
+Installing 94/179 boost-headers:x64-windows@1.91.0...
+boost-headers:x64-windows@1.91.0 package ABI: b49655ab02cf65e0c82f954043c7bf168fc648ebab6fd73efe3641f436f7bb90
+Elapsed time to handle boost-headers:x64-windows: 46.4 ms
+Installing 95/179 boost-config:x64-windows@1.91.0...
+boost-config:x64-windows@1.91.0 package ABI: cc894bb9e66f87a3e0017ed2d77f0ef33a4223241a8e6dddf694df9d6d0e6e5a
+Elapsed time to handle boost-config:x64-windows: 381 ms
+Installing 96/179 boost-assert:x64-windows@1.91.0...
+boost-assert:x64-windows@1.91.0 package ABI: 4c7d4e0691bb1159687cf48076caed62cc2f08723b58a6fa14ca657c2a048ce6
+Elapsed time to handle boost-assert:x64-windows: 56.6 ms
+Installing 97/179 boost-throw-exception:x64-windows@1.91.0...
+boost-throw-exception:x64-windows@1.91.0 package ABI: 42f0e4be3d45b11fcbcd589f59120267c36de27c9207c6f009ab525b3a8cfe2c
+Elapsed time to handle boost-throw-exception:x64-windows: 33.4 ms
+Installing 98/179 boost-predef:x64-windows@1.91.0...
+boost-predef:x64-windows@1.91.0 package ABI: 49922533fa0fad8a8f0b998007f9b15bb0b1e631a84bbed64ca55f65549b69e3
+Elapsed time to handle boost-predef:x64-windows: 236 ms
+Installing 99/179 boost-mp11:x64-windows@1.91.0...
+boost-mp11:x64-windows@1.91.0 package ABI: c85b148c7b35fa0b3fec569624ffd1bbdf64f264be1cecaeedf7d9dc77849d1d
+Elapsed time to handle boost-mp11:x64-windows: 202 ms
+Installing 100/179 boost-core:x64-windows@1.91.0...
+boost-core:x64-windows@1.91.0 package ABI: b641e674df0efe32d38fc3ecb8d0a55d0a844f5c0f15542eaa6b4db6aefee3aa
+Elapsed time to handle boost-core:x64-windows: 219 ms
+Installing 101/179 boost-describe:x64-windows@1.91.0...
+boost-describe:x64-windows@1.91.0 package ABI: 01a74f8c744606ec35a1a276aab047c83497c94ba16702ea9d8df40f472c66cb
+Elapsed time to handle boost-describe:x64-windows: 125 ms
+Installing 102/179 boost-container-hash:x64-windows@1.91.0...
+boost-container-hash:x64-windows@1.91.0 package ABI: cd7de9ff98ccdf84bac5db17ce19cbe9502fefb9165ccb1e9301e4552327908a
+Elapsed time to handle boost-container-hash:x64-windows: 94 ms
+Installing 103/179 boost-unordered:x64-windows@1.91.0...
+boost-unordered:x64-windows@1.91.0 package ABI: f24e6299201f7a708a92523a8a76968aa78cd5299f9026cff74a9b8bb9cac23f
+Elapsed time to handle boost-unordered:x64-windows: 172 ms
+Installing 104/179 boost-type-traits:x64-windows@1.91.0...
+boost-type-traits:x64-windows@1.91.0 package ABI: 55a2739fe3ad49c9c72bed342f51a846e5d08499c8cdec5ef6d8ca6a44941cd1
+Elapsed time to handle boost-type-traits:x64-windows: 361 ms
+Installing 105/179 boost-tuple:x64-windows@1.91.0...
+boost-tuple:x64-windows@1.91.0 package ABI: 340113b62918642270a7580568802aaeb71c46026d6aa81caee9de197443e2a1
+Elapsed time to handle boost-tuple:x64-windows: 61.1 ms
+Installing 106/179 boost-preprocessor:x64-windows@1.91.0...
+boost-preprocessor:x64-windows@1.91.0 package ABI: eafd41f0aac5e5b71aff4c84ee4189c0efc904dc131519eb59658cfd19466c91
+Elapsed time to handle boost-preprocessor:x64-windows: 581 ms
+Installing 107/179 boost-concept-check:x64-windows@1.91.0...
+boost-concept-check:x64-windows@1.91.0 package ABI: 165c5da73e4618ed806bdadfd1409a6625d94b696b9128c9bf3e50150330d473
+Elapsed time to handle boost-concept-check:x64-windows: 75.2 ms
+Installing 108/179 boost-regex:x64-windows@1.91.0...
+boost-regex:x64-windows@1.91.0 package ABI: 20bdb7a0c285b9b6116de5293acf854c450c935ba240d83652ce9798ca01e831
+Elapsed time to handle boost-regex:x64-windows: 233 ms
+Installing 109/179 boost-io:x64-windows@1.91.0...
+boost-io:x64-windows@1.91.0 package ABI: ed9ae3a11acbe423dffffa5ba38d0c75d36a7a30e37ca412314282801147e7af
+Elapsed time to handle boost-io:x64-windows: 74.3 ms
+Installing 110/179 boost-utility:x64-windows@1.91.0...
+boost-utility:x64-windows@1.91.0 package ABI: adb118d857bcf00c37af66a4887e328dc69602fdb1d44f45577838e3e54f4fc2
+Elapsed time to handle boost-utility:x64-windows: 110 ms
+Installing 111/179 boost-optional:x64-windows@1.91.0...
+boost-optional:x64-windows@1.91.0 package ABI: 4b61bbff7531da76786e9e92552c4eb75406e1ef0082952ea48c2c5522e7a9b5
+Elapsed time to handle boost-optional:x64-windows: 92.5 ms
+Installing 112/179 boost-mpl:x64-windows@1.91.0...
+boost-mpl:x64-windows@1.91.0 package ABI: eb5fca540c1a4a00ae0f28f557a8549726e68062aba8e920a5717eae2b26be89
+Elapsed time to handle boost-mpl:x64-windows: 1.2 s
+Installing 113/179 boost-typeof:x64-windows@1.91.0...
+boost-typeof:x64-windows@1.91.0 package ABI: 854df0b40f79102ba76368a783d2a84c15114e6fd9b661aee5fa95b3e228e68b
+Elapsed time to handle boost-typeof:x64-windows: 197 ms
+Installing 114/179 boost-detail:x64-windows@1.91.0...
+boost-detail:x64-windows@1.91.0 package ABI: 37c8ae01bd2ad727495e041474ec2898f9061a8013e06fbd5ed68790963b6b34
+Elapsed time to handle boost-detail:x64-windows: 190 ms
+Installing 115/179 boost-function-types:x64-windows@1.91.0...
+boost-function-types:x64-windows@1.91.0 package ABI: 4b3224c0ad8a714618581c08bf267b418b6eb28cf6b6d93ffcf2f5b4f3dd70cd
+Elapsed time to handle boost-function-types:x64-windows: 188 ms
+Installing 116/179 boost-bind:x64-windows@1.91.0...
+boost-bind:x64-windows@1.91.0 package ABI: 5e4b08345d71ede1e7cb9b4f56425ec260896e57691ea371cf6fdbae4e0f9796
+Elapsed time to handle boost-bind:x64-windows: 110 ms
+Installing 117/179 boost-function:x64-windows@1.91.0...
+boost-function:x64-windows@1.91.0 package ABI: 71894f0f0078d38d74ca8ea678620b599ed512a4f2df518292b612af53f6f31f
+Elapsed time to handle boost-function:x64-windows: 186 ms
+Installing 118/179 boost-functional:x64-windows@1.91.0...
+boost-functional:x64-windows@1.91.0 package ABI: 3eb07a7b5280e99704609d1f2b3becdd3e87ce7c6b803ff331ac98a6f7d8fce7
+Elapsed time to handle boost-functional:x64-windows: 110 ms
+Installing 119/179 boost-fusion:x64-windows@1.91.0...
+boost-fusion:x64-windows@1.91.0 package ABI: 9325ad093b1e9abc0f63ae9f9eaeee11003c900cbcd74f5fef4a20247be78585
+Elapsed time to handle boost-fusion:x64-windows: 1.3 s
+Installing 120/179 boost-iterator:x64-windows@1.91.0...
+boost-iterator:x64-windows@1.91.0 package ABI: cf368ecf4d6073cfd0cd87ce404628e9d458df6cb862cf0e74c7074d518d3111
+Elapsed time to handle boost-iterator:x64-windows: 211 ms
+Installing 121/179 boost-smart-ptr:x64-windows@1.91.0...
+boost-smart-ptr:x64-windows@1.91.0 package ABI: 7ba8924a7e34358e10b16376d256d9de8ec05a1e92b7b2e895b3113c4f6e674b
+Elapsed time to handle boost-smart-ptr:x64-windows: 219 ms
+Installing 122/179 boost-conversion:x64-windows@1.91.0...
+boost-conversion:x64-windows@1.91.0 package ABI: 321601473665cc5fe063e3526993903a7e04e31819ada56da26d3bbf7a6c2c7f
+Elapsed time to handle boost-conversion:x64-windows: 60.4 ms
+Installing 123/179 boost-array:x64-windows@1.91.0...
+boost-array:x64-windows@1.91.0 package ABI: abc8c8cfae966491100971abb5babe2240b0363b73a1dbb8daf9552d380de581
+Elapsed time to handle boost-array:x64-windows: 62.8 ms
+Installing 124/179 boost-range:x64-windows@1.91.0...
+boost-range:x64-windows@1.91.0 package ABI: 5d6ab3b106caaa1419b3f573a113304ea367f528b809c234d5804caf1286659d
+Elapsed time to handle boost-range:x64-windows: 239 ms
+Installing 125/179 boost-exception:x64-windows@1.91.0...
+boost-exception:x64-windows@1.91.0 package ABI: cde2c956895a7ba96268b5aee5356e0d431c65c5c299b239bfdcaf4a3f9b3016
+Elapsed time to handle boost-exception:x64-windows: 199 ms
+Installing 126/179 boost-algorithm:x64-windows@1.91.0...
+boost-algorithm:x64-windows@1.91.0 package ABI: 829119a021bd0c10b190ae1a4cdb215b27e6ec7e8fdbae24f74120439b998994
+Elapsed time to handle boost-algorithm:x64-windows: 171 ms
+Installing 127/179 boost-move:x64-windows@1.91.0...
+boost-move:x64-windows@1.91.0 package ABI: 65e85d13e6638ed231143e8c792e36889bdd3094c326761c62f4e1850cf99a3b
+Elapsed time to handle boost-move:x64-windows: 171 ms
+Installing 128/179 boost-intrusive:x64-windows@1.91.0...
+boost-intrusive:x64-windows@1.91.0 package ABI: 5ea52d1eb2da4818f2acd492b065541c46f9b0436d2fb5479dea115924693b56
+Elapsed time to handle boost-intrusive:x64-windows: 204 ms
+Installing 129/179 boost-container:x64-windows@1.91.0...
+boost-container:x64-windows@1.91.0 package ABI: 4bf9bf5d617c446d2e3127c45112bfcde6dd4b8e250b59d382b5194dfeecd4f0
+Elapsed time to handle boost-container:x64-windows: 223 ms
+Installing 130/179 boost-winapi:x64-windows@1.91.0...
+boost-winapi:x64-windows@1.91.0 package ABI: 2c3390e8757c2495a3bd6f8b4e3c0a435dab5dcdec50a62bb3310f1a56b09e2f
+Elapsed time to handle boost-winapi:x64-windows: 216 ms
+Installing 131/179 boost-variant2:x64-windows@1.91.0...
+boost-variant2:x64-windows@1.91.0 package ABI: 48ecf135d3ab335d6047218e399cb0959f61dc10f57530676a4b690894184b9a
+Elapsed time to handle boost-variant2:x64-windows: 61.1 ms
+Installing 132/179 boost-compat:x64-windows@1.91.0...
+boost-compat:x64-windows@1.91.0 package ABI: 58b70f7d6ec20035f2ce549615724441a3f1042524137cc9b60dba17debb0bfa
+Elapsed time to handle boost-compat:x64-windows: 110 ms
+Installing 133/179 boost-system:x64-windows@1.91.0...
+boost-system:x64-windows@1.91.0 package ABI: 571ba3df7a7cd070dcec8806a2990221747cde5e09dcadb58f102d57cb61bab5
+Elapsed time to handle boost-system:x64-windows: 218 ms
+Installing 134/179 boost-scope:x64-windows@1.91.0...
+boost-scope:x64-windows@1.91.0 package ABI: cd81145b88225fd6392766e455f3744410ecb68ee2e86f955e46aeb85accb804
+Elapsed time to handle boost-scope:x64-windows: 123 ms
+Installing 135/179 boost-align:x64-windows@1.91.0...
+boost-align:x64-windows@1.91.0 package ABI: ab2fb2412b3bb5e64882aec3a118f5ff4c3fb1ce67241bd14dd9807633a59624
+Elapsed time to handle boost-align:x64-windows: 203 ms
+Installing 136/179 boost-atomic:x64-windows@1.91.0...
+boost-atomic:x64-windows@1.91.0 package ABI: cb730ca0618170766aa0ccdc259198a612e2bdefccc389870bb9daeb2ad3c145
+Elapsed time to handle boost-atomic:x64-windows: 269 ms
+Installing 137/179 boost-filesystem:x64-windows@1.91.0...
+boost-filesystem:x64-windows@1.91.0 package ABI: d81197e1dc86dccdc4dc58729b055f71b385a3bced5bbeda2956a666dc937560
+Elapsed time to handle boost-filesystem:x64-windows: 106 ms
+Installing 138/179 zstd:x64-windows@1.5.7...
+zstd:x64-windows@1.5.7 package ABI: af85f1680aea6dd8c63f2c46d9a07d094862bffaf1a0ebac50e93e2ea91ba81e
+Elapsed time to handle zstd:x64-windows: 111 ms
+Installing 139/179 zlib:x64-windows@1.3.2#2...
+zlib:x64-windows@1.3.2#2 package ABI: 72fbb7aed1d28a3f2b3443ee23c04ccdae298ccdce32ed31bc09149c0eb6b2ce
+Elapsed time to handle zlib:x64-windows: 92.7 ms
+Installing 140/179 liblzma:x64-windows@5.8.3...
+liblzma:x64-windows@5.8.3 package ABI: 0e38a51404d0775c21884df16be98760c6606773adc03653a5e8c1d78f8e4a33
+Elapsed time to handle liblzma:x64-windows: 157 ms
+Installing 141/179 boost-integer:x64-windows@1.91.0...
+boost-integer:x64-windows@1.91.0 package ABI: 3bcaf2c5b7160d7a9ffeb725b888f318885c3b71407922e8b9a0602657ac95cf
+Elapsed time to handle boost-integer:x64-windows: 91.2 ms
+Installing 142/179 boost-dynamic-bitset:x64-windows@1.91.0...
+boost-dynamic-bitset:x64-windows@1.91.0 package ABI: 51460753126ba7e80a19b824081b86265ee4298a07d9e706f44c5d9163ed2def
+Elapsed time to handle boost-dynamic-bitset:x64-windows: 63.6 ms
+Installing 143/179 boost-random:x64-windows@1.91.0...
+boost-random:x64-windows@1.91.0 package ABI: 3c39d2cc1979f0410a19ed8dff0401d9d417a378285d8f60d38e677ae474a0bd
+Elapsed time to handle boost-random:x64-windows: 219 ms
+Installing 144/179 boost-numeric-conversion:x64-windows@1.91.0...
+boost-numeric-conversion:x64-windows@1.91.0 package ABI: c7306497c0e658697b423c434777289fb5fc0cc0569c74a9bd043dd2b1afd42e
+Elapsed time to handle boost-numeric-conversion:x64-windows: 124 ms
+Installing 145/179 bzip2[core,tool]:x64-windows@1.0.8#6...
+bzip2[core,tool]:x64-windows@1.0.8#6 package ABI: c0d1cda61ff9f98c17684829bbb35140668ba5175cb279e7f2528eedcb1acdc1
+Elapsed time to handle bzip2:x64-windows: 96.2 ms
+Installing 146/179 boost-iostreams[bzip2,core,lzma,zlib,zstd]:x64-windows@1.91.0...
+boost-iostreams[bzip2,core,lzma,zlib,zstd]:x64-windows@1.91.0 package ABI: f932c6cc7c469c67d80368655d09d45560ae0e52f713d5e98258ad870b547fd7
+Elapsed time to handle boost-iostreams:x64-windows: 245 ms
+Installing 147/179 boost-tokenizer:x64-windows@1.91.0...
+boost-tokenizer:x64-windows@1.91.0 package ABI: 42ac87d134ed4913fdcaaf38ac175c28c843681bb7802c1574245083bab1e096
+Elapsed time to handle boost-tokenizer:x64-windows: 65.5 ms
+Installing 148/179 boost-static-assert:x64-windows@1.91.0...
+boost-static-assert:x64-windows@1.91.0 package ABI: a258aaf80a5b64f32dd8b809d762df986e5ce70ec50a928470be909f2c23eba6
+Elapsed time to handle boost-static-assert:x64-windows: 79.6 ms
+Installing 149/179 boost-lexical-cast:x64-windows@1.91.0...
+boost-lexical-cast:x64-windows@1.91.0 package ABI: a0c51c56d1f667be84b6bd7d079b7402567cde2769e27026089f10ad6510d2bc
+Elapsed time to handle boost-lexical-cast:x64-windows: 140 ms
+Installing 150/179 boost-date-time:x64-windows@1.91.0...
+boost-date-time:x64-windows@1.91.0 package ABI: e04c4fb87d9a980ef5d2f91b02542e45c7f8e9475a4bc7b5e1ecdac93b7a9573
+Elapsed time to handle boost-date-time:x64-windows: 253 ms
+Installing 151/179 boost-ratio:x64-windows@1.91.0...
+boost-ratio:x64-windows@1.91.0 package ABI: f91e8cb0b858e025b6807604f7291693264e37facdba8bb2684931a5f564a699
+Elapsed time to handle boost-ratio:x64-windows: 91 ms
+Installing 152/179 boost-chrono:x64-windows@1.91.0...
+boost-chrono:x64-windows@1.91.0 package ABI: ecf245a4854e63f37ab3fbfa8cb62230b90cb173fbee6ccd8091260b7dfaabfd
+Elapsed time to handle boost-chrono:x64-windows: 187 ms
+Installing 153/179 boost-thread:x64-windows@1.91.0...
+boost-thread:x64-windows@1.91.0 package ABI: 1aa222540083fa32c3076f9603bc88edc45f86d073872a09c81a071b1db879a2
+Elapsed time to handle boost-thread:x64-windows: 265 ms
+Installing 154/179 boost-charconv:x64-windows@1.91.0...
+boost-charconv:x64-windows@1.91.0 package ABI: 7ab37f70b9ec7445cade0ec3133450bf66542d2f514d43aab86a0f29af351196
+Elapsed time to handle boost-charconv:x64-windows: 155 ms
+Installing 155/179 boost-locale:x64-windows@1.91.0...
+boost-locale:x64-windows@1.91.0 package ABI: 7e649a2c4f38219e51ddaf5a5887e4adf6a231745f2b707b6283ff5b62225030
+Elapsed time to handle boost-locale:x64-windows: 219 ms
+Installing 156/179 boost-type-index:x64-windows@1.91.0...
+boost-type-index:x64-windows@1.91.0 package ABI: cc94c1e1db4f298833b42049baf822d06556952d032354250f01a5390af57ebb
+Elapsed time to handle boost-type-index:x64-windows: 77.6 ms
+Installing 157/179 boost-variant:x64-windows@1.91.0...
+boost-variant:x64-windows@1.91.0 package ABI: caeacba6cdbbd37fdd3bbab63900fc1a667d7ba133251a137c5a3335b61cb35e
+Elapsed time to handle boost-variant:x64-windows: 218 ms
+Installing 158/179 boost-proto:x64-windows@1.91.0...
+boost-proto:x64-windows@1.91.0 package ABI: b1f4b7b40df11db15786cd795753b0cbfdb9cc020f6261592403233f311c71ef
+Elapsed time to handle boost-proto:x64-windows: 221 ms
+Installing 159/179 boost-pool:x64-windows@1.91.0...
+boost-pool:x64-windows@1.91.0 package ABI: 184dead0e9ecbb8f2c7533daa2c6c95e7ed6fd059ef523b0d4dc5a53b304ce02
+Elapsed time to handle boost-pool:x64-windows: 109 ms
+Installing 160/179 boost-phoenix:x64-windows@1.91.0...
+boost-phoenix:x64-windows@1.91.0 package ABI: cf4c246f94b8b851f7af07b1ae7ae14cae52f522bbdfbe29ff89f7826907081f
+Elapsed time to handle boost-phoenix:x64-windows: 374 ms
+Installing 161/179 boost-endian:x64-windows@1.91.0...
+boost-endian:x64-windows@1.91.0 package ABI: 7ab1e4fda9937c6b69cc2bbb8d3dc2cd4784afc685bf78e70305a5271d4de496
+Elapsed time to handle boost-endian:x64-windows: 140 ms
+Installing 162/179 boost-spirit:x64-windows@1.91.0...
+boost-spirit:x64-windows@1.91.0 package ABI: 5c87341d1326744d0ca44d679e9eb4883064ca43361161865c6e926d3468e624
+Elapsed time to handle boost-spirit:x64-windows: 1.4 s
+Installing 163/179 boost-xpressive:x64-windows@1.91.0...
+boost-xpressive:x64-windows@1.91.0 package ABI: 235019b4747acf7ba00a6588286e2c87ca65a9d884bee3d186352c39bb7aa771
+Elapsed time to handle boost-xpressive:x64-windows: 242 ms
+Installing 164/179 boost-serialization:x64-windows@1.91.0...
+boost-serialization:x64-windows@1.91.0 package ABI: 30018fbdcf49780b8557c344529523598afb3573cac6c1cca0b8d2921faa067f
+Elapsed time to handle boost-serialization:x64-windows: 360 ms
+Installing 165/179 boost-multi-index:x64-windows@1.91.0...
+boost-multi-index:x64-windows@1.91.0 package ABI: 9ea45304c667369016cfeb8fb8f55d49306a646d4bf3bf5bbf6b82931a83c278
+Elapsed time to handle boost-multi-index:x64-windows: 248 ms
+Installing 166/179 boost-any:x64-windows@1.91.0...
+boost-any:x64-windows@1.91.0 package ABI: df5f7bcc4e8eb340953c9c87c063d0b008fabf12e037f9e8a5837392af14325e
+Elapsed time to handle boost-any:x64-windows: 76.7 ms
+Installing 167/179 boost-property-tree:x64-windows@1.91.0...
+boost-property-tree:x64-windows@1.91.0 package ABI: 87ee4caf6fad15934cb494ff033a05f7a3110a2dea3478678571a9a80f542335
+Elapsed time to handle boost-property-tree:x64-windows: 187 ms
+Installing 168/179 boost-parameter:x64-windows@1.91.0...
+boost-parameter:x64-windows@1.91.0 package ABI: bc85a083e76c644ea219e1d710a5a2597a80cedeab287047058c0009db790098
+Elapsed time to handle boost-parameter:x64-windows: 266 ms
+Installing 169/179 boost-interprocess:x64-windows@1.91.0...
+boost-interprocess:x64-windows@1.91.0 package ABI: 8c4fde4b290caa865a542a54e2fdf94133e9241496537a8a71396a088f80af1f
+Elapsed time to handle boost-interprocess:x64-windows: 251 ms
+Installing 170/179 boost-context:x64-windows@1.91.0...
+boost-context:x64-windows@1.91.0 package ABI: 5d1ef13ee8b0a05663a87399e7f5ad958f3e3f2db4eef674da8c45df4e82730d
+Elapsed time to handle boost-context:x64-windows: 156 ms
+Installing 171/179 boost-asio[core,deadline-timer,spawn]:x64-windows@1.91.0...
+boost-asio[core,deadline-timer,spawn]:x64-windows@1.91.0 package ABI: 26039f6002276cf04a64477ae44cfeedf326901c93fd2141e69c535d683d5d01
+Elapsed time to handle boost-asio:x64-windows: 943 ms
+Installing 172/179 boost-log:x64-windows@1.91.0...
+boost-log:x64-windows@1.91.0 package ABI: 491ddd3afe42e90773d7e99db96e6bd4899c58ce5ff007be77da250b29b7668a
+Elapsed time to handle boost-log:x64-windows: 474 ms
+Installing 173/179 boost-program-options:x64-windows@1.91.0...
+boost-program-options:x64-windows@1.91.0 package ABI: 0e8e3991d91268a37a7e51128181d9304d2680177d0964335a7e86ca6f5d8b25
+Elapsed time to handle boost-program-options:x64-windows: 167 ms
+Installing 174/179 boost-uuid:x64-windows@1.91.0...
+boost-uuid:x64-windows@1.91.0 package ABI: 7474fe0843e10dbdd706f807c7bdcaf909a8be83924fa4ce248ebe48dc23f7bf
+Elapsed time to handle boost-uuid:x64-windows: 249 ms
+Installing 175/179 ctemplate:x64-windows@2020-09-14#6...
+ctemplate:x64-windows@2020-09-14#6 package ABI: 91ce1ee4b1440ea689599bfeb7b796282b481982cdfddb6c9c3a68421dca42bb
+Elapsed time to handle ctemplate:x64-windows: 217 ms
+Installing 176/179 gtest:x64-windows@1.18.0...
+gtest:x64-windows@1.18.0 package ABI: bf2244321445e70e0ea80a396065ec86ba23487faa5c6c626b3be114d3628547
+Elapsed time to handle gtest:x64-windows: 236 ms
+Installing 177/179 utf8proc:x64-windows@2.11.3...
+utf8proc:x64-windows@2.11.3 package ABI: 8bc93382e25e7b4547af43770521368c1d1b5366dc1f309cde3740c895c41f39
+Elapsed time to handle utf8proc:x64-windows: 168 ms
+Installing 178/179 pcre2[core,jit,platform-default-features]:x64-windows@10.47#1...
+pcre2[core,jit,platform-default-features]:x64-windows@10.47#1 package ABI: 096e6bf9963e116bc49e69ecf53530b9ae0446364021a91d00dfcccadd8a2862
+Elapsed time to handle pcre2:x64-windows: 333 ms
+Installing 179/179 poco:x64-windows@1.14.1#2...
+poco:x64-windows@1.14.1#2 package ABI: 3c631f3fccca65a069802e27ec2d353fc22925103e66a978b49dae0f9594de3e
+Elapsed time to handle poco:x64-windows: 715 ms
+Installed contents are licensed to you by owners. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
+Some packages did not declare an SPDX license. Check the `copyright` file for each package for more information about their licensing.
+Packages installed in this vcpkg installation declare the following licenses:
+(BSD-3-Clause OR GPL-2.0-only)
+BSD-3-Clause
+BSL-1.0
+MIT
+Zlib
+bzip2-1.0.6
+The package boost-regex is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS regex)
+    target_link_libraries(main PRIVATE Boost::regex)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::regex)
+
+The package boost-optional is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS optional)
+    target_link_libraries(main PRIVATE Boost::optional)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::optional)
+
+The package boost-range is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS range)
+    target_link_libraries(main PRIVATE Boost::range)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::range)
+
+The package boost-algorithm is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS algorithm)
+    target_link_libraries(main PRIVATE Boost::algorithm)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::algorithm)
+
+The package boost-container is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS container)
+    target_link_libraries(main PRIVATE Boost::container)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::container)
+
+The package boost-filesystem is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS filesystem)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+The package boost-iostreams is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS iostreams)
+    target_link_libraries(main PRIVATE Boost::iostreams)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::iostreams)
+
+The package boost-locale is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS locale)
+    target_link_libraries(main PRIVATE Boost::locale)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::locale)
+
+The package boost-spirit is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS spirit)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+The package boost-property-tree is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS property_tree)
+    target_link_libraries(main PRIVATE Boost::property_tree)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::property_tree)
+
+The package boost-log is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS log)
+    target_link_libraries(main PRIVATE Boost::log)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::log)
+
+The package boost-program-options is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS program_options)
+    target_link_libraries(main PRIVATE Boost::program_options)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::program_options)
+
+The package boost-uuid is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS uuid)
+    target_link_libraries(main PRIVATE Boost::uuid)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::uuid)
+
+The package gtest is compatible with built-in CMake targets:
+
+    enable_testing()
+    
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+    
+    add_test(AllTestsInMain main)
+
+The package poco is compatible with built-in CMake targets:
+
+    find_package(Poco REQUIRED [COMPONENTS <libs>...])
+    target_link_libraries(main PRIVATE Poco::<libs>)
+
+protobuf provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(protobuf CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE protobuf::libupb protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+
+protobuf provides pkg-config modules:
+
+  # Google's Data Interchange Format
+  protobuf-lite
+
+  # Google's Data Interchange Format
+  protobuf
+
+  # Google's Data Interchange Format
+  upb
+
+All requested installations completed successfully in: 31 s
+VCPKG_ROOT=C:\Users\t-lsingoei\AppData\Local\OpenCppCoverage\vcpkg

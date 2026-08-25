@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "target": {
+    "repo": "github.com/OpenCppCoverage/OpenCppCoverage",
+    "commit": "3e518697ea761935574af486bacd5fcc1aeab363"
+  },
+  "baseline": [
+    {
+      "name": "baseline-ci-x64-debug",
+      "command": "msbuild /m CppCoverage.sln /p:Configuration=Debug /p:Platform=x64",
+      "target": "x64",
+      "exitCode": 0,
+      "mode": "skipped",
+      "result": "Baseline CI at 3e518697 builds and tests only Debug x64. Recorded from the committed workflow file and not re-executed by the coordinator, so the exit code field is not an observation."
+    },
+    {
+      "name": "baseline-arm64-build",
+      "command": "msbuild /m CppCoverage.sln /p:Configuration=Debug /p:Platform=ARM64",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "skipped",
+      "result": "Not attempted, and impossible at baseline: the solution declares no ARM64 configuration (CppCoverage.sln line 63) and the thirdparty 1.4.0 package ships no ARM64 payload. The exit code field is not an observation."
+    }
+  ],
+  "after": [
+    {
+      "name": "resolve-native-msbuild",
+      "command": "& .\\Build\\Scripts\\ResolveMSBuild.ps1 -HostArchitecture arm64",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "MSBuild\\Current\\Bin\\arm64\\MSBuild.exe 17.14.51.32402 with VCToolArchitecture NativeARM64",
+      "artifactPath": "evidence/arm64-81376ba/msbuild-host-ARM64.json"
+    },
+    {
+      "name": "toolchain-preflight",
+      "command": "& .\\Build\\Scripts\\ToolchainPreflight.ps1 -Platform ARM64 -Configuration Debug",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "cl and link resolved under 14.44.35207 Hostarm64\\arm64, vcpkg compiler identical, ForeignLibraryPaths empty",
+      "artifactPath": "evidence/arm64-81376ba/toolchain-preflight-ARM64-Debug.json"
+    },
+    {
+      "name": "build-debug-arm64",
+      "command": "& \"$env:MSBUILD_EXE\" /m CppCoverage.sln /p:Configuration=Debug /p:Platform=ARM64 /p:PreferredToolArchitecture=arm64",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "Debug|ARM64 solution build succeeded"
+    },
+    {
+      "name": "assert-build-toolchain-debug",
+      "command": "& .\\Build\\Scripts\\Assert-BuildToolchain.ps1 -ExpectedHost Hostarm64",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "32 cl and 16 link invocations, all HostArm64\\arm64 toolset 14.44.35207, zero HostX86",
+      "artifactPath": "evidence/arm64-81376ba/build-toolchain-Debug-ARM64.json"
+    },
+    {
+      "name": "tests-debug-arm64",
+      "command": "& .\\Build\\Scripts\\RunTests.ps1 -Platform ARM64 -Configuration Debug",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "215 ran, 215 passed, 0 failed across 6 suites",
+      "artifactPath": "evidence/arm64-81376ba/test-summary-ARM64-Debug.json"
+    },
+    {
+      "name": "build-release-arm64",
+      "command": "& \"$env:MSBUILD_EXE\" /m CppCoverage.sln /p:Configuration=Release /p:Platform=ARM64 /p:PreferredToolArchitecture=arm64",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "Release|ARM64 solution build succeeded"
+    },
+    {
+      "name": "assert-build-toolchain-release",
+      "command": "& .\\Build\\Scripts\\Assert-BuildToolchain.ps1 -ExpectedHost Hostarm64",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "31 cl and 16 link invocations, all HostArm64\\arm64 toolset 14.44.35207, zero HostX86",
+      "artifactPath": "evidence/arm64-81376ba/build-toolchain-Release-ARM64.json"
+    },
+    {
+      "name": "tests-release-arm64",
+      "command": "& .\\Build\\Scripts\\RunTests.ps1 -Platform ARM64 -Configuration Release",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "215 ran, 215 passed, 0 failed across 6 suites",
+      "artifactPath": "evidence/arm64-81376ba/test-summary-ARM64-Release.json"
+    },
+    {
+      "name": "package-arm64",
+      "command": "& .\\CreateRelease.ps1 -Platform ARM64 -Configuration Release",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "Staged, filtered redistributables by PE machine, produced the ZIP and its SHA-256, and re-expanded it for a second scan",
+      "artifactPath": "evidence/arm64-81376ba/package-ARM64.log"
+    },
+    {
+      "name": "assert-results-arm64",
+      "command": "& .\\Build\\Scripts\\Assert-Results.ps1 -Platform ARM64",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "Fail-closed accounting over build, test, end-to-end, package and scan records"
+    }
+  ],
+  "arm64Execution": {
+    "executed": true,
+    "device": "GitHub Actions windows-11-arm runner, OSArchitecture Arm64",
+    "evidence": "evidence/arm64-81376ba/environment-ARM64-Release.txt"
+  },
+  "testSummary": {
+    "baseline": "Baseline CI ran six suites on Debug x64 only. No ARM64 test execution existed and none was possible.",
+    "after": "Debug 215 of 215 and Release 215 of 215 across six suites on native ARM64 hardware, every suite exit 0 with ran equal to passed.",
+    "baselinePassed": 0,
+    "baselineFailed": 0,
+    "afterPassed": 215,
+    "afterFailed": 0
+  },
+  "testSuites": [
+    {
+      "name": "CppCoverageTest",
+      "command": ".\\ARM64\\Release\\CppCoverageTest.exe",
+      "exitCode": 0,
+      "ran": 116,
+      "passed": 116,
+      "failed": 0,
+      "evidence": "evidence/arm64-81376ba/CppCoverageTest-ARM64-Release.log"
+    },
+    {
+      "name": "ExporterTest",
+      "command": ".\\ARM64\\Release\\ExporterTest.exe",
+      "exitCode": 0,
+      "ran": 34,
+      "passed": 34,
+      "failed": 0,
+      "evidence": "evidence/arm64-81376ba/ExporterTest-ARM64-Release.log"
+    },
+    {
+      "name": "FileFilterTest",
+      "command": ".\\ARM64\\Release\\FileFilterTest.exe",
+      "exitCode": 0,
+      "ran": 29,
+      "passed": 29,
+      "failed": 0,
+      "evidence": "evidence/arm64-81376ba/FileFilterTest-ARM64-Release.log"
+    },
+    {
+      "name": "OpenCppCoverageTest",
+      "command": ".\\ARM64\\Release\\OpenCppCoverageTest.exe",
+      "exitCode": 0,
+      "ran": 19,
+      "passed": 19,
+      "failed": 0,
+      "evidence": "evidence/arm64-81376ba/OpenCppCoverageTest-ARM64-Release.log"
+    },
+    {
+      "name": "PluginTest",
+      "command": ".\\ARM64\\Release\\PluginTest.exe",
+      "exitCode": 0,
+      "ran": 5,
+      "passed": 5,
+      "failed": 0,
+      "evidence": "evidence/arm64-81376ba/PluginTest-ARM64-Release.log"
+    },
+    {
+      "name": "ToolsTest",
+      "command": ".\\ARM64\\Release\\ToolsTest.exe",
+      "exitCode": 0,
+      "ran": 12,
+      "passed": 12,
+      "failed": 0,
+      "evidence": "evidence/arm64-81376ba/ToolsTest-ARM64-Release.log"
+    }
+  ],
+  "requiredTestSuites": [
+    "CppCoverageTest",
+    "ExporterTest",
+    "FileFilterTest",
+    "OpenCppCoverageTest",
+    "PluginTest",
+    "ToolsTest"
+  ],
+  "regressionChecks": [
+    {
+      "name": "false-green-accounting-prefix",
+      "command": "GitHub Actions run 32303203988",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "Reported success while the ARM64 build had failed. The job exited 0 because failures were not propagated, which is why this run is retained as failed evidence and never as a pass."
+    },
+    {
+      "name": "false-green-accounting-postfix",
+      "command": "& .\\Build\\Scripts\\Test-FailClosed.ps1",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "Fail-closed accounting is asserted before restore in every job, so an unpropagated failure cannot present as success."
+    },
+    {
+      "name": "host-toolchain-prefix",
+      "command": "GitHub Actions run 32349116627, ARM64 Debug build log",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "32 cl and 16 link invocations came from HostX86\\arm64 while the preflight recorded Hostarm64. The build was emulated-host produced and the gate could not see it."
+    },
+    {
+      "name": "host-toolchain-postfix",
+      "command": "& .\\Build\\Scripts\\Assert-BuildToolchain.ps1 -ExpectedHost Hostarm64",
+      "target": "ARM64",
+      "exitCode": 0,
+      "mode": "executed",
+      "result": "At 81376ba every cl and link invocation came from HostArm64 in both configurations, asserted from the real command lines rather than from the resolved compiler."
+    }
+  ],
+  "toolchain": {
+    "dependencyCompiler": {
+      "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostarm64\\arm64\\cl.exe",
+      "version": "14.44.35207"
+    },
+    "buildCompiler": {
+      "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostarm64\\arm64\\cl.exe",
+      "version": "14.44.35207"
+    },
+    "linker": {
+      "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostarm64\\arm64\\link.exe",
+      "version": "14.44.35207"
+    },
+    "vcToolsVersion": "14.44.35207",
+    "windowsSdkVersion": "10.0.26100.0",
+    "platformToolset": "v143",
+    "lib": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\lib\\ARM64;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\atlmfc\\lib\\ARM64;C:\\Program Files (x86)\\Windows Kits\\10\\lib\\10.0.26100.0\\ucrt\\arm64",
+    "include": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\include;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\atlmfc\\include;C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt",
+    "evidence": "evidence/arm64-81376ba/toolchain-preflight-ARM64-Debug.json"
+  },
+  "notes": "All executed results come from https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32357865925 at head 81376baeda1b5453c1fcfe6fc0a09ccec3f892c8, downloaded by the coordinator as job logs and build artifacts rather than read from a summary. LIB and INCLUDE were recovered from the ARM64 build binlog, not from a claim: the real LibraryPath also contains the atlmfc ARM64 root of the same toolset, which the coordinator's own LIB purity predicate wrongly rejected until it was fixed and paired with rejection tests for x64, 32-bit ARM, and mismatched-version roots. Debug and Release both ran 215 tests; TestCppCli is excluded for ARM64 because MSVC has no /clr for that target, and the exclusion is recorded with its reason in the test summaries rather than left as a silent skip."
+}

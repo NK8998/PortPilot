@@ -1,0 +1,137 @@
+﻿2026-08-20T17:10:01.9046283Z Current runner version: '2.336.0'
+2026-08-20T17:10:01.9071038Z ##[group]Runner Image Provisioner
+2026-08-20T17:10:01.9071858Z Hosted Compute Agent
+2026-08-20T17:10:01.9072395Z Version: 20260729.566
+2026-08-20T17:10:01.9072972Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+2026-08-20T17:10:01.9073654Z Build Date: 2026-07-29T19:17:02Z
+2026-08-20T17:10:01.9074283Z Worker ID: {12bce241-4fcb-4d2b-9adb-8cd52c033a5a}
+2026-08-20T17:10:01.9074953Z Azure Region: westus2
+2026-08-20T17:10:01.9075469Z ##[endgroup]
+2026-08-20T17:10:01.9076840Z ##[group]Operating System
+2026-08-20T17:10:01.9077501Z Microsoft Windows Server 2022
+2026-08-20T17:10:01.9078071Z 10.0.20348
+2026-08-20T17:10:01.9078548Z Datacenter
+2026-08-20T17:10:01.9079021Z ##[endgroup]
+2026-08-20T17:10:01.9079507Z ##[group]Runner Image
+2026-08-20T17:10:01.9080044Z Image: windows-2022
+2026-08-20T17:10:01.9080547Z Version: 20260818.277.1
+2026-08-20T17:10:01.9081889Z Included Software: https://github.com/actions/runner-images/blob/win22/20260818.277/images/windows/Windows2022-Readme.md
+2026-08-20T17:10:01.9083305Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20260818.277
+2026-08-20T17:10:01.9084210Z ##[endgroup]
+2026-08-20T17:10:01.9085195Z ##[group]GITHUB_TOKEN Permissions
+2026-08-20T17:10:01.9087661Z Contents: read
+2026-08-20T17:10:01.9088228Z Metadata: read
+2026-08-20T17:10:01.9088747Z ##[endgroup]
+2026-08-20T17:10:01.9090862Z Secret source: Actions
+2026-08-20T17:10:01.9091861Z Prepare workflow directory
+2026-08-20T17:10:01.9600560Z Prepare all required actions
+2026-08-20T17:10:01.9665445Z Complete job name: windows-2022 - the package must NOT run
+2026-08-20T17:10:02.2373938Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T17:10:02.2375240Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T17:10:02.2376488Z [36;1m$dotnet = [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture[0m
+2026-08-20T17:10:02.2377607Z [36;1m"RunnerLabel=windows-2022"[0m
+2026-08-20T17:10:02.2378421Z [36;1m"ImageOS=$env:ImageOS"[0m
+2026-08-20T17:10:02.2379418Z [36;1m"OSArchitecture=$((Get-CimInstance Win32_OperatingSystem).OSArchitecture)"[0m
+2026-08-20T17:10:02.2380610Z [36;1m"RuntimeInformation.OSArchitecture=$dotnet"[0m
+2026-08-20T17:10:02.2381846Z [36;1mif ("$dotnet" -eq 'Arm64') { throw 'This control is only meaningful on a non-ARM64 runner.' }[0m
+2026-08-20T17:10:02.5988322Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T17:10:02.5989521Z env:
+2026-08-20T17:10:02.5990879Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T17:10:02.5992640Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T17:10:02.5993597Z ##[endgroup]
+2026-08-20T17:10:02.9043845Z RunnerLabel=windows-2022
+2026-08-20T17:10:02.9085665Z ImageOS=win22
+2026-08-20T17:10:03.0580470Z OSArchitecture=64-bit
+2026-08-20T17:10:03.0585835Z RuntimeInformation.OSArchitecture=X64
+2026-08-20T17:10:03.1449309Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T17:10:03.1450228Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T17:10:03.1451114Z [36;1mNew-Item -ItemType Directory -Force -Path artifact | Out-Null[0m
+2026-08-20T17:10:03.1452255Z [36;1mInvoke-WebRequest -Uri $env:ASSET_URL -OutFile artifact/package.zip[0m
+2026-08-20T17:10:03.1453615Z [36;1m$actual = (Get-FileHash artifact/package.zip -Algorithm SHA256).Hash.ToLowerInvariant()[0m
+2026-08-20T17:10:03.1454818Z [36;1m"bytes=$((Get-Item artifact/package.zip).Length)"[0m
+2026-08-20T17:10:03.1455563Z [36;1m"actual=$actual"[0m
+2026-08-20T17:10:03.1456503Z [36;1mif ($actual -ne $env:EXPECTED_SHA256.ToLowerInvariant()) { throw 'Checksum mismatch.' }[0m
+2026-08-20T17:10:03.1457862Z [36;1mExpand-Archive artifact/package.zip -DestinationPath expanded -Force[0m
+2026-08-20T17:10:03.1458901Z [36;1m'Checksum verified and package expanded.'[0m
+2026-08-20T17:10:03.1513837Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T17:10:03.1516583Z env:
+2026-08-20T17:10:03.1517903Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T17:10:03.1519732Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T17:10:03.1520690Z ##[endgroup]
+2026-08-20T17:10:04.2931887Z bytes=17197315
+2026-08-20T17:10:04.2940587Z actual=83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T17:10:05.0850249Z Checksum verified and package expanded.
+2026-08-20T17:10:05.1570489Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T17:10:05.1571257Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T17:10:05.1572046Z [36;1m$exe = (Resolve-Path 'expanded/Binaries/OpenCppCoverage.exe').Path[0m
+2026-08-20T17:10:05.1572872Z [36;1m$fs = [System.IO.File]::OpenRead($exe)[0m
+2026-08-20T17:10:05.1573421Z [36;1mtry {[0m
+2026-08-20T17:10:05.1573954Z [36;1m  $br = New-Object System.IO.BinaryReader($fs)[0m
+2026-08-20T17:10:05.1574573Z [36;1m  $fs.Position = 0x3C[0m
+2026-08-20T17:10:05.1575095Z [36;1m  $fs.Position = $br.ReadInt32()[0m
+2026-08-20T17:10:05.1575818Z [36;1m  if ($br.ReadUInt32() -ne 0x00004550) { throw 'Not a PE image.' }[0m
+2026-08-20T17:10:05.1576524Z [36;1m  $machine = $br.ReadUInt16()[0m
+2026-08-20T17:10:05.1577067Z [36;1m} finally { $fs.Dispose() }[0m
+2026-08-20T17:10:05.1577735Z [36;1m'OpenCppCoverage.exe machine = 0x{0:X4}' -f $machine[0m
+2026-08-20T17:10:05.1578711Z [36;1mif ($machine -ne 0xAA64) { throw ('Expected 0xAA64, found 0x{0:X4}' -f $machine) }[0m
+2026-08-20T17:10:05.1637803Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T17:10:05.1638225Z env:
+2026-08-20T17:10:05.1638865Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T17:10:05.1639726Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T17:10:05.1640188Z ##[endgroup]
+2026-08-20T17:10:05.5236586Z OpenCppCoverage.exe machine = 0xAA64
+2026-08-20T17:10:05.5775942Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T17:10:05.5776447Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T17:10:05.5776867Z [36;1m$exe = (Resolve-Path 'expanded/Binaries/OpenCppCoverage.exe').Path[0m
+2026-08-20T17:10:05.5777252Z [36;1m$started = $false[0m
+2026-08-20T17:10:05.5777472Z [36;1m$native = $null[0m
+2026-08-20T17:10:05.5777681Z [36;1m$message = $null[0m
+2026-08-20T17:10:05.5777878Z [36;1mtry {[0m
+2026-08-20T17:10:05.5778153Z [36;1m  $psi = New-Object System.Diagnostics.ProcessStartInfo[0m
+2026-08-20T17:10:05.5778500Z [36;1m  $psi.FileName = $exe[0m
+2026-08-20T17:10:05.5778749Z [36;1m  $psi.Arguments = '--help'[0m
+2026-08-20T17:10:05.5779012Z [36;1m  $psi.UseShellExecute = $false[0m
+2026-08-20T17:10:05.5779319Z [36;1m  $p = [System.Diagnostics.Process]::Start($psi)[0m
+2026-08-20T17:10:05.5779638Z [36;1m  $started = $true[0m
+2026-08-20T17:10:05.5779869Z [36;1m  $p.WaitForExit(30000) | Out-Null[0m
+2026-08-20T17:10:05.5780164Z [36;1m  try { $p.Kill() } catch { }[0m
+2026-08-20T17:10:05.5780471Z [36;1m} catch [System.ComponentModel.Win32Exception] {[0m
+2026-08-20T17:10:05.5780811Z [36;1m  $native = $_.Exception.NativeErrorCode[0m
+2026-08-20T17:10:05.5781111Z [36;1m  $message = $_.Exception.Message[0m
+2026-08-20T17:10:05.5781357Z [36;1m} catch {[0m
+2026-08-20T17:10:05.5781558Z [36;1m  $message = $_.Exception.Message[0m
+2026-08-20T17:10:05.5781795Z [36;1m}[0m
+2026-08-20T17:10:05.5781947Z [36;1m[0m
+2026-08-20T17:10:05.5782114Z [36;1m"Started=$started"[0m
+2026-08-20T17:10:05.5782331Z [36;1m"NativeErrorCode=$native"[0m
+2026-08-20T17:10:05.5782559Z [36;1m"Message=$message"[0m
+2026-08-20T17:10:05.5782752Z [36;1m[0m
+2026-08-20T17:10:05.5783068Z [36;1m# Windows has two distinct refusals for an image whose machine type the[0m
+2026-08-20T17:10:05.5784309Z [36;1m# host cannot execute, and which one you get depends on the OS version:[0m
+2026-08-20T17:10:05.5784843Z [36;1m#   193 ERROR_BAD_EXE_FORMAT           - "not a valid Win32 application"[0m
+2026-08-20T17:10:05.5785419Z [36;1m#   216 ERROR_EXE_MACHINE_TYPE_MISMATCH - "not a valid application for this OS platform"[0m
+2026-08-20T17:10:05.5785968Z [36;1m# Both are the architecture rejection this control is testing for. Anything[0m
+2026-08-20T17:10:05.5786466Z [36;1m# else - a missing file (2), an access denial (5) - means the test never[0m
+2026-08-20T17:10:05.5786965Z [36;1m# exercised the architecture at all, so it must still fail rather than be[0m
+2026-08-20T17:10:05.5787427Z [36;1m# counted as a pass.[0m
+2026-08-20T17:10:05.5787713Z [36;1m$architectureRejections = @(193, 216)[0m
+2026-08-20T17:10:05.5787968Z [36;1m[0m
+2026-08-20T17:10:05.5788130Z [36;1mif ($started) {[0m
+2026-08-20T17:10:05.5788947Z [36;1m  throw 'VIOLATION: an ARM64 image started on an x64 runner. The package is not ARM64-only.'[0m
+2026-08-20T17:10:05.5789393Z [36;1m}[0m
+2026-08-20T17:10:05.5789648Z [36;1mif ($architectureRejections -notcontains $native) {[0m
+2026-08-20T17:10:05.5790406Z [36;1m  throw "Expected an architecture rejection ($($architectureRejections -join ' or ')) but got $native. The failure is not the architecture mismatch we are testing for."[0m
+2026-08-20T17:10:05.5791073Z [36;1m}[0m
+2026-08-20T17:10:05.5791376Z [36;1m"Correct: x64 Windows refused the shipped ARM64 binary with error $native."[0m
+2026-08-20T17:10:05.5791970Z [36;1m'This is what proves the positive ARM64 result is architecture-specific and not an x64 fallback.'[0m
+2026-08-20T17:10:05.5841279Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T17:10:05.5841637Z env:
+2026-08-20T17:10:05.5842228Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T17:10:05.5843015Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T17:10:05.5843434Z ##[endgroup]
+2026-08-20T17:10:05.9811724Z Started=False
+2026-08-20T17:10:05.9816485Z NativeErrorCode=216
+2026-08-20T17:10:05.9822742Z Message=An error occurred trying to start process 'D:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\expanded\Binaries\OpenCppCoverage.exe' with working directory 'D:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64'. The specified executable is not a valid application for this OS platform.
+2026-08-20T17:10:05.9839042Z Correct: x64 Windows refused the shipped ARM64 binary with error 216.
+2026-08-20T17:10:05.9840087Z This is what proves the positive ARM64 result is architecture-specific and not an x64 fallback.
+2026-08-20T17:10:06.0320386Z Cleaning up orphan processes

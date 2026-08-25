@@ -1,0 +1,14 @@
+{
+  "skill": "native-dependency-analysis",
+  "fixtures": [
+    {
+      "name": "positive",
+      "expected": [
+        { "ruleId": "DEP-0001", "file": "InstallThirdPartyLibraries.ps1", "line": 1 },
+        { "ruleId": "DEP-0002", "file": "ThirdParty.contents.txt", "line": 1 },
+        { "ruleId": "DEP-0003", "file": "CopyDiaRuntime.cmd", "line": 3 }
+      ]
+    },
+    { "name": "negative", "expected": [] }
+  ]
+}

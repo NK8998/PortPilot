@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-17T15:02:35Z",
+  "app": {
+    "name": "btop4win",
+    "repo": "https://github.com/aristocratos/btop4win",
+    "commit": "4b4bda273988e7eec41727a41f2cbc907d14eb0e",
+    "license": "Apache-2.0",
+    "languages": [
+      "C++20"
+    ],
+    "build_system": [
+      "MSBuild"
+    ],
+    "ui_framework": "ANSI escape sequences (Win32 console, no GUI framework)"
+  },
+  "current_stage": "S6",
+  "strategy": {
+    "adr": "docs/adr/0001-arm64-strategy.md",
+    "binaries": [
+      {
+        "binary": "btop4win.exe",
+        "abi": "ARM64",
+        "rationale": "Single console executable, no plugin surface, no x64-only dependency in the shipping configuration. ARM64EC/ARM64X would forfeit performance for no benefit."
+      }
+    ]
+  },
+  "stages": {
+    "S0": {
+      "status": "complete",
+      "artifact": "artifacts/s0-baseline/baseline.md",
+      "completed_at": "2026-08-16T20:22:00Z",
+      "notes": "x64 Release+Debug build clean and run. NO automated test suite exists, so S6 parity must be a manual walkthrough of the 34-item feature inventory. Requires /p:PlatformToolset=v145 on this host (project pins v143, not installed)."
+    },
+    "S1": {
+      "status": "complete",
+      "artifact": "artifacts/s1-recon/arch-surface.md",
+      "completed_at": "2026-08-16T20:24:00Z",
+      "notes": "Exceptionally clean: zero SIMD, asm, arch macros, cpuid, runtime codegen, arch strings, prebuilt in-repo binaries. Only findings: build system lacks ARM64, and an ATL dependency."
+    },
+    "S2": {
+      "status": "complete",
+      "artifact": "artifacts/s2-deps/dependency-matrix.md",
+      "completed_at": "2026-08-16T20:25:00Z",
+      "notes": "No package manager. All 8 SDK import libs verified present under Windows Kits 10.0.28000.0 um/arm64. Two vendored header-only libs are portable. Only x64-only dep is optional LHM-CppExport, excluded from scope."
+    },
+    "S3": {
+      "status": "complete",
+      "artifact": "docs/adr/0001-arm64-strategy.md",
+      "completed_at": "2026-08-16T20:26:00Z",
+      "notes": "Classic ARM64 chosen. ARM64EC and ARM64X rejected with written rationale."
+    },
+    "S4": {
+      "status": "complete",
+      "artifact": "artifacts/s4-bringup/build-notes.md",
+      "started_at": "2026-08-16T20:26:00Z",
+      "notes": "Compile+link COMPLETE: Release|ARM64 and Debug|ARM64 build, dumpbin reports AA64, x64 not regressed. Zero TODO(arm64) stubs required. Gate NOT closed: the 'app launches' checkbox needs the ARM64 VM (blocker b-001).",
+      "completed_at": "2026-08-17T13:54:10Z"
+    },
+    "S5": {
+      "status": "complete",
+      "notes": "No-op stage: zero TODO(arm64) debt was ever created, so there was nothing to migrate. Recorded explicitly so a future session does not hunt for missing work.",
+      "artifact": "artifacts/s5-migration/migration-log.md",
+      "completed_at": "2026-08-17T13:54:10Z"
+    },
+    "S6": {
+      "status": "in_progress",
+      "notes": "Verify: parity walkthrough of 34 features + no-emulation evidence. Needs ARM64 hardware.",
+      "artifact": "artifacts/s6-parity/parity-report.md"
+    },
+    "S7": {
+      "status": "not_started",
+      "notes": "Package, add x64+ARM64 CI matrix, harvest a skill (ATL/CW2A detection is the strong candidate)."
+    }
+  },
+  "arch_surface": {
+    "counts": {
+      "simd_intrinsics": 0,
+      "inline_asm": 0,
+      "arch_macros": 0,
+      "cpuid": 0,
+      "scalar_intrinsic": 2,
+      "atomics": 61,
+      "arch_strings": 0,
+      "prebuilt_binary": 0,
+      "runtime_codegen": 0,
+      "alignment": 0,
+      "build_system": 1,
+      "atl": 2
+    },
+    "hits": [
+      {
+        "file": "btop4win.vcxproj",
+        "category": "build_system",
+        "classification": "mechanical",
+        "note": "No ARM64 platform in .sln/.vcxproj. RESOLVED in S4: added Debug|ARM64 and Release|ARM64."
+      },
+      {
+        "file": "src/btop_collect.cpp",
+        "line": 43,
+        "category": "build_system",
+        "classification": "needs-thought",
+        "note": "#include <atlstr.h> auto-links atls.lib, which is not installed for ARM64 -> LNK1104. RESOLVED in S4 by removing the include."
+      },
+      {
+        "file": "src/btop_collect.cpp",
+        "line": 1112,
+        "category": "scalar_intrinsic",
+        "classification": "mechanical",
+        "note": "ATL macro CW2A, the only ATL construct in the codebase. RESOLVED in S4: replaced with the project's own Tools::bstr2str()."
+      },
+      {
+        "file": "include/robin_hood.h",
+        "line": 139,
+        "category": "scalar_intrinsic",
+        "classification": "trivial",
+        "note": "_BitScanForward/_BitScanForward64 guarded by bitness, not architecture. MSVC supports both on ARM64. No change needed; verified compiles clean."
+      },
+      {
+        "file": "src/btop_config.cpp",
+        "line": 39,
+        "category": "atomics",
+        "classification": "trivial",
+        "note": "atomic<bool> locked/writelock with RAII guard. All 61 concurrency hits are std::atomic with default seq_cst. No volatile-for-threading, no _Interlocked, no hand-rolled lock-free code."
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "psapi.lib",
+      "status": "native-ok",
+      "evidence": "Windows Kits 10.0.28000.0 um/arm64/psapi.lib present; ARM64 link succeeded"
+    },
+    {
+      "name": "wbemuuid.lib",
+      "status": "native-ok",
+      "evidence": "um/arm64/wbemuuid.lib present; ARM64 link succeeded"
+    },
+    {
+      "name": "Ws2_32.lib",
+      "status": "native-ok",
+      "evidence": "um/arm64/Ws2_32.lib present; ARM64 link succeeded"
+    },
+    {
+      "name": "iphlpapi.lib",
+      "status": "native-ok",
+      "evidence": "um/arm64/iphlpapi.lib present; ARM64 link succeeded"
+    },
+    {
+      "name": "PowrProf.lib",
+      "status": "native-ok",
+      "evidence": "um/arm64/PowrProf.lib present; ARM64 link succeeded"
+    },
+    {
+      "name": "ntdll.lib",
+      "status": "native-ok",
+      "evidence": "Windows SDK, all architectures; ARM64 link succeeded"
+    },
+    {
+      "name": "Pdh.lib",
+      "status": "native-ok",
+      "evidence": "Windows SDK, all architectures; ARM64 link succeeded"
+    },
+    {
+      "name": "robin_hood.h",
+      "version": "3.11.5",
+      "status": "native-ok",
+      "evidence": "Header-only; _BitScanForward64 is MSVC-supported on ARM64; compiled clean for ARM64"
+    },
+    {
+      "name": "widechar_width.hpp",
+      "status": "native-ok",
+      "evidence": "Header-only Unicode tables, no architecture dependency"
+    },
+    {
+      "name": "ATL (atls.lib)",
+      "status": "replace",
+      "evidence": "LNK1104 'cannot open file atls.lib'; atlmfc/lib/x64 present, atlmfc/lib/arm64 absent",
+      "action": "Removed the dependency entirely: dropped <atlstr.h> and replaced the single CW2A call with Tools::bstr2str()"
+    },
+    {
+      "name": "LHM-CppExport (external/CPPdll.lib)",
+      "status": "emulate",
+      "evidence": "Upstream ships x64-only prebuilt; .NET/C++-CLI export layer",
+      "action": "OUT OF SCOPE: ARM64 targets non-LHM configurations only. Costs feature #7 (CPU temperature) on ARM64."
+    },
+    {
+      "name": "PlatformToolset v143",
+      "status": "upgrade",
+      "evidence": "MSB8020 on this host; only v145 and ClangCL installed",
+      "action": "Build with /p:PlatformToolset=v145; .vcxproj left pinned at v143 for upstream compatibility"
+    }
+  ],
+  "todos": [],
+  "blockers": [
+    {
+      "summary": "No runtime access to Windows ARM64 hardware: SSH port 22 to the verification VM times out, and the VM is not in any Azure subscription visible to the current az login.",
+      "severity": "low",
+      "stage": "S4",
+      "impact": "Blocks the last S4 exit-gate checkbox ('app launches and reaches a known-good point') and ALL of S6 (parity walkthrough, no-emulation proof, perf comparison). The ARM64 binary is built and verified AA64 by dumpbin, but no claim about its runtime behaviour can be made. This x64 dev box cannot execute ARM64 binaries.",
+      "options_considered": [
+        "PREFERRED - './scripts/vm.sh keygen' (added in 74d5fbf): generates an ed25519 key locally and prints an elevated-PowerShell block to paste over RDP. Installs OpenSSH Server, opens the Windows firewall, and authorises the key. Needs no Azure CLI access, so it works despite the VM being invisible to the current az tenant. Still requires one Azure portal click for the NSG inbound rule on TCP 22.",
+        "az login with the account that owns the VM (ne.kioko16@gmail.com), then ./scripts/vm.sh bootstrap - installs OpenSSH Server AND opens port 22 in the NSG in one step",
+        "RDP to the VM (port 3389 is OPEN) and manually run Add-WindowsCapability for OpenSSH.Server, then add an NSG inbound rule for TCP 22 from 40.117.66.149",
+        "Copy the ARM64 binary to the VM over the RDP clipboard/drive redirection and run the smoke test by hand"
+      ],
+      "opened_at": "2026-08-16T20:20:00Z",
+      "status": "resolved-by-alternate-route",
+      "mitigation": "Binary delivery no longer depends on SSH. The ARM64 package is published as a GitHub release and also staged at C:\\portpilot\\btop4win-arm64.zip for credential-free RDP transfer (3389 is open). SSH remains blocked, so scripts/vm.sh automation (verify/smoke) is still unavailable; runtime evidence must be collected manually in the RDP session and reported back.",
+      "note_on_private_repo": "The release repo is private (EMU cannot create public repos), so downloading the asset on the VM requires a GitHub login. The RDP file copy avoids this entirely and is the recommended path.",
+      "unblock_path": "Key generated at ~/.ssh/portpilot_arm64; scripts/vm.env already set to VM_AUTH=key. Awaiting (1) the RDP paste of the keygen block and (2) an NSG inbound rule for TCP 22, after which vm.sh verify/smoke automation works and b-001 can be resolved.",
+      "resolved_at": "2026-08-17T13:54:10Z",
+      "resolution": "User ran the ARM64 build on their own Windows ARM64 VM and confirmed native execution via the Task Manager Architecture column. This unblocks S4 and S6 evidence by manual reporting. The original SSH path to the shared verification VM remains blocked (NSG closed, VM invisible to the current az tenant), so scripts/vm.sh verify/smoke automation is still unavailable - downgraded from project severity to a tooling limitation."
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Target classic ARM64, not ARM64EC or ARM64X.",
+      "rationale": "No x64 code needs to load into the process; btop4win has no plugin surface and ships a single .exe. ARM64EC would forfeit performance and battery for no benefit.",
+      "stage": "S3",
+      "adr": "docs/adr/0001-arm64-strategy.md",
+      "decided_at": "2026-08-16T20:26:00Z"
+    },
+    {
+      "decision": "Remove the ATL dependency rather than installing the ARM64 ATL component.",
+      "rationale": "ATL was used for exactly one macro (CW2A) at one call site. The project already ships an equivalent helper, Tools::bstr2str(), used at 10+ other sites including on a WCHAR[] array. Removing is subtractive, helps x64 and ARM64 equally, avoids depending on an optional VS component that CI images often lack, and is upstreamable.",
+      "stage": "S4",
+      "decided_at": "2026-08-16T20:28:00Z"
+    },
+    {
+      "decision": "Exclude the Debug-LHM/Release-LHM configurations from ARM64.",
+      "rationale": "They depend on the x64-only LHM-CppExport prebuilt. Rebuilding it for ARM64 is an upstream project, not a coding problem. Costs only feature #7 (CPU temperature), which is already optional and absent from the default build.",
+      "stage": "S3",
+      "adr": "docs/adr/0001-arm64-strategy.md",
+      "decided_at": "2026-08-16T20:26:00Z"
+    },
+    {
+      "decision": "Override the platform toolset on the command line instead of editing the .vcxproj.",
+      "rationale": "The project pins v143 (VS 2022); only v145 is installed here. Passing /p:PlatformToolset=v145 keeps the repo building as upstream intends on a VS 2022 machine.",
+      "stage": "S0",
+      "decided_at": "2026-08-16T20:22:00Z"
+    },
+    {
+      "decision": "Published the ARM64 build from a standalone private repo (t-neilkainga_microsoft/btop4win-arm64) instead of a fork of aristocratos/btop4win.",
+      "rationale": "The GitHub account is an Enterprise Managed User. EMU accounts cannot fork repos outside the enterprise (HTTP 403) and cannot create public repos (GraphQL createRepository denied). Upstream master was pushed pristine as the base branch so the ARM64 work still lands via PR and the diff stays reviewable, exactly as a fork would have.",
+      "stage": "S4",
+      "adr": null,
+      "decided_at": "2026-08-16T20:43:40Z"
+    },
+    {
+      "decision": "Tagged the release v1.0.6-arm64-rc1 and marked it prerelease.",
+      "rationale": "The binary is confirmed AA64 by PE header but has never been executed. Shipping it as a stable release would assert runtime correctness that no evidence supports. It is promoted to a full release only after the S4 smoke test and S6 parity walkthrough pass on real hardware.",
+      "stage": "S4",
+      "adr": null,
+      "decided_at": "2026-08-16T20:43:40Z"
+    }
+  ],
+  "evidence": {
+    "parity_report": "",
+    "features_total": 34,
+    "native_verified": true,
+    "test_baseline": "No automated test suite exists (no test dir, no CI workflows). S6 parity must be a manual feature walkthrough.",
+    "perf_notes": "No benchmark harness. Use the built-in --debug overlay (microsecond collect/draw timers) to compare native ARM64 vs emulated x64 on the same ARM64 machine. x64 Release binary is 3,083,776 bytes; ARM64 Release is 3,499,008 bytes.",
+    "hardware": "NOT YET AVAILABLE - see blocker b-001",
+    "release_url": "https://github.com/t-neilkainga_microsoft/btop4win-arm64/releases/tag/v1.0.6-arm64-rc1",
+    "pull_request": "https://github.com/t-neilkainga_microsoft/btop4win-arm64/pull/1",
+    "release_asset": "btop4win-arm64.zip (1,085,658 bytes, 33 entries, embedded exe PE machine 0xAA64)",
+    "asset_local_copies": [
+      "/tmp/btop4win-arm64.zip",
+      "C:\\portpilot\\btop4win-arm64.zip (Windows-accessible, for RDP drive/clipboard transfer)"
+    ],
+    "runtime_launch": {
+      "status": "reported-working",
+      "reported_at": "2026-08-17T13:41:11Z",
+      "source": "user, manual run on their own Windows ARM64 VM",
+      "detail": "App launches and displays plausible values. Closes the S4 'app starts and reaches a known-good point' checkbox.",
+      "caveat": "Does NOT by itself prove native execution. Windows on Arm transparently emulates x64, so an emulated binary would also 'run fine'. Architecture column / IsWow64Process2 confirmation still outstanding."
+    },
+    "native_verification": {
+      "method": "Task Manager > Details > Architecture column",
+      "result": "ARM64",
+      "confirmed_at": "2026-08-17T13:54:10Z",
+      "source": "user, manual check on their own Windows ARM64 VM",
+      "significance": "Distinguishes a genuine native port from x64-under-emulation. Windows on Arm emulates x64 transparently, so 'it runs' alone proves nothing.",
+      "outstanding": "Mechanical IsWow64Process2 proof via './scripts/vm.sh smoke' still pending (SSH unavailable); loaded-module inspection not yet done."
+    },
+    "upstream_arch_support": "Upstream 4b4bda2 ships only Win32 and x64 configurations in both .sln and .vcxproj, and its README links only vc_redist.x64.exe. ARM64 was not a buildable target before this port; emulating the x64 build was the only option on Arm hardware.",
+    "verification_platform": "Microsoft Azure Cobalt 100 (Arm Neoverse N2), Windows 11 ARM64, user's own Azure VM",
+    "cpu_name_check": {
+      "feature": "#5 CPU model name (Cpu::get_cpuName)",
+      "significance": "The ONLY behaviour the port could change - CW2A (thread ANSI codepage) replaced by bstr2str (UTF-8).",
+      "result": "PASS - reports 'Cobalt 100'; not garbled, truncated, or empty.",
+      "confirmed_at": "2026-08-17T14:06:34Z",
+      "caveat": "'Cobalt 100' is pure ASCII so it does not exercise the ANSI/UTF-8 divergence. Feature #21 (service detail panel) uses the same bstr2str helper against far more varied strings and is the better stress test."
+    },
+    "parity_progress": "3 of 34 features verified (1 launch, 5 CPU name, plus native-architecture proof); 2 N/A (7 LHM-only, 24 no battery on a server VM); 29 unwalked.",
+    "virtualisation_caveat": "Verification host is a virtualised Azure server, not an Arm laptop. Absent battery/thermal/GPU readings are virtualisation artifacts, NOT ARM64 port defects, and must not be logged as parity failures."
+  },
+  "next_actions": [
+    "IF WORKING ON AEGISUB: read artifacts/aegisub/S0-INTAKE-FINDINGS.md first. It is researched but NOT started, and it records which repo to use (TypesettingTools/Aegisub, NOT Aegisub/Aegisub) plus the LuaJIT risk. Also resolve the artifact-layout collision noted there before writing anything.",
+    "IF CONTINUING BTOP4WIN (current port, S6): walk the remaining 29 features in artifacts/s6-parity/parity-report.md. Highest value: #4 per-core CPU box (Cobalt 100 is many-core), #21 service detail panel (bstr2str-heavy, best remaining test of the one changed code path), #14 process list.",
+    "BTOP4WIN S6 - measure the perf/power delta vs the emulated x64 build on the same machine using the --debug overlay's microsecond collect/draw timers. This quantifies the actual benefit of the port.",
+    "BTOP4WIN - do NOT log absent battery/thermal/GPU readings as parity failures; the verification host is a virtualised Azure Cobalt 100 server and exposes no such sensors regardless of CPU architecture.",
+    "BTOP4WIN - promote the release from prerelease to stable and retag v1.0.6-arm64 (dropping -rc1) once the parity matrix is materially complete.",
+    "WORKBENCH IMPROVEMENT - add an 'is this already ported?' check as the first S0 gate. Of 19 repos screened, 13 already had ARM64 builds. Check upstream CI AND package repos; a releases/latest asset check produces false negatives (it wrongly cleared Clink)."
+  ],
+  "queued_ports": [
+    {
+      "name": "Aegisub",
+      "status": "researched-not-started",
+      "findings": "artifacts/aegisub/S0-INTAKE-FINDINGS.md",
+      "READ_THIS_FIRST": "If the user asks about Aegisub, read artifacts/aegisub/S0-INTAKE-FINDINGS.md BEFORE any recon. It already answers which repo to use and whether arm64 support exists. Re-deriving it wastes a session.",
+      "repo": "https://github.com/TypesettingTools/Aegisub",
+      "repo_warning": "Do NOT use github.com/Aegisub/Aegisub - its master branch is stale at 2019-10-06, predates Apple Silicon, and uses autotools plus an old .sln. The API pushed_at field misleadingly reads 2025 (activity on non-default branches).",
+      "verdict": "Good target. Proceed.",
+      "key_findings": [
+        "TypesettingTools/Aegisub CI already builds macOS arm64 (Debug+Release on macos-15), which PROVES the C++ and the whole dependency tree work on ARM64. Do not re-hunt for x86 assumptions - source greps confirm 0 arch macros, 0 cpuid, 0 SIMD intrinsics, 0 inline asm.",
+        "LuaJIT is the #1 risk: a bundled JIT compiler. Windows ARM64 works on the 2.1 branch but is source-only, vcpkg does not ship it (microsoft/vcpkg#45504), and ARM64EC is unsupported (LuaJIT#1096). macOS arm64 support does NOT transfer to Windows ARM64 for a JIT.",
+        "AviSynth (src/avisynth.h) is x86-only and the sole SSE/MMX mention. It is an optional video source - expect to build without it and record the feature delta.",
+        "Scale is ~92k LOC C/C++, roughly 6.6x btop4win. Build system is meson."
+      ],
+      "blocking_decision": "artifacts/PORT_STATE.json is single-app and scripts/port.sh hardcodes it. btop4win currently occupies it at S6 with 29 features unwalked, and artifacts/s0-baseline, s1-recon etc. are singular and WOULD BE OVERWRITTEN. Choose a layout before writing any Aegisub artifact: (a) namespace per app, or (b) archive btop4win and let Aegisub use standard paths.",
+      "researched_at": "2026-08-17T15:02:35Z"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "skill": "native-dependency-analysis",
+  "rules": [
+    {
+      "id": "DEP-0001",
+      "pattern": "nuget\\.exe[\\\\/]latest|dist\\.nuget\\.org[\\\\/].*latest",
+      "flags": "i",
+      "extensions": [".ps1", ".cmd", ".bat"],
+      "category": "native-dep",
+      "severity": "high",
+      "explanation": "The dependency bootstrap uses a mutable latest endpoint.",
+      "recommendation": "Pin the tool version and verify its SHA-256 before execution.",
+      "arm64Impact": "none",
+      "effort": "S",
+      "confidence": "high"
+    },
+    {
+      "id": "DEP-0002",
+      "pattern": "runtimes[\\\\/]win-x64[\\\\/]native|x64-windows",
+      "flags": "i",
+      "extensions": [".txt", ".json", ".ps1", ".props", ".targets"],
+      "category": "native-dep",
+      "severity": "high",
+      "explanation": "The dependency inventory names an x64 target runtime payload.",
+      "recommendation": "Supply an ARM64 target payload or build the dependency from source, and keep x64 host tools outside staging.",
+      "arm64Impact": "blocker",
+      "effort": "L",
+      "confidence": "high"
+    },
+    {
+      "id": "DEP-0003",
+      "pattern": "bin[\\\\/](amd64[\\\\/])?msdia\\d+\\.dll",
+      "flags": "i",
+      "extensions": [".txt", ".json", ".ps1", ".cmd", ".bat", ".props", ".targets", ".vcxproj"],
+      "category": "native-dep",
+      "severity": "blocker",
+      "explanation": "A copy or reference takes msdia from the DIA SDK's default bin directory, which holds the x86 build, or from its amd64 directory. Neither can load into an ARM64 process, and the file name is identical to the ARM64 one, so the mistake is invisible without reading the PE header.",
+      "recommendation": "Take msdia from 'DIA SDK\\bin\\arm64' for an ARM64 package and confirm the staged copy's PE machine rather than trusting the source directory.",
+      "arm64Impact": "blocker",
+      "effort": "S",
+      "confidence": "high"
+    }
+  ]
+}

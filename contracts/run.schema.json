@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/winport/winport/contracts/run.schema.json",
+  "title": "PortPilot Run State",
+  "description": "Owned exclusively by the winport orchestrator. The audit trail of a single port: which stage ran, which gate was checked, what it decided, and why work was routed where it was. No specialist agent may write this file - it is the record of the decisions made ABOUT them. Its purpose is that a human can reconstruct, months later, exactly why a port was accepted or sent back.",
+  "type": "object",
+  "required": ["target", "analysisRound", "reviewRound", "maxReviewRounds", "status", "history"],
+  "additionalProperties": false,
+  "properties": {
+    "target": {
+      "type": "object",
+      "required": ["repo", "commit"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "path": { "type": "string" }
+      }
+    },
+    "analysisRound": { "type": "integer", "minimum": 0 },
+    "reviewRound": { "type": "integer", "minimum": 0 },
+    "maxReviewRounds": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The loop budget. Exceeding it means stopping and reporting honestly, not lowering the bar until something passes."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "created",
+        "analyzing",
+        "planning",
+        "migrating",
+        "reviewing",
+        "revising",
+        "passed",
+        "blocked-external",
+        "exhausted",
+        "failed",
+        "abandoned"
+      ],
+      "description": "blocked-external exists because the first real run needed it: the port was correct and the review was correct, but a hard gate required hardware the environment did not have. Neither 'passed' nor 'failed' is honest there - one overstates what was proven, the other understates what was achieved. A run may only end blocked-external if the outstanding gate is provably unactionable by any agent, and blockedBy must say what a human needs in order to close it."
+    },
+    "blockedBy": {
+      "type": "object",
+      "description": "Required when status is blocked-external. What is missing, and what would resolve it.",
+      "required": ["gate", "reason", "resolvedBy"],
+      "additionalProperties": false,
+      "properties": {
+        "gate": { "type": "string", "minLength": 1 },
+        "findingId": { "type": "string" },
+        "reason": { "type": "string", "minLength": 1 },
+        "resolvedBy": { "type": "string", "minLength": 1 }
+      }
+    },
+    "note": { "type": "string" },
+    "history": {
+      "type": "array",
+      "description": "Append-only. Failed gates are never deleted - a run that shows no failures either did nothing interesting or is hiding something.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["stage", "result", "timestamp"],
+        "additionalProperties": false,
+        "properties": {
+          "stage": {
+            "type": "string",
+            "enum": ["setup", "analysis", "planning", "baseline", "migration", "review", "gate", "routing", "toolchain", "report"]
+          },
+          "round": { "type": "integer", "minimum": 0 },
+          "agent": {
+            "type": "string",
+            "enum": ["winport", "port-analysis", "port-migration", "port-review", "repo-discovery"]
+          },
+          "check": {
+            "type": "string",
+            "description": "Required on gate entries: what was actually checked, phrased so a reader can re-run it."
+          },
+          "result": { "type": "string" },
+          "detail": { "type": "string" },
+          "timestamp": { "type": "string" }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "stage": { "const": "gate" } }, "required": ["stage"] },
+            "then": { "required": ["check"] }
+          }
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "blocked-external" } },
+        "required": ["status"]
+      },
+      "then": { "required": ["blockedBy"] }
+    }
+  ]
+}

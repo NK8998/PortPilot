@@ -1,0 +1,3 @@
+<Project>
+  <ItemDefinitionGroup><Link><AdditionalLibraryDirectories>$(VSInstallDir)\DIA SDK\lib\arm64</AdditionalLibraryDirectories></Link></ItemDefinitionGroup>
+</Project>

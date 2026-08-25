@@ -1,0 +1,31 @@
+{
+  "skill": "arm64-correctness",
+  "rules": [
+    {
+      "id": "ARM-0001",
+      "pattern": "\\b0xCC\\b|\\bINT3\\b",
+      "flags": "i",
+      "extensions": [".c", ".cc", ".cpp", ".h", ".hpp"],
+      "category": "arch-lock",
+      "severity": "high",
+      "explanation": "The debugger logic references the x86 one-byte breakpoint encoding.",
+      "recommendation": "Move breakpoint bytes and width behind a target-architecture abstraction and implement Windows ARM64 semantics with focused tests.",
+      "arm64Impact": "source-change-required",
+      "effort": "M",
+      "confidence": "high"
+    },
+    {
+      "id": "ARM-0002",
+      "pattern": "\\b(Rip|Eip)\\s*[-+]\\=\\s*1\\b",
+      "flags": "",
+      "extensions": [".c", ".cc", ".cpp", ".h", ".hpp"],
+      "category": "arch-lock",
+      "severity": "high",
+      "explanation": "Program-counter adjustment is hardcoded to x86 register and instruction-width semantics.",
+      "recommendation": "Use an architecture-specific program-counter accessor and breakpoint resume rule.",
+      "arm64Impact": "source-change-required",
+      "effort": "M",
+      "confidence": "high"
+    }
+  ]
+}

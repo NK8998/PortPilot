@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>ThirdParty</id>
+    <version>1.4.0</version>
+  </metadata>
+  <files>
+    <file src="installed\x86-windows\lib\*.lib" target="lib\x86" />
+    <file src="installed\x64-windows\lib\*.lib" target="lib\x64" />
+  </files>
+</package>

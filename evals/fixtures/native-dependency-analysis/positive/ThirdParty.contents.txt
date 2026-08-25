@@ -1,0 +1,2 @@
+runtimes/win-x64/native/Poco.dll
+tools/protoc.exe

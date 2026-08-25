@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|ARM64" />
+  </ItemGroup>
+  <Target Name="CopyTool">
+    <Copy SourceFiles="$(VCToolsInstallDir)bin\Host$(VCHostArch)\$(Platform)\mspdbcore.dll" DestinationFolder="$(OutDir)" />
+  </Target>
+</Project>

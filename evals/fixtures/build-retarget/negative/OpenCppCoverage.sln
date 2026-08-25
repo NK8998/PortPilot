@@ -1,0 +1,3 @@
+GlobalSection(ProjectConfigurationPlatforms) = postSolution
+    {PROJECT}.Release|ARM64.ActiveCfg = Release|ARM64
+EndGlobalSection

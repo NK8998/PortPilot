@@ -1,0 +1,60 @@
+WinPort independent verification of the published ARM64 release asset
+Performed by the winport coordinator session on an AMD64 host; no ARM64 execution was performed here.
+
+Release   : https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/tag/arm64-e74bc2f
+Asset     : https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-e74bc2f/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+Size      : 17003183 bytes
+SHA-256   : c504a5eefaa42ce65519bff611228d98be569b3f177bd59d8168e1a99a09e633
+Published : c504a5eefaa42ce65519bff611228d98be569b3f177bd59d8168e1a99a09e633
+Checksum  : reproduced from the downloaded bytes; matches the published .sha256
+
+Files                : 155
+Directories          : 13
+PE images scanned    : 34
+ARM64 images         : 34
+Non-ARM64 images     : 0
+Hidden PE images     : 0
+
+Required runtime directory (a ZIP cannot store an empty directory):
+  Binaries\Plugins\Exporter present : True
+  placeholder file                  : README.txt
+
+CRT redistributable filtering, from the shipped crt-manifest.json:
+  staged   : concrt140.dll, msvcp140_1.dll, msvcp140_2.dll, msvcp140_atomic_wait.dll, msvcp140_codecvt_ids.dll, msvcp140.dll, vccorlib140.dll, vcruntime140_threads.dll, vcruntime140.dll
+  rejected : vcruntime140_1.dll=0x8664
+
+Per-image PE machine scan:
+  ARM64  Binaries\abseil_dll.dll
+  ARM64  Binaries\boost_filesystem-vc143-mt-a64-1_91.dll
+  ARM64  Binaries\boost_iostreams-vc143-mt-a64-1_91.dll
+  ARM64  Binaries\boost_locale-vc143-mt-a64-1_91.dll
+  ARM64  Binaries\boost_log-vc143-mt-a64-1_91.dll
+  ARM64  Binaries\boost_program_options-vc143-mt-a64-1_91.dll
+  ARM64  Binaries\boost_thread-vc143-mt-a64-1_91.dll
+  ARM64  Binaries\bz2.dll
+  ARM64  Binaries\concrt140.dll
+  ARM64  Binaries\CppCoverage.dll
+  ARM64  Binaries\Exporter.dll
+  ARM64  Binaries\FileFilter.dll
+  ARM64  Binaries\gmock.dll
+  ARM64  Binaries\libctemplate.dll
+  ARM64  Binaries\liblzma.dll
+  ARM64  Binaries\libprotobuf-lite.dll
+  ARM64  Binaries\libprotobuf.dll
+  ARM64  Binaries\msdia140.dll
+  ARM64  Binaries\msvcp140_1.dll
+  ARM64  Binaries\msvcp140_2.dll
+  ARM64  Binaries\msvcp140_atomic_wait.dll
+  ARM64  Binaries\msvcp140_codecvt_ids.dll
+  ARM64  Binaries\msvcp140.dll
+  ARM64  Binaries\OpenCppCoverage.exe
+  ARM64  Binaries\pcre2-8.dll
+  ARM64  Binaries\Plugin.dll
+  ARM64  Binaries\PocoFoundation.dll
+  ARM64  Binaries\Tools.dll
+  ARM64  Binaries\utf8proc.dll
+  ARM64  Binaries\vccorlib140.dll
+  ARM64  Binaries\vcruntime140_threads.dll
+  ARM64  Binaries\vcruntime140.dll
+  ARM64  Binaries\z.dll
+  ARM64  Binaries\zstd.dll

@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/winport/winport/contracts/review.schema.json",
+  "title": "PortPilot Review",
+  "description": "Emitted by port-review. The verdict field drives the orchestrator's loop: PASS ends the run, REVISE returns to port-migration, FAIL returns to port-analysis for a replan, BLOCKED halts the run against a named external wall.",
+  "type": "object",
+  "required": ["schemaVersion", "target", "round", "verdict", "verdictReason", "gates", "findings", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "target": {
+      "type": "object",
+      "required": ["repo", "commit"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "path": { "type": "string" }
+      }
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Which review round this is. The orchestrator stops after 3."
+    },
+    "planRound": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Which plan round was reviewed."
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["PASS", "REVISE", "FAIL", "BLOCKED"],
+      "description": "PASS = all blockers resolved, purity clean, core flows validated. REVISE = fixable within the current migration rung; returns to port-migration with finding IDs. FAIL = the chosen rung was wrong; returns to port-analysis for a replan. BLOCKED = a real external wall (no ARM64 build of a dependency exists, no hardware, no licence) that no rung can route around; the run halts honestly."
+    },
+    "verdictReason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "One paragraph a human can act on. Required for every verdict, including PASS."
+    },
+    "gates": {
+      "type": "object",
+      "description": "Machine-checkable gate results. These come from tools, not from the agent's opinion. An agent may not report a gate as passed without the tool output behind it.",
+      "required": ["arm64Purity", "buildGreen", "runtimeValidated", "planCompleteness"],
+      "additionalProperties": false,
+      "properties": {
+        "arm64Purity": { "$ref": "#/$defs/gate" },
+        "buildGreen": { "$ref": "#/$defs/gate" },
+        "runtimeValidated": { "$ref": "#/$defs/gate" },
+        "planCompleteness": { "$ref": "#/$defs/gate" },
+        "projectGraphComplete": { "$ref": "#/$defs/gate" },
+        "scenarioValidated": { "$ref": "#/$defs/gate" },
+        "testFailurePropagation": { "$ref": "#/$defs/gate" },
+        "foreignArchRefusal": { "$ref": "#/$defs/gate" },
+        "hostToolchainSingle": { "$ref": "#/$defs/gate" },
+        "performance": { "$ref": "#/$defs/gate" },
+        "packaging": { "$ref": "#/$defs/gate" }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "description": "Review findings. On REVISE these are handed back to port-migration by ID.",
+      "items": { "$ref": "finding.schema.json#/$defs/finding" }
+    },
+    "unresolvedFindings": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Z]{3}-[0-9]{4}$" },
+      "description": "Finding IDs from analysis.json that the migration did not resolve."
+    },
+    "regressions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Functionality that worked before the port and does not now. A green build that lost functionality is a failed port."
+    },
+    "summary": {
+      "type": "object",
+      "required": ["blockers", "high", "medium", "low"],
+      "additionalProperties": false,
+      "properties": {
+        "blockers": { "type": "integer", "minimum": 0 },
+        "high": { "type": "integer", "minimum": 0 },
+        "medium": { "type": "integer", "minimum": 0 },
+        "low": { "type": "integer", "minimum": 0 },
+        "info": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "verdict": { "const": "PASS" } },
+        "required": ["verdict"]
+      },
+      "then": {
+        "required": ["unresolvedFindings", "regressions"],
+        "properties": {
+          "gates": {
+            "required": [
+              "arm64Purity",
+              "buildGreen",
+              "runtimeValidated",
+              "planCompleteness",
+              "projectGraphComplete",
+              "scenarioValidated",
+              "testFailurePropagation",
+              "foreignArchRefusal",
+              "hostToolchainSingle"
+            ],
+            "properties": {
+              "arm64Purity": { "$ref": "#/$defs/passedGate" },
+              "buildGreen": { "$ref": "#/$defs/passedGate" },
+              "runtimeValidated": { "$ref": "#/$defs/passedGate" },
+              "planCompleteness": { "$ref": "#/$defs/passedGate" },
+              "projectGraphComplete": { "$ref": "#/$defs/passedGate" },
+              "scenarioValidated": { "$ref": "#/$defs/passedGate" },
+              "testFailurePropagation": { "$ref": "#/$defs/passedGate" },
+              "foreignArchRefusal": { "$ref": "#/$defs/passedGate" },
+              "hostToolchainSingle": { "$ref": "#/$defs/passedGate" }
+            }
+          },
+          "unresolvedFindings": { "maxItems": 0 },
+          "regressions": { "maxItems": 0 },
+          "findings": {
+            "not": {
+              "contains": {
+                "properties": { "severity": { "enum": ["blocker", "high"] } },
+                "required": ["severity"]
+              }
+            }
+          },
+          "summary": {
+            "properties": {
+              "blockers": { "const": 0 },
+              "high": { "const": 0 }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "not-run"],
+          "description": "not-run is honest and allowed. Claiming pass without evidence is not."
+        },
+        "tool": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Which tool produced this result, e.g. winport-scan, cargo build, winport-bench."
+        },
+        "exitCode": { "type": "integer" },
+        "evidence": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Path to the captured tool output, or the literal output line proving the result."
+        },
+        "detail": { "type": "string" }
+      }
+    },
+    "passedGate": {
+      "allOf": [
+        { "$ref": "#/$defs/gate" },
+        {
+          "required": ["status", "tool", "exitCode", "evidence"],
+          "properties": {
+            "status": { "const": "pass" },
+            "exitCode": { "const": 0 }
+          }
+        }
+      ]
+    }
+  }
+}

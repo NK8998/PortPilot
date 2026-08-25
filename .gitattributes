@@ -1,0 +1,5 @@
+# Retained evidence is immutable: its recorded SHA-256 must still verify after a
+# fresh checkout. Git's end-of-line normalisation silently rewrites text bytes at
+# commit time, which permanently breaks those hashes. Treat everything under
+# runs/ as binary so the bytes we hashed are the bytes we keep.
+runs/** binary

@@ -1,0 +1,1372 @@
+Build started 8/19/2026 9:44:41 PM.
+Logging verbosity is set to: Normal.
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" on node 1 (default targets).
+     1>ValidateSolutionConfiguration:
+         Building solution configuration "Debug|ARM64".
+       ValidateProjects:
+         The project "TestCppCli" is not selected for building in solution configuration "Debug|ARM64".
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\ExporterTest.vcxproj.metaproj" (3) on node 1 (default targets).
+     3>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\ExporterTest.vcxproj.metaproj" (3) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Exporter.vcxproj" (5) on node 1 (default targets).
+     5>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Exporter.vcxproj" (5) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Plugin\Plugin.vcxproj" (6) on node 1 (default targets).
+     6>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\".
+         Creating directory "ARM64\Debug\Plugin.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\Plugin.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\Plugin.tlog\unsuccessfulbuild".
+       VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageConsole\TestCoverageConsole.vcxproj" (8) on node 2 (default targets).
+     8>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageConsole\TestCoverageConsole.vcxproj" (8) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageOptimizedBuild\TestCoverageOptimizedBuild.vcxproj" (11) on node 2 (default targets).
+    11>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverage\OpenCppCoverage.vcxproj" (7) on node 3 (default targets).
+     7>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverage\OpenCppCoverage.vcxproj" (7) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\Tools.vcxproj" (12) on node 3 (default targets).
+    12>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+    11>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\TestCove.2FD17BA1.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\TestCove.2FD17BA1.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\TestCove.2FD17BA1.tlog\unsuccessfulbuild".
+    12>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\Tools.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\Tools.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\Tools.tlog\unsuccessfulbuild".
+    11>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+    12>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+    12>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\Tools.vcxproj" (12) is building "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\scripts\buildsystems\msbuild\support\InstallImplementation.targets" (18) on node 3 (VcpkgInstallImplementation target(s)).
+    18>VcpkgInstallImplementation:
+         Installing vcpkg dependencies to C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" install  --x-wait-for-lock --triplet "arm64-windows" --vcpkg-root "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\\" "--x-manifest-root=C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" "--x-install-root=C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\\" 
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" install  --x-wait-for-lock --triplet "arm64-windows" --vcpkg-root "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\\" "--x-manifest-root=C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" "--x-install-root=C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\\" 
+         Detecting compiler hash for triplet arm64-windows...
+         Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.44.35207/bin/Hostarm64/arm64/cl.exe
+         The following packages are already installed:
+           * abseil:arm64-windows@20260107.1#3
+             boost-algorithm:arm64-windows@1.91.0
+           * boost-align:arm64-windows@1.91.0
+           * boost-any:arm64-windows@1.91.0
+           * boost-array:arm64-windows@1.91.0
+           * boost-asio[core,spawn,deadline-timer]:arm64-windows@1.91.0
+           * boost-assert:arm64-windows@1.91.0
+           * boost-atomic:arm64-windows@1.91.0
+           * boost-bind:arm64-windows@1.91.0
+           * boost-charconv:arm64-windows@1.91.0
+           * boost-chrono:arm64-windows@1.91.0
+           * boost-cmake:arm64-windows@1.91.0
+           * boost-compat:arm64-windows@1.91.0
+           * boost-concept-check:arm64-windows@1.91.0
+           * boost-config:arm64-windows@1.91.0
+             boost-container:arm64-windows@1.91.0
+           * boost-container-hash:arm64-windows@1.91.0
+           * boost-context:arm64-windows@1.91.0
+           * boost-conversion:arm64-windows@1.91.0
+           * boost-core:arm64-windows@1.91.0
+           * boost-date-time:arm64-windows@1.91.0
+           * boost-describe:arm64-windows@1.91.0
+           * boost-detail:arm64-windows@1.91.0
+           * boost-dynamic-bitset:arm64-windows@1.91.0
+           * boost-endian:arm64-windows@1.91.0
+           * boost-exception:arm64-windows@1.91.0
+             boost-filesystem:arm64-windows@1.91.0
+           * boost-function:arm64-windows@1.91.0
+           * boost-function-types:arm64-windows@1.91.0
+           * boost-functional:arm64-windows@1.91.0
+           * boost-fusion:arm64-windows@1.91.0
+           * boost-headers:arm64-windows@1.91.0
+           * boost-integer:arm64-windows@1.91.0
+           * boost-interprocess:arm64-windows@1.91.0
+           * boost-intrusive:arm64-windows@1.91.0
+           * boost-io:arm64-windows@1.91.0
+             boost-iostreams[core,zstd,zlib,lzma,bzip2]:arm64-windows@1.91.0
+           * boost-iterator:arm64-windows@1.91.0
+           * boost-lexical-cast:arm64-windows@1.91.0
+             boost-locale:arm64-windows@1.91.0
+             boost-log:arm64-windows@1.91.0
+           * boost-move:arm64-windows@1.91.0
+           * boost-mp11:arm64-windows@1.91.0
+           * boost-mpl:arm64-windows@1.91.0
+           * boost-multi-index:arm64-windows@1.91.0
+           * boost-numeric-conversion:arm64-windows@1.91.0
+             boost-optional:arm64-windows@1.91.0
+           * boost-parameter:arm64-windows@1.91.0
+           * boost-phoenix:arm64-windows@1.91.0
+           * boost-pool:arm64-windows@1.91.0
+           * boost-predef:arm64-windows@1.91.0
+           * boost-preprocessor:arm64-windows@1.91.0
+             boost-program-options:arm64-windows@1.91.0
+             boost-property-tree:arm64-windows@1.91.0
+           * boost-proto:arm64-windows@1.91.0
+           * boost-random:arm64-windows@1.91.0
+             boost-range:arm64-windows@1.91.0
+           * boost-ratio:arm64-windows@1.91.0
+             boost-regex:arm64-windows@1.91.0
+           * boost-scope:arm64-windows@1.91.0
+           * boost-serialization:arm64-windows@1.91.0
+           * boost-smart-ptr:arm64-windows@1.91.0
+             boost-spirit:arm64-windows@1.91.0
+           * boost-static-assert:arm64-windows@1.91.0
+           * boost-system:arm64-windows@1.91.0
+           * boost-thread:arm64-windows@1.91.0
+           * boost-throw-exception:arm64-windows@1.91.0
+           * boost-tokenizer:arm64-windows@1.91.0
+           * boost-tuple:arm64-windows@1.91.0
+           * boost-type-index:arm64-windows@1.91.0
+           * boost-type-traits:arm64-windows@1.91.0
+           * boost-typeof:arm64-windows@1.91.0
+           * boost-uninstall:arm64-windows@1.91.0
+           * boost-unordered:arm64-windows@1.91.0
+           * boost-utility:arm64-windows@1.91.0
+             boost-uuid:arm64-windows@1.91.0
+           * boost-variant:arm64-windows@1.91.0
+           * boost-variant2:arm64-windows@1.91.0
+           * boost-winapi:arm64-windows@1.91.0
+           * boost-xpressive:arm64-windows@1.91.0
+           * bzip2[core,tool]:arm64-windows@1.0.8#6
+             ctemplate:arm64-windows@2020-09-14#6
+             gtest:arm64-windows@1.18.0
+           * liblzma:arm64-windows@5.8.3
+           * pcre2[core,platform-default-features,jit]:arm64-windows@10.47#1
+             poco:arm64-windows@1.14.1#2
+             protobuf:arm64-windows@6.33.4#2
+           * utf8-range:arm64-windows@6.33.4
+           * utf8proc:arm64-windows@2.11.3
+           * vcpkg-boost:arm64-windows@2025-03-29
+           * vcpkg-cmake:arm64-windows@2025-08-07
+           * vcpkg-cmake-config:arm64-windows@2026-07-21
+           * zlib:arm64-windows@1.3.2#2
+           * zstd:arm64-windows@1.5.7
+         The package boost-regex is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS regex)
+             target_link_libraries(main PRIVATE Boost::regex)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::regex)
+         
+         The package boost-optional is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS optional)
+             target_link_libraries(main PRIVATE Boost::optional)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::optional)
+         
+         The package boost-range is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS range)
+             target_link_libraries(main PRIVATE Boost::range)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::range)
+         
+         The package boost-algorithm is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS algorithm)
+             target_link_libraries(main PRIVATE Boost::algorithm)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::algorithm)
+         
+         The package boost-container is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS container)
+             target_link_libraries(main PRIVATE Boost::container)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::container)
+         
+         The package boost-filesystem is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS filesystem)
+             target_link_libraries(main PRIVATE Boost::filesystem)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::filesystem)
+         
+         The package boost-iostreams is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS iostreams)
+             target_link_libraries(main PRIVATE Boost::iostreams)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::iostreams)
+         
+         The package boost-locale is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS locale)
+             target_link_libraries(main PRIVATE Boost::locale)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::locale)
+         
+         The package boost-spirit is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS spirit)
+             target_link_libraries(main PRIVATE Boost::spirit)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::spirit)
+         
+         The package boost-property-tree is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS property_tree)
+             target_link_libraries(main PRIVATE Boost::property_tree)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::property_tree)
+         
+         The package boost-log is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS log)
+             target_link_libraries(main PRIVATE Boost::log)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::log)
+         
+         The package boost-program-options is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS program_options)
+             target_link_libraries(main PRIVATE Boost::program_options)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::program_options)
+         
+         The package boost-uuid is compatible with built-in CMake targets of FindBoost.cmake:
+         
+             find_package(Boost REQUIRED COMPONENTS uuid)
+             target_link_libraries(main PRIVATE Boost::uuid)
+         
+         or the generated cmake configs via:
+         
+             find_package( REQUIRED CONFIG)
+             target_link_libraries(main PRIVATE Boost::uuid)
+         
+         The package gtest is compatible with built-in CMake targets:
+         
+             enable_testing()
+             
+             find_package(GTest CONFIG REQUIRED)
+             target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+             
+             add_test(AllTestsInMain main)
+         
+         The package poco is compatible with built-in CMake targets:
+         
+             find_package(Poco REQUIRED [COMPONENTS <libs>...])
+             target_link_libraries(main PRIVATE Poco::<libs>)
+         
+         protobuf provides CMake targets:
+         
+           # this is heuristically generated, and may not be correct
+           find_package(protobuf CONFIG REQUIRED)
+           target_link_libraries(main PRIVATE protobuf::libupb protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+         
+         protobuf provides pkg-config modules:
+         
+           # Google's Data Interchange Format
+           protobuf-lite
+         
+           # Google's Data Interchange Format
+           protobuf
+         
+           # Google's Data Interchange Format
+           upb
+         
+         All requested installations completed successfully in: 1.45 ms
+         Creating "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\.msbuildstamp-arm64-windows.stamp" because "AlwaysCreate" was specified.
+         Touching "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\.msbuildstamp-arm64-windows.stamp".
+    18>Done Building Project "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\scripts\buildsystems\msbuild\support\InstallImplementation.targets" (VcpkgInstallImplementation target(s)).
+     6>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Plugin\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D PLUGIN_EXPORTS /D _WINDOWS /D _USRDLL /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Plugin\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(Plugin.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\Plugin.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue stdafx.cpp
+    11>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageOptimizedBuild\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /O2 /Oy- /D _DEBUG /D _WINDOWS /D _USRDLL /D TESTCOVERAGERELEASELIB_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageOptimizedBuild\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(TestCoverageOptimizedBuild.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue TestCoverageOptimizedBuild.cpp
+    12>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D TOOLS_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(Tools.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\Tools.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue stdafx.cpp
+     6>ClCompile:
+         stdafx.cpp
+    12>ClCompile:
+         stdafx.cpp
+    11>ClCompile:
+         TestCoverageOptimizedBuild.cpp
+    12>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D TOOLS_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(Tools.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue dllmain.cpp
+     6>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Plugin\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D PLUGIN_EXPORTS /D _WINDOWS /D _USRDLL /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Plugin\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(Plugin.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\Plugin.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue Exporter\CoverageData.cpp Exporter\FileCoverage.cpp Exporter\LineCoverage.cpp Exporter\ModuleCoverage.cpp
+         CoverageData.cpp
+    12>ClCompile:
+         dllmain.cpp
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D TOOLS_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(Tools.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\Tools.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue ExceptionBase.cpp Log.cpp MappedFile.cpp MiniDump.cpp PEFileHeader.cpp ProcessMemory.cpp ScopedAction.cpp Tool.cpp UniquePath.cpp WarningManager.cpp
+         ExceptionBase.cpp
+    11>Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.dll" /INCREMENTAL /ILK:"ARM64\Debug\TestCoverageOptimizedBuild.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.lib" /MACHINE:ARM64 /DLL ARM64\Debug\TestCoverageOptimizedBuild.obj
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.exp
+         TestCoverageOptimizedBuild.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.dll
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.dll" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\TestCove.2FD17BA1.tlog\TestCoverageOptimizedBuild.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\TestCove.2FD17BA1.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\TestCove.2FD17BA1.tlog\TestCoverageOptimizedBuild.lastbuildstate".
+    11>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageOptimizedBuild\TestCoverageOptimizedBuild.vcxproj" (default targets).
+     6>ClCompile:
+         FileCoverage.cpp
+    12>ClCompile:
+         Log.cpp
+     6>ClCompile:
+         LineCoverage.cpp
+         ModuleCoverage.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.dll" /INCREMENTAL /ILK:"ARM64\Debug\Plugin.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib" /MACHINE:ARM64 /DLL ARM64\Debug\CoverageData.obj
+         ARM64\Debug\FileCoverage.obj
+         ARM64\Debug\LineCoverage.obj
+         ARM64\Debug\ModuleCoverage.obj
+         ARM64\Debug\stdafx.obj
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.exp
+         Plugin.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.dll
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.dll" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\Plugin.tlog\Plugin.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\Plugin.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\Plugin.tlog\Plugin.lastbuildstate".
+     6>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Plugin\Plugin.vcxproj" (default targets).
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\PluginTest\PluginTest.vcxproj" (17) on node 4 (default targets).
+    17>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\PluginTest.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\PluginTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\PluginTest.tlog\unsuccessfulbuild".
+     8>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageConsole\TestCoverageConsole.vcxproj" (8) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageSharedLib\TestCoverageSharedLib.vcxproj" (13) on node 4 (default targets).
+    13>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\TestCove.0481B51C.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\TestCove.0481B51C.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\TestCove.0481B51C.tlog\unsuccessfulbuild".
+       VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageSharedLib\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageSharedLib\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(TestCoverageSharedLib.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\TestCoverageSharedLib.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue stdafx.cpp
+    17>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\PluginTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D _CONSOLE /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\PluginTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(PluginTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"pch.h" /Fp"ARM64\Debug\PluginTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue pch.cpp
+    13>ClCompile:
+         stdafx.cpp
+    17>ClCompile:
+         pch.cpp
+    13>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageSharedLib\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageSharedLib\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(TestCoverageSharedLib.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\TestCoverageSharedLib.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue SimpleTextExport.cpp TestCoverageSharedLib.cpp TestCppCli.cpp
+         SimpleTextExport.cpp
+         TestCoverageSharedLib.cpp
+    17>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\PluginTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D _CONSOLE /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\PluginTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(PluginTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"pch.h" /Fp"ARM64\Debug\PluginTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue Exporter\CoverageDataTest.cpp Exporter\FileCoverageTest.cpp PluginTest.cpp
+         CoverageDataTest.cpp
+         FileCoverageTest.cpp
+    13>ClCompile:
+         TestCppCli.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.dll" /INCREMENTAL /ILK:"ARM64\Debug\TestCoverageSharedLib.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.lib" /MACHINE:ARM64 /DLL ARM64\Debug\SimpleTextExport.obj
+         ARM64\Debug\TestCoverageSharedLib.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\TestCppCli.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.exp
+    17>ClCompile:
+         PluginTest.cpp
+         Generating Code...
+    13>Link:
+         TestCoverageSharedLib.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.dll
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.dll" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\TestCove.0481B51C.tlog\TestCoverageSharedLib.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\TestCove.0481B51C.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\TestCove.0481B51C.tlog\TestCoverageSharedLib.lastbuildstate".
+    13>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageSharedLib\TestCoverageSharedLib.vcxproj" (default targets).
+    17>Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\PluginTest.exe" /INCREMENTAL /ILK:"ARM64\Debug\PluginTest.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" gmock.lib gtest.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\PluginTest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\PluginTest.lib" /MACHINE:ARM64 ARM64\Debug\CoverageDataTest.obj
+         ARM64\Debug\FileCoverageTest.obj
+         ARM64\Debug\pch.obj
+         ARM64\Debug\PluginTest.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+         PluginTest.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\PluginTest.exe
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\PluginTest.exe" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\PluginTest.tlog\PluginTest.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\gmock.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\gmock.dll done
+    12>ClCompile:
+         MappedFile.cpp
+    17>AppLocalFromInstalled:
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\gmock.dll
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\PluginTest.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\PluginTest.tlog\PluginTest.lastbuildstate".
+    17>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\PluginTest\PluginTest.vcxproj" (default targets).
+    12>ClCompile:
+         MiniDump.cpp
+         PEFileHeader.cpp
+         ProcessMemory.cpp
+         ScopedAction.cpp
+         Tool.cpp
+         UniquePath.cpp
+         WarningManager.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.dll" /INCREMENTAL /ILK:"ARM64\Debug\Tools.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" DbgHelp.lib bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib" /MACHINE:ARM64 /DLL ARM64\Debug\dllmain.obj
+         ARM64\Debug\ExceptionBase.obj
+         ARM64\Debug\Log.obj
+         ARM64\Debug\MappedFile.obj
+         ARM64\Debug\MiniDump.obj
+         ARM64\Debug\PEFileHeader.obj
+         ARM64\Debug\ProcessMemory.obj
+         ARM64\Debug\ScopedAction.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\Tool.obj
+         ARM64\Debug\UniquePath.obj
+         ARM64\Debug\WarningManager.obj
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.exp
+         Tools.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.dll
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.dll" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\Tools.tlog\Tools.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\boost_iostreams-vc143-mt-gd-a64-1_91.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\zd.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\bz2d.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\liblzma.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\zstd.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\boost_locale-vc143-mt-gd-a64-1_91.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\boost_log-vc143-mt-gd-a64-1_91.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\boost_filesystem-vc143-mt-gd-a64-1_91.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\boost_thread-vc143-mt-gd-a64-1_91.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\Tools.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\Tools.tlog\Tools.lastbuildstate".
+    12>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Tools\Tools.vcxproj" (default targets).
+     8>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestHelper\TestHelper.vcxproj" (14) on node 4 (default targets).
+    14>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+     8>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\TestCove.0DD16EDF.tlog\".
+    14>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+     8>InitializeBuildStatus:
+         Creating "ARM64\Debug\TestCove.0DD16EDF.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+    14>PrepareForBuild:
+         Creating directory "ARM64\Debug\TestHelper.tlog\".
+     8>InitializeBuildStatus:
+         Touching "ARM64\Debug\TestCove.0DD16EDF.tlog\unsuccessfulbuild".
+    14>InitializeBuildStatus:
+         Creating "ARM64\Debug\TestHelper.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\TestHelper.tlog\unsuccessfulbuild".
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage\CppCoverage.vcxproj" (9) on node 4 (default targets).
+     9>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage\CppCoverage.vcxproj" (9) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilter\FileFilter.vcxproj" (10) on node 4 (default targets).
+    10>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\FileFilter.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\FileFilter.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\FileFilter.tlog\unsuccessfulbuild".
+       VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilter\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D _WINDOWS /D _USRDLL /D FILEFILTER_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilter\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(FileFilter.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\FileFilter.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue stdafx.cpp
+    14>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestHelper\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _USRDLL /D TEST_HELPER_EXPORTS /D _DEBUG /D _CONSOLE /D _LIB /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestHelper\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(TestHelper.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\TestHelper.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue stdafx.cpp
+    10>ClCompile:
+         stdafx.cpp
+    14>ClCompile:
+         stdafx.cpp
+     8>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageConsole\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageConsole\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(TestCoverageConsole.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue TestBasic.cpp TestCoverageConsole.cpp SpecialLineInfo.cpp TestDebugInformationEnumerator.cpp TestDiff.cpp TestThread.cpp
+         TestBasic.cpp
+    10>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilter\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D _WINDOWS /D _USRDLL /D FILEFILTER_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilter\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(FileFilter.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\FileFilter.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue AmbiguousPathException.cpp File.cpp PathMatcher.cpp ReleaseCoverageFilter.cpp RelocationsExtractor.cpp LineFilter.cpp UnifiedDiffCoverageFilter.cpp UnifiedDiffParser.cpp UnifiedDiffParserException.cpp
+         AmbiguousPathException.cpp
+         File.cpp
+     8>ClCompile:
+         TestCoverageConsole.cpp
+    14>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestHelper\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _USRDLL /D TEST_HELPER_EXPORTS /D _DEBUG /D _CONSOLE /D _LIB /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestHelper\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(TestHelper.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\TestHelper.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue CoverageDataComparer.cpp TemporaryPath.cpp Tools.cpp
+         CoverageDataComparer.cpp
+    10>ClCompile:
+         PathMatcher.cpp
+    14>ClCompile:
+         TemporaryPath.cpp
+     8>ClCompile:
+         SpecialLineInfo.cpp
+    14>ClCompile:
+         Tools.cpp
+    10>ClCompile:
+         ReleaseCoverageFilter.cpp
+     8>ClCompile:
+         TestDebugInformationEnumerator.cpp
+    14>ClCompile:
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.dll" /INCREMENTAL /ILK:"ARM64\Debug\TestHelper.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" gmock.lib gtest.lib bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.lib" /MACHINE:ARM64 /DLL ARM64\Debug\CoverageDataComparer.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\TemporaryPath.obj
+         ARM64\Debug\Tools.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.exp
+         TestHelper.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.dll
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.dll" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\TestHelper.tlog\TestHelper.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\PocoFoundationd.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\PocoFoundationd.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\pcre2-8d.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\pcre2-8d.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\utf8proc.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\utf8proc.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\gmock.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\PocoFoundationd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\pcre2-8d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\utf8proc.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\TestHelper.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\TestHelper.tlog\TestHelper.lastbuildstate".
+    14>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestHelper\TestHelper.vcxproj" (default targets).
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ToolsTest\ToolsTest.vcxproj" (16) on node 4 (default targets).
+    16>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\ToolsTest.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\ToolsTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\ToolsTest.tlog\unsuccessfulbuild".
+       VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ToolsTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D _CONSOLE /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ToolsTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(ToolsTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\ToolsTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue stdafx.cpp
+         stdafx.cpp
+    10>ClCompile:
+         RelocationsExtractor.cpp
+     8>ClCompile:
+         TestDiff.cpp
+    10>ClCompile:
+         LineFilter.cpp
+     8>ClCompile:
+         TestThread.cpp
+    16>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ToolsTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D _CONSOLE /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ToolsTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(ToolsTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\ToolsTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue MappedFileTest.cpp PEFileHeaderTest.cpp ToolsTest.cpp ToolTest.cpp
+         MappedFileTest.cpp
+    10>ClCompile:
+         UnifiedDiffCoverageFilter.cpp
+     8>ClCompile:
+         Generating Code...
+    16>ClCompile:
+         PEFileHeaderTest.cpp
+     8>Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageConsole.exe" /INCREMENTAL /ILK:"ARM64\Debug\TestCoverageConsole.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageConsole.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageConsole.lib" /MACHINE:ARM64 ARM64\Debug\TestBasic.obj
+         ARM64\Debug\TestCoverageConsole.obj
+         ARM64\Debug\SpecialLineInfo.obj
+         ARM64\Debug\TestDebugInformationEnumerator.obj
+         ARM64\Debug\TestDiff.obj
+         ARM64\Debug\TestThread.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageConsole.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageConsole.exp
+    16>ClCompile:
+         ToolsTest.cpp
+         ToolTest.cpp
+     8>Link:
+         TestCoverageConsole.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageConsole.exe
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageConsole.exe" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\TestCove.0DD16EDF.tlog\TestCoverageConsole.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\PocoFoundationd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\pcre2-8d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\utf8proc.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\TestCove.0DD16EDF.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\TestCove.0DD16EDF.tlog\TestCoverageConsole.lastbuildstate".
+     8>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\TestCoverageConsole\TestCoverageConsole.vcxproj" (default targets).
+    16>ClCompile:
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ToolsTest.exe" /INCREMENTAL /ILK:"ARM64\Debug\ToolsTest.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" gmock.lib gtest.lib bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ToolsTest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ToolsTest.lib" /MACHINE:ARM64 ARM64\Debug\MappedFileTest.obj
+         ARM64\Debug\PEFileHeaderTest.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\ToolsTest.obj
+         ARM64\Debug\ToolTest.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+         ToolsTest.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ToolsTest.exe
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ToolsTest.exe" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\ToolsTest.tlog\ToolsTest.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\gmock.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\PocoFoundationd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\pcre2-8d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\utf8proc.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\ToolsTest.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\ToolsTest.tlog\ToolsTest.lastbuildstate".
+    16>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ToolsTest\ToolsTest.vcxproj" (default targets).
+    10>ClCompile:
+         UnifiedDiffParser.cpp
+         UnifiedDiffParserException.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.dll" /INCREMENTAL /ILK:"ARM64\Debug\FileFilter.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.lib" /MACHINE:ARM64 /DLL ARM64\Debug\AmbiguousPathException.obj
+         ARM64\Debug\File.obj
+         ARM64\Debug\PathMatcher.obj
+         ARM64\Debug\ReleaseCoverageFilter.obj
+         ARM64\Debug\RelocationsExtractor.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\LineFilter.obj
+         ARM64\Debug\UnifiedDiffCoverageFilter.obj
+         ARM64\Debug\UnifiedDiffParser.obj
+         ARM64\Debug\UnifiedDiffParserException.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.exp
+         FileFilter.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.dll
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.dll" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\FileFilter.tlog\FileFilter.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\FileFilter.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\FileFilter.tlog\FileFilter.lastbuildstate".
+    10>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilter\FileFilter.vcxproj" (default targets).
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilterTest\FileFilterTest.vcxproj" (15) on node 4 (default targets).
+    15>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\FileFilterTest.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\FileFilterTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\FileFilterTest.tlog\unsuccessfulbuild".
+     9>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\CppCoverage.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\CppCoverage.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\CppCoverage.tlog\unsuccessfulbuild".
+       VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage\\" /I"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\DIA SDK\include" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CPPCOVERAGE_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(CppCoverage.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\CppCoverage.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue stdafx.cpp
+    15>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilterTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D _CONSOLE /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilterTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(FileFilterTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\FileFilterTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue stdafx.cpp
+     9>ClCompile:
+         stdafx.cpp
+    15>ClCompile:
+         stdafx.cpp
+     9>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage\\" /I"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\DIA SDK\include" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CPPCOVERAGE_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(CppCoverage.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\CppCoverage.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue Address.cpp BreakPoint.cpp CodeCoverageRunner.cpp CoverageDataMerger.cpp CoverageFilterManager.cpp DebugInformationEnumerator.cpp ExportOptionParser.cpp FileSystem.cpp FilterAssistant.cpp MonitoredLineRegister.cpp RunCoverageSettings.cpp UnifiedDiffCoverageFilterManager.cpp UnifiedDiffSettings.cpp WildcardCoverageFilter.cpp CoverageRate.cpp CoverageRateComputer.cpp CoverageFilterSettings.cpp CppCoverageException.cpp Debugger.cpp ExceptionHandler.cpp ExecutedAddressManager.cpp HandleInformation.cpp IDebugEventsHandler.cpp Options.cpp OptionsExport.cpp OptionsParser.cpp Patterns.cpp Process.cpp ProgramOptions.cpp StartInfo.cpp Wildcards.cpp
+         Address.cpp
+         BreakPoint.cpp
+    15>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilterTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D _DEBUG /D _CONSOLE /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilterTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(FileFilterTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\FileFilterTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue FileFilterTest.cpp LineFilterTest.cpp PathMatcherTest.cpp RelocationsExtractorTest.cpp Tools.cpp UnifiedDiffCoverageFilterTest.cpp UnifiedDiffParserTest.cpp
+         FileFilterTest.cpp
+         LineFilterTest.cpp
+         PathMatcherTest.cpp
+     9>ClCompile:
+         CodeCoverageRunner.cpp
+    15>ClCompile:
+         RelocationsExtractorTest.cpp
+         Tools.cpp
+     9>ClCompile:
+         CoverageDataMerger.cpp
+    15>ClCompile:
+         UnifiedDiffCoverageFilterTest.cpp
+         UnifiedDiffParserTest.cpp
+     9>ClCompile:
+         CoverageFilterManager.cpp
+    15>ClCompile:
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilterTest.exe" /INCREMENTAL /ILK:"ARM64\Debug\FileFilterTest.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" gmock.lib gtest.lib bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilterTest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilterTest.lib" /MACHINE:ARM64 ARM64\Debug\FileFilterTest.obj
+         ARM64\Debug\LineFilterTest.obj
+         ARM64\Debug\PathMatcherTest.obj
+         ARM64\Debug\RelocationsExtractorTest.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\Tools.obj
+         ARM64\Debug\UnifiedDiffCoverageFilterTest.obj
+         ARM64\Debug\UnifiedDiffParserTest.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+         FileFilterTest.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilterTest.exe
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilterTest.exe" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\FileFilterTest.tlog\FileFilterTest.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\gmock.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\PocoFoundationd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\pcre2-8d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\utf8proc.dll
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\FileFilterTest.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\FileFilterTest.tlog\FileFilterTest.lastbuildstate".
+    15>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\FileFilterTest\FileFilterTest.vcxproj" (default targets).
+     9>ClCompile:
+         DebugInformationEnumerator.cpp
+         ExportOptionParser.cpp
+         FileSystem.cpp
+         FilterAssistant.cpp
+         MonitoredLineRegister.cpp
+         RunCoverageSettings.cpp
+         UnifiedDiffCoverageFilterManager.cpp
+         UnifiedDiffSettings.cpp
+         WildcardCoverageFilter.cpp
+         CoverageRate.cpp
+         CoverageRateComputer.cpp
+         CoverageFilterSettings.cpp
+         CppCoverageException.cpp
+         Debugger.cpp
+         ExceptionHandler.cpp
+         Generating Code...
+         Compiling...
+         ExecutedAddressManager.cpp
+         HandleInformation.cpp
+         IDebugEventsHandler.cpp
+         Options.cpp
+         OptionsExport.cpp
+         OptionsParser.cpp
+         Patterns.cpp
+         Process.cpp
+         ProgramOptions.cpp
+         StartInfo.cpp
+         Wildcards.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.dll" /INCREMENTAL /ILK:"ARM64\Debug\CppCoverage.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" Dbghelp.lib bcrypt.lib "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\DIA SDK\lib\arm64\diaguids.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.lib" /MACHINE:ARM64 /DLL ARM64\Debug\Address.obj
+         ARM64\Debug\BreakPoint.obj
+         ARM64\Debug\CodeCoverageRunner.obj
+         ARM64\Debug\CoverageDataMerger.obj
+         ARM64\Debug\CoverageFilterManager.obj
+         ARM64\Debug\DebugInformationEnumerator.obj
+         ARM64\Debug\ExportOptionParser.obj
+         ARM64\Debug\FileSystem.obj
+         ARM64\Debug\FilterAssistant.obj
+         ARM64\Debug\MonitoredLineRegister.obj
+         ARM64\Debug\RunCoverageSettings.obj
+         ARM64\Debug\UnifiedDiffCoverageFilterManager.obj
+         ARM64\Debug\UnifiedDiffSettings.obj
+         ARM64\Debug\WildcardCoverageFilter.obj
+         ARM64\Debug\CoverageRate.obj
+         ARM64\Debug\CoverageRateComputer.obj
+         ARM64\Debug\CoverageFilterSettings.obj
+         ARM64\Debug\CppCoverageException.obj
+         ARM64\Debug\Debugger.obj
+         ARM64\Debug\ExceptionHandler.obj
+         ARM64\Debug\ExecutedAddressManager.obj
+         ARM64\Debug\HandleInformation.obj
+         ARM64\Debug\IDebugEventsHandler.obj
+         ARM64\Debug\Options.obj
+         ARM64\Debug\OptionsExport.obj
+         ARM64\Debug\OptionsParser.obj
+         ARM64\Debug\Patterns.obj
+         ARM64\Debug\Process.obj
+         ARM64\Debug\ProgramOptions.obj
+         ARM64\Debug\StartInfo.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\Wildcards.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.exp
+         CppCoverage.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.dll
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.dll" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\CppCoverage.tlog\CppCoverage.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_program_options-vc143-mt-gd-a64-1_91.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\boost_program_options-vc143-mt-gd-a64-1_91.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_program_options-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+       PostBuildEvent:
+         xcopy /y "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\DIA SDK\bin\arm64\msdia140.dll" "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\"
+         :VCEnd
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\DIA SDK\bin\arm64\msdia140.dll
+         1 File(s) copied
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\CppCoverage.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\CppCoverage.tlog\CppCoverage.lastbuildstate".
+     9>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage\CppCoverage.vcxproj" (default targets).
+     5>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\Exporter.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\Exporter.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\Exporter.tlog\unsuccessfulbuild".
+       PreBuildEvent:
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\tools\protobuf\protoc.exe" -I="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Binary" --cpp_out="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Binary" "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Binary\CoverageData.proto"
+         :VCEnd
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CppCoverageTest.vcxproj.metaproj" (2) on node 1 (default targets).
+     2>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CppCoverageTest.vcxproj.metaproj" (2) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CppCoverageTest.vcxproj" (19) on node 1 (default targets).
+    19>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\CppCoverageTest.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\CppCoverageTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\CppCoverageTest.tlog\unsuccessfulbuild".
+     5>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D EXPORTER_EXPORTS /D _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(Exporter.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\Exporter.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W0 /Gd /TP /wd4251 /analyze- /FC /errorReport:queue /external:I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" stdafx.cpp
+    19>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(CppCoverageTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\CppCoverageTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue stdafx.cpp
+     5>ClCompile:
+         stdafx.cpp
+    19>ClCompile:
+         stdafx.cpp
+     5>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D EXPORTER_EXPORTS /D _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(Exporter.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\Exporter.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W0 /Gd /TP /wd4251 /analyze- /FC /errorReport:queue /external:I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" Binary\BinaryExporter.cpp CoberturaExporter.cpp Binary\CoverageDataSerializer.cpp Binary\CoverageDataDeserializer.cpp Html\HtmlExporter.cpp Html\HtmlFile.cpp Html\HtmlFileCoverageExporter.cpp Html\HtmlFolderStructure.cpp Html\TemplateHtmlExporter.cpp InvalidOutputFileException.cpp Plugin\ExporterPluginManager.cpp
+         BinaryExporter.cpp
+         CoberturaExporter.cpp
+    19>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(CppCoverageTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\CppCoverageTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue BreakPointTest.cpp CodeCoverageRunnerTest.cpp CoverageDataMergerRandomTest.cpp CoverageDataMergerTest.cpp DebugInformationEnumeratorTest.cpp FilterAssistantTest.cpp UnifiedDiffCoverageFilterManagerTest.cpp OptionsParserUnifiedDiffTest.cpp WildcardCoverageFilterTest.cpp CoverageRateComputerTest.cpp CoverageRateTest.cpp CppCoverageExceptionTest.cpp CppCoverageTest.cpp DebuggerTest.cpp ExceptionHandlerTest.cpp ExecutedAddressManagerTest.cpp HandleInformationTest.cpp OptionsParserConfigTest.cpp OptionsParserExportTest.cpp OptionsParserPatternTest.cpp OptionsParserTest.cpp ProcessTest.cpp StartInfoTest.cpp TestTools.cpp WildcardsTest.cpp
+         BreakPointTest.cpp
+         CodeCoverageRunnerTest.cpp
+     5>ClCompile:
+         CoverageDataSerializer.cpp
+    19>ClCompile:
+         CoverageDataMergerRandomTest.cpp
+         CoverageDataMergerTest.cpp
+         DebugInformationEnumeratorTest.cpp
+         FilterAssistantTest.cpp
+     5>ClCompile:
+         CoverageDataDeserializer.cpp
+    19>ClCompile:
+         UnifiedDiffCoverageFilterManagerTest.cpp
+         OptionsParserUnifiedDiffTest.cpp
+         WildcardCoverageFilterTest.cpp
+         CoverageRateComputerTest.cpp
+     5>ClCompile:
+         HtmlExporter.cpp
+    19>ClCompile:
+         CoverageRateTest.cpp
+         CppCoverageExceptionTest.cpp
+         CppCoverageTest.cpp
+         DebuggerTest.cpp
+     5>ClCompile:
+         HtmlFile.cpp
+         HtmlFileCoverageExporter.cpp
+    19>ClCompile:
+         ExceptionHandlerTest.cpp
+         ExecutedAddressManagerTest.cpp
+         HandleInformationTest.cpp
+     5>ClCompile:
+         HtmlFolderStructure.cpp
+    19>ClCompile:
+         OptionsParserConfigTest.cpp
+     5>ClCompile:
+         TemplateHtmlExporter.cpp
+    19>ClCompile:
+         OptionsParserExportTest.cpp
+         OptionsParserPatternTest.cpp
+     5>ClCompile:
+         InvalidOutputFileException.cpp
+    19>ClCompile:
+         Generating Code...
+     5>ClCompile:
+         ExporterPluginManager.cpp
+         Generating Code...
+    19>ClCompile:
+         Compiling...
+         OptionsParserTest.cpp
+     5>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W0 /WX /diagnostics:column /sdl /Od /Oy- /D EXPORTER_EXPORTS /D _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(Exporter.dll)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W0 /Gd /TP /wd4146 /wd4251 /analyze- /FC /errorReport:queue /external:I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" Binary\CoverageData.pb.cc
+         CoverageData.pb.cc
+    19>ClCompile:
+         ProcessTest.cpp
+         StartInfoTest.cpp
+         TestTools.cpp
+         WildcardsTest.cpp
+         Generating Code...
+     5>Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.dll" /INCREMENTAL /ILK:"ARM64\Debug\Exporter.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.lib" /MACHINE:ARM64 /DLL ARM64\Debug\BinaryExporter.obj
+         ARM64\Debug\CoverageData.pb.obj
+         ARM64\Debug\CoberturaExporter.obj
+         ARM64\Debug\CoverageDataSerializer.obj
+         ARM64\Debug\CoverageDataDeserializer.obj
+         ARM64\Debug\HtmlExporter.obj
+         ARM64\Debug\HtmlFile.obj
+         ARM64\Debug\HtmlFileCoverageExporter.obj
+         ARM64\Debug\HtmlFolderStructure.obj
+         ARM64\Debug\TemplateHtmlExporter.obj
+         ARM64\Debug\InvalidOutputFileException.obj
+         ARM64\Debug\ExporterPluginManager.obj
+         ARM64\Debug\stdafx.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.exp
+         Exporter.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.dll
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.dll" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\Exporter.tlog\Exporter.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\abseil_dll.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\abseil_dll.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libctemplate.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\libctemplate.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobuf-lited.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\libprotobuf-lited.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobufd.dll -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\libprotobufd.dll done
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\abseil_dll.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libctemplate.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobuf-lited.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobufd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_program_options-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+    19>Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverageTest.exe" /INCREMENTAL /ILK:"ARM64\Debug\CppCoverageTest.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" gmock.lib gtest.lib bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverageTest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverageTest.lib" /MACHINE:ARM64 ARM64\Debug\BreakPointTest.obj
+         ARM64\Debug\CodeCoverageRunnerTest.obj
+         ARM64\Debug\CoverageDataMergerRandomTest.obj
+         ARM64\Debug\CoverageDataMergerTest.obj
+         ARM64\Debug\DebugInformationEnumeratorTest.obj
+         ARM64\Debug\FilterAssistantTest.obj
+         ARM64\Debug\UnifiedDiffCoverageFilterManagerTest.obj
+         ARM64\Debug\OptionsParserUnifiedDiffTest.obj
+         ARM64\Debug\WildcardCoverageFilterTest.obj
+         ARM64\Debug\CoverageRateComputerTest.obj
+         ARM64\Debug\CoverageRateTest.obj
+         ARM64\Debug\CppCoverageExceptionTest.obj
+         ARM64\Debug\CppCoverageTest.obj
+         ARM64\Debug\DebuggerTest.obj
+         ARM64\Debug\ExceptionHandlerTest.obj
+         ARM64\Debug\ExecutedAddressManagerTest.obj
+         ARM64\Debug\HandleInformationTest.obj
+         ARM64\Debug\OptionsParserConfigTest.obj
+         ARM64\Debug\OptionsParserExportTest.obj
+         ARM64\Debug\OptionsParserPatternTest.obj
+         ARM64\Debug\OptionsParserTest.obj
+         ARM64\Debug\ProcessTest.obj
+         ARM64\Debug\StartInfoTest.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\TestTools.obj
+         ARM64\Debug\WildcardsTest.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\FileFilter.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageOptimizedBuild.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+         CppCoverageTest.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverageTest.exe
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverageTest.exe" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\CppCoverageTest.tlog\CppCoverageTest.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\gmock.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_program_options-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\PocoFoundationd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\pcre2-8d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\utf8proc.dll
+     5>PostBuildEvent:
+         if not exist "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Template" mkdir "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Template" && xcopy /s /y "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template" "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Template"
+         :VCEnd
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\MainTemplate.html
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\SourceTemplate.html
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\css\style.css
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\css\table-images\botleft.png
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\css\table-images\botright.png
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\css\table-images\left.png
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\css\table-images\right.png
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\google-code-prettify\prettify-CppCoverage.css
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\google-code-prettify\prettify.js
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\google-code-prettify\run_prettify.js
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\JQuery\jquery-3.4.1.min.js
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\RGraph\license.txt
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\RGraph\libraries\RGraph.common.core.js
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\RGraph\libraries\RGraph.common.dynamic.js
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\RGraph\libraries\RGraph.common.tooltips.js
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Html\Template\third-party\RGraph\libraries\RGraph.pie.js
+         16 File(s) copied
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\Exporter.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\Exporter.tlog\Exporter.lastbuildstate".
+     5>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\Exporter\Exporter.vcxproj" (default targets).
+    19>FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\CppCoverageTest.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\CppCoverageTest.tlog\CppCoverageTest.lastbuildstate".
+    19>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CppCoverageTest.vcxproj" (default targets).
+     2>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CppCoverageTest.vcxproj.metaproj" (default targets).
+     3>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\ExporterTest.vcxproj.metaproj" (3) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\ExporterTest.vcxproj" (20) on node 1 (default targets).
+    20>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+     7>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+    20>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\ExporterTest.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\ExporterTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\ExporterTest.tlog\unsuccessfulbuild".
+     7>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\OpenCppCoverage.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\OpenCppCoverage.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\OpenCppCoverage.tlog\unsuccessfulbuild".
+    20>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+     7>VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+    20>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _SCL_SECURE_NO_WARNINGS /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(ExporterTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\ExporterTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue stdafx.cpp
+     7>VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverage\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D OPEN_CPP_COVERAGE_EXPORTS /D _DEBUG /D _CONSOLE /D _LIB /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverage\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(OpenCppCoverage.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\OpenCppCoverage.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue stdafx.cpp
+    20>ClCompile:
+         stdafx.cpp
+     7>ClCompile:
+         stdafx.cpp
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverage\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D OPEN_CPP_COVERAGE_EXPORTS /D _DEBUG /D _CONSOLE /D _LIB /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverage\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(OpenCppCoverage.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\OpenCppCoverage.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue main.cpp OpenCppCoverage.cpp
+         main.cpp
+         OpenCppCoverage.cpp
+    20>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _SCL_SECURE_NO_WARNINGS /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(ExporterTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\ExporterTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue BinaryExporterTest.cpp CoberturaExporterTest.cpp CoverageDataSerializerTest.cpp ExporterPluginManagerTest.cpp ExporterTest.cpp HtmlExporterTest.cpp HtmlFileCoverageExporterTest.cpp HtmlFolderStructureTest.cpp TemplateHtmlExporterTest.cpp
+         BinaryExporterTest.cpp
+         CoberturaExporterTest.cpp
+         CoverageDataSerializerTest.cpp
+     7>ClCompile:
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverage.exe" /INCREMENTAL /ILK:"ARM64\Debug\OpenCppCoverage.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverage.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverage.lib" /MACHINE:ARM64 ARM64\Debug\main.obj
+         ARM64\Debug\OpenCppCoverage.obj
+         ARM64\Debug\stdafx.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+    20>ClCompile:
+         ExporterPluginManagerTest.cpp
+     7>Link:
+         OpenCppCoverage.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverage.exe
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverage.exe" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\OpenCppCoverage.tlog\OpenCppCoverage.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_program_options-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\abseil_dll.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libctemplate.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobuf-lited.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobufd.dll
+       PostBuildEvent:
+         if not exist "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugins\Exporter" mkdir "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugins\Exporter"
+         :VCEnd
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\OpenCppCoverage.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\OpenCppCoverage.tlog\OpenCppCoverage.lastbuildstate".
+     7>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverage\OpenCppCoverage.vcxproj" (default targets).
+    20>ClCompile:
+         ExporterTest.cpp
+         HtmlExporterTest.cpp
+         HtmlFileCoverageExporterTest.cpp
+         HtmlFolderStructureTest.cpp
+         TemplateHtmlExporterTest.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ExporterTest.exe" /INCREMENTAL /ILK:"ARM64\Debug\ExporterTest.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" gmock.lib gtest.lib bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ExporterTest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ExporterTest.lib" /MACHINE:ARM64 ARM64\Debug\BinaryExporterTest.obj
+         ARM64\Debug\CoberturaExporterTest.obj
+         ARM64\Debug\CoverageDataSerializerTest.obj
+         ARM64\Debug\ExporterPluginManagerTest.obj
+         ARM64\Debug\ExporterTest.obj
+         ARM64\Debug\HtmlExporterTest.obj
+         ARM64\Debug\HtmlFileCoverageExporterTest.obj
+         ARM64\Debug\HtmlFolderStructureTest.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\TemplateHtmlExporterTest.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+            Creating library C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ExporterTest.lib and object C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ExporterTest.exp
+         ExporterTest.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ExporterTest.exe
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\ExporterTest.exe" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\ExporterTest.tlog\ExporterTest.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\gmock.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libctemplate.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_program_options-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\abseil_dll.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobuf-lited.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobufd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\PocoFoundationd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\pcre2-8d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\utf8proc.dll
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\ExporterTest.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\ExporterTest.tlog\ExporterTest.lastbuildstate".
+    20>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\ExporterTest.vcxproj" (default targets).
+     3>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ExporterTest\ExporterTest.vcxproj.metaproj" (default targets).
+     1>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (1) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj.metaproj" (4) on node 1 (default targets).
+     4>Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj.metaproj" (4) is building "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj" (21) on node 2 (default targets).
+    21>PrepareForBuild:
+         Creating directory "ARM64\Debug\".
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+         Creating directory "ARM64\Debug\OpenCppC.F892B2B1.tlog\".
+       InitializeBuildStatus:
+         Creating "ARM64\Debug\OpenCppC.F892B2B1.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "ARM64\Debug\OpenCppC.F892B2B1.tlog\unsuccessfulbuild".
+       VcpkgTripletSelection:
+         Using triplet "arm64-windows" from "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(OpenCppCoverageTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yc"stdafx.h" /Fp"ARM64\Debug\OpenCppCoverageTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue stdafx.cpp
+         stdafx.cpp
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\\" /I"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GTEST_LINKED_AS_SHARED_LIBRARY=1 /D _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\)|\"" /D "SOLUTION_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\)|\"" /D "TARGET_FILE_NAME=R\"|(OpenCppCoverageTest.exe)|\"" /D "OUT_DIR=R\"|(C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\)|\"" /D NOMINMAX /D _ARM64_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"ARM64\Debug\OpenCppCoverageTest.pch" /Fo"ARM64\Debug\\" /Fd"ARM64\Debug\vc143.pdb" /external:W3 /Gd /TP /wd4251 /wd4275 /analyze- /FC /errorReport:queue CommandLineOptionsTest.cpp ImportExportTests.cpp OpenCppCoverageConsoleTest.cpp OpenCppCoverageTest.cpp OpenCppCoverageTestTools.cpp WarningManagerTests.cpp
+         CommandLineOptionsTest.cpp
+         ImportExportTests.cpp
+         OpenCppCoverageConsoleTest.cpp
+         OpenCppCoverageTest.cpp
+         OpenCppCoverageTestTools.cpp
+         WarningManagerTests.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverageTest.exe" /INCREMENTAL /ILK:"ARM64\Debug\OpenCppCoverageTest.ilk" /NOLOGO /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib" /LIBPATH:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\manual-link" gmock.lib gtest.lib bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverageTest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverageTest.lib" /MACHINE:ARM64 ARM64\Debug\CommandLineOptionsTest.obj
+         ARM64\Debug\ImportExportTests.obj
+         ARM64\Debug\OpenCppCoverageConsoleTest.obj
+         ARM64\Debug\OpenCppCoverageTest.obj
+         ARM64\Debug\OpenCppCoverageTestTools.obj
+         ARM64\Debug\stdafx.obj
+         ARM64\Debug\WarningManagerTests.obj
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\CppCoverage.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Exporter.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugin.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestHelper.lib"
+         "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Tools.lib"
+         OpenCppCoverageTest.vcxproj -> C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverageTest.exe
+       AppLocalFromInstalled:
+         "C:\Users\runneradmin\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\OpenCppCoverageTest.exe" --installed-bin-dir="C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin" --tlog-file="ARM64\Debug\OpenCppC.F892B2B1.tlog\OpenCppCoverageTest.write.1u.tlog" --copied-files-log="ARM64\Debug\vcpkg.applocal.log"
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\gmock.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\PocoFoundationd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\pcre2-8d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\utf8proc.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_log-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_filesystem-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_thread-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_program_options-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_iostreams-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\bz2d.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\liblzma.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\zstd.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\boost_locale-vc143-mt-gd-a64-1_91.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\abseil_dll.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libctemplate.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobuf-lited.dll
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\vcpkg_installed\arm64-windows\debug\bin\libprotobufd.dll
+       PostBuildEvent:
+         xcopy /y "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.dll" "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\Plugins\Exporter"
+         :VCEnd
+         C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Debug\TestCoverageSharedLib.dll
+         1 File(s) copied
+       FinalizeBuildStatus:
+         Deleting file "ARM64\Debug\OpenCppC.F892B2B1.tlog\unsuccessfulbuild".
+         Touching "ARM64\Debug\OpenCppC.F892B2B1.tlog\OpenCppCoverageTest.lastbuildstate".
+    21>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj" (default targets).
+     4>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj.metaproj" (default targets).
+     1>Done Building Project "C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverage.sln" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:05:40.04

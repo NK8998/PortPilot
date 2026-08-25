@@ -1,0 +1,31 @@
+{
+  "Package": "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\artifacts\\OpenCppCoverage-0.9.9.0-windows-arm64.zip",
+  "Size": 17197315,
+  "Sha256": "83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5",
+  "Checksum": "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\artifacts\\OpenCppCoverage-0.9.9.0-windows-arm64.zip.sha256",
+  "Staging": "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\artifacts\\staging\\OpenCppCoverage-0.9.9.0-windows-arm64",
+  "Expanded": "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64",
+  "PeImageCount": 34,
+  "FileCount": 154,
+  "DependencyCount": 103,
+  "CrtSource": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Redist\\MSVC\\14.44.35112\\arm64\\Microsoft.VC143.CRT",
+  "CrtStaged": [
+    "concrt140.dll",
+    "msvcp140_1.dll",
+    "msvcp140_2.dll",
+    "msvcp140_atomic_wait.dll",
+    "msvcp140_codecvt_ids.dll",
+    "msvcp140.dll",
+    "vccorlib140.dll",
+    "vcruntime140_threads.dll",
+    "vcruntime140.dll"
+  ],
+  "CrtNotStaged": [
+    {
+      "Name": "vcruntime140_1.dll",
+      "Architecture": "x64",
+      "Machine": "0x8664",
+      "Source": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Redist\\MSVC\\14.44.35112\\arm64\\Microsoft.VC143.CRT\\vcruntime140_1.dll"
+    }
+  ]
+}

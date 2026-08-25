@@ -1,0 +1,54 @@
+{
+  "skill": "port-completeness",
+  "rules": [
+    {
+      "id": "CMP-0001",
+      "detector": "undocumented-platform-exclusion",
+      "extensions": [".vcxproj", ".props", ".targets", ".csproj"],
+      "category": "build-system",
+      "severity": "high",
+      "explanation": "A project or item is excluded from the build for a platform with no adjacent reason, so the build succeeds by no longer containing the work that failed.",
+      "recommendation": "Record the exclusion as a decision next to the condition: what is excluded, why it cannot target this platform, and where the decision is written down. Then carry it into the release notes.",
+      "arm64Impact": "source-change-required",
+      "effort": "S",
+      "confidence": "high"
+    },
+    {
+      "id": "CMP-0002",
+      "pattern": "\\bDISABLED_[A-Za-z0-9_]+|--gtest_filter=[^\\s\"']*-|\\[Ignore\\b|\\bSkip\\s*=\\s*[\"']",
+      "flags": "",
+      "extensions": [".c", ".cc", ".cpp", ".cxx", ".h", ".hpp", ".cs", ".ps1", ".cmd", ".bat", ".yml", ".yaml"],
+      "category": "build-system",
+      "severity": "high",
+      "explanation": "Tests are removed from the run while remaining in the tree, so the runner reports success over a smaller population than the baseline measured.",
+      "recommendation": "Re-enable the test, or record the skip as a named exclusion with a reason and assert the expected executed count so the reduction cannot pass unnoticed.",
+      "arm64Impact": "source-change-required",
+      "effort": "M",
+      "confidence": "medium"
+    },
+    {
+      "id": "CMP-0003",
+      "detector": "arch-guarded-stub",
+      "extensions": [".c", ".cc", ".cpp", ".cxx", ".h", ".hpp", ".cs"],
+      "category": "arch-lock",
+      "severity": "blocker",
+      "explanation": "Functionality is stubbed out behind an architecture guard, so the port compiles, links, ships, and passes every test that does not exercise the path while behaving differently from the baseline architecture.",
+      "recommendation": "Implement the path for the target architecture, or record it as a documented functional limitation of the port with a test that asserts the limitation deliberately.",
+      "arm64Impact": "source-change-required",
+      "effort": "L",
+      "confidence": "high"
+    },
+    {
+      "id": "CMP-0004",
+      "detector": "vacuous-test-success",
+      "extensions": [".ps1", ".cmd", ".bat", ".yml", ".yaml"],
+      "category": "build-system",
+      "severity": "high",
+      "explanation": "The test step cannot distinguish a passing suite from a suite that never ran. Either it is gated on an exit code alone, or it is a GitHub Actions step graded solely on its own exit status, or it applies a name filter that exits zero when it matches nothing. Every runner in scope — cargo, ctest, pytest, go test, npm test, swift test, vstest, dotnet test and gtest — exits zero after executing no tests.",
+      "recommendation": "Assert a nonzero executed count and that executed equals passed, and fail the step when the count is missing rather than treating absent evidence as clean evidence. For a filtered invocation, assert that the filter selected something: an empty selection is the defect this rule most often finds inside an otherwise green run.",
+      "arm64Impact": "none",
+      "effort": "S",
+      "confidence": "high"
+    }
+  ]
+}

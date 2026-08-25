@@ -1,0 +1,7 @@
+Visual Studio setup exited with code 5007: operation requires elevation from process start.
+Visual Studio setup exited with code 8006: related processes are still running and not quiesced.
+The BaseOutputPath/OutputPath property is not set for project 'Exporter.vcxproj'. Configuration='Debug' Platform='ARM64'.
+The project "TestCppCli" is not selected for building in solution configuration "Debug|ARM64".
+vcpkg VCToolsVersion=14.44.35207; MSBuild VCToolsVersion=14.29.30133
+Platform=ARM64 PlatformToolset=v142 WindowsTargetPlatformVersion=10.0.26100.0
+resolved cl=C:\VS\VC\Tools\MSVC\14.44.35207\bin\Hostarm64\arm64\cl.exe; resolved LIB path=C:\VS\VC\Tools\MSVC\14.29.30133\lib\arm64

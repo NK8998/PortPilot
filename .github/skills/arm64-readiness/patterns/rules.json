@@ -1,0 +1,97 @@
+{
+  "skill": "arm64-readiness",
+  "rules": [
+    {
+      "id": "RDY-0001",
+      "pattern": "#include\\s*<(?:immintrin|emmintrin|xmmintrin|nmmintrin|smmintrin|tmmintrin|pmmintrin|mmintrin|ammintrin|wmmintrin)\\.h>|\\b__m(?:128|256|512)[di]?\\b|\\b_mm(?:256|512)?_[a-z0-9_]+\\s*\\(",
+      "flags": "",
+      "extensions": [".c", ".cc", ".cpp", ".cxx", ".h", ".hpp"],
+      "category": "arch-lock",
+      "severity": "high",
+      "explanation": "The source uses x86 SIMD intrinsics, which have no ARM64 header or instruction equivalent.",
+      "recommendation": "Replace the intrinsic path with a portable scalar implementation, or add a NEON implementation behind the same interface, and test both against the same expectations.",
+      "arm64Impact": "source-change-required",
+      "effort": "L",
+      "confidence": "high"
+    },
+    {
+      "id": "RDY-0002",
+      "pattern": "(?:^|[^A-Za-z0-9_])__asm(?:__)?\\s*[\\{\\(]?|\\basm\\s+volatile\\b",
+      "flags": "",
+      "extensions": [".c", ".cc", ".cpp", ".cxx", ".h", ".hpp"],
+      "category": "arch-lock",
+      "severity": "blocker",
+      "explanation": "The source contains inline assembly. MSVC accepts no inline assembly when targeting ARM64, so this cannot be compiled at all.",
+      "recommendation": "Rewrite the block as portable C or C++, or as an ARM64 intrinsic. Size this as replacement work, not as a build setting.",
+      "arm64Impact": "blocker",
+      "effort": "L",
+      "confidence": "high"
+    },
+    {
+      "id": "RDY-0003",
+      "detector": "x86-token-without-arm64-companion",
+      "pattern": "\\b_M_X64\\b|\\b_M_IX86\\b|\\b__x86_64__\\b|\\b__i386__\\b",
+      "companion": "\\b_M_ARM64(?:EC)?\\b|\\b__aarch64__\\b|\\b_M_ARM\\b",
+      "extensions": [".c", ".cc", ".cpp", ".cxx", ".h", ".hpp"],
+      "category": "arch-lock",
+      "severity": "medium",
+      "explanation": "The file branches on an x86 architecture macro and never offers an ARM64 branch, so the ARM64 build silently takes the fallback path or no path at all.",
+      "recommendation": "Add an explicit ARM64 branch, or restructure so the behaviour is selected by capability rather than by architecture macro.",
+      "arm64Impact": "source-change-required",
+      "effort": "M",
+      "confidence": "medium"
+    },
+    {
+      "id": "RDY-0004",
+      "detector": "x86-token-without-arm64-companion",
+      "pattern": "\\bx64-windows\\b|\\bx86-windows\\b|\\bwin-x64\\b|\\bwin-x86\\b",
+      "companion": "\\barm64-windows\\b|\\bwin-arm64\\b|\\barm64\\b",
+      "extensions": [".json", ".props", ".targets", ".config", ".nuspec", ".csproj", ".vcxproj", ".cmd", ".bat", ".ps1", ".yml", ".yaml", ".txt"],
+      "category": "native-dep",
+      "severity": "blocker",
+      "explanation": "The dependency payload is declared only for x86 and x64. No toolset setting produces an ARM64 binary from an x64 import library, so this blocks the port until the dependency is rebuilt or replaced.",
+      "recommendation": "Add an arm64 triplet or RID and rebuild the dependency from source for ARM64. If no ARM64 payload can exist, report this as a blocker rather than a task.",
+      "arm64Impact": "blocker",
+      "effort": "XL",
+      "confidence": "high"
+    },
+    {
+      "id": "RDY-0005",
+      "detector": "arch-payload-write",
+      "extensions": [".c", ".cc", ".cpp", ".cxx", ".h", ".hpp"],
+      "category": "arch-lock",
+      "severity": "blocker",
+      "explanation": "An x86 opcode literal is written into another process and the file carries no ARM64 branch. This compiles and links cleanly for ARM64 and then corrupts the target at runtime, because an ARM64 breakpoint is a four-byte BRK #0 rather than a one-byte 0xCC.",
+      "recommendation": "Move the payload bytes, the instruction width, and the program-counter adjustment behind a per-architecture abstraction, and cover byte restoration and PC advance with focused tests on real ARM64 hardware.",
+      "arm64Impact": "blocker",
+      "effort": "L",
+      "confidence": "high"
+    },
+    {
+      "id": "RDY-0006",
+      "pattern": "<CLRSupport>\\s*[Tt]rue|[/-]clr(?::[a-zA-Z]+)?(?:\\b|<)",
+      "flags": "",
+      "extensions": [".vcxproj", ".props", ".targets"],
+      "category": "build-system",
+      "severity": "medium",
+      "explanation": "The project is compiled as C++/CLI, which needs an explicit ARM64 disposition. Assuming it is unsupported and assuming it works have both been wrong.",
+      "recommendation": "Build the project for ARM64 and record the measured outcome. If it is genuinely excluded, record the exclusion as a decision with a reason rather than dropping it from the platform list.",
+      "arm64Impact": "rebuild-required",
+      "effort": "M",
+      "confidence": "medium"
+    },
+    {
+      "id": "RDY-0007",
+      "pattern": "Host[Xx]86|Host[Xx]64|bin\\\\amd64|bin/amd64",
+      "flags": "",
+      "extensions": [".ps1", ".cmd", ".bat", ".yml", ".yaml", ".props", ".targets", ".vcxproj"],
+      "category": "build-system",
+      "severity": "high",
+      "explanation": "The build hard-codes an x86 or x64 compiler host directory, so an ARM64 target is produced by a cross or emulated host even on ARM64 hardware.",
+      "recommendation": "Resolve the host toolchain at build time and assert the host actually used from the compiler and linker command lines in the build log. See the build-retarget skill.",
+      "arm64Impact": "source-change-required",
+      "effort": "S",
+      "confidence": "high"
+    }
+  ]
+}

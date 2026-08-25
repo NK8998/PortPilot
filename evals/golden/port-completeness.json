@@ -1,0 +1,17 @@
+{
+  "skill": "port-completeness",
+  "fixtures": [
+    {
+      "name": "positive",
+      "expected": [
+        { "ruleId": "CMP-0001", "file": "TestCppCli.vcxproj", "line": 5 },
+        { "ruleId": "CMP-0002", "file": "run-tests.ps1", "line": 2 },
+        { "ruleId": "CMP-0003", "file": "Patch.cpp", "line": 4 },
+        { "ruleId": "CMP-0004", "file": "run-tests.ps1", "line": 2 },
+        { "ruleId": "CMP-0004", "file": "cargo-check.yml", "line": 21 },
+        { "ruleId": "CMP-0004", "file": "gated-tests.ps1", "line": 3 }
+      ]
+    },
+    { "name": "negative", "expected": [] }
+  ]
+}

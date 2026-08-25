@@ -1,0 +1,57 @@
+# Build outputs.
+#
+# These are anchored to the repository root on purpose. Unanchored, `build-*/`
+# matches ANY directory at ANY depth, which silently swallowed the whole
+# `build-retarget` skill and its evaluation fixtures. A missing negative fixture
+# does not fail the eval harness loudly - it just quietly weakens the gate - so
+# these patterns must never be allowed to reach the skill or fixture trees.
+# Build output from apps under test lives in `work/`, which is ignored entirely.
+/build/
+/build-*/
+/out/
+/dist/
+/bin/
+/obj/
+*.user
+
+# Application clones under test - these are separate git repos with their own
+# history and must not be vendored into the workbench.
+work/
+
+# Port evidence: keep the shared state + directory structure, ignore bulky
+# captures (screenshots, logs, perf traces, binaries) unless deliberately added.
+artifacts/**
+!artifacts/
+!artifacts/PORT_STATE.json
+!artifacts/**/
+!artifacts/**/*.md
+
+# Secrets — never commit these
+*.pem
+*.key
+*.pfx
+*.p12
+id_rsa*
+*.env
+.env*
+scripts/vm.env
+scripts/vm.env.bak
+!scripts/vm.env.example
+
+# Credential dumps — az-cred.txt and anything that looks like one
+az-cred*
+*cred*.txt
+*credential*
+*secret*
+*password*
+*.credentials
+
+# Windows / WSL cruft
+*:Zone.Identifier
+*:sec.endpointdlp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Node dependencies (contracts/evals)
+node_modules/

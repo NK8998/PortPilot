@@ -1,0 +1,20 @@
+{
+  "skill": "arm64-readiness",
+  "fixtures": [
+    {
+      "name": "positive",
+      "expected": [
+        { "ruleId": "RDY-0001", "file": "Instrumentation.cpp", "line": 2 },
+        { "ruleId": "RDY-0001", "file": "Instrumentation.cpp", "line": 9 },
+        { "ruleId": "RDY-0002", "file": "Instrumentation.cpp", "line": 11 },
+        { "ruleId": "RDY-0003", "file": "Instrumentation.cpp", "line": 4 },
+        { "ruleId": "RDY-0005", "file": "Instrumentation.cpp", "line": 5 },
+        { "ruleId": "RDY-0004", "file": "ThirdParty.nuspec", "line": 8 },
+        { "ruleId": "RDY-0006", "file": "Collector.vcxproj", "line": 4 },
+        { "ruleId": "RDY-0006", "file": "Collector.vcxproj", "line": 9 },
+        { "ruleId": "RDY-0007", "file": "Collector.vcxproj", "line": 13 }
+      ]
+    },
+    { "name": "negative", "expected": [] }
+  ]
+}

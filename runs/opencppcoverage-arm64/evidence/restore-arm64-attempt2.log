@@ -1,0 +1,23 @@
+From https://github.com/microsoft/vcpkg
+ * branch                06d00ffa491e4668627728f14b891d22c6fea146 -> FETCH_HEAD
+HEAD is now at 06d00ffa4 [stdgpu] add new port (#53264)
+Downloading https://github.com/microsoft/vcpkg-tool/releases/download/2026-07-27/vcpkg.exe -> C:\Users\t-lsingoei\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe... done.
+Validating signature... done.
+
+vcpkg package management program version 2026-07-27-98d7cb0cf1f4686a3e43aa5672b6230c1d56bce8
+
+See LICENSE.txt for license information.
+Detecting compiler hash for triplet x64-windows...
+Compiler found: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe
+Detecting compiler hash for triplet arm64-windows...
+error: in triplet arm64-windows: Unable to find a valid toolchain for requested target architecture arm64.
+The selected Visual Studio instance is at: C:\Program Files\Microsoft Visual Studio\18\Enterprise
+The available toolchain combinations are: x86, amd64, x86_amd64, amd64_x86
+See https://learn.microsoft.com/vcpkg/users/triplets?WT.mc_id=vcpkg_inproduct_cli#VCPKG_VISUAL_STUDIO_PATH for more information.
+Exception: C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\InstallThirdPartyLibraries.ps1:60
+Line |
+  60 |      throw "Failed to restore vcpkg dependencies for $Triplet."
+     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Failed to restore vcpkg dependencies for arm64-windows.
+
+

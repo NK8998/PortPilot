@@ -1,0 +1,20 @@
+winport-scan of the re-expanded published ARM64 release asset
+
+asset      : OpenCppCoverage-0.9.9.0-windows-arm64.zip
+source     : https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+bytes      : 17197315
+sha256     : 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+expanded   : C:\Users\t-lsingoei\.copilot\session-state\75fdfacc-72e1-4bf6-a937-2a35c4d4214f\files\release-verify-81376ba\expanded
+command    : winport-scan <expanded>
+exitCode   : 0
+
+
+  winport-scan  C:\Users\t-lsingoei\.copilot\session-state\75fdfacc-72e1-4bf6-a937-2a35c4d4214f\files\release-verify-81376ba\expanded
+  --------------------------------------------------------------
+  34 PE module(s)
+
+       24  ARM64       allowed
+       10  ARM64X      allowed
+
+  PASS  every module is native Arm64.
+

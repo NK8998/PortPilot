@@ -1,0 +1,13 @@
+# Filtered extract of GitHub Actions run 32347208182, job native-arm64, step 'Build Debug'.
+# Source: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32347208182
+# Head commit: bf5cdc1c5fa988a71a584c60b8315e0fbc101b19
+# Filter (regex over the step's 1625 lines, ANSI codes stripped): error [A-Z]+[0-9]+|Command line error|Build FAILED|Build succeeded|Warning\(s\)|Error\(s\)|Process completed with exit code|^native-arm64\s+Build Debug\s+\S+Z (msbuild|\$msbuild|&)
+# Retained lines: 8
+native-arm64	Build Debug	2026-08-20T08:34:42.7010472Z cl : Command line error D8003 : missing source filename
+native-arm64	Build Debug	2026-08-20T08:34:43.3793803Z MSBuild version 17.14.51+25f168cee for .NET Framework
+native-arm64	Build Debug	2026-08-20T08:36:45.3821062Z     20>C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CodeCoverageRunnerTest.cpp(49,10): error C1083: Cannot open include file: 'TestCoverageConsole/FileWithSpecialCharÃ©Ã Ã¨.hpp': No such file or directory [C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CppCoverageTest.vcxproj]
+native-arm64	Build Debug	2026-08-20T08:37:22.4364431Z Build FAILED.
+native-arm64	Build Debug	2026-08-20T08:37:22.4369260Z          C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CodeCoverageRunnerTest.cpp(49,10): error C1083: Cannot open include file: 'TestCoverageConsole/FileWithSpecialCharÃ©Ã Ã¨.hpp': No such file or directory [C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\CppCoverageTest\CppCoverageTest.vcxproj]
+native-arm64	Build Debug	2026-08-20T08:37:22.4370590Z     0 Warning(s)
+native-arm64	Build Debug	2026-08-20T08:37:22.4370830Z     1 Error(s)
+native-arm64	Build Debug	2026-08-20T08:37:22.5225230Z ##[error]Process completed with exit code 1.

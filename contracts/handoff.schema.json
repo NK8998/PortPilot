@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/winport/winport/contracts/handoff.schema.json",
+  "title": "PortPilot Cross-Session Handoff",
+  "description": "Immutable source and evidence provenance received from a porting session. Pending handoffs may describe what is still missing; accepted handoffs must identify committed source, a hashed change artifact, and measured evidence.",
+  "type": "object",
+  "required": ["schemaVersion", "state", "source", "session", "missingEvidence"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "state": { "type": "string", "enum": ["pending", "accepted"] },
+    "source": {
+      "type": "object",
+      "required": ["repo", "baselineCommit"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string", "minLength": 1 },
+        "baselineCommit": { "$ref": "#/$defs/commit" },
+        "headCommit": { "$ref": "#/$defs/commit" },
+        "branch": { "type": "string", "minLength": 1 },
+        "immutableUrl": { "type": "string", "pattern": "^https://[^\\s]+$" },
+        "evidenceCommits": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/commit" },
+          "description": "Additional immutable revisions that produced retained pending evidence."
+        }
+      }
+    },
+    "session": {
+      "type": "object",
+      "required": ["projectSessionId", "reportedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "projectSessionId": { "type": "string", "minLength": 1 },
+        "branch": { "type": "string", "minLength": 1 },
+        "reportedAt": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "changes": {
+      "type": "object",
+      "required": ["kind", "path", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["format-patch", "patch", "source-archive"] },
+        "path": { "$ref": "#/$defs/runRelativePath" },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "immutableUrl": { "type": "string", "pattern": "^https://[^\\s]+$" }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/artifact" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "priorEvidence": {
+      "type": "array",
+      "description": "Superseded, rejected, or falsely-green evidence, retained permanently so accepting a later head can never silently convert a recorded failure into a pass. Records here may reference any declared commit and must not claim pass.",
+      "items": {
+        "allOf": [
+          { "$ref": "#/$defs/evidence" },
+          { "properties": { "status": { "enum": ["fail", "not-run"] } } }
+        ]
+      }
+    },
+    "missingEvidence": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "acceptedAt": { "$ref": "#/$defs/timestamp" },
+    "notes": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "state": { "const": "accepted" } },
+        "required": ["state"]
+      },
+      "then": {
+        "required": ["changes", "artifacts", "evidence", "acceptedAt"],
+        "properties": {
+          "source": { "required": ["repo", "baselineCommit", "headCommit", "immutableUrl"] },
+          "artifacts": { "minItems": 1 },
+          "evidence": {
+            "minItems": 1,
+            "items": {
+              "allOf": [
+                { "$ref": "#/$defs/evidence" },
+                { "properties": { "status": { "const": "pass" } } }
+              ]
+            }
+          },
+          "missingEvidence": { "maxItems": 0 }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["name", "path", "size", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "path": { "$ref": "#/$defs/runRelativePath" },
+        "size": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "sourceCommit": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "kind",
+        "status",
+        "path",
+        "size",
+        "sha256",
+        "sourceCommit",
+        "runnerType",
+        "runner"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["analysis", "plan", "build", "test", "runtime", "purity", "package", "checksum"]
+        },
+        "status": { "type": "string", "enum": ["pass", "fail", "not-run"] },
+        "path": { "$ref": "#/$defs/runRelativePath" },
+        "size": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "sourceCommit": { "$ref": "#/$defs/commit" },
+        "workflowUrl": { "type": "string", "pattern": "^https://[^\\s]+$" },
+        "runnerType": { "type": "string", "enum": ["local", "github-actions"] },
+        "command": { "type": "string" },
+        "exitCode": { "type": "integer" },
+        "runner": { "type": "string" }
+      }
+    },
+    "runRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:[\\\\/])(?![\\\\/])(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+$"
+    }
+  }
+}

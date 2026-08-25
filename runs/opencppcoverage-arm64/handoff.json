@@ -1,0 +1,408 @@
+{
+  "schemaVersion": "1.0",
+  "state": "accepted",
+  "source": {
+    "repo": "github.com/LynnSingoei/OpenCppCoverage-ARM64",
+    "baselineCommit": "3e518697ea761935574af486bacd5fcc1aeab363",
+    "headCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+    "branch": "repair/arm64-toolset-fail-closed",
+    "immutableUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/commit/81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+    "evidenceCommits": [
+      "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "7bbb02fd96944fce489639e554e981c47b75f3d9",
+      "bf5cdc1c5fa988a71a584c60b8315e0fbc101b19",
+      "e74bc2f750ae5c7a382e0c44c6e50f7237b31f69",
+      "0c2ea8d7931100f919502025352d64adae934522"
+    ]
+  },
+  "session": {
+    "projectSessionId": "04911afc-02d8-4a30-b574-11ac0031e777",
+    "branch": "repair/arm64-toolset-fail-closed",
+    "reportedAt": "2026-08-20T10:41:00.000+03:00"
+  },
+  "changes": {
+    "kind": "patch",
+    "path": "source/opencppcoverage-arm64-81376ba.diff",
+    "sha256": "67cc203135ea067ea84bc0b2952a30876402676ab845fa1ec3e1627c20c00535",
+    "immutableUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/commit/81376baeda1b5453c1fcfe6fc0a09ccec3f892c8"
+  },
+  "artifacts": [
+    {
+      "name": "Port diff from the upstream baseline to the accepted head, 93 files",
+      "path": "source/opencppcoverage-arm64-81376ba.diff",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "size": 364477,
+      "sha256": "67cc203135ea067ea84bc0b2952a30876402676ab845fa1ec3e1627c20c00535"
+    },
+    {
+      "name": "Windows x64 compatibility job log from run 32357865925",
+      "path": "evidence/x64-compat-run-32357865925-job-96390868985.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "size": 540866,
+      "sha256": "839a46840ea9a3eb754825f74b0650ebb19404f7391943672bef52de548cd3f3"
+    },
+    {
+      "name": "Windows x86 compatibility job log from run 32357865925",
+      "path": "evidence/x86-compat-run-32357865925-job-96390869040.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "size": 537679,
+      "sha256": "40271a08d631b1ee96e00d0cca5d2e4e5792187e0303feaed0e75f9ec45b12bf"
+    },
+    {
+      "name": "Earlier immutable source handoff archive",
+      "path": "source/OpenCppCoverage-9d9ccdc7e6760c8375db92157d6d556ec1bd88d0-source.zip",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 1651368,
+      "sha256": "e51071a89ca9850d0cf5e7efe5432fd4140d87c38fb9b744c6ee3ce31c9ecb74"
+    },
+    {
+      "name": "Earlier immutable source handoff patch",
+      "path": "source/0001-Add-native-Windows-ARM64-support.patch",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 258391,
+      "sha256": "157660404e9f51f3da6169bbd1a7c43051c968e2b859eb69f09efeb0a57114d1"
+    },
+    {
+      "name": "Earlier rename-aware changed-file manifest",
+      "path": "source/changed-files.txt",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 2850,
+      "sha256": "b027e9b198723c84256ced9717fb498ed4c2626d2cc207acda1cc7051d420c35"
+    },
+    {
+      "name": "x86 dependency restore at the earlier handoff head",
+      "path": "evidence/restore-x86-final.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 10071,
+      "sha256": "39922f4f62eef7f033c43f79a86ae12b07b0400ee6d0286efc6cc3bb5419c4ec"
+    },
+    {
+      "name": "x86 Debug build at the earlier handoff head",
+      "path": "evidence/build-debug-x86-final.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 60845,
+      "sha256": "21bdf559220f073d769c86f9f8cd048ddd207b31193a5ddc3ee64661dc447ace"
+    },
+    {
+      "name": "x86 Debug tests at the earlier handoff head",
+      "path": "evidence/tests-debug-x86-final.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 34282,
+      "sha256": "bf71670dfc75c5d4d5349a081c4dc27ffa8015c733c652dbd05050502a0c1edb"
+    },
+    {
+      "name": "x64 dependency restore at the earlier handoff head",
+      "path": "evidence/restore-x64-commit.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 42874,
+      "sha256": "28f576c2763e2074250034fe3306f91d7715f9ef52aa3dcfd0c7f7c7b25ca653"
+    },
+    {
+      "name": "x64 Debug build at the earlier handoff head",
+      "path": "evidence/build-debug-x64-commit.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 167325,
+      "sha256": "c3aabc7d71876d15016839a8a96ae51a106eb484ceab92900374584a2c007ab4"
+    },
+    {
+      "name": "x64 Debug tests at the earlier handoff head",
+      "path": "evidence/tests-debug-x64-commit.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 34755,
+      "sha256": "fcbb6e103aa6b2edf8ee4dc090e005934d8db44a5739454ba9a74ff20ab33ff7"
+    },
+    {
+      "name": "x64 Release build at the earlier handoff head",
+      "path": "evidence/build-release-x64-commit.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 182763,
+      "sha256": "3794562b585f00cad3d8b3a1e345ac00343018a82de12312f96405784e372671"
+    },
+    {
+      "name": "x64 package creation at the earlier handoff head",
+      "path": "evidence/package-x64-commit.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "size": 1013,
+      "sha256": "1c69a8d07d161e08e93f1f1ce034584535d461eb3e04d2fb1cae296460378326"
+    },
+    {
+      "name": "Host toolchain determinism analysis across runs 32347208182, 32349116627, and 32350427917",
+      "path": "evidence/host-toolchain-determinism-analysis.txt",
+      "sourceCommit": "e74bc2f750ae5c7a382e0c44c6e50f7237b31f69",
+      "size": 5310,
+      "sha256": "010743982729b4721fa563494df4e4fc649e3626a8dcf0eba8b409b7b3078e2c"
+    },
+    {
+      "name": "Independent verification of the superseded arm64-e74bc2f release asset",
+      "path": "evidence/release-arm64-e74bc2f-verification.txt",
+      "sourceCommit": "e74bc2f750ae5c7a382e0c44c6e50f7237b31f69",
+      "size": 2619,
+      "sha256": "69eb90ec591a8670a2301678155c46cfd68b39fd23e3c1f40e6bd0a11eedf07f"
+    },
+    {
+      "name": "Stable download alias verification for the superseded arm64-e74bc2f release",
+      "path": "evidence/release-stable-alias-verification.txt",
+      "sourceCommit": "e74bc2f750ae5c7a382e0c44c6e50f7237b31f69",
+      "size": 2116,
+      "sha256": "13da35a236b55cd297312c0f37cdf5bfd9d41e712147db1341c862b50578658a"
+    },
+    {
+      "name": "Native ARM64 build, tests, E2E, and Release log from run 32350427917",
+      "path": "evidence/build-tests-e2e-ARM64-run-32350427917.log",
+      "sourceCommit": "0c2ea8d7931100f919502025352d64adae934522",
+      "size": 15173,
+      "sha256": "01fb95f9f3b0266ec47d3e77aae7bc76580aabbb3295f891dfcd8dacae6e4301"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "build",
+      "status": "pass",
+      "path": "evidence/native-arm64-run-32357865925-job-96390868682.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32357865925",
+      "command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\Bin\\arm64\\MSBuild.exe\" /m CppCoverage.sln /p:Configuration=Debug /p:Platform=ARM64 /p:PreferredToolArchitecture=arm64",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; native ARM64; MSBuild 17.14.51.32402 arm64 host; MSVC 14.44.35207 HostArm64",
+      "size": 540071,
+      "sha256": "af70ba3a6d7402d092daa034b0590f50402d20c8507bdd6bd5eab93619f77603"
+    },
+    {
+      "kind": "build",
+      "status": "pass",
+      "path": "evidence/native-arm64-run-32357865925-job-96390868682.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32357865925",
+      "command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\Bin\\arm64\\MSBuild.exe\" /m CppCoverage.sln /p:Configuration=Release /p:Platform=ARM64 /p:PreferredToolArchitecture=arm64",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; native ARM64; MSBuild 17.14.51.32402 arm64 host; MSVC 14.44.35207 HostArm64",
+      "size": 540071,
+      "sha256": "af70ba3a6d7402d092daa034b0590f50402d20c8507bdd6bd5eab93619f77603"
+    },
+    {
+      "kind": "build",
+      "status": "pass",
+      "path": "evidence/native-arm64-run-32357865925-job-96390868682.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32357865925",
+      "command": ".\\Build\\Scripts\\Assert-BuildToolchain.ps1 -ExpectedHost Hostarm64",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; native ARM64; MSBuild 17.14.51.32402 arm64 host; MSVC 14.44.35207 HostArm64",
+      "size": 540071,
+      "sha256": "af70ba3a6d7402d092daa034b0590f50402d20c8507bdd6bd5eab93619f77603"
+    },
+    {
+      "kind": "test",
+      "status": "pass",
+      "path": "evidence/native-arm64-run-32357865925-job-96390868682.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32357865925",
+      "command": ".\\Build\\Scripts\\RunTests.ps1 -Platform ARM64 -Configuration Debug",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; native ARM64; MSBuild 17.14.51.32402 arm64 host; MSVC 14.44.35207 HostArm64",
+      "size": 540071,
+      "sha256": "af70ba3a6d7402d092daa034b0590f50402d20c8507bdd6bd5eab93619f77603"
+    },
+    {
+      "kind": "test",
+      "status": "pass",
+      "path": "evidence/native-arm64-run-32357865925-job-96390868682.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32357865925",
+      "command": ".\\Build\\Scripts\\RunTests.ps1 -Platform ARM64 -Configuration Release",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; native ARM64; MSBuild 17.14.51.32402 arm64 host; MSVC 14.44.35207 HostArm64",
+      "size": 540071,
+      "sha256": "af70ba3a6d7402d092daa034b0590f50402d20c8507bdd6bd5eab93619f77603"
+    },
+    {
+      "kind": "runtime",
+      "status": "pass",
+      "path": "evidence/native-arm64-run-32357865925-job-96390868682.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32357865925",
+      "command": "End-to-end coverage assertion (packaged) against the expanded ARM64 package",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; native ARM64; MSBuild 17.14.51.32402 arm64 host; MSVC 14.44.35207 HostArm64",
+      "size": 540071,
+      "sha256": "af70ba3a6d7402d092daa034b0590f50402d20c8507bdd6bd5eab93619f77603"
+    },
+    {
+      "kind": "package",
+      "status": "pass",
+      "path": "evidence/native-arm64-run-32357865925-job-96390868682.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32357865925",
+      "command": ".\\CreateRelease.ps1 -Platform ARM64 -Configuration Release",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; native ARM64; MSBuild 17.14.51.32402 arm64 host; MSVC 14.44.35207 HostArm64",
+      "size": 540071,
+      "sha256": "af70ba3a6d7402d092daa034b0590f50402d20c8507bdd6bd5eab93619f77603"
+    },
+    {
+      "kind": "runtime",
+      "status": "pass",
+      "path": "evidence/winport-independent-verification-run-32361171722.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32361171722",
+      "command": "expanded\\Binaries\\OpenCppCoverage.exe --sources fixture --export_type cobertura:coverage.xml --working_dir fixture -- fixture\\fixture.exe",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; RuntimeInformation.OSArchitecture=Arm64; workflow authored by the WinPort session, not by the porting session",
+      "size": 27337,
+      "sha256": "6ed549f79a76949342aa154e8807de8290241066ebaf3e309c6e29f9f7d7e95f"
+    },
+    {
+      "kind": "checksum",
+      "status": "pass",
+      "path": "evidence/winport-independent-verification-run-32361171722.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32361171722",
+      "command": "Get-FileHash artifact/package.zip -Algorithm SHA256",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; asset re-downloaded from the published release URL",
+      "size": 27337,
+      "sha256": "6ed549f79a76949342aa154e8807de8290241066ebaf3e309c6e29f9f7d7e95f"
+    },
+    {
+      "kind": "package",
+      "status": "pass",
+      "path": "evidence/winport-independent-verification-run-32361171722.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32361171722",
+      "command": "Expand-Archive artifact/package.zip -DestinationPath expanded",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; 155 files, Binaries\\Plugins\\Exporter present, crt-manifest.json present",
+      "size": 27337,
+      "sha256": "6ed549f79a76949342aa154e8807de8290241066ebaf3e309c6e29f9f7d7e95f"
+    },
+    {
+      "kind": "purity",
+      "status": "pass",
+      "path": "evidence/winport-independent-verification-run-32361171722.log",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32361171722",
+      "command": "PE machine scan of every shipped .exe and .dll on the ARM64 runner",
+      "exitCode": 0,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm; 34 images scanned, all 0xAA64",
+      "size": 27337,
+      "sha256": "6ed549f79a76949342aa154e8807de8290241066ebaf3e309c6e29f9f7d7e95f"
+    },
+    {
+      "kind": "purity",
+      "status": "pass",
+      "path": "evidence/purity-winport-scan-arm64-81376ba.txt",
+      "sourceCommit": "81376baeda1b5453c1fcfe6fc0a09ccec3f892c8",
+      "command": "winport-scan <re-expanded published asset>",
+      "exitCode": 0,
+      "runnerType": "local",
+      "runner": "Windows 10.0.26200 X64; winport-scan on the re-expanded published asset",
+      "size": 883,
+      "sha256": "9d89ef010d225388530ef2cd3b108ef046caa215a9636ebd2dca58af82776db3"
+    }
+  ],
+  "priorEvidence": [
+    {
+      "kind": "test",
+      "status": "fail",
+      "path": "evidence/CppCoverageTest-ARM64-Debug-run-32303203988.log",
+      "sourceCommit": "7bbb02fd96944fce489639e554e981c47b75f3d9",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32303203988",
+      "command": ".\\ARM64\\Debug\\CppCoverageTest.exe --gtest_filter=-CodeCoverageRunnerTest.OptimizedBuild:CppCliTest.ManagedUnManagedModule",
+      "exitCode": 1,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm run 32303203988; falsely green: the workflow concluded success while this suite exited 1",
+      "size": 18886,
+      "sha256": "69cb475783a4ca4bfd48348aeefbbc2226843937e74052886675deea7aaa1afc"
+    },
+    {
+      "kind": "build",
+      "status": "fail",
+      "path": "evidence/build-Debug-ARM64-run-32347208182-diagnostics.log",
+      "sourceCommit": "bf5cdc1c5fa988a71a584c60b8315e0fbc101b19",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32347208182",
+      "command": "msbuild /m CppCoverage.sln /p:Configuration=Debug /p:Platform=ARM64 /p:PlatformToolset=v143 /p:VCToolsVersion=14.44.35207 /p:WindowsTargetPlatformVersion=10.0.26100.0",
+      "exitCode": 1,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm run 32347208182; C1083 from a BOM-less UTF-8 source decoded with the active code page",
+      "size": 1783,
+      "sha256": "77962bba1db285ebe4ca334553738250673dbbd2910b0491a5cf1a3c39fede56"
+    },
+    {
+      "kind": "build",
+      "status": "fail",
+      "path": "evidence/build-Debug-ARM64-run-32303203988.log",
+      "sourceCommit": "7bbb02fd96944fce489639e554e981c47b75f3d9",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32303203988",
+      "command": "msbuild /m CppCoverage.sln /p:Configuration=Debug /p:Platform=ARM64",
+      "exitCode": 1,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm run 32303203988; build output retained only as context for the falsely-green run it belongs to",
+      "size": 155800,
+      "sha256": "cbd5cf6bce43c16c0ee0668dd6980e3e7399d3fb2e7f84219bfc95fea4e12b9a"
+    },
+    {
+      "kind": "build",
+      "status": "fail",
+      "path": "evidence/restore-arm64-attempt2.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "command": ".\\InstallThirdPartyLibraries.ps1 -Triplet arm64-windows",
+      "exitCode": 1,
+      "runnerType": "local",
+      "runner": "Windows 10.0.26200 X64; no ARM64 compiler toolchain",
+      "size": 1564,
+      "sha256": "af4323e5d89db727303ce6eca699155d32bc272cb42b0ab9ae591cc37ace83fd"
+    },
+    {
+      "kind": "build",
+      "status": "fail",
+      "path": "evidence/build-debug-arm64.log",
+      "sourceCommit": "9d9ccdc7e6760c8375db92157d6d556ec1bd88d0",
+      "command": "MSBuild /m CppCoverage.sln /p:Configuration=Debug /p:Platform=ARM64 /p:PlatformToolset=v145",
+      "exitCode": 1,
+      "runnerType": "local",
+      "runner": "Windows 10.0.26200 X64; no ARM64 compiler toolchain",
+      "size": 34212,
+      "sha256": "25609d6425327ee188fd1b1a7a349c7820b7dd8b98ed36989fb2e9030fc67778"
+    },
+    {
+      "kind": "purity",
+      "status": "fail",
+      "path": "evidence/arm64-test-summary-run-32303203988.json",
+      "sourceCommit": "7bbb02fd96944fce489639e554e981c47b75f3d9",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32303203988",
+      "command": "Summary step of run 32303203988",
+      "exitCode": 1,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm run 32303203988; the summary collected suite failures without exiting nonzero, which is what made the run falsely green",
+      "size": 797,
+      "sha256": "fe6a50f70d2dff9323d68d3362fa25e8fcf52e3ca32e81588723918b97685427"
+    },
+    {
+      "kind": "purity",
+      "status": "fail",
+      "path": "evidence/pe-machine-ARM64-run-32303203988.txt",
+      "sourceCommit": "7bbb02fd96944fce489639e554e981c47b75f3d9",
+      "workflowUrl": "https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32303203988",
+      "command": "PE machine scan step of run 32303203988",
+      "exitCode": 1,
+      "runnerType": "github-actions",
+      "runner": "GitHub windows-11-arm run 32303203988; the scan itself reported ARM64 images but belongs to a run whose tests failed, so it is retained as part of the rejected set",
+      "size": 1909,
+      "sha256": "b7cf9bd535b52e40b0ba83d9c96fe048bf016133b6faa74374c8dd8ddae697c7"
+    }
+  ],
+  "missingEvidence": [],
+  "acceptedAt": "2026-08-20T11:02:41.000Z",
+  "notes": "ACCEPTED at head 81376ba on repair/arm64-toolset-fail-closed, evidenced by run 32357865925 (all three jobs success) and by run 32361171722, which this session authored and owns. Native ARM64 gates at the head, read from the job log downloaded by this session rather than from chat: MSBuild resolved to Bin\\arm64\\MSBuild.exe 17.14.51.32402 with VCToolArchitecture=NativeARM64; Assert-BuildToolchain confirmed every cl and link invocation came from HostArm64\\arm64 toolset 14.44.35207 in both configurations, with zero HostX86 invocations; Debug and Release each ran 215 tests across six suites (CppCoverageTest 116, ExporterTest 34, FileFilterTest 29, OpenCppCoverageTest 19, PluginTest 5, ToolsTest 12) with every suite exiting 0 and Ran equal to Passed; the end-to-end oracle reported 2/24 lines executed in TestBasic.cpp with unreachable line 36 correctly not executed, both from the build output and from the expanded package; the source encoding gate passed over 286 files. TestCppCli is an explicit unsupported exclusion, not a silent skip. MSBuild states 'The project \"TestCppCli\" is not selected for building in solution configuration Debug|ARM64' and the same for Release|ARM64, because C++/CLI has no ARM64 target. This is why ARM64 reports 116 CppCoverageTest cases rather than the same 116 x64 reports: ARM64 drops CppCliTest.ManagedUnManagedModule and gains BreakPointTest.RejectsUnalignedArm64Address, while Win32 reports 115 by dropping the C++/CLI case without gaining an ARM64-only one. MSBuild emits that exclusion as an informational line, so it disappears unless a gate records it. Independent runtime evidence: this session created branch winport/independent-verification in the port repository and ran a workflow it wrote itself, which never builds the product. It downloaded the published asset from the release URL, confirmed SHA-256 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5, expanded it to 155 files, verified Binaries\\Plugins\\Exporter exists, read the PE machine of all 34 shipped images and found every one 0xAA64, compiled a fixture with the native HostArm64 toolchain, and executed the shipped Binaries\\OpenCppCoverage.exe against it. That run exited 0 and produced a cobertura report in which the called function's line 2 has 1 hit and the never-called function's line 3 has 0 hits, with ProcessArchitecture=Arm64. This is the first runtime evidence for the artifact produced by a pipeline the porting session does not control. Local purity: winport-scan on the re-expanded asset reports 34 modules, 24 ARM64 and 10 ARM64X, PASS, exit 0. That scan initially failed this correct package with eight malformed-metadata violations. The defect was in winport-scan, not the artifact: it required each Arm64X code-map range to fit inside one section's SizeOfRawData, but a genuine Arm64X x64 range starts in the tail of .text and continues into .hexpthk across a SectionAlignment gap. The fix accepts contiguous multi-section coverage with section extents rounded to SectionAlignment, still rejects a range running past the last section, and is covered by a regression test proven to fail against the previous implementation. RETAINED FAILURES: run 32303203988 stays recorded as failed and falsely green. Its workflow concluded success while CppCoverageTest exited 1 with 114/116 passing, because continue-on-error was combined with a summary step that collected failures without returning nonzero, and TestCppCli was not selected in Debug|ARM64. Its logs, summary, and PE scan are retained under priorEvidence and are not converted into passes by this acceptance. bf5cdc1's C1083 failure and the two local ARM64 attempts on an x64 host without ARM64 tools are retained the same way. RETRACTION, retained: an earlier revision of this file claimed e74bc2f7 was green by toolchain accident because its sources matched the failing bf5cdc1. That was wrong. Git blob ids show the three commits do not share bytes: b5c6e73e at bf5cdc1 is 19203 bytes of BOM-less UTF-8, 822f29ac at e74bc2f7 is 19184 bytes of upstream Windows-1252, and 93f423da at 0c2ea8d is 19206 bytes of UTF-8 with BOM. The error came from reading bytes through the GitHub contents API, which transcodes and reports size 19184 while its own base64 decodes to 19187. A second measurement error of the same family recurred while assembling this record: downloading a job log with PowerShell's > redirect produced a file 2 bytes larger than the same log fetched through cmd.exe, because the redirect rewrote a bare LF as CRLF. Byte-level claims require /git/blobs, blob-SHA comparison, or a byte-faithful redirect. SUCCESSOR NOT ACCEPTED: session 8b0bef1a declares f1a5c4bcb42c4df943da706d8eaaf8701e6b6a59 on repair/arm64-source-encoding as a unifying head that also retains native ARM64 TestCppCli. Its runs 32359335121 and 32359335850 were still in progress when this record was written, so it has no completed evidence and is deliberately not accepted here. Acceptance of 81376ba is not a rejection of f1a5c4b; it is the limit of what has been measured. Release arm64-e74bc2f remains published and is a genuine ARM64 artifact, but it was produced by the emulated HostX86 host. It is retained under artifacts as superseded rather than deleted or re-pointed."
+}

@@ -1,0 +1,60 @@
+[==========] Running 19 tests from 4 test suites.
+[----------] Global test environment set-up.
+[----------] 6 tests from CommandLineOptionsTest
+[ RUN      ] CommandLineOptionsTest.SelectedModulesOption
+[       OK ] CommandLineOptionsTest.SelectedModulesOption (378 ms)
+[ RUN      ] CommandLineOptionsTest.ExcludedModulesOption
+[       OK ] CommandLineOptionsTest.ExcludedModulesOption (4073 ms)
+[ RUN      ] CommandLineOptionsTest.SelectedSourcesOption
+[       OK ] CommandLineOptionsTest.SelectedSourcesOption (419 ms)
+[ RUN      ] CommandLineOptionsTest.ExcludedSourcesOption
+[       OK ] CommandLineOptionsTest.ExcludedSourcesOption (4338 ms)
+[ RUN      ] CommandLineOptionsTest.OutputDirectoryOption
+[       OK ] CommandLineOptionsTest.OutputDirectoryOption (4113 ms)
+[ RUN      ] CommandLineOptionsTest.FailureExitCode
+[       OK ] CommandLineOptionsTest.FailureExitCode (4265 ms)
+[----------] 6 tests from CommandLineOptionsTest (17590 ms total)
+
+[----------] 4 tests from ImportExportTest
+[ RUN      ] ImportExportTest.ExportHtml
+Invalid number of argument:  1
+[       OK ] ImportExportTest.ExportHtml (240 ms)
+[ RUN      ] ImportExportTest.ExportCobertura
+Invalid number of argument:  1
+[       OK ] ImportExportTest.ExportCobertura (195 ms)
+[ RUN      ] ImportExportTest.ExportImportBinary
+Invalid number of argument:  1
+Invalid number of argument:  1
+[       OK ] ImportExportTest.ExportImportBinary (352 ms)
+[ RUN      ] ImportExportTest.ExportPlugin
+Invalid number of argument:  1
+[       OK ] ImportExportTest.ExportPlugin (176 ms)
+[----------] 4 tests from ImportExportTest (966 ms total)
+
+[----------] 8 tests from OpenCppCoverageConsoleTest
+[ RUN      ] OpenCppCoverageConsoleTest.Basic
+[       OK ] OpenCppCoverageConsoleTest.Basic (238 ms)
+[ RUN      ] OpenCppCoverageConsoleTest.UnhandledException
+[       OK ] OpenCppCoverageConsoleTest.UnhandledException (296 ms)
+[ RUN      ] OpenCppCoverageConsoleTest.Breakpoint
+[       OK ] OpenCppCoverageConsoleTest.Breakpoint (241 ms)
+[ RUN      ] OpenCppCoverageConsoleTest.BreakpointChildProcess
+[       OK ] OpenCppCoverageConsoleTest.BreakpointChildProcess (283 ms)
+[ RUN      ] OpenCppCoverageConsoleTest.ExporterTest
+[       OK ] OpenCppCoverageConsoleTest.ExporterTest (3029 ms)
+[ RUN      ] OpenCppCoverageConsoleTest.ExitCode
+[       OK ] OpenCppCoverageConsoleTest.ExitCode (411 ms)
+[ RUN      ] OpenCppCoverageConsoleTest.FilterAssistantNoModules
+[       OK ] OpenCppCoverageConsoleTest.FilterAssistantNoModules (138 ms)
+[ RUN      ] OpenCppCoverageConsoleTest.FilterAssistantNoSourceFiles
+[       OK ] OpenCppCoverageConsoleTest.FilterAssistantNoSourceFiles (466 ms)
+[----------] 8 tests from OpenCppCoverageConsoleTest (5107 ms total)
+
+[----------] 1 test from WarningManagerTests
+[ RUN      ] WarningManagerTests.CommandLineTooLong
+[       OK ] WarningManagerTests.CommandLineTooLong (566 ms)
+[----------] 1 test from WarningManagerTests (567 ms total)
+
+[----------] Global test environment tear-down
+[==========] 19 tests from 4 test suites ran. (24231 ms total)
+[  PASSED  ] 19 tests.

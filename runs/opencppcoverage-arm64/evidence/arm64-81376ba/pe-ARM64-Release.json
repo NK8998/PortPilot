@@ -1,0 +1,182 @@
+[
+  {
+    "Path": "abseil_dll.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "boost_filesystem-vc143-mt-a64-1_91.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "boost_iostreams-vc143-mt-a64-1_91.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "boost_locale-vc143-mt-a64-1_91.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "boost_log-vc143-mt-a64-1_91.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "boost_program_options-vc143-mt-a64-1_91.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "boost_thread-vc143-mt-a64-1_91.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "bz2.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "CppCoverage.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "CppCoverageTest.exe",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "Exporter.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "ExporterTest.exe",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "FileFilter.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "FileFilterTest.exe",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "gmock.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "libctemplate.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "liblzma.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "libprotobuf-lite.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "libprotobuf.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "msdia140.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "OpenCppCoverage.exe",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "OpenCppCoverageTest.exe",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "pcre2-8.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "Plugin.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "PluginTest.exe",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "PocoFoundation.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "TestCoverageConsole.exe",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "TestCoverageOptimizedBuild.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "TestCoverageSharedLib.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "TestHelper.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "Tools.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "ToolsTest.exe",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "utf8proc.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "z.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "zstd.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  },
+  {
+    "Path": "Plugins\\Exporter\\TestCoverageSharedLib.dll",
+    "Machine": "0xAA64",
+    "Architecture": "ARM64"
+  }
+]

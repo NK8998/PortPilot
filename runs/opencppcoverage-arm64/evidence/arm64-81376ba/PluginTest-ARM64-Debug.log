@@ -1,0 +1,21 @@
+[==========] Running 5 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from CoverageDataTest
+[ RUN      ] CoverageDataTest.CoverageData
+[       OK ] CoverageDataTest.CoverageData (0 ms)
+[ RUN      ] CoverageDataTest.MoveConstructor
+[       OK ] CoverageDataTest.MoveConstructor (0 ms)
+[----------] 2 tests from CoverageDataTest (0 ms total)
+
+[----------] 3 tests from FileCoverageTest
+[ RUN      ] FileCoverageTest.Basic
+[       OK ] FileCoverageTest.Basic (0 ms)
+[ RUN      ] FileCoverageTest.UpdateLine
+[       OK ] FileCoverageTest.UpdateLine (0 ms)
+[ RUN      ] FileCoverageTest.UpdateLineNotExists
+[       OK ] FileCoverageTest.UpdateLineNotExists (0 ms)
+[----------] 3 tests from FileCoverageTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 5 tests from 2 test suites ran. (0 ms total)
+[  PASSED  ] 5 tests.

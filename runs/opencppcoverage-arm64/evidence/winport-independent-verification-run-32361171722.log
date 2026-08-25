@@ -1,0 +1,332 @@
+﻿2026-08-20T10:54:04.2662914Z Current runner version: '2.336.0'
+2026-08-20T10:54:04.2694863Z ##[group]Runner Image Provisioner
+2026-08-20T10:54:04.2695838Z Hosted Compute Agent
+2026-08-20T10:54:04.2696417Z Version: 20260729.566
+2026-08-20T10:54:04.2697300Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+2026-08-20T10:54:04.2698020Z Build Date: 2026-07-29T19:17:02Z
+2026-08-20T10:54:04.2698986Z Worker ID: {775f755d-e583-44a5-8a58-53c6b50da606}
+2026-08-20T10:54:04.2699790Z Azure Region: northcentralus
+2026-08-20T10:54:04.2700374Z ##[endgroup]
+2026-08-20T10:54:04.2702308Z ##[group]Operating System
+2026-08-20T10:54:04.2702958Z Microsoft Windows 11
+2026-08-20T10:54:04.2703469Z 10.0.26200
+2026-08-20T10:54:04.2704007Z Enterprise
+2026-08-20T10:54:04.2704534Z ##[endgroup]
+2026-08-20T10:54:04.2705052Z ##[group]Runner Image
+2026-08-20T10:54:04.2705606Z Image: windows-11-arm64
+2026-08-20T10:54:04.2706133Z Version: 20260809.134.1
+2026-08-20T10:54:04.2707752Z Included Software: https://github.com/actions/runner-images/blob/win11-arm64/20260809.134/images/windows/Windows11-Arm64-Readme.md
+2026-08-20T10:54:04.2709328Z Image Release: https://github.com/actions/runner-images/releases/tag/win11-arm64%2F20260809.134
+2026-08-20T10:54:04.2710267Z ##[endgroup]
+2026-08-20T10:54:04.2711397Z ##[group]GITHUB_TOKEN Permissions
+2026-08-20T10:54:04.2714403Z Contents: read
+2026-08-20T10:54:04.2715049Z Metadata: read
+2026-08-20T10:54:04.2715670Z ##[endgroup]
+2026-08-20T10:54:04.2718935Z Secret source: Actions
+2026-08-20T10:54:04.2720116Z Prepare workflow directory
+2026-08-20T10:54:04.3355846Z Prepare all required actions
+2026-08-20T10:54:04.3409155Z Getting action download info
+2026-08-20T10:54:04.5145120Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-08-20T10:54:05.2931291Z Complete job name: Verify published ARM64 asset on native hardware
+2026-08-20T10:54:05.4342993Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T10:54:05.4344390Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T10:54:05.4345545Z [36;1m$os = (Get-CimInstance Win32_OperatingSystem).OSArchitecture[0m
+2026-08-20T10:54:05.4346569Z [36;1m$proc = $env:PROCESSOR_ARCHITECTURE[0m
+2026-08-20T10:54:05.4347708Z [36;1m$dotnet = [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture[0m
+2026-08-20T10:54:05.4348750Z [36;1m"OSArchitecture=$os"[0m
+2026-08-20T10:54:05.4349470Z [36;1m"PROCESSOR_ARCHITECTURE=$proc"[0m
+2026-08-20T10:54:05.4350369Z [36;1m"RuntimeInformation.OSArchitecture=$dotnet"[0m
+2026-08-20T10:54:05.4351400Z [36;1mif ("$dotnet" -ne 'Arm64') { throw "Not a native ARM64 runner: $dotnet" }[0m
+2026-08-20T10:54:05.4431859Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T10:54:05.4433504Z env:
+2026-08-20T10:54:05.4435557Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:05.4437220Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:05.4438281Z ##[endgroup]
+2026-08-20T10:54:05.9894694Z OSArchitecture=ARM 64-bit Processor
+2026-08-20T10:54:05.9896391Z PROCESSOR_ARCHITECTURE=ARM64
+2026-08-20T10:54:05.9897432Z RuntimeInformation.OSArchitecture=Arm64
+2026-08-20T10:54:06.1100047Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T10:54:06.1101701Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T10:54:06.1103151Z [36;1mNew-Item -ItemType Directory -Force -Path artifact | Out-Null[0m
+2026-08-20T10:54:06.1104951Z [36;1mInvoke-WebRequest -Uri $env:ASSET_URL -OutFile artifact/package.zip[0m
+2026-08-20T10:54:06.1106570Z [36;1m$len = (Get-Item artifact/package.zip).Length[0m
+2026-08-20T10:54:06.1107833Z [36;1m"Downloaded $($env:ASSET_URL) ($len bytes)"[0m
+2026-08-20T10:54:06.1171966Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T10:54:06.1173359Z env:
+2026-08-20T10:54:06.1175497Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:06.1180954Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:06.1182502Z ##[endgroup]
+2026-08-20T10:54:07.0497622Z Downloaded https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip (17197315 bytes)
+2026-08-20T10:54:07.1280540Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T10:54:07.1281439Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T10:54:07.1282005Z [36;1m$actual = (Get-FileHash artifact/package.zip -Algorithm SHA256).Hash.ToLowerInvariant()[0m
+2026-08-20T10:54:07.1282615Z [36;1m$expected = $env:EXPECTED_SHA256.ToLowerInvariant()[0m
+2026-08-20T10:54:07.1283005Z [36;1m"expected=$expected"[0m
+2026-08-20T10:54:07.1283283Z [36;1m"actual  =$actual"[0m
+2026-08-20T10:54:07.1283799Z [36;1mif ($actual -ne $expected) { throw 'Checksum mismatch: refusing to verify unrelated bytes.' }[0m
+2026-08-20T10:54:07.1284343Z [36;1m'Checksum verified.'[0m
+2026-08-20T10:54:07.1340162Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T10:54:07.1340617Z env:
+2026-08-20T10:54:07.1341322Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:07.1342237Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:07.1342746Z ##[endgroup]
+2026-08-20T10:54:07.5080010Z expected=83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:07.5082783Z actual  =83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:07.5099867Z Checksum verified.
+2026-08-20T10:54:07.5928555Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T10:54:07.5929258Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T10:54:07.5929770Z [36;1mExpand-Archive artifact/package.zip -DestinationPath expanded -Force[0m
+2026-08-20T10:54:07.5930284Z [36;1m$files = Get-ChildItem expanded -Recurse -File[0m
+2026-08-20T10:54:07.5930624Z [36;1m"Files: $($files.Count)"[0m
+2026-08-20T10:54:07.5931277Z [36;1m$exporter = Join-Path 'expanded' 'Binaries/Plugins/Exporter'[0m
+2026-08-20T10:54:07.5931912Z [36;1mif (-not (Test-Path $exporter)) { throw 'Binaries\Plugins\Exporter is missing; the product cannot start.' }[0m
+2026-08-20T10:54:07.5932674Z [36;1m"Plugins\Exporter present with $((Get-ChildItem $exporter -Force -Recurse -File).Count) file(s)"[0m
+2026-08-20T10:54:07.5933383Z [36;1m$manifest = Get-ChildItem expanded -Recurse -Filter crt-manifest.json | Select-Object -First 1[0m
+2026-08-20T10:54:07.5934557Z [36;1mif ($manifest) { "crt-manifest.json:"; Get-Content $manifest.FullName -Raw }[0m
+2026-08-20T10:54:07.5990013Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T10:54:07.5990525Z env:
+2026-08-20T10:54:07.5991170Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:07.5992020Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:07.5992505Z ##[endgroup]
+2026-08-20T10:54:08.8677161Z Files: 155
+2026-08-20T10:54:08.8731812Z Plugins\Exporter present with 1 file(s)
+2026-08-20T10:54:08.8863414Z crt-manifest.json:
+2026-08-20T10:54:08.8925502Z {
+2026-08-20T10:54:08.8926374Z   "Source": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Redist\\MSVC\\14.44.35112\\arm64\\Microsoft.VC143.CRT",
+2026-08-20T10:54:08.8927128Z   "Architecture": "ARM64",
+2026-08-20T10:54:08.8927537Z   "Staged": [
+2026-08-20T10:54:08.8928541Z     "concrt140.dll",
+2026-08-20T10:54:08.8928942Z     "msvcp140_1.dll",
+2026-08-20T10:54:08.8929413Z     "msvcp140_2.dll",
+2026-08-20T10:54:08.8929709Z     "msvcp140_atomic_wait.dll",
+2026-08-20T10:54:08.8930101Z     "msvcp140_codecvt_ids.dll",
+2026-08-20T10:54:08.8930436Z     "msvcp140.dll",
+2026-08-20T10:54:08.8932025Z     "vccorlib140.dll",
+2026-08-20T10:54:08.8932410Z     "vcruntime140_threads.dll",
+2026-08-20T10:54:08.8932705Z     "vcruntime140.dll"
+2026-08-20T10:54:08.8933110Z   ],
+2026-08-20T10:54:08.8933355Z   "NotStaged": [
+2026-08-20T10:54:08.8933584Z     {
+2026-08-20T10:54:08.8933852Z       "Name": "vcruntime140_1.dll",
+2026-08-20T10:54:08.8934200Z       "Architecture": "x64",
+2026-08-20T10:54:08.8934522Z       "Machine": "0x8664",
+2026-08-20T10:54:08.8935208Z       "Source": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Redist\\MSVC\\14.44.35112\\arm64\\Microsoft.VC143.CRT\\vcruntime140_1.dll"
+2026-08-20T10:54:08.8935899Z     }
+2026-08-20T10:54:08.8936175Z   ]
+2026-08-20T10:54:08.8936410Z }
+2026-08-20T10:54:08.8936536Z 
+2026-08-20T10:54:08.9784678Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T10:54:08.9785464Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T10:54:08.9785788Z [36;1m$bad = @()[0m
+2026-08-20T10:54:08.9786100Z [36;1m$count = 0[0m
+2026-08-20T10:54:08.9786500Z [36;1mforeach ($f in Get-ChildItem expanded -Recurse -File -Include *.exe, *.dll) {[0m
+2026-08-20T10:54:08.9786985Z [36;1m  $fs = [System.IO.File]::OpenRead($f.FullName)[0m
+2026-08-20T10:54:08.9787346Z [36;1m  try {[0m
+2026-08-20T10:54:08.9787840Z [36;1m    $br = New-Object System.IO.BinaryReader($fs)[0m
+2026-08-20T10:54:08.9788233Z [36;1m    $fs.Position = 0x3C[0m
+2026-08-20T10:54:08.9788545Z [36;1m    $peOffset = $br.ReadInt32()[0m
+2026-08-20T10:54:08.9788881Z [36;1m    $fs.Position = $peOffset[0m
+2026-08-20T10:54:08.9789208Z [36;1m    $sig = $br.ReadUInt32()[0m
+2026-08-20T10:54:08.9789617Z [36;1m    if ($sig -ne 0x00004550) { $bad += "$($f.Name): not a PE"; continue }[0m
+2026-08-20T10:54:08.9790158Z [36;1m    $machine = $br.ReadUInt16()[0m
+2026-08-20T10:54:08.9790465Z [36;1m    $count++[0m
+2026-08-20T10:54:08.9790750Z [36;1m    '{0,-40} 0x{1:X4}' -f $f.Name, $machine[0m
+2026-08-20T10:54:08.9791182Z [36;1m    if ($machine -ne 0xAA64) { $bad += ('{0}: 0x{1:X4}' -f $f.Name, $machine) }[0m
+2026-08-20T10:54:08.9791621Z [36;1m  } finally { $fs.Dispose() }[0m
+2026-08-20T10:54:08.9791918Z [36;1m}[0m
+2026-08-20T10:54:08.9792172Z [36;1m"Scanned $count image(s)"[0m
+2026-08-20T10:54:08.9792773Z [36;1mif ($bad.Count -gt 0) { $bad | ForEach-Object { "VIOLATION $_" }; throw "Non-ARM64 images in the published package: $($bad.Count)" }[0m
+2026-08-20T10:54:08.9793412Z [36;1m'Every shipped image is ARM64 (0xAA64).'[0m
+2026-08-20T10:54:08.9850137Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T10:54:08.9850555Z env:
+2026-08-20T10:54:08.9851256Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:08.9852100Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:08.9852567Z ##[endgroup]
+2026-08-20T10:54:09.3957843Z abseil_dll.dll                           0xAA64
+2026-08-20T10:54:09.3987111Z boost_filesystem-vc143-mt-a64-1_91.dll   0xAA64
+2026-08-20T10:54:09.3992877Z boost_iostreams-vc143-mt-a64-1_91.dll    0xAA64
+2026-08-20T10:54:09.3999120Z boost_locale-vc143-mt-a64-1_91.dll       0xAA64
+2026-08-20T10:54:09.4004545Z boost_log-vc143-mt-a64-1_91.dll          0xAA64
+2026-08-20T10:54:09.4010727Z boost_program_options-vc143-mt-a64-1_91.dll 0xAA64
+2026-08-20T10:54:09.4015847Z boost_thread-vc143-mt-a64-1_91.dll       0xAA64
+2026-08-20T10:54:09.4021563Z bz2.dll                                  0xAA64
+2026-08-20T10:54:09.4026636Z concrt140.dll                            0xAA64
+2026-08-20T10:54:09.4032468Z CppCoverage.dll                          0xAA64
+2026-08-20T10:54:09.4037372Z Exporter.dll                             0xAA64
+2026-08-20T10:54:09.4042636Z FileFilter.dll                           0xAA64
+2026-08-20T10:54:09.4048524Z gmock.dll                                0xAA64
+2026-08-20T10:54:09.4053633Z libctemplate.dll                         0xAA64
+2026-08-20T10:54:09.4059588Z liblzma.dll                              0xAA64
+2026-08-20T10:54:09.4064660Z libprotobuf-lite.dll                     0xAA64
+2026-08-20T10:54:09.4071667Z libprotobuf.dll                          0xAA64
+2026-08-20T10:54:09.4077531Z msdia140.dll                             0xAA64
+2026-08-20T10:54:09.4083741Z msvcp140_1.dll                           0xAA64
+2026-08-20T10:54:09.4089169Z msvcp140_2.dll                           0xAA64
+2026-08-20T10:54:09.4094659Z msvcp140_atomic_wait.dll                 0xAA64
+2026-08-20T10:54:09.4101017Z msvcp140_codecvt_ids.dll                 0xAA64
+2026-08-20T10:54:09.4106484Z msvcp140.dll                             0xAA64
+2026-08-20T10:54:09.4112415Z OpenCppCoverage.exe                      0xAA64
+2026-08-20T10:54:09.4120452Z pcre2-8.dll                              0xAA64
+2026-08-20T10:54:09.4124069Z Plugin.dll                               0xAA64
+2026-08-20T10:54:09.4129149Z PocoFoundation.dll                       0xAA64
+2026-08-20T10:54:09.4135035Z Tools.dll                                0xAA64
+2026-08-20T10:54:09.4140376Z utf8proc.dll                             0xAA64
+2026-08-20T10:54:09.4146133Z vccorlib140.dll                          0xAA64
+2026-08-20T10:54:09.4152145Z vcruntime140_threads.dll                 0xAA64
+2026-08-20T10:54:09.4158167Z vcruntime140.dll                         0xAA64
+2026-08-20T10:54:09.4163536Z z.dll                                    0xAA64
+2026-08-20T10:54:09.4169357Z zstd.dll                                 0xAA64
+2026-08-20T10:54:09.4181622Z Scanned 34 image(s)
+2026-08-20T10:54:09.4203687Z Every shipped image is ARM64 (0xAA64).
+2026-08-20T10:54:09.4907655Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T10:54:09.4908346Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T10:54:09.4908810Z [36;1mNew-Item -ItemType Directory -Force -Path fixture | Out-Null[0m
+2026-08-20T10:54:09.4909205Z [36;1m$src = @([0m
+2026-08-20T10:54:09.4909506Z [36;1m  '// WinPort independent runtime fixture',[0m
+2026-08-20T10:54:09.4909888Z [36;1m  'int hot(int x) { return x * 2; }',[0m
+2026-08-20T10:54:09.4910216Z [36;1m  'int cold(int x) { return x + 7; }',[0m
+2026-08-20T10:54:09.4910532Z [36;1m  'int main() {',[0m
+2026-08-20T10:54:09.4910812Z [36;1m  '    volatile int r = hot(21);',[0m
+2026-08-20T10:54:09.4911109Z [36;1m  '    return r == 42 ? 0 : 1;',[0m
+2026-08-20T10:54:09.4911417Z [36;1m  '}'[0m
+2026-08-20T10:54:09.4911638Z [36;1m)[0m
+2026-08-20T10:54:09.4912004Z [36;1mSet-Content -Path fixture/fixture.cpp -Value $src -Encoding ascii[0m
+2026-08-20T10:54:09.4912708Z [36;1mGet-Content fixture/fixture.cpp | ForEach-Object -Begin { $i = 0 } -Process { $i++; "{0,3}: {1}" -f $i, $_ }[0m
+2026-08-20T10:54:09.4913266Z [36;1m[0m
+2026-08-20T10:54:09.4913635Z [36;1m$vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"[0m
+2026-08-20T10:54:09.4914236Z [36;1m$install = & $vswhere -latest -prerelease -products * -property installationPath[0m
+2026-08-20T10:54:09.4914823Z [36;1mif (-not $install) { throw 'No Visual Studio installation found.' }[0m
+2026-08-20T10:54:09.4915220Z [36;1m"VS: $install"[0m
+2026-08-20T10:54:09.4915576Z [36;1m$vcvars = Join-Path $install 'VC\Auxiliary\Build\vcvarsall.bat'[0m
+2026-08-20T10:54:09.4916208Z [36;1mcmd /c "call `"$vcvars`" arm64 >nul && cd fixture && cl /nologo /Zi /Od /EHsc fixture.cpp /Fe:fixture.exe"[0m
+2026-08-20T10:54:09.4916803Z [36;1mif ($LASTEXITCODE -ne 0) { throw "cl failed with $LASTEXITCODE" }[0m
+2026-08-20T10:54:09.4917291Z [36;1mGet-ChildItem fixture | Select-Object Name, Length[0m
+2026-08-20T10:54:09.4972314Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T10:54:09.4972723Z env:
+2026-08-20T10:54:09.4973335Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:09.4974157Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:09.4974954Z ##[endgroup]
+2026-08-20T10:54:09.8172428Z   1: // WinPort independent runtime fixture
+2026-08-20T10:54:09.8176223Z   2: int hot(int x) { return x * 2; }
+2026-08-20T10:54:09.8178293Z   3: int cold(int x) { return x + 7; }
+2026-08-20T10:54:09.8180581Z   4: int main() {
+2026-08-20T10:54:09.8183329Z   5:     volatile int r = hot(21);
+2026-08-20T10:54:09.8185192Z   6:     return r == 42 ? 0 : 1;
+2026-08-20T10:54:09.8188410Z   7: }
+2026-08-20T10:54:10.3082795Z VS: C:\Program Files\Microsoft Visual Studio\2022\Enterprise
+2026-08-20T10:54:13.3691971Z fixture.cpp
+2026-08-20T10:54:20.9484280Z 
+2026-08-20T10:54:20.9560343Z [32;1mName       [0m[32;1m  Length[0m
+2026-08-20T10:54:20.9561167Z [32;1m----       [0m [32;1m ------[0m
+2026-08-20T10:54:20.9561484Z fixture.cpp     186
+2026-08-20T10:54:20.9561789Z fixture.exe  879104
+2026-08-20T10:54:20.9562061Z fixture.ilk 4326415
+2026-08-20T10:54:20.9562860Z fixture.obj    2101
+2026-08-20T10:54:20.9563274Z fixture.pdb 6909952
+2026-08-20T10:54:20.9563998Z vc140.pdb     77824
+2026-08-20T10:54:20.9565644Z 
+2026-08-20T10:54:21.0272949Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T10:54:21.0273604Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T10:54:21.0274057Z [36;1m$exe = Resolve-Path 'expanded/Binaries/OpenCppCoverage.exe'[0m
+2026-08-20T10:54:21.0274673Z [36;1m$sources = (Resolve-Path 'fixture').Path[0m
+2026-08-20T10:54:21.0275065Z [36;1m$target = (Resolve-Path 'fixture/fixture.exe').Path[0m
+2026-08-20T10:54:21.0275478Z [36;1m"OpenCppCoverage: $exe"[0m
+2026-08-20T10:54:21.0275981Z [36;1m& $exe --sources $sources --export_type "cobertura:coverage.xml" --working_dir $sources -- $target[0m
+2026-08-20T10:54:21.0276508Z [36;1m$code = $LASTEXITCODE[0m
+2026-08-20T10:54:21.0276793Z [36;1m"CoverageExitCode=$code"[0m
+2026-08-20T10:54:21.0277182Z [36;1mif ($code -ne 0) { throw "The shipped OpenCppCoverage.exe exited $code" }[0m
+2026-08-20T10:54:21.0277767Z [36;1mif (-not (Test-Path coverage.xml)) { throw 'No cobertura report was produced.' }[0m
+2026-08-20T10:54:21.0333002Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T10:54:21.0333422Z env:
+2026-08-20T10:54:21.0334055Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:21.0335088Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:21.0335551Z ##[endgroup]
+2026-08-20T10:54:21.3425374Z OpenCppCoverage: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\expanded\Binaries\OpenCppCoverage.exe
+2026-08-20T10:54:21.6245421Z [info] Start Program:
+2026-08-20T10:54:21.6246054Z Path:"C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\fixture\\fixture.exe"
+2026-08-20T10:54:21.6246505Z Arguments:
+2026-08-20T10:54:21.6246904Z Working directory: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\fixture"
+2026-08-20T10:54:21.6247366Z Modules: Selected: * Excluded: 
+2026-08-20T10:54:21.6247858Z Sources: Selected: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\fixture Excluded: 
+2026-08-20T10:54:21.6248339Z Log Level: Normal
+2026-08-20T10:54:21.6248577Z Cover Children: 0
+2026-08-20T10:54:21.6248809Z Aggregate by file: 1
+2026-08-20T10:54:21.6249091Z Continue after C++ exception: 0
+2026-08-20T10:54:21.6249380Z Optimized build support: 0
+2026-08-20T10:54:21.6249659Z Export: cobertura coverage.xml 
+2026-08-20T10:54:21.6249978Z Input coverage: 
+2026-08-20T10:54:21.6250209Z Unified diff: 
+2026-08-20T10:54:21.6250481Z Excluded line regular expressions: 
+2026-08-20T10:54:21.6250788Z Substitute pdb source paths: 
+2026-08-20T10:54:21.6375608Z [info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\fixture\fixture.exe is selected because it matches selected pattern: *
+2026-08-20T10:54:21.6957032Z [info] Module: C:\Windows\System32\ntdll.dll is selected because it matches selected pattern: *
+2026-08-20T10:54:21.6978290Z [info] Module: C:\Windows\System32\kernel32.dll is selected because it matches selected pattern: *
+2026-08-20T10:54:21.6991789Z [info] Module: C:\Windows\System32\KernelBase.dll is selected because it matches selected pattern: *
+2026-08-20T10:54:21.7029462Z [info] Module: C:\Windows\System32\kernel.appcore.dll is selected because it matches selected pattern: *
+2026-08-20T10:54:21.7040307Z [info] Module: C:\Windows\System32\msvcrt.dll is selected because it matches selected pattern: *
+2026-08-20T10:54:21.7063788Z [info] ----------------------------------------------------
+2026-08-20T10:54:21.7064204Z [info] Cobertura report generated: coverage.xml
+2026-08-20T10:54:21.7064644Z [info] ----------------------------------------------------
+2026-08-20T10:54:21.7065301Z [info] The code coverage report is not what you expect? See the FAQ https://github.com/OpenCppCoverage/OpenCppCoverage/wiki/FAQ.
+2026-08-20T10:54:21.7139010Z CoverageExitCode=0
+2026-08-20T10:54:21.7873171Z ##[group]Run $ErrorActionPreference = 'Stop'
+2026-08-20T10:54:21.7873932Z [36;1m$ErrorActionPreference = 'Stop'[0m
+2026-08-20T10:54:21.7874338Z [36;1m[xml]$report = Get-Content coverage.xml -Raw[0m
+2026-08-20T10:54:21.7874715Z [36;1m$lines = $report.SelectNodes('//line')[0m
+2026-08-20T10:54:21.7875221Z [36;1mif (-not $lines -or $lines.Count -eq 0) { throw 'The report contains no line records.' }[0m
+2026-08-20T10:54:21.7875792Z [36;1mforeach ($l in $lines) { "line {0,3} hits={1}" -f $l.number, $l.hits }[0m
+2026-08-20T10:54:21.7876196Z [36;1m[0m
+2026-08-20T10:54:21.7876564Z [36;1m$hot = $lines | Where-Object { [int]$_.number -eq 2 } | Select-Object -First 1[0m
+2026-08-20T10:54:21.7877165Z [36;1m$cold = $lines | Where-Object { [int]$_.number -eq 3 } | Select-Object -First 1[0m
+2026-08-20T10:54:21.7877754Z [36;1mif (-not $hot) { throw 'Line 2 (executed) is absent from the report.' }[0m
+2026-08-20T10:54:21.7878416Z [36;1mif (-not $cold) { throw 'Line 3 (unreachable) is absent from the report.' }[0m
+2026-08-20T10:54:21.7879044Z [36;1mif ([int]$hot.hits -lt 1) { throw "Line 2 should be covered but reports $($hot.hits) hits." }[0m
+2026-08-20T10:54:21.7879898Z [36;1mif ([int]$cold.hits -ne 0) { throw "Line 3 is never called but reports $($cold.hits) hits." }[0m
+2026-08-20T10:54:21.7880547Z [36;1m'Coverage is correct: the executed line is hit and the unreachable line is not.'[0m
+2026-08-20T10:54:21.7881240Z [36;1m"ProcessArchitecture=$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture)"[0m
+2026-08-20T10:54:21.7936009Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-08-20T10:54:21.7936435Z env:
+2026-08-20T10:54:21.7937270Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:21.7938119Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:21.7938611Z ##[endgroup]
+2026-08-20T10:54:22.1410892Z line   2 hits=1
+2026-08-20T10:54:22.1414080Z line   3 hits=0
+2026-08-20T10:54:22.1416215Z line   4 hits=1
+2026-08-20T10:54:22.1418580Z line   5 hits=1
+2026-08-20T10:54:22.1420274Z line   6 hits=1
+2026-08-20T10:54:22.1785867Z Coverage is correct: the executed line is hit and the unreachable line is not.
+2026-08-20T10:54:22.1795908Z ProcessArchitecture=Arm64
+2026-08-20T10:54:22.2604778Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-20T10:54:22.2612686Z ##[group]Run actions/upload-artifact@v4
+2026-08-20T10:54:22.2613101Z with:
+2026-08-20T10:54:22.2613364Z   name: winport-independent-verification
+2026-08-20T10:54:22.2613718Z   path: coverage.xml
+fixture/fixture.cpp
+
+2026-08-20T10:54:22.2614057Z   if-no-files-found: warn
+2026-08-20T10:54:22.2614323Z   compression-level: 6
+2026-08-20T10:54:22.2615121Z   overwrite: false
+2026-08-20T10:54:22.2615402Z   include-hidden-files: false
+2026-08-20T10:54:22.2615685Z env:
+2026-08-20T10:54:22.2616289Z   ASSET_URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-81376ba/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+2026-08-20T10:54:22.2617159Z   EXPECTED_SHA256: 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5
+2026-08-20T10:54:22.2617627Z ##[endgroup]
+2026-08-20T10:54:22.5724203Z (node:4020) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-20T10:54:22.5724973Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-20T10:54:22.5843981Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-08-20T10:54:22.5850431Z The least common ancestor is C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64. This will be the root directory of the artifact
+2026-08-20T10:54:22.5851352Z With the provided path, there will be 2 files uploaded
+2026-08-20T10:54:22.5856426Z Artifact name is valid!
+2026-08-20T10:54:22.5859796Z Root directory input is valid!
+2026-08-20T10:54:22.8543443Z Beginning upload of artifact content to blob storage
+2026-08-20T10:54:22.8783314Z (node:4020) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-08-20T10:54:22.9795647Z Uploaded bytes 721
+2026-08-20T10:54:23.0138195Z Finished uploading artifact content to blob storage!
+2026-08-20T10:54:23.0141017Z SHA256 digest of uploaded artifact zip is a70157f4ac1a96819e6151589f86b627f9d7cee7d0bda2b93997945e9ce0785c
+2026-08-20T10:54:23.0143049Z Finalizing artifact upload
+2026-08-20T10:54:23.2189459Z Artifact winport-independent-verification.zip successfully finalized. Artifact ID 9403565998
+2026-08-20T10:54:23.2190578Z Artifact winport-independent-verification has been successfully uploaded! Final size is 721 bytes. Artifact ID is 9403565998
+2026-08-20T10:54:23.2207605Z Artifact download URL: https://github.com/LynnSingoei/OpenCppCoverage-ARM64/actions/runs/32361171722/artifacts/9403565998
+2026-08-20T10:54:23.2455011Z Cleaning up orphan processes
+2026-08-20T10:54:23.2625710Z Terminate orphan process: pid (5188) (vctip)
+2026-08-20T10:54:23.2648191Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

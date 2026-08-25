@@ -1,0 +1,2389 @@
+From bf4eda8784e2a332b88267edcc38022fddedb0e0 Mon Sep 17 00:00:00 2001
+From: Neil Kainga <t-neilkainga@microsoft.com>
+Date: Mon, 17 Aug 2026 17:49:10 +0000
+Subject: [PATCH] S4: cross-compile and link nnn for native Windows ARM64
+
+Adds a Win32 portability layer so nnn -- which has no native Windows
+build at all -- compiles and links for aarch64-w64-mingw32, producing a
+self-contained ARM64 nnn.exe.
+
+src/win/win_compat.{c,h} (new, ~1800 lines) implements the POSIX surface
+mingw lacks, over Win32:
+  - stat/lstat/fstatat via CreateFileW + GetFileInformationByHandle
+  - dirent via FindFirstFileExW, populating d_type
+  - statvfs via GetDiskFreeSpaceExW
+  - realpath/readlink via GetFinalPathNameByHandleW
+  - process creation via CreateProcessW with CommandLineToArgvW quoting
+  - sigaction via SetConsoleCtrlHandler
+  - directory change notification via ReadDirectoryChangesW, mirroring
+    the existing HAIKU_NM API one-for-one
+  - wcwidth/wcswidth, memmem, getline, strsep, strcasestr, ffs, link,
+    fchmod, localtime_r, pipe
+
+nnn.c changes are additive guards only; every POSIX branch is preserved
+under #ifndef _WIN32, and the default POSIX build is byte-identical to
+before (162,304 B, zero warnings).
+
+The main structural change is the process model: Windows has no fork(),
+so the fork/exec/wait triad in spawn(), get_output() and
+buffer_command_output() is replaced by CreateProcessW calls that set up
+stdio redirection before process creation rather than in a forked child.
+
+Deferred to S5 and marked TODO(arm64): WIN_NM notification wiring,
+the plugin control channel (needs a named pipe, not a FIFO), preview
+pane streaming, and chmod-to-ACL mapping.
+
+Verified: llvm-readobj reports IMAGE_FILE_MACHINE_ARM64 (0xAA64);
+imports are Windows system DLLs only, no vendored x64 binaries.
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+---
+ build-arm64.sh       |   89 +++
+ src/nnn.c            |  178 +++++-
+ src/win/win_compat.c | 1406 ++++++++++++++++++++++++++++++++++++++++++
+ src/win/win_compat.h |  406 ++++++++++++
+ 4 files changed, 2072 insertions(+), 7 deletions(-)
+ create mode 100755 build-arm64.sh
+ create mode 100644 src/win/win_compat.c
+ create mode 100644 src/win/win_compat.h
+
+diff --git a/build-arm64.sh b/build-arm64.sh
+new file mode 100755
+index 00000000..d52fb80f
+--- /dev/null
++++ b/build-arm64.sh
+@@ -0,0 +1,89 @@
++#!/usr/bin/env bash
++#
++# Cross-build nnn.exe for native Windows ARM64 (classic ARM64, per ADR 0001).
++#
++# Host:   x86-64 Linux / WSL2
++# Target: aarch64-w64-mingw32  ->  IMAGE_FILE_MACHINE_ARM64 (0xAA64)
++#
++# Scope (v1, per S4 scope decision): core file manager only.
++#   Compiled out: readline, FIFO previews, X11, batch renamer, sessions,
++#                 user/group name lookup.
++#
++# Usage:  ./build-arm64.sh            # full build -> nnn.exe
++#         ./build-arm64.sh --compile  # compile only, no link (error triage)
++
++set -euo pipefail
++
++HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
++ROOT="$(cd "$HERE/../.." && pwd)"
++
++TC="$ROOT/toolchain/llvm-mingw/bin"
++SYSROOT="$ROOT/toolchain/sysroot-aarch64"
++CC="$TC/aarch64-w64-mingw32-clang"
++
++[ -x "$CC" ] || { echo "error: toolchain not found at $CC" >&2; exit 1; }
++[ -f "$SYSROOT/lib/libncursesw.a" ] || { echo "error: ncursesw not built" >&2; exit 1; }
++[ -f "$SYSROOT/lib/libpcre2-8.a" ] || { echo "error: pcre2 not built" >&2; exit 1; }
++
++# Feature scoping. Mirrors:
++#   make O_NOUG=1 O_NOFIFO=1 O_NORL=1 O_NOX11=1 O_NOBATCH=1 O_NOSSN=1 O_PCRE2=1
++CPPFLAGS=(
++	-DNORL -DNOUG -DNOFIFO -DNOX11 -DNOBATCH -DNOSSN
++	-DDIM_FILTERED
++	-DPCRE2 -DPCRE2_CODE_UNIT_WIDTH=8
++	-DPCRE2_STATIC
++	-DNCURSES_STATIC
++)
++
++CFLAGS=(
++	-std=c11 -O2
++	-Wall -Wextra -Wshadow
++	-Wno-unused-parameter
++)
++
++INCS=(
++	-I"$SYSROOT/include"
++	-I"$SYSROOT/include/ncursesw"
++)
++
++# ncurses' Windows build folds tinfo into libncursesw -- do NOT add -ltinfo.
++LIBS=(
++	-L"$SYSROOT/lib"
++	-lncursesw
++	-lpcre2-8
++	-lpthread
++	-lshlwapi
++	-luserenv
++)
++
++BUILD="$HERE/build-arm64"
++mkdir -p "$BUILD"
++
++SRCS=(src/nnn.c src/win/win_compat.c)
++
++if [ "${1:-}" = "--compile" ]; then
++	# Triage mode: report every error, not just the first 20.
++	for s in "${SRCS[@]}"; do
++		echo "CC $s"
++		"$CC" "${CFLAGS[@]}" "${CPPFLAGS[@]}" "${INCS[@]}" \
++			-ferror-limit=0 -c "$HERE/$s" -o "$BUILD/$(basename "$s" .c).o"
++	done
++	exit 0
++fi
++
++OBJS=()
++for s in "${SRCS[@]}"; do
++	o="$BUILD/$(basename "$s" .c).o"
++	echo "CC $s"
++	"$CC" "${CFLAGS[@]}" "${CPPFLAGS[@]}" "${INCS[@]}" -c "$HERE/$s" -o "$o"
++	OBJS+=("$o")
++done
++
++echo "LD nnn.exe"
++# -static avoids a libwinpthread-1.dll runtime dependency, so the result
++# is a single self-contained .exe. ncurses and PCRE2 are already static.
++"$CC" -static "${OBJS[@]}" -o "$HERE/nnn.exe" "${LIBS[@]}"
++
++echo
++echo "=== architecture gate ==="
++"$TC/llvm-readobj" --file-headers "$HERE/nnn.exe" | grep -i machine
+diff --git a/src/nnn.c b/src/nnn.c
+index e5315c1c..3a85b388 100644
+--- a/src/nnn.c
++++ b/src/nnn.c
+@@ -43,9 +43,13 @@
+ #include <sys/types.h>
+ #endif
+ #endif
++#ifndef _WIN32
+ #include <sys/resource.h>
++#endif
+ #include <sys/stat.h>
++#ifndef _WIN32
+ #include <sys/statvfs.h>
++#endif
+ #if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__APPLE__) || defined(__DragonFly__)
+ #include <sys/types.h>
+ #include <sys/event.h>
+@@ -54,12 +58,29 @@
+ #elif defined(__HAIKU__)
+ #include "../misc/haiku/haiku_interop.h"
+ #define HAIKU_NM
++#elif defined(_WIN32)
++/* The Windows interop header is included after nnn.h, so that its POSIX
++ * shims cannot leak into the system headers below. Only the feature
++ * macro is needed this early.
++ *
++ * TODO(arm64): WIN_NM is defined but not yet consumed. The directory
++ * change-notification abstraction has 8 extension points, each an
++ * #ifdef LINUX_INOTIFY / #elif BSD_KQUEUE / #elif HAIKU_NM chain with no
++ * WIN_NM arm, so auto-refresh-on-change is currently compiled out (this
++ * is what leaves handle_event() unused). The ReadDirectoryChangesW
++ * backend is already implemented in win/win_compat.c as win_init_nm/
++ * win_watch_dir/win_is_update_needed/win_stop_watch/win_close_nm, which
++ * deliberately mirror the HAIKU_NM API one-for-one; S5 only has to add
++ * the WIN_NM arms at the sites listed in PORT_STATE.json todos. */
++#define WIN_NM
+ #else
+ #include <sys/sysmacros.h>
+ #endif
++#ifndef _WIN32
+ #include <sys/wait.h>
++#endif
+ 
+-#ifdef __linux__ /* Fix failure due to mvaddnwstr() */
++#if defined(__linux__) || defined(_WIN32) /* Fix failure due to mvaddnwstr() */
+ #ifndef NCURSES_WIDECHAR
+ #define NCURSES_WIDECHAR 1
+ #endif
+@@ -72,10 +93,14 @@
+ #ifndef __USE_XOPEN /* Fix wcswidth() failure, ncursesw/curses.h includes whcar.h on Ubuntu 14.04 */
+ #define __USE_XOPEN
+ #endif
++#ifndef _WIN32
+ #include <dirent.h>
++#endif
+ #include <errno.h>
+ #include <fcntl.h>
++#ifndef _WIN32
+ #include <fts.h>
++#endif
+ #include <libgen.h>
+ #include <limits.h>
+ #ifndef NOLC
+@@ -107,9 +132,11 @@
+ #ifndef __USE_XOPEN_EXTENDED
+ #define __USE_XOPEN_EXTENDED 1
+ #endif
++#ifndef _WIN32
+ #include <ftw.h>
+ #include <pwd.h>
+ #include <grp.h>
++#endif
+ 
+ #ifdef MACOS_BELOW_1012
+ #include "../misc/macos-legacy/mach_gettime.h"
+@@ -125,6 +152,14 @@
+ #endif
+ 
+ #include "nnn.h"
++
++#ifdef _WIN32
++/* Included last, so that the POSIX shims it defines cannot leak into
++ * the system headers above. Supplies dirent.d_type, lstat/S_ISLNK,
++ * st_blocks, statvfs, sigaction, setenv, realpath and the
++ * CreateProcessW-based process model. */
++#include "win/win_compat.h"
++#endif
+ #include "dbg.h"
+ 
+ #if defined(ICONS_IN_TERM) || defined(NERD) || defined(EMOJI)
+@@ -557,9 +592,11 @@ typedef struct {
+ static thread_data *core_data;
+ 
+ /* Retain old signal handlers */
++#ifndef _WIN32
+ static struct sigaction oldsighup;
+ static struct sigaction oldsigtstp;
+ static struct sigaction oldsigwinch;
++#endif
+ 
+ /* For use in functions which are isolated and don't return the buffer */
+ alignas(max_align_t) static char g_buf[CMD_LEN_MAX];
+@@ -802,6 +839,11 @@ static const char * const envs[] = {
+ #define NSEC_MTIME(sb) ((uint_t)(sb).st_mtimespec.tv_nsec)
+ #define NSEC_ATIME(sb) ((uint_t)(sb).st_atimespec.tv_nsec)
+ #define NSEC_CTIME(sb) ((uint_t)(sb).st_ctimespec.tv_nsec)
++#elif defined(_WIN32)
++/* struct win_stat carries the sub-second part of the NTFS 100ns tick. */
++#define NSEC_MTIME(sb) ((uint_t)(sb).st_mtime_nsec)
++#define NSEC_ATIME(sb) ((uint_t)(sb).st_atime_nsec)
++#define NSEC_CTIME(sb) ((uint_t)(sb).st_ctime_nsec)
+ #else
+ #define NSEC_MTIME(sb) ((uint_t)(sb).st_mtim.tv_nsec)
+ #define NSEC_ATIME(sb) ((uint_t)(sb).st_atim.tv_nsec)
+@@ -1031,7 +1073,7 @@ static bool test_set_bit_dir(dev_t dev, ino_t ino)
+ 	return TRUE;
+ }
+ 
+-#ifndef __APPLE__
++#if !defined(__APPLE__) && !defined(_WIN32)
+ /* Increase the limit on open file descriptors, if possible */
+ static void max_openfds(void)
+ {
+@@ -2562,6 +2604,7 @@ static char *parseargs(char *cmd, char **argv, int *pindex)
+ 	return cmd;
+ }
+ 
++#ifndef _WIN32
+ static void enable_signals(void)
+ {
+ 	struct sigaction dfl_act = {.sa_handler = SIG_DFL};
+@@ -2572,7 +2615,9 @@ static void enable_signals(void)
+ 	sigaction(SIGTSTP, &dfl_act, NULL);
+ 	sigaction(SIGWINCH, &dfl_act, NULL);
+ }
++#endif
+ 
++#ifndef _WIN32
+ static pid_t xfork(uchar_t flag)
+ {
+ 	pid_t p = fork();
+@@ -2634,6 +2679,7 @@ static int join(pid_t p, uchar_t flag)
+ 
+ 	return status;
+ }
++#endif /* !_WIN32 */
+ 
+ /*
+  * Spawns a child process. Behaviour can be controlled using flag.
+@@ -2641,7 +2687,9 @@ static int join(pid_t p, uchar_t flag)
+  */
+ static int spawn(char *command, char *arg1, char *arg2, char *arg3, ushort_t flag)
+ {
++#ifndef _WIN32
+ 	pid_t pid;
++#endif
+ 	int index = 0, retstatus = 0xFFFF;
+ 	char *argv[EXEC_ARGS_MAX] = {0};
+ 	char *cmd = NULL;
+@@ -2668,6 +2716,32 @@ static int spawn(char *command, char *arg1, char *arg2, char *arg3, ushort_t fla
+ 	if (flag & F_NORMAL)
+ 		exitcurses();
+ 
++#ifdef _WIN32
++	/*
++	 * Windows has no fork(), and it cannot be emulated. The POSIX
++	 * fork/exec/wait triad is replaced by a single CreateProcessW call
++	 * that performs the same stdio redirection up front.
++	 *
++	 * F_TTY needs no special handling: the child inherits our console,
++	 * which is already the terminal.
++	 */
++	retstatus = win_spawn_argv(argv,
++				   !!(flag & F_NOWAIT),
++				   !!(flag & F_NOTRACE),
++				   !!(flag & F_NOSTDIN),
++				   !!(flag & F_TTY));
++
++	if ((flag & F_CONFIRM) || ((flag & F_CHKRTN) && retstatus)) {
++		int status = write(STDOUT_FILENO, messages[MSG_ENTER], xstrlen(messages[MSG_ENTER]));
++		(void)status;
++		while ((read(STDIN_FILENO, &status, 1) > 0) && (status != '\n'));
++	}
++
++	if (flag & F_NORMAL)
++		refresh();
++
++	free(cmd);
++#else
+ 	pid = xfork(flag);
+ 	if (pid == 0) {
+ 		/* Suppress stdout and stderr */
+@@ -2702,6 +2776,7 @@ static int spawn(char *command, char *arg1, char *arg2, char *arg3, ushort_t fla
+ 
+ 		free(cmd);
+ 	}
++#endif /* _WIN32 */
+ 
+ 	return retstatus;
+ }
+@@ -5292,9 +5367,12 @@ static bool handle_cur_move(enum action sel)
+  */
+ static bool get_output(char *command, char *arg1, char *arg2, int fdout, bool page)
+ {
++#ifndef _WIN32
+ 	pid_t pid;
++	int flags;
++#endif
+ 	int pipefd[2];
+-	int index = 0, flags;
++	int index = 0;
+ 	bool ret = FALSE;
+ 	bool have_file = fdout != -1;
+ 	int cmd_in_fd = -1;
+@@ -5332,6 +5410,7 @@ static bool get_output(char *command, char *arg1, char *arg2, int fdout, bool pa
+ 		if (pipe(pipefd) == -1)
+ 			errexit();
+ 
++#ifndef _WIN32
+ 		for (index = 0; index < 2; ++index) {
+ 			/* Get previous flags */
+ 			flags = fcntl(pipefd[index], F_GETFL, 0);
+@@ -5342,7 +5421,9 @@ static bool get_output(char *command, char *arg1, char *arg2, int fdout, bool pa
+ 			/* Change flags on fd */
+ 			fcntl(pipefd[index], F_SETFL, flags);
+ 		}
+-
++#endif
++		/* Windows anonymous pipes have no O_NONBLOCK equivalent; the
++		 * read side is made safe by closing the write end first. */
+ 		cmd_in_fd = pipefd[0];
+ 		cmd_out_fd = pipefd[1];
+ 	}
+@@ -5359,6 +5440,12 @@ static bool get_output(char *command, char *arg1, char *arg2, int fdout, bool pa
+ 	if (arg2)
+ 		argv[index] = arg2;
+ 
++#ifdef _WIN32
++	/* No fork(): redirect stdout/stderr at process-creation time instead
++	 * of in a forked child. win_spawn_capture() waits for completion. */
++	(void)cmd_in_fd;
++	win_spawn_capture(argv, cmd_out_fd);
++#else
+ 	pid = fork();
+ 	if (pid == 0) {
+ 		/* In child */
+@@ -5373,6 +5460,7 @@ static bool get_output(char *command, char *arg1, char *arg2, int fdout, bool pa
+ 
+ 	/* In parent */
+ 	waitpid(pid, NULL, 0);
++#endif
+ 
+ 	free(cmd);
+ 
+@@ -5391,11 +5479,22 @@ static bool get_output(char *command, char *arg1, char *arg2, int fdout, bool pa
+ 		return TRUE; // Case 3
+ 
+ 	// Case 1
++#ifdef _WIN32
++	/* Close the write end first so the read below sees EOF rather than
++	 * blocking -- the child has already exited by this point. */
++	close(pipefd[1]);
++
++	if (read(pipefd[0], g_buf, CMD_LEN_MAX - 1) > 0)
++		ret = TRUE;
++
++	close(pipefd[0]);
++#else
+ 	if (read(pipefd[0], g_buf, CMD_LEN_MAX - 1) > 0)
+ 		ret = TRUE;
+ 
+ 	close(pipefd[0]);
+ 	close(pipefd[1]);
++#endif
+ 	return ret;
+ }
+ 
+@@ -5425,6 +5524,9 @@ static bool buffer_command_output(char * const cmds[], char *arg1, char *arg2, s
+ 		if (arg2)
+ 			argv[index] = arg2;
+ 
++#ifdef _WIN32
++		win_spawn_capture(argv, pipefd[1]);
++#else
+ 		pid_t pid = fork();
+ 		if (pid == 0) {
+ 			close(pipefd[0]);
+@@ -5437,6 +5539,7 @@ static bool buffer_command_output(char * const cmds[], char *arg1, char *arg2, s
+ 
+ 		if (pid > 0)
+ 			waitpid(pid, NULL, 0);
++#endif
+ 		free(cmd);
+ 	}
+ 
+@@ -6552,11 +6655,13 @@ static char *readpipe(int fd, char *ctxnum, char **path)
+ 
+ static bool run_plugin(char **path, const char *file, char *runfile, char **lastname, char **lastdir, enum action *action)
+ {
++#ifndef _WIN32
+ 	pid_t p;
+ 	char ctx = 0;
++	char *nextpath;
++#endif
+ 	ushort_t flags = 0;
+ 	bool cmd_as_plugin = FALSE;
+-	char *nextpath;
+ 
+ 	if (!g_state.pluginit) {
+ 		plctrl_init();
+@@ -6593,6 +6698,41 @@ static bool run_plugin(char **path, const char *file, char *runfile, char **last
+ 		cmd_as_plugin = TRUE;
+ 	}
+ 
++#ifdef _WIN32
++	/*
++	 * TODO(arm64): implement the plugin control channel over a Windows
++	 * named pipe (\\.\pipe\nnn-*) plus a reader thread. It cannot be a
++	 * direct translation: the POSIX version relies on fork() to hold the
++	 * write end open while the parent blocks reading, and Windows has no
++	 * fork(). Plugins are out of v1 scope (S4 scope decision, ADR 0001).
++	 *
++	 * Until then, run the plugin without the back-channel. It can still
++	 * act on files; it cannot send cd/select commands back to nnn.
++	 */
++	exitcurses();
++
++	if (!cmd_as_plugin) {
++		char *sel = NULL;
++		char std[2] = "-";
++
++		/* Generate absolute path to plugin */
++		mkpath(plgpath, file, g_buf);
++
++		if (g_state.picker)
++			sel = selpath ? selpath : std;
++
++		if (runfile && runfile[0]) {
++			xstrsncpy(*lastname, runfile, NAME_MAX);
++			spawn(g_buf, *lastname, *path, sel, 0);
++		} else
++			spawn(g_buf, NULL, *path, sel, 0);
++	} else
++		run_cmd_as_plugin(file, flags, NULL);
++
++	refresh();
++
++	return TRUE;
++#else
+ 	if (mkfifo(g_pipepath, 0600) != 0)
+ 		return FALSE;
+ 
+@@ -6651,6 +6791,7 @@ static bool run_plugin(char **path, const char *file, char *runfile, char **last
+ 	unlink(g_pipepath);
+ 
+ 	return TRUE;
++#endif /* _WIN32 */
+ }
+ 
+ static bool launch_app(char *newpath)
+@@ -7083,7 +7224,7 @@ static bool prep_threads(void)
+ 				return FALSE;
+ 			}
+ 		}
+-#ifndef __APPLE__
++#if !defined(__APPLE__) && !defined(_WIN32)
+ 		/* Increase current open file descriptor limit */
+ 		max_openfds();
+ #endif
+@@ -8046,6 +8187,25 @@ static void preview_pane(const char *path)
+ 		if (pipe(pipefd) == -1)
+ 			return;
+ 
++		bool started;
++
++#ifdef _WIN32
++		/*
++		 * TODO(arm64): no fork(), so the previewer is run to completion
++		 * before its output is read. A preview larger than the 64KB pipe
++		 * buffer will stall. Fix with a reader thread in S5; previews are
++		 * out of v1 scope (S4 scope decision).
++		 */
++		char widthbuf[16], heightbuf[16];
++
++		snprintf(widthbuf, sizeof(widthbuf), "%d", previewwidth);
++		snprintf(heightbuf, sizeof(heightbuf), "%d", xlines - 2);
++
++		char *pargv[5] = { previewer, fpath, widthbuf, heightbuf, NULL };
++
++		started = (win_spawn_capture(pargv, pipefd[1]) != -1);
++		close(pipefd[1]);
++#else
+ 		pid_t pid = fork();
+ 		if (pid == 0) {
+ 			close(pipefd[0]);
+@@ -8063,8 +8223,10 @@ static void preview_pane(const char *path)
+ 			_exit(EXIT_FAILURE);
+ 		}
+ 		close(pipefd[1]);
++		started = (pid > 0);
++#endif
+ 
+-		if (pid > 0) {
++		if (started) {
+ 			FILE *fp = fdopen(pipefd[0], "r");
+ 			if (fp) {
+ 				char line[PREVIEW_MAX_LINE];
+@@ -8102,7 +8264,9 @@ static void preview_pane(const char *path)
+ 			} else {
+ 				close(pipefd[0]);
+ 			}
++#ifndef _WIN32
+ 			waitpid(pid, NULL, 0);
++#endif
+ 		} else
+ 			close(pipefd[0]);
+ 		return;
+diff --git a/src/win/win_compat.c b/src/win/win_compat.c
+new file mode 100644
+index 00000000..3967ee04
+--- /dev/null
++++ b/src/win/win_compat.c
+@@ -0,0 +1,1406 @@
++/*
++ * win_compat.c — Win32 portability layer for nnn
++ *
++ * Implementation of the POSIX surface declared in win_compat.h.
++ * See that header for the design rules.
++ */
++
++#ifdef _WIN32
++
++#include "win_compat.h"
++
++#include <errno.h>
++#include <fcntl.h>
++#include <ctype.h>
++#include <time.h>
++#include <signal.h>
++
++/* ================================================================== *
++ * UTF-8 <-> UTF-16
++ *
++ * Every Windows API used here is the wide variant, so that paths with
++ * non-ASCII characters work regardless of the system code page.
++ * ================================================================== */
++
++wchar_t *win_utf8_to_wide(const char *s)
++{
++	if (!s)
++		return NULL;
++
++	int need = MultiByteToWideChar(CP_UTF8, 0, s, -1, NULL, 0);
++
++	if (need <= 0)
++		return NULL;
++
++	wchar_t *w = (wchar_t *)malloc((size_t)need * sizeof(wchar_t));
++
++	if (!w)
++		return NULL;
++
++	if (MultiByteToWideChar(CP_UTF8, 0, s, -1, w, need) <= 0) {
++		free(w);
++		return NULL;
++	}
++	return w;
++}
++
++char *win_wide_to_utf8(const wchar_t *w)
++{
++	if (!w)
++		return NULL;
++
++	int need = WideCharToMultiByte(CP_UTF8, 0, w, -1, NULL, 0, NULL, NULL);
++
++	if (need <= 0)
++		return NULL;
++
++	char *s = (char *)malloc((size_t)need);
++
++	if (!s)
++		return NULL;
++
++	if (WideCharToMultiByte(CP_UTF8, 0, w, -1, s, need, NULL, NULL) <= 0) {
++		free(s);
++		return NULL;
++	}
++	return s;
++}
++
++/* Convert a UTF-8 path to UTF-16, normalising '/' to '\'. */
++static wchar_t *path_to_wide(const char *path)
++{
++	wchar_t *w = win_utf8_to_wide(path);
++
++	if (!w)
++		return NULL;
++
++	for (wchar_t *p = w; *p; ++p)
++		if (*p == L'/')
++			*p = L'\\';
++
++	return w;
++}
++
++/* ================================================================== *
++ * stat family
++ * ================================================================== */
++
++static time_t filetime_to_time_t(const FILETIME *ft)
++{
++	ULARGE_INTEGER u;
++
++	u.LowPart = ft->dwLowDateTime;
++	u.HighPart = ft->dwHighDateTime;
++
++	/* 100ns ticks since 1601-01-01 -> seconds since 1970-01-01 */
++	return (time_t)((u.QuadPart / 10000000ULL) - 11644473600ULL);
++}
++
++/* Sub-second remainder of the same tick count, in nanoseconds. */
++static uint32_t filetime_to_nsec(const FILETIME *ft)
++{
++	ULARGE_INTEGER u;
++
++	u.LowPart = ft->dwLowDateTime;
++	u.HighPart = ft->dwHighDateTime;
++
++	return (uint32_t)((u.QuadPart % 10000000ULL) * 100ULL);
++}
++
++static uint32_t attrs_to_mode(DWORD attrs, const wchar_t *wpath)
++{
++	uint32_t mode;
++
++	if (attrs & FILE_ATTRIBUTE_REPARSE_POINT)
++		mode = S_IFLNK;
++	else if (attrs & FILE_ATTRIBUTE_DIRECTORY)
++		mode = _S_IFDIR;
++	else
++		mode = _S_IFREG;
++
++	/* Windows has no POSIX permission model. Report a sensible
++	 * approximation: readable always, writable unless the read-only
++	 * attribute is set, executable for directories and by extension. */
++	mode |= 0444;
++
++	if (!(attrs & FILE_ATTRIBUTE_READONLY))
++		mode |= 0222;
++
++	if (attrs & FILE_ATTRIBUTE_DIRECTORY) {
++		mode |= 0111;
++	} else if (wpath) {
++		const wchar_t *dot = wcsrchr(wpath, L'.');
++
++		if (dot && (!_wcsicmp(dot, L".exe") || !_wcsicmp(dot, L".com")
++			    || !_wcsicmp(dot, L".bat") || !_wcsicmp(dot, L".cmd")))
++			mode |= 0111;
++	}
++
++	return mode;
++}
++
++/* Fill a struct win_stat from an open handle, which is the only way to
++ * obtain a stable file index (the Windows equivalent of st_ino) and the
++ * on-disk allocation size (st_blocks). */
++static int stat_from_handle(HANDLE h, const wchar_t *wpath, struct win_stat *sb)
++{
++	BY_HANDLE_FILE_INFORMATION bhfi;
++
++	if (!GetFileInformationByHandle(h, &bhfi))
++		return -1;
++
++	memset(sb, 0, sizeof(*sb));
++
++	sb->st_dev = bhfi.dwVolumeSerialNumber;
++	sb->st_ino = ((uint64_t)bhfi.nFileIndexHigh << 32) | bhfi.nFileIndexLow;
++	sb->st_mode = attrs_to_mode(bhfi.dwFileAttributes, wpath);
++	sb->st_nlink = bhfi.nNumberOfLinks;
++	sb->st_size = ((int64_t)bhfi.nFileSizeHigh << 32) | bhfi.nFileSizeLow;
++	sb->st_atime = filetime_to_time_t(&bhfi.ftLastAccessTime);
++	sb->st_mtime = filetime_to_time_t(&bhfi.ftLastWriteTime);
++	sb->st_ctime = filetime_to_time_t(&bhfi.ftCreationTime);
++	sb->st_atime_nsec = filetime_to_nsec(&bhfi.ftLastAccessTime);
++	sb->st_mtime_nsec = filetime_to_nsec(&bhfi.ftLastWriteTime);
++	sb->st_ctime_nsec = filetime_to_nsec(&bhfi.ftCreationTime);
++	sb->st_blksize = 4096;
++
++	/* Real allocated size, so that nnn's disk-usage mode reports what
++	 * the filesystem actually consumes rather than the apparent size. */
++	FILE_STANDARD_INFO fsi;
++
++	if (GetFileInformationByHandleEx(h, FileStandardInfo, &fsi, sizeof(fsi)))
++		sb->st_blocks = (blkcnt_t)(fsi.AllocationSize.QuadPart / S_BLKSIZE);
++	else
++		sb->st_blocks = (blkcnt_t)((sb->st_size + S_BLKSIZE - 1) / S_BLKSIZE);
++
++	return 0;
++}
++
++static int do_stat(const char *path, struct win_stat *sb, int nofollow)
++{
++	if (!path || !sb) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	wchar_t *wpath = path_to_wide(path);
++
++	if (!wpath) {
++		errno = ENOMEM;
++		return -1;
++	}
++
++	DWORD flags = FILE_FLAG_BACKUP_SEMANTICS;   /* required to open directories */
++
++	if (nofollow)
++		flags |= FILE_FLAG_OPEN_REPARSE_POINT;
++
++	HANDLE h = CreateFileW(wpath, FILE_READ_ATTRIBUTES,
++			       FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
++			       NULL, OPEN_EXISTING, flags, NULL);
++
++	if (h == INVALID_HANDLE_VALUE) {
++		/* Fall back to the attribute-only query, which succeeds for
++		 * files we may not open (e.g. in-use system files). */
++		WIN32_FILE_ATTRIBUTE_DATA fad;
++
++		if (GetFileAttributesExW(wpath, GetFileExInfoStandard, &fad)) {
++			memset(sb, 0, sizeof(*sb));
++			sb->st_mode = attrs_to_mode(fad.dwFileAttributes, wpath);
++			sb->st_nlink = 1;
++			sb->st_size = ((int64_t)fad.nFileSizeHigh << 32) | fad.nFileSizeLow;
++			sb->st_atime = filetime_to_time_t(&fad.ftLastAccessTime);
++			sb->st_mtime = filetime_to_time_t(&fad.ftLastWriteTime);
++			sb->st_ctime = filetime_to_time_t(&fad.ftCreationTime);
++			sb->st_atime_nsec = filetime_to_nsec(&fad.ftLastAccessTime);
++			sb->st_mtime_nsec = filetime_to_nsec(&fad.ftLastWriteTime);
++			sb->st_ctime_nsec = filetime_to_nsec(&fad.ftCreationTime);
++			sb->st_blksize = 4096;
++			sb->st_blocks = (blkcnt_t)((sb->st_size + S_BLKSIZE - 1) / S_BLKSIZE);
++			free(wpath);
++			return 0;
++		}
++
++		free(wpath);
++		errno = ENOENT;
++		return -1;
++	}
++
++	int r = stat_from_handle(h, wpath, sb);
++
++	CloseHandle(h);
++	free(wpath);
++
++	if (r != 0)
++		errno = EIO;
++
++	return r;
++}
++
++int win_stat(const char *path, struct win_stat *sb)
++{
++	return do_stat(path, sb, 0);
++}
++
++int win_lstat(const char *path, struct win_stat *sb)
++{
++	return do_stat(path, sb, 1);
++}
++
++int win_fstat_fd(int fd, struct win_stat *sb)
++{
++	HANDLE h = (HANDLE)_get_osfhandle(fd);
++
++	if (h == INVALID_HANDLE_VALUE || !sb) {
++		errno = EBADF;
++		return -1;
++	}
++	return stat_from_handle(h, NULL, sb);
++}
++
++int win_fstatat(int dirfd, const char *path, struct win_stat *sb, int flags)
++{
++	(void)dirfd;   /* nnn only ever performs CWD-relative lookups */
++	return do_stat(path, sb, (flags & AT_SYMLINK_NOFOLLOW) ? 1 : 0);
++}
++
++/* ================================================================== *
++ * dirent over FindFirstFileW
++ *
++ * Using the Find* API rather than the CRT's opendir gives us d_type for
++ * free, avoiding a stat() per entry.
++ * ================================================================== */
++
++struct win_DIR {
++	HANDLE           h;
++	WIN32_FIND_DATAW fd;
++	int              first;
++	struct dirent    ent;
++};
++
++DIR *opendir(const char *path)
++{
++	if (!path) {
++		errno = EINVAL;
++		return NULL;
++	}
++
++	size_t len = strlen(path);
++	char  *pat = (char *)malloc(len + 3);
++
++	if (!pat) {
++		errno = ENOMEM;
++		return NULL;
++	}
++
++	memcpy(pat, path, len);
++
++	/* Append the wildcard, inserting a separator only if needed. */
++	if (len && (path[len - 1] == '\\' || path[len - 1] == '/'))
++		strcpy(pat + len, "*");
++	else
++		strcpy(pat + len, "\\*");
++
++	wchar_t *wpat = path_to_wide(pat);
++
++	free(pat);
++
++	if (!wpat) {
++		errno = ENOMEM;
++		return NULL;
++	}
++
++	DIR *d = (DIR *)calloc(1, sizeof(DIR));
++
++	if (!d) {
++		free(wpat);
++		errno = ENOMEM;
++		return NULL;
++	}
++
++	d->h = FindFirstFileExW(wpat, FindExInfoBasic, &d->fd,
++				FindExSearchNameMatch, NULL, 0);
++	free(wpat);
++
++	if (d->h == INVALID_HANDLE_VALUE) {
++		free(d);
++		errno = ENOENT;
++		return NULL;
++	}
++
++	d->first = 1;
++	return d;
++}
++
++struct dirent *readdir(DIR *d)
++{
++	if (!d) {
++		errno = EINVAL;
++		return NULL;
++	}
++
++	for (;;) {
++		if (d->first) {
++			d->first = 0;
++		} else if (!FindNextFileW(d->h, &d->fd)) {
++			return NULL;
++		}
++
++		/* nnn filters "." and ".." itself, but the Win32 API also
++		 * returns them; skipping here keeps behaviour identical to
++		 * a POSIX readdir on a filesystem that omits them. */
++		const wchar_t *n = d->fd.cFileName;
++
++		if (n[0] == L'.' && (n[1] == L'\0' || (n[1] == L'.' && n[2] == L'\0')))
++			continue;
++
++		char *utf8 = win_wide_to_utf8(n);
++
++		if (!utf8)
++			continue;
++
++		size_t l = strlen(utf8);
++
++		if (l >= sizeof(d->ent.d_name))
++			l = sizeof(d->ent.d_name) - 1;
++
++		memcpy(d->ent.d_name, utf8, l);
++		d->ent.d_name[l] = '\0';
++		free(utf8);
++
++		DWORD a = d->fd.dwFileAttributes;
++
++		if (a & FILE_ATTRIBUTE_REPARSE_POINT)
++			d->ent.d_type = DT_LNK;
++		else if (a & FILE_ATTRIBUTE_DIRECTORY)
++			d->ent.d_type = DT_DIR;
++		else
++			d->ent.d_type = DT_REG;
++
++		d->ent.d_ino = 0;
++		d->ent.d_reclen = (unsigned short)sizeof(struct dirent);
++
++		return &d->ent;
++	}
++}
++
++int closedir(DIR *d)
++{
++	if (!d) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	if (d->h != INVALID_HANDLE_VALUE)
++		FindClose(d->h);
++
++	free(d);
++	return 0;
++}
++
++int dirfd(DIR *d)
++{
++	/* Windows has no directory file descriptor. nnn uses the result
++	 * only for *at() calls, which we resolve against the CWD. */
++	(void)d;
++	return AT_FDCWD;
++}
++
++/* ================================================================== *
++ * statvfs
++ * ================================================================== */
++
++int statvfs(const char *path, struct statvfs *buf)
++{
++	if (!path || !buf) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	wchar_t *wpath = path_to_wide(path);
++
++	if (!wpath) {
++		errno = ENOMEM;
++		return -1;
++	}
++
++	ULARGE_INTEGER avail, total, free_bytes;
++	BOOL ok = GetDiskFreeSpaceExW(wpath, &avail, &total, &free_bytes);
++
++	free(wpath);
++
++	if (!ok) {
++		errno = ENOENT;
++		return -1;
++	}
++
++	memset(buf, 0, sizeof(*buf));
++
++	/* Report in 1-byte units so that block * size arithmetic in nnn
++	 * yields the correct byte counts without a scaling factor. */
++	buf->f_bsize = 1;
++	buf->f_frsize = 1;
++	buf->f_blocks = total.QuadPart;
++	buf->f_bfree = free_bytes.QuadPart;
++	buf->f_bavail = avail.QuadPart;
++	buf->f_namemax = 255;
++
++	return 0;
++}
++
++/* ================================================================== *
++ * Signals
++ *
++ * Only SIGINT has a real Windows analogue (Ctrl+C / Ctrl+Break). The
++ * rest are accepted and ignored so that nnn's setup code runs
++ * unmodified.
++ * ================================================================== */
++
++static void (*g_sigint_handler)(int);
++
++static BOOL WINAPI console_ctrl_handler(DWORD type)
++{
++	if ((type == CTRL_C_EVENT || type == CTRL_BREAK_EVENT) && g_sigint_handler) {
++		g_sigint_handler(SIGINT);
++		return TRUE;
++	}
++	return FALSE;
++}
++
++int win_sigaction(int sig, const struct sigaction *act, struct sigaction *old)
++{
++	/* Wide enough for both the CRT's signal numbers and the POSIX ones
++	 * we synthesise above (the largest being SIGWINCH at 28). */
++	static struct sigaction saved[32];
++	static int installed;
++
++	if (sig < 0 || sig >= (int)(sizeof(saved) / sizeof(saved[0]))) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	if (old)
++		*old = saved[sig];
++
++	if (!act)
++		return 0;
++
++	saved[sig] = *act;
++
++	if (sig == SIGINT) {
++		g_sigint_handler = act->sa_handler;
++
++		if (!installed) {
++			SetConsoleCtrlHandler(console_ctrl_handler, TRUE);
++			installed = 1;
++		}
++	}
++
++	/* SIGHUP, SIGQUIT, SIGPIPE, SIGTSTP and SIGWINCH have no Windows
++	 * equivalent. SIGWINCH in particular is unnecessary because nnn
++	 * already handles resize via curses KEY_RESIZE. */
++	return 0;
++}
++
++/* ================================================================== *
++ * Process spawning
++ *
++ * fork() cannot be emulated on Windows, so nnn's fork/exec/wait triad
++ * is replaced by CreateProcessW with explicit handle redirection.
++ * ================================================================== */
++
++/* Quote one argv element per the CommandLineToArgvW rules, appending to
++ * *dst. Returns the new end pointer, or NULL on overflow. */
++static wchar_t *append_quoted(wchar_t *dst, const wchar_t *end, const wchar_t *arg)
++{
++	int needs_quote = (*arg == L'\0');
++
++	for (const wchar_t *p = arg; *p && !needs_quote; ++p)
++		if (*p == L' ' || *p == L'\t' || *p == L'"')
++			needs_quote = 1;
++
++	if (!needs_quote) {
++		size_t l = wcslen(arg);
++
++		if (dst + l >= end)
++			return NULL;
++
++		wmemcpy(dst, arg, l);
++		return dst + l;
++	}
++
++	if (dst >= end)
++		return NULL;
++	*dst++ = L'"';
++
++	for (const wchar_t *p = arg; *p; ++p) {
++		size_t slashes = 0;
++
++		while (*p == L'\\') {
++			++slashes;
++			++p;
++		}
++
++		if (*p == L'\0') {
++			/* Trailing backslashes must be doubled so they do
++			 * not escape the closing quote. */
++			if (dst + slashes * 2 >= end)
++				return NULL;
++			for (size_t i = 0; i < slashes * 2; ++i)
++				*dst++ = L'\\';
++			break;
++		}
++
++		if (*p == L'"') {
++			if (dst + slashes * 2 + 2 >= end)
++				return NULL;
++			for (size_t i = 0; i < slashes * 2; ++i)
++				*dst++ = L'\\';
++			*dst++ = L'\\';
++			*dst++ = L'"';
++		} else {
++			if (dst + slashes + 1 >= end)
++				return NULL;
++			for (size_t i = 0; i < slashes; ++i)
++				*dst++ = L'\\';
++			*dst++ = *p;
++		}
++	}
++
++	if (dst >= end)
++		return NULL;
++	*dst++ = L'"';
++
++	return dst;
++}
++
++/* Build a CreateProcessW command line from a POSIX argv, applying the
++ * CommandLineToArgvW quoting rules. Caller frees. */
++static wchar_t *build_cmdline(char *const argv[])
++{
++	size_t   cap = 32768;
++	wchar_t *cmdline = (wchar_t *)malloc(cap * sizeof(wchar_t));
++
++	if (!cmdline) {
++		errno = ENOMEM;
++		return NULL;
++	}
++
++	wchar_t *dst = cmdline;
++	wchar_t *end = cmdline + cap - 1;
++
++	for (int i = 0; argv[i]; ++i) {
++		if (i) {
++			if (dst >= end) {
++				free(cmdline);
++				errno = E2BIG;
++				return NULL;
++			}
++			*dst++ = L' ';
++		}
++
++		wchar_t *warg = win_utf8_to_wide(argv[i]);
++
++		if (!warg) {
++			free(cmdline);
++			errno = ENOMEM;
++			return NULL;
++		}
++
++		wchar_t *n = append_quoted(dst, end, warg);
++
++		free(warg);
++
++		if (!n) {
++			free(cmdline);
++			errno = E2BIG;
++			return NULL;
++		}
++		dst = n;
++	}
++	*dst = L'\0';
++
++	return cmdline;
++}
++
++int win_spawn_argv(char *const argv[], int nowait, int notrace, int nostdin, int tty)
++{
++	if (!argv || !argv[0]) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	(void)tty;   /* the child inherits our console, which is already a tty */
++
++	wchar_t *cmdline = build_cmdline(argv);
++
++	if (!cmdline)
++		return -1;
++
++	STARTUPINFOW si;
++	PROCESS_INFORMATION pi;
++
++	memset(&si, 0, sizeof(si));
++	memset(&pi, 0, sizeof(pi));
++	si.cb = sizeof(si);
++
++	HANDLE hnull = INVALID_HANDLE_VALUE;
++
++	if (notrace) {
++		SECURITY_ATTRIBUTES sa;
++
++		sa.nLength = sizeof(sa);
++		sa.lpSecurityDescriptor = NULL;
++		sa.bInheritHandle = TRUE;
++
++		hnull = CreateFileW(L"NUL", GENERIC_READ | GENERIC_WRITE,
++				    FILE_SHARE_READ | FILE_SHARE_WRITE, &sa,
++				    OPEN_EXISTING, 0, NULL);
++
++		if (hnull != INVALID_HANDLE_VALUE) {
++			si.dwFlags |= STARTF_USESTDHANDLES;
++			si.hStdInput = nostdin ? hnull
++					       : GetStdHandle(STD_INPUT_HANDLE);
++			si.hStdOutput = hnull;
++			si.hStdError = hnull;
++		}
++	}
++
++	DWORD flags = 0;
++
++	if (nowait)
++		flags |= DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP;
++
++	BOOL ok = CreateProcessW(NULL, cmdline, NULL, NULL, TRUE, flags,
++				 NULL, NULL, &si, &pi);
++
++	free(cmdline);
++
++	if (hnull != INVALID_HANDLE_VALUE)
++		CloseHandle(hnull);
++
++	if (!ok) {
++		errno = ENOENT;
++		return -1;
++	}
++
++	CloseHandle(pi.hThread);
++
++	if (nowait) {
++		CloseHandle(pi.hProcess);
++		return 0;
++	}
++
++	WaitForSingleObject(pi.hProcess, INFINITE);
++
++	DWORD code = 0;
++
++	GetExitCodeProcess(pi.hProcess, &code);
++	CloseHandle(pi.hProcess);
++
++	return (int)code;
++}
++
++int win_spawn_capture(char *const argv[], int out_fd)
++{	if (!argv || !argv[0]) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	HANDLE hout = (HANDLE)_get_osfhandle(out_fd);
++
++	if (hout == INVALID_HANDLE_VALUE) {
++		errno = EBADF;
++		return -1;
++	}
++
++	/* The child only inherits handles explicitly marked inheritable. */
++	HANDLE hinherit = INVALID_HANDLE_VALUE;
++
++	if (!DuplicateHandle(GetCurrentProcess(), hout,
++			     GetCurrentProcess(), &hinherit,
++			     0, TRUE, DUPLICATE_SAME_ACCESS)) {
++		errno = EBADF;
++		return -1;
++	}
++
++	wchar_t *cmdline = build_cmdline(argv);
++
++	if (!cmdline) {
++		CloseHandle(hinherit);
++		return -1;
++	}
++
++	STARTUPINFOW si;
++	PROCESS_INFORMATION pi;
++
++	memset(&si, 0, sizeof(si));
++	memset(&pi, 0, sizeof(pi));
++	si.cb = sizeof(si);
++	si.dwFlags = STARTF_USESTDHANDLES;
++	si.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
++	si.hStdOutput = hinherit;
++	si.hStdError = hinherit;
++
++	BOOL ok = CreateProcessW(NULL, cmdline, NULL, NULL, TRUE, 0,
++				 NULL, NULL, &si, &pi);
++
++	free(cmdline);
++	CloseHandle(hinherit);
++
++	if (!ok) {
++		errno = ENOENT;
++		return -1;
++	}
++
++	CloseHandle(pi.hThread);
++	WaitForSingleObject(pi.hProcess, INFINITE);
++
++	DWORD code = 0;
++
++	GetExitCodeProcess(pi.hProcess, &code);
++	CloseHandle(pi.hProcess);
++
++	return (int)code;
++}
++
++int win_pipe(int fds[2])
++{
++	if (!fds) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	return _pipe(fds, 65536, _O_BINARY | _O_NOINHERIT);
++}
++
++/* ================================================================== *
++ * Environment
++ * ================================================================== */
++int win_setenv(const char *name, const char *value, int overwrite)
++{
++	if (!name || !*name || strchr(name, '=')) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	if (!overwrite && getenv(name))
++		return 0;
++
++	return _putenv_s(name, value ? value : "") == 0 ? 0 : -1;
++}
++
++int win_unsetenv(const char *name)
++{
++	if (!name || !*name || strchr(name, '=')) {
++		errno = EINVAL;
++		return -1;
++	}
++	return _putenv_s(name, "") == 0 ? 0 : -1;
++}
++
++/* ================================================================== *
++ * Paths and links
++ * ================================================================== */
++
++char *win_realpath(const char *path, char *resolved)
++{
++	if (!path) {
++		errno = EINVAL;
++		return NULL;
++	}
++
++	wchar_t *wpath = path_to_wide(path);
++
++	if (!wpath) {
++		errno = ENOMEM;
++		return NULL;
++	}
++
++	/* Open the file so that reparse points are resolved, which
++	 * _fullpath() does not do. */
++	HANDLE h = CreateFileW(wpath, FILE_READ_ATTRIBUTES,
++			       FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
++			       NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
++
++	wchar_t  wbuf[PATH_MAX];
++	wchar_t *wfinal = NULL;
++
++	if (h != INVALID_HANDLE_VALUE) {
++		DWORD n = GetFinalPathNameByHandleW(h, wbuf, PATH_MAX,
++						    FILE_NAME_NORMALIZED | VOLUME_NAME_DOS);
++
++		CloseHandle(h);
++
++		if (n > 0 && n < PATH_MAX) {
++			wfinal = wbuf;
++
++			/* Strip the \\?\ prefix that GetFinalPathName adds. */
++			if (!wcsncmp(wfinal, L"\\\\?\\", 4))
++				wfinal += 4;
++		}
++	}
++
++	if (!wfinal) {
++		DWORD n = GetFullPathNameW(wpath, PATH_MAX, wbuf, NULL);
++
++		if (n == 0 || n >= PATH_MAX) {
++			free(wpath);
++			errno = ENOENT;
++			return NULL;
++		}
++		wfinal = wbuf;
++	}
++
++	free(wpath);
++
++	char *utf8 = win_wide_to_utf8(wfinal);
++
++	if (!utf8) {
++		errno = ENOMEM;
++		return NULL;
++	}
++
++	if (!resolved)
++		return utf8;   /* GNU allocating form, as nnn uses */
++
++	size_t l = strlen(utf8);
++
++	if (l >= PATH_MAX) {
++		free(utf8);
++		errno = ENAMETOOLONG;
++		return NULL;
++	}
++
++	memcpy(resolved, utf8, l + 1);
++	free(utf8);
++
++	return resolved;
++}
++
++ssize_t win_readlink(const char *path, char *buf, size_t bufsiz)
++{
++	if (!path || !buf) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	wchar_t *wpath = path_to_wide(path);
++
++	if (!wpath) {
++		errno = ENOMEM;
++		return -1;
++	}
++
++	HANDLE h = CreateFileW(wpath, FILE_READ_ATTRIBUTES,
++			       FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
++			       NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
++
++	free(wpath);
++
++	if (h == INVALID_HANDLE_VALUE) {
++		errno = ENOENT;
++		return -1;
++	}
++
++	wchar_t wbuf[PATH_MAX];
++	DWORD   n = GetFinalPathNameByHandleW(h, wbuf, PATH_MAX,
++					      FILE_NAME_NORMALIZED | VOLUME_NAME_DOS);
++
++	CloseHandle(h);
++
++	if (n == 0 || n >= PATH_MAX) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	wchar_t *w = wbuf;
++
++	if (!wcsncmp(w, L"\\\\?\\", 4))
++		w += 4;
++
++	char *utf8 = win_wide_to_utf8(w);
++
++	if (!utf8) {
++		errno = ENOMEM;
++		return -1;
++	}
++
++	size_t l = strlen(utf8);
++
++	if (l > bufsiz)
++		l = bufsiz;
++
++	memcpy(buf, utf8, l);   /* readlink() does not NUL-terminate */
++	free(utf8);
++
++	return (ssize_t)l;
++}
++
++int win_symlink(const char *target, const char *linkpath)
++{
++	if (!target || !linkpath) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	wchar_t *wt = path_to_wide(target);
++	wchar_t *wl = path_to_wide(linkpath);
++
++	if (!wt || !wl) {
++		free(wt);
++		free(wl);
++		errno = ENOMEM;
++		return -1;
++	}
++
++	DWORD flags = 0;
++	DWORD attrs = GetFileAttributesW(wt);
++
++	if (attrs != INVALID_FILE_ATTRIBUTES && (attrs & FILE_ATTRIBUTE_DIRECTORY))
++		flags |= SYMBOLIC_LINK_FLAG_DIRECTORY;
++
++	/* Without Developer Mode, creating a symlink needs elevation. */
++	flags |= SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE;
++
++	BOOL ok = CreateSymbolicLinkW(wl, wt, flags);
++
++	free(wt);
++	free(wl);
++
++	if (!ok) {
++		errno = EPERM;
++		return -1;
++	}
++	return 0;
++}
++
++/* ================================================================== *
++ * String helpers absent from the CRT
++ * ================================================================== */
++
++char *win_strsep(char **stringp, const char *delim)
++{
++	char *s = *stringp;
++
++	if (!s)
++		return NULL;
++
++	for (char *p = s; *p; ++p) {
++		if (strchr(delim, *p)) {
++			*p = '\0';
++			*stringp = p + 1;
++			return s;
++		}
++	}
++
++	*stringp = NULL;
++	return s;
++}
++
++char *win_strcasestr(const char *haystack, const char *needle)
++{
++	if (!haystack || !needle)
++		return NULL;
++
++	if (!*needle)
++		return (char *)haystack;
++
++	size_t nl = strlen(needle);
++
++	for (const char *p = haystack; *p; ++p)
++		if (!_strnicmp(p, needle, nl))
++			return (char *)p;
++
++	return NULL;
++}
++
++/* ================================================================== *
++ * Character width
++ *
++ * The UCRT has no wcwidth(). This implements the Unicode East Asian
++ * Wide/Fullwidth and zero-width rules, which is what nnn needs to align
++ * columns correctly.
++ * ================================================================== */
++
++static int is_zero_width(wchar_t wc)
++{
++	return (wc >= 0x0300 && wc <= 0x036F)     /* combining diacriticals */
++	    || (wc >= 0x200B && wc <= 0x200F)     /* zero-width / direction  */
++	    || (wc >= 0xFE00 && wc <= 0xFE0F)     /* variation selectors     */
++	    || (wc >= 0xFE20 && wc <= 0xFE2F)     /* combining half marks    */
++	    || wc == 0x00AD;                      /* soft hyphen             */
++}
++
++static int is_wide(wchar_t wc)
++{
++	return (wc >= 0x1100 && wc <= 0x115F)     /* Hangul Jamo             */
++	    || (wc >= 0x2E80 && wc <= 0x303E)     /* CJK radicals, Kangxi    */
++	    || (wc >= 0x3041 && wc <= 0x33FF)     /* Hiragana .. CJK compat  */
++	    || (wc >= 0x3400 && wc <= 0x4DBF)     /* CJK ext A               */
++	    || (wc >= 0x4E00 && wc <= 0x9FFF)     /* CJK unified             */
++	    || (wc >= 0xA000 && wc <= 0xA4CF)     /* Yi                      */
++	    || (wc >= 0xAC00 && wc <= 0xD7A3)     /* Hangul syllables        */
++	    || (wc >= 0xF900 && wc <= 0xFAFF)     /* CJK compat ideographs   */
++	    || (wc >= 0xFE30 && wc <= 0xFE6F)     /* CJK compat forms        */
++	    || (wc >= 0xFF00 && wc <= 0xFF60)     /* fullwidth forms         */
++	    || (wc >= 0xFFE0 && wc <= 0xFFE6);    /* fullwidth signs         */
++}
++
++/* memmem(3) is a GNU extension; nnn uses it to search the selection
++ * buffer, which contains embedded NULs. */
++void *win_memmem(const void *hay, size_t haylen, const void *ndl, size_t ndllen)
++{
++	if (!hay || !ndl || ndllen > haylen)
++		return NULL;
++
++	if (!ndllen)
++		return (void *)hay;
++
++	const unsigned char *h = (const unsigned char *)hay;
++	const unsigned char *n = (const unsigned char *)ndl;
++	const unsigned char *last = h + (haylen - ndllen);
++
++	for (const unsigned char *p = h; p <= last; ++p)
++		if (*p == *n && !memcmp(p, n, ndllen))
++			return (void *)p;
++
++	return NULL;
++}
++
++ssize_t win_getline(char **lineptr, size_t *n, FILE *stream)
++{
++	if (!lineptr || !n || !stream) {
++		errno = EINVAL;
++		return -1;
++	}
++
++	if (!*lineptr || !*n) {
++		size_t cap = 128;
++		char  *buf = (char *)malloc(cap);
++
++		if (!buf) {
++			errno = ENOMEM;
++			return -1;
++		}
++		*lineptr = buf;
++		*n = cap;
++	}
++
++	size_t len = 0;
++	int    c;
++
++	while ((c = fgetc(stream)) != EOF) {
++		if (len + 2 > *n) {
++			size_t cap = *n * 2;
++			char  *buf = (char *)realloc(*lineptr, cap);
++
++			if (!buf) {
++				errno = ENOMEM;
++				return -1;
++			}
++			*lineptr = buf;
++			*n = cap;
++		}
++
++		(*lineptr)[len++] = (char)c;
++
++		if (c == '\n')
++			break;
++	}
++
++	if (!len && c == EOF)
++		return -1;
++
++	(*lineptr)[len] = '\0';
++	return (ssize_t)len;
++}
++
++/* wcswidth(3): display width of a wide string, or -1 if any character
++ * is non-printable. */
++int win_ffs(int v)
++{
++	if (!v)
++		return 0;
++
++	int pos = 1;
++
++	while (!(v & 1)) {
++		v = (int)((unsigned int)v >> 1);
++		++pos;
++	}
++
++	return pos;
++}
++
++int win_link(const char *oldpath, const char *newpath)
++{
++	wchar_t *wold = path_to_wide(oldpath);
++	wchar_t *wnew = path_to_wide(newpath);
++	int      ret = -1;
++
++	if (wold && wnew && CreateHardLinkW(wnew, wold, NULL))
++		ret = 0;
++	else
++		errno = EPERM;
++
++	free(wold);
++	free(wnew);
++	return ret;
++}
++
++/* Windows has no POSIX permission bits. The CRT honours only the
++ * user-write bit via _chmod, which is the one thing nnn's chmod toggle
++ * actually needs (read-only on/off).
++ * TODO(arm64): map the full mode to an ACL edit (S5, feature parity). */
++int win_fchmod(int fd, mode_t mode)
++{
++	HANDLE h = (HANDLE)_get_osfhandle(fd);
++
++	if (h == INVALID_HANDLE_VALUE) {
++		errno = EBADF;
++		return -1;
++	}
++
++	FILE_BASIC_INFO fbi;
++
++	if (!GetFileInformationByHandleEx(h, FileBasicInfo, &fbi, sizeof(fbi))) {
++		errno = EACCES;
++		return -1;
++	}
++
++	if (mode & 0200)
++		fbi.FileAttributes &= ~(DWORD)FILE_ATTRIBUTE_READONLY;
++	else
++		fbi.FileAttributes |= FILE_ATTRIBUTE_READONLY;
++
++	if (!fbi.FileAttributes)
++		fbi.FileAttributes = FILE_ATTRIBUTE_NORMAL;
++
++	/* Setting a time field to 0 means "do not change". */
++	fbi.CreationTime.QuadPart = 0;
++	fbi.LastAccessTime.QuadPart = 0;
++	fbi.LastWriteTime.QuadPart = 0;
++	fbi.ChangeTime.QuadPart = 0;
++
++	if (!SetFileInformationByHandle(h, FileBasicInfo, &fbi, sizeof(fbi))) {
++		errno = EACCES;
++		return -1;
++	}
++
++	return 0;
++}
++
++/* mingw provides localtime_s with the MSVC argument order (out, in),
++ * which is the reverse of POSIX localtime_r (in, out). */
++struct tm *win_localtime_r(const time_t *t, struct tm *out)
++{
++	if (!t || !out)
++		return NULL;
++
++	return localtime_s(out, t) ? NULL : out;
++}
++
++int win_wcwidth(wchar_t wc)
++{
++	if (wc == 0)
++		return 0;
++
++	if (wc < 32 || (wc >= 0x7F && wc < 0xA0))
++		return -1;
++
++	if (is_zero_width(wc))
++		return 0;
++
++	return is_wide(wc) ? 2 : 1;
++}
++
++int win_wcswidth(const wchar_t *s, size_t n)
++{
++	int total = 0;
++
++	if (!s)
++		return -1;
++
++	for (size_t i = 0; i < n && s[i]; ++i) {
++		int w = win_wcwidth(s[i]);
++
++		if (w < 0)
++			return -1;
++
++		total += w;
++	}
++	return total;
++}
++
++/* ================================================================== *
++ * Miscellaneous
++ * ================================================================== */
++
++long win_sysconf(int name)
++{
++	if (name == _SC_NPROCESSORS_ONLN) {
++		SYSTEM_INFO si;
++
++		GetSystemInfo(&si);
++		return (long)si.dwNumberOfProcessors;
++	}
++
++	errno = EINVAL;
++	return -1;
++}
++
++char *win_ctermid(char *s)
++{
++	static char buf[] = WIN_TTYNAME;
++
++	if (!s)
++		return buf;
++
++	strcpy(s, WIN_TTYNAME);
++	return s;
++}
++
++void win_console_init(void)
++{
++	/* UTF-8 in and out, so wide-character output reaches the console
++	 * intact regardless of the system code page. */
++	SetConsoleOutputCP(CP_UTF8);
++	SetConsoleCP(CP_UTF8);
++
++	/* Enable VT processing, which lets ncurses use its ordinary
++	 * terminfo path (TERM=ms-terminal) rather than the legacy
++	 * console driver. */
++	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
++	DWORD  mode = 0;
++
++	if (out != INVALID_HANDLE_VALUE && GetConsoleMode(out, &mode))
++		SetConsoleMode(out, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
++
++	HANDLE in = GetStdHandle(STD_INPUT_HANDLE);
++
++	if (in != INVALID_HANDLE_VALUE && GetConsoleMode(in, &mode)) {
++		mode |= ENABLE_VIRTUAL_TERMINAL_INPUT;
++		mode &= ~(DWORD)ENABLE_QUICK_EDIT_MODE;   /* else mouse input is swallowed */
++		mode |= ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT | ENABLE_WINDOW_INPUT;
++		SetConsoleMode(in, mode);
++	}
++}
++
++/* ================================================================== *
++ * Directory change notification (ReadDirectoryChangesW)
++ *
++ * A fourth arm for nnn's LINUX_INOTIFY / BSD_KQUEUE / HAIKU_NM
++ * abstraction. Overlapped I/O is used so that polling never blocks the
++ * UI thread.
++ * ================================================================== */
++
++struct win_nm_t {
++	HANDLE     dir;
++	OVERLAPPED ov;
++	int        pending;
++	char       buf[8192];
++};
++
++win_nm_h win_init_nm(void)
++{
++	struct win_nm_t *h = (struct win_nm_t *)calloc(1, sizeof(*h));
++
++	if (!h)
++		return NULL;
++
++	h->dir = INVALID_HANDLE_VALUE;
++	h->ov.hEvent = CreateEventW(NULL, TRUE, FALSE, NULL);
++
++	if (!h->ov.hEvent) {
++		free(h);
++		return NULL;
++	}
++	return h;
++}
++
++void win_close_nm(win_nm_h h)
++{
++	if (!h)
++		return;
++
++	win_stop_watch(h);
++
++	if (h->ov.hEvent)
++		CloseHandle(h->ov.hEvent);
++
++	free(h);
++}
++
++static int queue_read(struct win_nm_t *h)
++{
++	ResetEvent(h->ov.hEvent);
++
++	BOOL ok = ReadDirectoryChangesW(h->dir, h->buf, sizeof(h->buf), FALSE,
++					FILE_NOTIFY_CHANGE_FILE_NAME
++					| FILE_NOTIFY_CHANGE_DIR_NAME
++					| FILE_NOTIFY_CHANGE_ATTRIBUTES
++					| FILE_NOTIFY_CHANGE_SIZE
++					| FILE_NOTIFY_CHANGE_LAST_WRITE,
++					NULL, &h->ov, NULL);
++
++	h->pending = ok ? 1 : 0;
++	return ok ? 0 : -1;
++}
++
++int win_watch_dir(win_nm_h h, const char *path)
++{
++	if (!h || !path)
++		return -1;
++
++	win_stop_watch(h);
++
++	wchar_t *wpath = path_to_wide(path);
++
++	if (!wpath)
++		return -1;
++
++	h->dir = CreateFileW(wpath, FILE_LIST_DIRECTORY,
++			     FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
++			     NULL, OPEN_EXISTING,
++			     FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, NULL);
++	free(wpath);
++
++	if (h->dir == INVALID_HANDLE_VALUE)
++		return -1;
++
++	return queue_read(h);
++}
++
++int win_stop_watch(win_nm_h h)
++{
++	if (!h)
++		return -1;
++
++	if (h->dir != INVALID_HANDLE_VALUE) {
++		CancelIo(h->dir);
++		CloseHandle(h->dir);
++		h->dir = INVALID_HANDLE_VALUE;
++	}
++
++	h->pending = 0;
++	return 0;
++}
++
++int win_is_update_needed(win_nm_h h)
++{
++	if (!h || h->dir == INVALID_HANDLE_VALUE || !h->pending)
++		return 0;
++
++	DWORD transferred = 0;
++
++	if (!GetOverlappedResult(h->dir, &h->ov, &transferred, FALSE))
++		return 0;   /* still pending, or failed */
++
++	/* Consume the notification and re-arm for the next one. */
++	queue_read(h);
++
++	return 1;
++}
++
++#endif /* _WIN32 */
+diff --git a/src/win/win_compat.h b/src/win/win_compat.h
+new file mode 100644
+index 00000000..680daca7
+--- /dev/null
++++ b/src/win/win_compat.h
+@@ -0,0 +1,406 @@
++/*
++ * win_compat.h — Win32 portability layer for nnn
++ *
++ * nnn is a POSIX program. This header supplies the POSIX surface that
++ * mingw-w64 / UCRT does not, so that src/nnn.c compiles for native
++ * Windows (including Windows on ARM64) with a minimal diff.
++ *
++ * Design rules:
++ *   1. Only ever reached under _WIN32. Every POSIX platform keeps its
++ *      original code path untouched.
++ *   2. Where the CRT already provides a symbol with POSIX semantics, do
++ *      nothing and let it through.
++ *   3. Where a POSIX name exists with different semantics or signature,
++ *      shadow it with a wrapper — the same trick mingw itself uses
++ *      (e.g. `#define stat _stat64`). Macro sparingly; each one is a
++ *      chance to break an unrelated identifier.
++ *
++ * Modelled on misc/haiku/haiku_interop.h, which is how upstream already
++ * onboards a non-POSIX platform.
++ */
++
++#ifndef NNN_WIN_COMPAT_H
++#define NNN_WIN_COMPAT_H
++
++#ifdef _WIN32
++
++#ifndef WIN32_LEAN_AND_MEAN
++#define WIN32_LEAN_AND_MEAN
++#endif
++#include <windows.h>
++
++#include <stdint.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <wchar.h>
++#include <io.h>
++#include <process.h>
++#include <direct.h>
++#include <sys/types.h>
++#include <sys/stat.h>
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/* ------------------------------------------------------------------ *
++ * Types the CRT lacks
++ * ------------------------------------------------------------------ */
++
++typedef int64_t  blkcnt_t;
++typedef uint32_t uid_t;
++typedef uint32_t gid_t;
++typedef uint32_t nlink_t;
++
++/* ------------------------------------------------------------------ *
++ * File type bits
++ *
++ * Windows has no S_IFLNK. We synthesise one (0xA000 fits the CRT's
++ * 16-bit mode_t) and report it for reparse points.
++ * ------------------------------------------------------------------ */
++
++#ifndef S_IFLNK
++#define S_IFLNK  0xA000
++#endif
++#ifndef S_ISLNK
++#define S_ISLNK(m)  (((m) & S_IFMT) == S_IFLNK)
++#endif
++#ifndef S_ISSOCK
++#define S_ISSOCK(m) ((void)(m), 0)
++#endif
++#ifndef S_ISFIFO
++#define S_ISFIFO(m) (((m) & S_IFMT) == _S_IFIFO)
++#endif
++#ifndef S_ISBLK
++#define S_ISBLK(m)  ((void)(m), 0)
++#endif
++
++#ifndef S_IRWXU
++#define S_IRWXU 0000700
++#define S_IRUSR 0000400
++#define S_IWUSR 0000200
++#define S_IXUSR 0000100
++#endif
++#ifndef S_IRWXG
++#define S_IRWXG 0000070
++#define S_IRGRP 0000040
++#define S_IWGRP 0000020
++#define S_IXGRP 0000010
++#endif
++#ifndef S_IRWXO
++#define S_IRWXO 0000007
++#define S_IROTH 0000004
++#define S_IWOTH 0000002
++#define S_IXOTH 0000001
++#endif
++#ifndef S_ISUID
++#define S_ISUID 0004000
++#define S_ISGID 0002000
++#define S_ISVTX 0001000
++#endif
++#ifndef S_BLKSIZE
++#define S_BLKSIZE 512
++#endif
++
++/* ------------------------------------------------------------------ *
++ * struct stat
++ *
++ * The CRT's struct stat lacks st_blocks and cannot express symlinks.
++ * We define a POSIX-shaped one and shadow the name. `stat` is both a
++ * struct tag and a function, and one object-like macro covers both.
++ * ------------------------------------------------------------------ */
++
++struct win_stat {
++	uint64_t   st_dev;
++	uint64_t   st_ino;
++	uint32_t   st_mode;
++	nlink_t    st_nlink;
++	uid_t      st_uid;
++	gid_t      st_gid;
++	uint64_t   st_rdev;
++	int64_t    st_size;
++	blkcnt_t   st_blocks;    /* 512-byte units, as POSIX */
++	int64_t    st_blksize;
++	time_t     st_atime;
++	time_t     st_mtime;
++	time_t     st_ctime;
++	/* NTFS timestamps are 100ns resolution; nnn uses nsec to break
++	 * sort ties, so carry the sub-second part rather than zeroing it. */
++	uint32_t   st_atime_nsec;
++	uint32_t   st_mtime_nsec;
++	uint32_t   st_ctime_nsec;
++};
++
++int win_stat(const char *path, struct win_stat *sb);
++int win_lstat(const char *path, struct win_stat *sb);
++int win_fstat_fd(int fd, struct win_stat *sb);
++
++#ifndef AT_FDCWD
++#define AT_FDCWD (-100)
++#endif
++#ifndef AT_SYMLINK_NOFOLLOW
++#define AT_SYMLINK_NOFOLLOW 0x100
++#endif
++
++/* mingw has no *at() family. nnn only performs CWD-relative lookups
++ * plus AT_SYMLINK_NOFOLLOW, so resolve against the process CWD. */
++int win_fstatat(int dirfd, const char *path, struct win_stat *sb, int flags);
++
++#define stat    win_stat
++#define lstat   win_lstat
++#define fstat   win_fstat_fd
++#define fstatat win_fstatat
++
++/* ------------------------------------------------------------------ *
++ * dirent with d_type
++ *
++ * mingw ships a <dirent.h>, but its struct dirent has no d_type, which
++ * would force a stat() per entry — the exact cost nnn is built to
++ * avoid. We implement dirent over FindFirstFileW, which supplies the
++ * file attributes for free.
++ * ------------------------------------------------------------------ */
++
++#define DT_UNKNOWN 0
++#define DT_FIFO    1
++#define DT_CHR     2
++#define DT_DIR     4
++#define DT_BLK     6
++#define DT_REG     8
++#define DT_LNK    10
++#define DT_SOCK   12
++
++struct dirent {
++	uint64_t       d_ino;
++	unsigned char  d_type;
++	unsigned short d_reclen;
++	char           d_name[1024];   /* UTF-8 */
++};
++
++typedef struct win_DIR DIR;
++
++DIR           *opendir(const char *path);
++struct dirent *readdir(DIR *dirp);
++int            closedir(DIR *dirp);
++int            dirfd(DIR *dirp);
++
++/* ------------------------------------------------------------------ *
++ * statvfs
++ * ------------------------------------------------------------------ */
++
++struct statvfs {
++	unsigned long f_bsize;
++	unsigned long f_frsize;
++	uint64_t      f_blocks;
++	uint64_t      f_bfree;
++	uint64_t      f_bavail;
++	uint64_t      f_files;
++	uint64_t      f_ffree;
++	uint64_t      f_favail;
++	unsigned long f_fsid;
++	unsigned long f_flag;
++	unsigned long f_namemax;
++};
++
++int statvfs(const char *path, struct statvfs *buf);
++
++/* ------------------------------------------------------------------ *
++ * Signals
++ *
++ * The CRT has ANSI signal() only: no sigaction, and none of
++ * SIGWINCH/SIGTSTP/SIGHUP/SIGQUIT/SIGPIPE. nnn already handles terminal
++ * resize through curses KEY_RESIZE (11 call sites), so SIGWINCH is not
++ * load-bearing here.
++ * ------------------------------------------------------------------ */
++
++#ifndef SIGHUP
++#define SIGHUP   1
++#endif
++#ifndef SIGQUIT
++#define SIGQUIT  3
++#endif
++#ifndef SIGPIPE
++#define SIGPIPE 13
++#endif
++#ifndef SIGTSTP
++#define SIGTSTP 20
++#endif
++#ifndef SIGWINCH
++#define SIGWINCH 28
++#endif
++
++struct sigaction {
++	void (*sa_handler)(int);
++	int    sa_mask;
++	int    sa_flags;
++};
++
++int win_sigaction(int sig, const struct sigaction *act, struct sigaction *old);
++/* Function-like, so `struct sigaction` is never expanded. */
++#define sigaction(s, a, o) win_sigaction((s), (a), (o))
++
++/* ------------------------------------------------------------------ *
++ * Process control
++ *
++ * There is no fork() on Windows and no way to emulate one, so nnn's
++ * fork/exec/wait triad is replaced wholesale by CreateProcessW.
++ * ------------------------------------------------------------------ */
++
++/* Run argv to completion, or detached when nowait. Returns the child's
++ * exit status, or -1 on failure. */
++int win_spawn_argv(char *const argv[], int nowait, int notrace, int nostdin, int tty);
++
++/* Run argv to completion with stdout (and stderr) redirected to out_fd,
++ * then wait. This replaces the pipe()/fork()/dup2()/execvp()/waitpid()
++ * sequence nnn uses to capture command output; Windows has no fork(), so
++ * the redirection must be set up before the process is created rather
++ * than in a forked child. Returns the exit status, or -1 on failure. */
++int win_spawn_capture(char *const argv[], int out_fd);
++
++/* Anonymous pipe with a 64KB buffer, matching the default Linux pipe
++ * capacity. Not inheritable: win_spawn_capture() duplicates just the
++ * write end into the child, so the read end is never held open by it. */
++int win_pipe(int fds[2]);
++#define pipe win_pipe
++
++int win_setenv(const char *name, const char *value, int overwrite);int win_unsetenv(const char *name);
++#define setenv   win_setenv
++#define unsetenv win_unsetenv
++
++/* ------------------------------------------------------------------ *
++ * Paths and links
++ * ------------------------------------------------------------------ */
++
++char    *win_realpath(const char *path, char *resolved);
++ssize_t  win_readlink(const char *path, char *buf, size_t bufsiz);
++int      win_symlink(const char *target, const char *linkpath);
++#define realpath win_realpath
++#define readlink win_readlink
++#define symlink  win_symlink
++
++/* ------------------------------------------------------------------ *
++ * Odds and ends the CRT omits
++ * ------------------------------------------------------------------ */
++
++char    *win_strsep(char **stringp, const char *delim);
++char    *win_strcasestr(const char *haystack, const char *needle);
++void    *win_memmem(const void *hay, size_t haylen, const void *ndl, size_t ndllen);
++ssize_t  win_getline(char **lineptr, size_t *n, FILE *stream);
++int      win_wcswidth(const wchar_t *s, size_t n);
++int      win_ffs(int v);
++int      win_link(const char *oldpath, const char *newpath);
++int      win_fchmod(int fd, mode_t mode);
++struct tm *win_localtime_r(const time_t *t, struct tm *out);
++#define strsep     win_strsep
++#define strcasestr win_strcasestr
++#define memmem     win_memmem
++#define getline    win_getline
++#define wcswidth   win_wcswidth
++#define ffs        win_ffs
++#define link       win_link
++#define fchmod     win_fchmod
++#define localtime_r win_localtime_r
++
++/* Windows has no AF_UNIX filesystem sockets in the POSIX sense, and no
++ * st_mode bit for them. nnn only ever tests st_mode against this, so a
++ * value that can never match is correct rather than merely convenient. */
++#ifndef S_IFSOCK
++#define S_IFSOCK 0140000
++#endif
++
++int win_wcwidth(wchar_t wc);
++int win_wcswidth(const wchar_t *s, size_t n);
++
++long win_sysconf(int name);
++#define sysconf win_sysconf
++#ifndef _SC_NPROCESSORS_ONLN
++#define _SC_NPROCESSORS_ONLN 84
++#endif
++
++char *win_ctermid(char *s);
++#define ctermid win_ctermid
++
++/* Windows' null and console devices. */
++#define WIN_DEVNULL "NUL"
++#define WIN_TTYNAME "CONIN$"
++
++/* major()/minor() come from <sys/sysmacros.h> on Linux; meaningless here. */
++#ifndef major
++#define major(x) ((void)(x), 0)
++#define minor(x) ((void)(x), 0)
++#endif
++
++/* No Windows analogue; nnn only calls these on the POSIX side. */
++#define setsid()  (0)
++#define getppid() (0)
++#define geteuid() (0)
++#define getuid()  (0)
++#define getgid()  (0)
++
++/* The CRT's _mkdir() takes no mode argument. */
++#define mkdir(p, m) ((void)(m), _mkdir(p))
++
++#ifndef F_OK
++#define F_OK 0
++#define X_OK 1
++#define W_OK 2
++#define R_OK 4
++#endif
++
++#ifndef O_CLOEXEC
++#define O_CLOEXEC 0
++#endif
++#ifndef O_DIRECTORY
++#define O_DIRECTORY 0
++#endif
++
++#ifndef STDIN_FILENO
++#define STDIN_FILENO  0
++#define STDOUT_FILENO 1
++#define STDERR_FILENO 2
++#endif
++
++#ifndef PATH_MAX
++#define PATH_MAX 4096
++#endif
++
++/* win_spawn_argv() already returns a plain exit code. */
++#ifndef WIFEXITED
++#define WIFEXITED(s)   ((void)(s), 1)
++#define WEXITSTATUS(s) (s)
++#define WIFSIGNALED(s) ((void)(s), 0)
++#define WTERMSIG(s)    ((void)(s), 0)
++#endif
++
++/* ------------------------------------------------------------------ *
++ * Directory change notification
++ *
++ * A fourth arm for nnn's existing LINUX_INOTIFY / BSD_KQUEUE /
++ * HAIKU_NM abstraction, backed by ReadDirectoryChangesW.
++ * ------------------------------------------------------------------ */
++
++typedef struct win_nm_t *win_nm_h;
++
++win_nm_h win_init_nm(void);
++void     win_close_nm(win_nm_h hnd);
++int      win_watch_dir(win_nm_h hnd, const char *path);
++int      win_stop_watch(win_nm_h hnd);
++int      win_is_update_needed(win_nm_h hnd);
++
++/* ------------------------------------------------------------------ *
++ * Console and encoding
++ * ------------------------------------------------------------------ */
++
++/* Put the console into UTF-8 + VT mode. Call once before curses init. */
++void win_console_init(void);
++
++/* UTF-8 <-> UTF-16. Returned pointers are heap-allocated; free() them. */
++wchar_t *win_utf8_to_wide(const char *s);
++char    *win_wide_to_utf8(const wchar_t *w);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* _WIN32 */
++#endif /* NNN_WIN_COMPAT_H */
+-- 
+2.52.0.vfs.0.5
+

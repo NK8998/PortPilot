@@ -1,0 +1,4 @@
+steps:
+  - name: Run native ARM64 tests
+    continue-on-error: true
+    run: .\ARM64\Debug\CppCoverageTest.exe
