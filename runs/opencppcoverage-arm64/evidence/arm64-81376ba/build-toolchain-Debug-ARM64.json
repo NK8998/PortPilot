@@ -1,0 +1,22 @@
+{
+  "BuildLog": "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\artifacts\\logs\\build-Debug-ARM64.log",
+  "ExpectedHost": "Hostarm64",
+  "Invocations": [
+    {
+      "Tool": "cl",
+      "Host": "HostArm64",
+      "Target": "arm64",
+      "ToolsVersion": "14.44.35207",
+      "Count": 32
+    },
+    {
+      "Tool": "link",
+      "Host": "HostArm64",
+      "Target": "arm64",
+      "ToolsVersion": "14.44.35207",
+      "Count": 16
+    }
+  ],
+  "Problems": [],
+  "Succeeded": true
+}

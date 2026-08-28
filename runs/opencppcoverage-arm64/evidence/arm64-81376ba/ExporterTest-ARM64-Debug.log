@@ -1,0 +1,97 @@
+[==========] Running 34 tests from 8 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from BinaryExporterTest
+[ RUN      ] BinaryExporterTest.SubFolderDoesNotExist
+[       OK ] BinaryExporterTest.SubFolderDoesNotExist (3 ms)
+[ RUN      ] BinaryExporterTest.OutputExists
+[       OK ] BinaryExporterTest.OutputExists (1 ms)
+[ RUN      ] BinaryExporterTest.InvalidFile
+[       OK ] BinaryExporterTest.InvalidFile (2 ms)
+[----------] 3 tests from BinaryExporterTest (7 ms total)
+
+[----------] 5 tests from CoberturaExporterTest
+[ RUN      ] CoberturaExporterTest.Export
+[       OK ] CoberturaExporterTest.Export (30 ms)
+[ RUN      ] CoberturaExporterTest.SubFolderDoesNotExist
+[       OK ] CoberturaExporterTest.SubFolderDoesNotExist (3 ms)
+[ RUN      ] CoberturaExporterTest.SpecialChars
+[       OK ] CoberturaExporterTest.SpecialChars (2 ms)
+[ RUN      ] CoberturaExporterTest.OutputExists
+[       OK ] CoberturaExporterTest.OutputExists (2 ms)
+[ RUN      ] CoberturaExporterTest.InvalidFile
+[       OK ] CoberturaExporterTest.InvalidFile (2 ms)
+[----------] 5 tests from CoberturaExporterTest (40 ms total)
+
+[----------] 2 tests from CoverageDataSerializerTest
+[ RUN      ] CoverageDataSerializerTest.SerializeAndDeserialize
+[       OK ] CoverageDataSerializerTest.SerializeAndDeserialize (196 ms)
+[ RUN      ] CoverageDataSerializerTest.InvalidFile
+[       OK ] CoverageDataSerializerTest.InvalidFile (1 ms)
+[----------] 2 tests from CoverageDataSerializerTest (197 ms total)
+
+[----------] 5 tests from ExporterPluginManagerTest
+[ RUN      ] ExporterPluginManagerTest.CreateExportPluginDescriptions
+[       OK ] ExporterPluginManagerTest.CreateExportPluginDescriptions (4 ms)
+[ RUN      ] ExporterPluginManagerTest.InvalidVersion
+[       OK ] ExporterPluginManagerTest.InvalidVersion (3 ms)
+[ RUN      ] ExporterPluginManagerTest.TryLoadPluginFailure
+[       OK ] ExporterPluginManagerTest.TryLoadPluginFailure (2 ms)
+[ RUN      ] ExporterPluginManagerTest.Export
+[       OK ] ExporterPluginManagerTest.Export (2 ms)
+[ RUN      ] ExporterPluginManagerTest.InvalidExport
+[       OK ] ExporterPluginManagerTest.InvalidExport (2 ms)
+[----------] 5 tests from ExporterPluginManagerTest (16 ms total)
+
+[----------] 6 tests from HtmlExporterTest
+[ RUN      ] HtmlExporterTest.Export
+[       OK ] HtmlExporterTest.Export (35 ms)
+[ RUN      ] HtmlExporterTest.NoWarning
+[       OK ] HtmlExporterTest.NoWarning (30 ms)
+[ RUN      ] HtmlExporterTest.Warning
+[       OK ] HtmlExporterTest.Warning (28 ms)
+[ RUN      ] HtmlExporterTest.SubFolderDoesNotExist
+[       OK ] HtmlExporterTest.SubFolderDoesNotExist (33 ms)
+[ RUN      ] HtmlExporterTest.OutputExists
+[       OK ] HtmlExporterTest.OutputExists (27 ms)
+[ RUN      ] HtmlExporterTest.SameModuleSameSourceFile
+[       OK ] HtmlExporterTest.SameModuleSameSourceFile (34 ms)
+[----------] 6 tests from HtmlExporterTest (191 ms total)
+
+[----------] 5 tests from HtmlFileCoverageExporterTest
+[ RUN      ] HtmlFileCoverageExporterTest.ExecutedLine
+[       OK ] HtmlFileCoverageExporterTest.ExecutedLine (1 ms)
+[ RUN      ] HtmlFileCoverageExporterTest.NotExecutedLine
+[       OK ] HtmlFileCoverageExporterTest.NotExecutedLine (0 ms)
+[ RUN      ] HtmlFileCoverageExporterTest.NotRunnableLine
+[       OK ] HtmlFileCoverageExporterTest.NotRunnableLine (0 ms)
+[ RUN      ] HtmlFileCoverageExporterTest.SeveralLines
+[       OK ] HtmlFileCoverageExporterTest.SeveralLines (1 ms)
+[ RUN      ] HtmlFileCoverageExporterTest.MustEnableCodePrettify
+[       OK ] HtmlFileCoverageExporterTest.MustEnableCodePrettify (0 ms)
+[----------] 5 tests from HtmlFileCoverageExporterTest (4 ms total)
+
+[----------] 5 tests from HtmlFolderStructureTest
+[ RUN      ] HtmlFolderStructureTest.CreateCurrentRoot
+[       OK ] HtmlFolderStructureTest.CreateCurrentRoot (4 ms)
+[ RUN      ] HtmlFolderStructureTest.CreateCurrentModule
+[       OK ] HtmlFolderStructureTest.CreateCurrentModule (4 ms)
+[ RUN      ] HtmlFolderStructureTest.GetHtmlFilePath
+[       OK ] HtmlFolderStructureTest.GetHtmlFilePath (4 ms)
+[ RUN      ] HtmlFolderStructureTest.TestConflictModules
+[       OK ] HtmlFolderStructureTest.TestConflictModules (6 ms)
+[ RUN      ] HtmlFolderStructureTest.TestConflictFile
+[       OK ] HtmlFolderStructureTest.TestConflictFile (5 ms)
+[----------] 5 tests from HtmlFolderStructureTest (25 ms total)
+
+[----------] 3 tests from TemplateHtmlExporterTest
+[ RUN      ] TemplateHtmlExporterTest.ProjectTemplate
+[       OK ] TemplateHtmlExporterTest.ProjectTemplate (3 ms)
+[ RUN      ] TemplateHtmlExporterTest.ModuleTemplateWithNoLink
+[       OK ] TemplateHtmlExporterTest.ModuleTemplateWithNoLink (2 ms)
+[ RUN      ] TemplateHtmlExporterTest.FileTemplate
+[       OK ] TemplateHtmlExporterTest.FileTemplate (3 ms)
+[----------] 3 tests from TemplateHtmlExporterTest (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 34 tests from 8 test suites ran. (494 ms total)
+[  PASSED  ] 34 tests.

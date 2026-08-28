@@ -1,0 +1,85 @@
+{
+  "Platform": "ARM64",
+  "Configuration": "Release",
+  "OSArchitecture": "Arm64",
+  "Success": true,
+  "Failures": [],
+  "Suites": [
+    {
+      "Name": "CppCoverageTest",
+      "ExitCode": 0,
+      "Ran": 116,
+      "Passed": 116,
+      "LogPath": "artifacts\\logs\\CppCoverageTest-ARM64-Release.log",
+      "Error": null
+    },
+    {
+      "Name": "ExporterTest",
+      "ExitCode": 0,
+      "Ran": 34,
+      "Passed": 34,
+      "LogPath": "artifacts\\logs\\ExporterTest-ARM64-Release.log",
+      "Error": null
+    },
+    {
+      "Name": "FileFilterTest",
+      "ExitCode": 0,
+      "Ran": 29,
+      "Passed": 29,
+      "LogPath": "artifacts\\logs\\FileFilterTest-ARM64-Release.log",
+      "Error": null
+    },
+    {
+      "Name": "OpenCppCoverageTest",
+      "ExitCode": 0,
+      "Ran": 19,
+      "Passed": 19,
+      "LogPath": "artifacts\\logs\\OpenCppCoverageTest-ARM64-Release.log",
+      "Error": null
+    },
+    {
+      "Name": "PluginTest",
+      "ExitCode": 0,
+      "Ran": 5,
+      "Passed": 5,
+      "LogPath": "artifacts\\logs\\PluginTest-ARM64-Release.log",
+      "Error": null
+    },
+    {
+      "Name": "ToolsTest",
+      "ExitCode": 0,
+      "Ran": 12,
+      "Passed": 12,
+      "LogPath": "artifacts\\logs\\ToolsTest-ARM64-Release.log",
+      "Error": null
+    }
+  ],
+  "ExcludedTests": [
+    {
+      "Test": "CodeCoverageRunnerTest.OptimizedBuild",
+      "Platforms": [
+        "x86",
+        "x64",
+        "ARM64"
+      ],
+      "Reason": "Depends on the checked-in OptimizedBuildVS2013 x86 fixture, which is not rebuilt for other toolsets or architectures."
+    },
+    {
+      "Test": "CppCliTest.ManagedUnManagedModule",
+      "Platforms": [
+        "x86",
+        "ARM64"
+      ],
+      "Reason": "Requires the C++/CLI TestCppCli assembly. MSVC does not support /clr for ARM64 targets, so no ARM64 managed module can exist."
+    }
+  ],
+  "ExcludedProjects": [
+    {
+      "Project": "TestCppCli",
+      "Platforms": [
+        "ARM64"
+      ],
+      "Reason": "MSVC has no /clr code generation for ARM64. The project is intentionally not built for ARM64 rather than silently mapped to another architecture."
+    }
+  ]
+}

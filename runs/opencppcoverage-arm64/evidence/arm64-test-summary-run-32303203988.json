@@ -1,0 +1,44 @@
+[
+  {
+    "Suite": "CppCoverageTest",
+    "ExitCode": 1,
+    "Ran": "116",
+    "Passed": "114",
+    "Failed": "2, CodeCoverageRunnerTest.RunThread, DebugInformationEnumeratorTest.Enumerate"
+  },
+  {
+    "Suite": "ExporterTest",
+    "ExitCode": 0,
+    "Ran": "34",
+    "Passed": "34",
+    "Failed": ""
+  },
+  {
+    "Suite": "FileFilterTest",
+    "ExitCode": 0,
+    "Ran": "29",
+    "Passed": "29",
+    "Failed": ""
+  },
+  {
+    "Suite": "OpenCppCoverageTest",
+    "ExitCode": 0,
+    "Ran": "19",
+    "Passed": "19",
+    "Failed": ""
+  },
+  {
+    "Suite": "PluginTest",
+    "ExitCode": 0,
+    "Ran": "5",
+    "Passed": "5",
+    "Failed": ""
+  },
+  {
+    "Suite": "ToolsTest",
+    "ExitCode": 0,
+    "Ran": "12",
+    "Passed": "12",
+    "Failed": ""
+  }
+]

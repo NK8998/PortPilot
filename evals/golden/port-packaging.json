@@ -1,0 +1,16 @@
+{
+  "skill": "port-packaging",
+  "fixtures": [
+    {
+      "name": "positive",
+      "expected": [
+        { "ruleId": "PKG-0001", "file": "Package.ps1", "line": 1 },
+        { "ruleId": "PKG-0002", "file": "Package.ps1", "line": 2 },
+        { "ruleId": "PKG-0003", "file": "PackageRedist.ps1", "line": 1 },
+        { "ruleId": "PKG-0005", "file": "PackageRedist.ps1", "line": 2 },
+        { "ruleId": "PKG-0004", "file": "PackageRedist.ps1", "line": 4 }
+      ]
+    },
+    { "name": "negative", "expected": [] }
+  ]
+}

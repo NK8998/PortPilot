@@ -1,0 +1,81 @@
+Host toolchain and source encoding analysis for the native Windows ARM64 jobs
+Produced by the winport coordinator session from the retained GitHub Actions logs.
+
+CORRECTION NOTICE
+An earlier revision of this file concluded that the published release build at e74bc2f7 was
+"green by toolchain accident" because its sources were byte-identical to the failing bf5cdc1.
+That conclusion was WRONG and is retracted here. It was produced by reading file bytes through
+the GitHub contents API, which transcodes the payload and therefore cannot support a byte-level
+claim. The OpenCppCoverage session challenged it and was correct. The corrected finding, and the
+evidence-integrity lesson that caused the error, are both recorded below.
+
+Decisive evidence: git blob identity
+Git blob SHA-1 is computed over "blob <length>\0" plus the raw bytes, so it cannot be affected by
+any transport transcoding. Blob ids were read from the trees API and each was independently
+recomputed from the /git/blobs payload by this session; all three recomputations matched.
+
+  CppCoverageTest/CodeCoverageRunnerTest.cpp
+
+  commit    blob                                      bytes  first 3   first non-ASCII run
+  bf5cdc1   b5c6e73e9758e5db5e710c03ae45f97db1a03af0  19203  2f 2f 20  c3 a9 c3 a0 c3 a8
+  e74bc2f7  822f29ac6ae2edc25a1eda6ee6a996e20cf05f69  19184  2f 2f 20  e9 e0 e8
+  0c2ea8d   93f423dac17c7e6619c5e7b50487404930bea924  19206  ef bb bf  c3 a9 c3 a0 c3 a8
+
+  19203 - 19184 = 19, exactly the inflation from re-encoding 19 Latin-1 characters as two-byte
+  UTF-8. 19206 = 19203 + 3, a BOM prepended to the re-encoded form.
+
+Corrected conclusion
+  bf5cdc1  BOM-less UTF-8. MSVC decodes it with the active code page, so the quoted non-ASCII
+           include becomes mojibake. Genuinely broken; would have failed under any host flavour.
+  e74bc2f7 Upstream Windows-1252 bytes, which MSVC decodes correctly under the active code page.
+           Correct by construction. It did NOT pass by accident.
+  0c2ea8d  UTF-8 with BOM, self-describing regardless of active code page. Also correct.
+There were two valid repairs of bf5cdc1 and the two sessions shipped different ones. Neither is
+wrong, but they must not be mixed: applying the 0c2ea8d blob onto the e74bc2f7 line would convert
+a correct ANSI file back into UTF-8.
+
+Host architecture does not participate in source decoding; only the active code page does. The
+host flavour counts below are therefore real but causally unrelated to the C1083 failure.
+
+Run 32347208182, commit bf5cdc1, conclusion failure:
+    bin\hostarm64\arm64  x70
+    result: CodeCoverageRunnerTest.cpp(49,10): fatal error C1083, include name mojibake
+            cause: BOM-less UTF-8 source, not the host flavour
+
+Run 32349116627, commit e74bc2f7, conclusion success, this is the published release build:
+    bin\hostx86\arm64    x95
+    bin\hostarm64\arm64  x2
+    result: build succeeded because the source bytes are correct
+
+Run 32350427917, commit 0c2ea8d, BOM repair plus byte-level encoding gate:
+    bin\hostarm64\arm64  x134
+    result: Build Debug, Run Debug tests, Run end-to-end coverage oracle, and Build Release all
+            succeeded; the gate reported "Source encoding gate passed for 286 files";
+            the Package step failed because this branch predates the packaging fixes.
+
+What survives, and why it still matters
+The mixed host flavour at 32349116627 remains a real defect worth rejecting: an unpinned
+PreferredToolArchitecture lets MSBuild resolve a different compiler between runs, which makes any
+toolchain-sensitive failure intermittent rather than reproducible. It simply was not the cause of
+this particular failure. Both sessions have since pinned it; the OpenCppCoverage side added
+Assert-BuildToolchain.ps1, which parses the actual cl/link command lines out of the build log and
+fails on an unexpected host directory or mixed toolset versions, closing the gap between the
+compiler that was probed and the compiler that was invoked.
+
+Evidence-integrity lesson that produced the retracted conclusion
+The GitHub contents API transcodes file content, so it cannot answer a question about bytes.
+Measured on this exact file at e74bc2f7:
+    contents API "size" field        : 19184
+    contents API base64 payload      : 19187 bytes
+    true blob size from /git/blobs   : 19184
+    payload first non-ASCII bytes    : c3 a9 c3   (the Windows-1252 file rendered as UTF-8)
+The endpoint's own two fields disagree, and it renders a correct Windows-1252 file and a broken
+UTF-8 file identically. Byte-level claims must come from /git/blobs, or from comparing blob ids,
+never from the contents API. The same class of error occurs locally when a PowerShell redirection
+such as `git cat-file blob <sha> > file` decodes and re-encodes through the console encoding;
+use `git cat-file blob <sha> | Set-Content -AsByteStream` or an explicit byte write instead.
+
+Local control experiment, AMD64 host, ACP=1252, MSVC 14.44:
+  a two-line fixture with a BOM-less UTF-8 source and a non-ASCII quoted include reproduced
+  fatal error C1083: Cannot open include file: 'Hdr<c3><a9><c3><a0><c3><a8>.hpp', exit 2.
+  This confirms the decoding mechanism; it does not implicate e74bc2f7, whose bytes are correct.

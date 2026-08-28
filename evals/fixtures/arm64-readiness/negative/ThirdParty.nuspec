@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <files>
+    <file src="installed\x64-windows\lib\*.lib" target="lib\x64" />
+    <file src="installed\arm64-windows\lib\*.lib" target="lib\arm64" />
+  </files>
+</package>

@@ -1,0 +1,15 @@
+{
+  "Platform": "ARM64",
+  "Configuration": "Release",
+  "Label": "packaged",
+  "OpenCppCoverage": "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64\\Binaries\\OpenCppCoverage.exe",
+  "OSArchitecture": "Arm64",
+  "ProcessArchitecture": "Arm64",
+  "CoverageExitCode": 0,
+  "ReportPath": "artifacts\\logs\\e2e-cobertura-ARM64-Release-packaged.xml",
+  "TotalLines": 24,
+  "CoveredLines": 2,
+  "UnreachableLine": 36,
+  "UnreachableHits": 0,
+  "Success": true
+}

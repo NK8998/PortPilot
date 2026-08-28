@@ -1,0 +1,4 @@
+Visual Studio setup exited with code 0 after the compiler and CRT probes passed.
+vcpkg VCToolsVersion=14.44.35207; MSBuild VCToolsVersion=14.44.35207
+Platform=ARM64 PlatformToolset=v145 WindowsTargetPlatformVersion=10.0.26100.0
+resolved cl=C:\VS\VC\Tools\MSVC\14.44.35207\bin\Hostarm64\arm64\cl.exe; resolved LIB path=C:\VS\VC\Tools\MSVC\14.44.35207\lib\arm64

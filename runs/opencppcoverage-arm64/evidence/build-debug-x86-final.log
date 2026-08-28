@@ -1,0 +1,537 @@
+Build started 8/19/2026 10:00:16 PM.
+Logging verbosity is set to: Normal.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" on node 1 (default targets).
+     1>ValidateSolutionConfiguration:
+         Building solution configuration "Debug|Win32".
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestCoverageOptimizedBuild\TestCoverageOptimizedBuild.vcxproj" (10) on node 15 (default targets).
+    10>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Tools\Tools.vcxproj" (13) on node 14 (default targets).
+    13>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+       InitializeBuildStatus:
+         Creating "Debug\Tools.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\Tools.tlog\unsuccessfulbuild".
+    10>InitializeBuildStatus:
+         Creating "Debug\TestCove.2FD17BA1.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\TestCove.2FD17BA1.tlog\unsuccessfulbuild".
+    13>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+    10>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Plugin\Plugin.vcxproj" (18) on node 8 (default targets).
+    18>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+    13>ClCompile:
+         All outputs are up-to-date.
+    18>InitializeBuildStatus:
+         Creating "Debug\Plugin.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\Plugin.tlog\unsuccessfulbuild".
+    10>ClCompile:
+         All outputs are up-to-date.
+    13>ClCompile:
+         All outputs are up-to-date.
+    18>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+    10>Link:
+         All outputs are up-to-date.
+         TestCoverageOptimizedBuild.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\TestCoverageOptimizedBuild.dll
+    18>ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         Plugin.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Plugin.dll
+    10>FinalizeBuildStatus:
+         Deleting file "Debug\TestCove.2FD17BA1.tlog\unsuccessfulbuild".
+         Touching "Debug\TestCove.2FD17BA1.tlog\TestCoverageOptimizedBuild.lastbuildstate".
+    10>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestCoverageOptimizedBuild\TestCoverageOptimizedBuild.vcxproj" (default targets).
+    18>FinalizeBuildStatus:
+         Deleting file "Debug\Plugin.tlog\unsuccessfulbuild".
+         Touching "Debug\Plugin.tlog\Plugin.lastbuildstate".
+    18>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Plugin\Plugin.vcxproj" (default targets).
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestCoverageSharedLib\TestCoverageSharedLib.vcxproj" (14) on node 3 (default targets).
+    14>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\PluginTest\PluginTest.vcxproj" (15) on node 2 (default targets).
+    15>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+    13>ClCompile:
+         All outputs are up-to-date.
+    14>InitializeBuildStatus:
+         Creating "Debug\TestCove.0481B51C.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\TestCove.0481B51C.tlog\unsuccessfulbuild".
+    15>InitializeBuildStatus:
+         Creating "Debug\PluginTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\PluginTest.tlog\unsuccessfulbuild".
+    13>Link:
+         All outputs are up-to-date.
+    14>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+    15>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+    14>VcpkgTripletSelection:
+         Using normalized configuration "Debug"
+    15>VcpkgTripletSelection:
+         Using normalized configuration "Debug"
+    14>VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+    15>VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+    13>Link:
+         Tools.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Tools.dll
+    14>ClCompile:
+         All outputs are up-to-date.
+    15>ClCompile:
+         All outputs are up-to-date.
+    14>ClCompile:
+         All outputs are up-to-date.
+    15>ClCompile:
+         All outputs are up-to-date.
+    13>FinalizeBuildStatus:
+         Deleting file "Debug\Tools.tlog\unsuccessfulbuild".
+         Touching "Debug\Tools.tlog\Tools.lastbuildstate".
+    13>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Tools\Tools.vcxproj" (default targets).
+    14>Link:
+         All outputs are up-to-date.
+         TestCoverageSharedLib.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\TestCoverageSharedLib.dll
+    15>Link:
+         All outputs are up-to-date.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\FileFilter\FileFilter.vcxproj" (7) on node 6 (default targets).
+     7>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestHelper\TestHelper.vcxproj" (9) on node 11 (default targets).
+     9>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+    15>Link:
+         PluginTest.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\PluginTest.exe
+     7>InitializeBuildStatus:
+         Creating "Debug\FileFilter.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\FileFilter.tlog\unsuccessfulbuild".
+     9>InitializeBuildStatus:
+         Creating "Debug\TestHelper.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\TestHelper.tlog\unsuccessfulbuild".
+    14>FinalizeBuildStatus:
+         Deleting file "Debug\TestCove.0481B51C.tlog\unsuccessfulbuild".
+         Touching "Debug\TestCove.0481B51C.tlog\TestCoverageSharedLib.lastbuildstate".
+    14>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestCoverageSharedLib\TestCoverageSharedLib.vcxproj" (default targets).
+     9>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+     7>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestCppCli\TestCppCli.vcxproj" (17) on node 7 (default targets).
+    17>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+     7>VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestCoverageConsole\TestCoverageConsole.vcxproj" (12) on node 13 (default targets).
+    12>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+     9>ClCompile:
+         All outputs are up-to-date.
+    12>InitializeBuildStatus:
+         Creating "Debug\TestCove.0DD16EDF.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\TestCove.0DD16EDF.tlog\unsuccessfulbuild".
+    15>FinalizeBuildStatus:
+         Deleting file "Debug\PluginTest.tlog\unsuccessfulbuild".
+     7>ClCompile:
+         All outputs are up-to-date.
+    15>FinalizeBuildStatus:
+         Touching "Debug\PluginTest.tlog\PluginTest.lastbuildstate".
+    15>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\PluginTest\PluginTest.vcxproj" (default targets).
+    12>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+    17>InitializeBuildStatus:
+         Creating "Debug\TestCppCli.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\TestCppCli.tlog\unsuccessfulbuild".
+    12>VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+    17>GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+    12>ClCompile:
+         All outputs are up-to-date.
+    17>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+    12>Link:
+         All outputs are up-to-date.
+         TestCoverageConsole.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\TestCoverageConsole.exe
+     9>ClCompile:
+         All outputs are up-to-date.
+    17>Link:
+         All outputs are up-to-date.
+         TestCppCli.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\DefaultTest.dll
+     9>Link:
+         All outputs are up-to-date.
+    17>MetaGen:
+       Skipping target "MetaGen" because all output files are up-to-date with respect to the input files.
+     9>Link:
+         TestHelper.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\TestHelper.dll
+    12>FinalizeBuildStatus:
+         Deleting file "Debug\TestCove.0DD16EDF.tlog\unsuccessfulbuild".
+         Touching "Debug\TestCove.0DD16EDF.tlog\TestCoverageConsole.lastbuildstate".
+    12>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestCoverageConsole\TestCoverageConsole.vcxproj" (default targets).
+    17>FinalizeBuildStatus:
+         Deleting file "Debug\TestCppCli.tlog\unsuccessfulbuild".
+         Touching "Debug\TestCppCli.tlog\TestCppCli.lastbuildstate".
+    17>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestCppCli\TestCppCli.vcxproj" (default targets).
+     7>ClCompile:
+         All outputs are up-to-date.
+     9>FinalizeBuildStatus:
+         Deleting file "Debug\TestHelper.tlog\unsuccessfulbuild".
+         Touching "Debug\TestHelper.tlog\TestHelper.lastbuildstate".
+     9>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\TestHelper\TestHelper.vcxproj" (default targets).
+     7>Link:
+         All outputs are up-to-date.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\ToolsTest\ToolsTest.vcxproj" (8) on node 9 (default targets).
+     8>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+     7>Link:
+         FileFilter.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\FileFilter.dll
+     8>InitializeBuildStatus:
+         Creating "Debug\ToolsTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\ToolsTest.tlog\unsuccessfulbuild".
+       VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+     7>FinalizeBuildStatus:
+         Deleting file "Debug\FileFilter.tlog\unsuccessfulbuild".
+         Touching "Debug\FileFilter.tlog\FileFilter.lastbuildstate".
+     7>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\FileFilter\FileFilter.vcxproj" (default targets).
+     8>ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage\CppCoverage.vcxproj" (16) on node 4 (default targets).
+    16>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+       InitializeBuildStatus:
+         Creating "Debug\CppCoverage.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\CppCoverage.tlog\unsuccessfulbuild".
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\FileFilterTest\FileFilterTest.vcxproj" (11) on node 10 (default targets).
+    11>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+       InitializeBuildStatus:
+         Creating "Debug\FileFilterTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\FileFilterTest.tlog\unsuccessfulbuild".
+     8>Link:
+         All outputs are up-to-date.
+         ToolsTest.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\ToolsTest.exe
+    11>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+    16>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+    11>ClCompile:
+         All outputs are up-to-date.
+     8>FinalizeBuildStatus:
+         Deleting file "Debug\ToolsTest.tlog\unsuccessfulbuild".
+         Touching "Debug\ToolsTest.tlog\ToolsTest.lastbuildstate".
+     8>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\ToolsTest\ToolsTest.vcxproj" (default targets).
+    16>ClCompile:
+         All outputs are up-to-date.
+    11>ClCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         FileFilterTest.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\FileFilterTest.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\FileFilterTest.tlog\unsuccessfulbuild".
+         Touching "Debug\FileFilterTest.tlog\FileFilterTest.lastbuildstate".
+    11>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\FileFilterTest\FileFilterTest.vcxproj" (default targets).
+    16>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX86\x86\CL.exe /c /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\\" /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage\\" /I"C:\Program Files\Microsoft Visual Studio\18\Enterprise\DIA SDK\include" /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CPPCOVERAGE_EXPORTS /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage\)|\"" /D "SOLUTION_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\)|\"" /D "TARGET_FILE_NAME=R\"|(CppCoverage.dll)|\"" /D "OUT_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\)|\"" /D NOMINMAX /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"Debug\CppCoverage.pch" /Fo"Debug\\" /Fd"Debug\vc145.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:queue MonitoredLineRegister.cpp
+         MonitoredLineRegister.cpp
+       Link:
+         C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\CppCoverage.dll" /INCREMENTAL /ILK:"Debug\CppCoverage.ilk" /NOLOGO /LIBPATH:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\lib" /LIBPATH:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\lib\manual-link" Dbghelp.lib bcrypt.lib "C:\Program Files\Microsoft Visual Studio\18\Enterprise\DIA SDK\lib\diaguids.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\CppCoverage.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\CppCoverage.lib" /MACHINE:X86 /DLL Debug\Address.obj
+         Debug\BreakPoint.obj
+         Debug\CodeCoverageRunner.obj
+         Debug\CoverageDataMerger.obj
+         Debug\CoverageFilterManager.obj
+         Debug\DebugInformationEnumerator.obj
+         Debug\ExportOptionParser.obj
+         Debug\FileSystem.obj
+         Debug\FilterAssistant.obj
+         Debug\MonitoredLineRegister.obj
+         Debug\RunCoverageSettings.obj
+         Debug\UnifiedDiffCoverageFilterManager.obj
+         Debug\UnifiedDiffSettings.obj
+         Debug\WildcardCoverageFilter.obj
+         Debug\CoverageRate.obj
+         Debug\CoverageRateComputer.obj
+         Debug\CoverageFilterSettings.obj
+         Debug\CppCoverageException.obj
+         Debug\Debugger.obj
+         Debug\ExceptionHandler.obj
+         Debug\ExecutedAddressManager.obj
+         Debug\HandleInformation.obj
+         Debug\IDebugEventsHandler.obj
+         Debug\Options.obj
+         Debug\OptionsExport.obj
+         Debug\OptionsParser.obj
+         Debug\Patterns.obj
+         Debug\Process.obj
+         Debug\ProgramOptions.obj
+         Debug\StartInfo.obj
+         Debug\stdafx.obj
+         Debug\Wildcards.obj
+         "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\FileFilter.lib"
+         "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Plugin.lib"
+         "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Tools.lib"
+         CppCoverage.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\CppCoverage.dll
+       AppLocalFromInstalled:
+         "C:\Users\t-lsingoei\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\CppCoverage.dll" --installed-bin-dir="C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin" --tlog-file="Debug\CppCoverage.tlog\CppCoverage.write.1u.tlog" --copied-files-log="Debug\vcpkg.applocal.log"
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_log-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_filesystem-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_thread-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_program_options-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_iostreams-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\zd.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\bz2d.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\liblzma.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\zstd.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_locale-vc145-mt-gd-x32-1_91.dll
+       PostBuildEvent:
+         xcopy /y "C:\Program Files\Microsoft Visual Studio\18\Enterprise\DIA SDK\bin\msdia140.dll" "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\"
+         :VCEnd
+         C:\Program Files\Microsoft Visual Studio\18\Enterprise\DIA SDK\bin\msdia140.dll
+         1 File(s) copied
+       FinalizeBuildStatus:
+         Deleting file "Debug\CppCoverage.tlog\unsuccessfulbuild".
+         Touching "Debug\CppCoverage.tlog\CppCoverage.lastbuildstate".
+    16>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage\CppCoverage.vcxproj" (default targets).
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\Exporter.vcxproj" (6) on node 12 (default targets).
+     6>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+       InitializeBuildStatus:
+         Creating "Debug\Exporter.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\Exporter.tlog\unsuccessfulbuild".
+       PreBuildEvent:
+         "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\tools\protobuf\protoc.exe" -I="C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\Binary" --cpp_out="C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\Binary" "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\Binary\CoverageData.proto"
+         :VCEnd
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverageTest\CppCoverageTest.vcxproj.metaproj" (2) on node 1 (default targets).
+     2>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverageTest\CppCoverageTest.vcxproj.metaproj" (2) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverageTest\CppCoverageTest.vcxproj" (19) on node 1 (default targets).
+    19>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+       InitializeBuildStatus:
+         Creating "Debug\CppCoverageTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\CppCoverageTest.tlog\unsuccessfulbuild".
+     6>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+    19>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+     6>ClCompile:
+         C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX86\x86\CL.exe /c /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\\" /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\\" /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\include" /ZI /JMC /nologo /W3 /WX /diagnostics:column /sdl /Od /Oy- /D EXPORTER_EXPORTS /D _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\)|\"" /D "SOLUTION_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\)|\"" /D "TARGET_FILE_NAME=R\"|(Exporter.dll)|\"" /D "OUT_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\)|\"" /D NOMINMAX /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Yu"stdafx.h" /Fp"Debug\Exporter.pch" /Fo"Debug\\" /Fd"Debug\vc145.pdb" /external:W0 /Gd /TP /wd4251 /analyze- /FC /errorReport:queue /external:I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\include" Binary\CoverageDataDeserializer.cpp Binary\CoverageDataSerializer.cpp
+    19>ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+     6>ClCompile:
+         CoverageDataDeserializer.cpp
+    19>Link:
+         All outputs are up-to-date.
+         CppCoverageTest.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\CppCoverageTest.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\CppCoverageTest.tlog\unsuccessfulbuild".
+         Touching "Debug\CppCoverageTest.tlog\CppCoverageTest.lastbuildstate".
+    19>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverageTest\CppCoverageTest.vcxproj" (default targets).
+     2>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverageTest\CppCoverageTest.vcxproj.metaproj" (default targets).
+     6>ClCompile:
+         CoverageDataSerializer.cpp
+         Generating Code...
+         C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX86\x86\CL.exe /c /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\\" /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\\" /I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\include" /ZI /JMC /nologo /W0 /WX /diagnostics:column /sdl /Od /Oy- /D EXPORTER_EXPORTS /D _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING /D BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE /D "OPENCPPCOVERAGE_VERSION=\"0.9.9.0\"" /D _CRT_SECURE_NO_WARNINGS /D "PROJECT_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\)|\"" /D "SOLUTION_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\)|\"" /D "TARGET_FILE_NAME=R\"|(Exporter.dll)|\"" /D "OUT_DIR=R\"|(C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\)|\"" /D NOMINMAX /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++17 /permissive- /Fo"Debug\\" /Fd"Debug\vc145.pdb" /external:W0 /Gd /TP /wd4146 /wd4251 /analyze- /FC /errorReport:queue /external:I"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\include" Binary\CoverageData.pb.cc
+         CoverageData.pb.cc
+       Link:
+         C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Exporter.dll" /INCREMENTAL /ILK:"Debug\Exporter.ilk" /NOLOGO /LIBPATH:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\lib" /LIBPATH:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\lib\manual-link" bcrypt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Exporter.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Exporter.lib" /MACHINE:X86 /DLL Debug\BinaryExporter.obj
+         Debug\CoverageData.pb.obj
+         Debug\CoberturaExporter.obj
+         Debug\CoverageDataSerializer.obj
+         Debug\CoverageDataDeserializer.obj
+         Debug\HtmlExporter.obj
+         Debug\HtmlFile.obj
+         Debug\HtmlFileCoverageExporter.obj
+         Debug\HtmlFolderStructure.obj
+         Debug\TemplateHtmlExporter.obj
+         Debug\InvalidOutputFileException.obj
+         Debug\ExporterPluginManager.obj
+         Debug\stdafx.obj
+         "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\CppCoverage.lib"
+         "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Plugin.lib"
+         "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Tools.lib"
+            Creating library C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Exporter.lib and object C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Exporter.exp
+         Exporter.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Exporter.dll
+       AppLocalFromInstalled:
+         "C:\Users\t-lsingoei\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe" z-applocal --target-binary="C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Exporter.dll" --installed-bin-dir="C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin" --tlog-file="Debug\Exporter.tlog\Exporter.write.1u.tlog" --copied-files-log="Debug\vcpkg.applocal.log"
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\abseil_dll.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\libctemplate.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\libprotobuf-lited.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\libprotobufd.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_log-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_filesystem-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_thread-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_program_options-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_iostreams-vc145-mt-gd-x32-1_91.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\zd.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\bz2d.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\liblzma.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\zstd.dll
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\debug\bin\boost_locale-vc145-mt-gd-x32-1_91.dll
+       PostBuildEvent:
+         if not exist "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Template" mkdir "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Template" && xcopy /s /y "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\Html\Template" "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Template"
+         :VCEnd
+       FinalizeBuildStatus:
+         Deleting file "Debug\Exporter.tlog\unsuccessfulbuild".
+         Touching "Debug\Exporter.tlog\Exporter.lastbuildstate".
+     6>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Exporter\Exporter.vcxproj" (default targets).
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\OpenCppCoverage\OpenCppCoverage.vcxproj" (5) on node 5 (default targets).
+     5>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+       InitializeBuildStatus:
+         Creating "Debug\OpenCppCoverage.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\OpenCppCoverage.tlog\unsuccessfulbuild".
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\ExporterTest\ExporterTest.vcxproj.metaproj" (3) on node 1 (default targets).
+     3>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\ExporterTest\ExporterTest.vcxproj.metaproj" (3) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\ExporterTest\ExporterTest.vcxproj" (20) on node 1 (default targets).
+    20>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+     5>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+    20>InitializeBuildStatus:
+         Creating "Debug\ExporterTest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\ExporterTest.tlog\unsuccessfulbuild".
+     5>ClCompile:
+         All outputs are up-to-date.
+    20>VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+     5>ClCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         OpenCppCoverage.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\OpenCppCoverage.exe
+    20>ClCompile:
+         All outputs are up-to-date.
+     5>PostBuildEvent:
+         if not exist "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Plugins\Exporter" mkdir "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Plugins\Exporter"
+         :VCEnd
+    20>Link:
+         All outputs are up-to-date.
+         ExporterTest.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\ExporterTest.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\ExporterTest.tlog\unsuccessfulbuild".
+         Touching "Debug\ExporterTest.tlog\ExporterTest.lastbuildstate".
+    20>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\ExporterTest\ExporterTest.vcxproj" (default targets).
+     3>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\ExporterTest\ExporterTest.vcxproj.metaproj" (default targets).
+     5>FinalizeBuildStatus:
+         Deleting file "Debug\OpenCppCoverage.tlog\unsuccessfulbuild".
+         Touching "Debug\OpenCppCoverage.tlog\OpenCppCoverage.lastbuildstate".
+     5>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\OpenCppCoverage\OpenCppCoverage.vcxproj" (default targets).
+     1>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (1) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj.metaproj" (4) on node 1 (default targets).
+     4>Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj.metaproj" (4) is building "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj" (21) on node 4 (default targets).
+    21>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+       InitializeBuildStatus:
+         Creating "Debug\OpenCppC.F892B2B1.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\OpenCppC.F892B2B1.tlog\unsuccessfulbuild".
+       VcpkgTripletSelection:
+         Using triplet "x86-windows" from "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\vcpkg_installed\x86-windows\"
+         Using normalized configuration "Debug"
+       VcpkgBootstrap:
+       Skipping target "VcpkgBootstrap" because all output files are up-to-date with respect to the input files.
+       VcpkgInstallManifestDependencies:
+       Skipping target "VcpkgInstallManifestDependencies" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         OpenCppCoverageTest.vcxproj -> C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\OpenCppCoverageTest.exe
+       PostBuildEvent:
+         xcopy /y "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\TestCoverageSharedLib.dll" "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\Plugins\Exporter"
+         :VCEnd
+         C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\Debug\TestCoverageSharedLib.dll
+         1 File(s) copied
+       FinalizeBuildStatus:
+         Deleting file "Debug\OpenCppC.F892B2B1.tlog\unsuccessfulbuild".
+         Touching "Debug\OpenCppC.F892B2B1.tlog\OpenCppCoverageTest.lastbuildstate".
+    21>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj" (default targets).
+     4>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\OpenCppCoverageTest\OpenCppCoverageTest.vcxproj.metaproj" (default targets).
+     1>Done Building Project "C:\Users\t-lsingoei\repos\Benchmarking-Studio-Desktop-App.worktrees\copilot-worktrees\OpenCppCoverage\t-lsingoei-microsoft-curly-telegram\CppCoverage.sln" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+BinaryLogger wrote to: C:\Users\t-lsingoei\.copilot\session-state\f0479a6a-aa4e-4897-82ef-ef3071b1e9d7\files\build-debug-x86-final.binlog
+FileLogger wrote to: C:\Users\t-lsingoei\.copilot\session-state\f0479a6a-aa4e-4897-82ef-ef3071b1e9d7\files\build-debug-x86-final.log
+
+Time Elapsed 00:00:17.87

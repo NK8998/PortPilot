@@ -1,0 +1,271 @@
+From https://github.com/microsoft/vcpkg
+ * branch                06d00ffa491e4668627728f14b891d22c6fea146 -> FETCH_HEAD
+HEAD is now at 06d00ffa4 [stdgpu] add new port (#53264)
+Downloading https://github.com/microsoft/vcpkg-tool/releases/download/2026-07-27/vcpkg.exe -> C:\Users\t-lsingoei\AppData\Local\OpenCppCoverage\vcpkg\vcpkg.exe... done.
+Validating signature... done.
+
+vcpkg package management program version 2026-07-27-98d7cb0cf1f4686a3e43aa5672b6230c1d56bce8
+
+See LICENSE.txt for license information.
+Detecting compiler hash for triplet x64-windows...
+Compiler found: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe
+Detecting compiler hash for triplet x86-windows...
+Compiler found: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x86/cl.exe
+The following packages are already installed:
+  * abseil:x86-windows@20260107.1#3
+  * abseil:x64-windows@20260107.1#3
+    boost-algorithm:x86-windows@1.91.0
+  * boost-align:x86-windows@1.91.0
+  * boost-any:x86-windows@1.91.0
+  * boost-array:x86-windows@1.91.0
+  * boost-asio[core,spawn,deadline-timer]:x86-windows@1.91.0
+  * boost-assert:x86-windows@1.91.0
+  * boost-atomic:x86-windows@1.91.0
+  * boost-bind:x86-windows@1.91.0
+  * boost-charconv:x86-windows@1.91.0
+  * boost-chrono:x86-windows@1.91.0
+  * boost-cmake:x86-windows@1.91.0
+  * boost-compat:x86-windows@1.91.0
+  * boost-concept-check:x86-windows@1.91.0
+  * boost-config:x86-windows@1.91.0
+    boost-container:x86-windows@1.91.0
+  * boost-container-hash:x86-windows@1.91.0
+  * boost-context:x86-windows@1.91.0
+  * boost-conversion:x86-windows@1.91.0
+  * boost-core:x86-windows@1.91.0
+  * boost-date-time:x86-windows@1.91.0
+  * boost-describe:x86-windows@1.91.0
+  * boost-detail:x86-windows@1.91.0
+  * boost-dynamic-bitset:x86-windows@1.91.0
+  * boost-endian:x86-windows@1.91.0
+  * boost-exception:x86-windows@1.91.0
+    boost-filesystem:x86-windows@1.91.0
+  * boost-function:x86-windows@1.91.0
+  * boost-function-types:x86-windows@1.91.0
+  * boost-functional:x86-windows@1.91.0
+  * boost-fusion:x86-windows@1.91.0
+  * boost-headers:x86-windows@1.91.0
+  * boost-integer:x86-windows@1.91.0
+  * boost-interprocess:x86-windows@1.91.0
+  * boost-intrusive:x86-windows@1.91.0
+  * boost-io:x86-windows@1.91.0
+    boost-iostreams[core,zstd,zlib,lzma,bzip2]:x86-windows@1.91.0
+  * boost-iterator:x86-windows@1.91.0
+  * boost-lexical-cast:x86-windows@1.91.0
+    boost-locale:x86-windows@1.91.0
+    boost-log:x86-windows@1.91.0
+  * boost-move:x86-windows@1.91.0
+  * boost-mp11:x86-windows@1.91.0
+  * boost-mpl:x86-windows@1.91.0
+  * boost-multi-index:x86-windows@1.91.0
+  * boost-numeric-conversion:x86-windows@1.91.0
+    boost-optional:x86-windows@1.91.0
+  * boost-parameter:x86-windows@1.91.0
+  * boost-phoenix:x86-windows@1.91.0
+  * boost-pool:x86-windows@1.91.0
+  * boost-predef:x86-windows@1.91.0
+  * boost-preprocessor:x86-windows@1.91.0
+    boost-program-options:x86-windows@1.91.0
+    boost-property-tree:x86-windows@1.91.0
+  * boost-proto:x86-windows@1.91.0
+  * boost-random:x86-windows@1.91.0
+    boost-range:x86-windows@1.91.0
+  * boost-ratio:x86-windows@1.91.0
+    boost-regex:x86-windows@1.91.0
+  * boost-scope:x86-windows@1.91.0
+  * boost-serialization:x86-windows@1.91.0
+  * boost-smart-ptr:x86-windows@1.91.0
+    boost-spirit:x86-windows@1.91.0
+  * boost-static-assert:x86-windows@1.91.0
+  * boost-system:x86-windows@1.91.0
+  * boost-thread:x86-windows@1.91.0
+  * boost-throw-exception:x86-windows@1.91.0
+  * boost-tokenizer:x86-windows@1.91.0
+  * boost-tuple:x86-windows@1.91.0
+  * boost-type-index:x86-windows@1.91.0
+  * boost-type-traits:x86-windows@1.91.0
+  * boost-typeof:x86-windows@1.91.0
+  * boost-uninstall:x86-windows@1.91.0
+  * boost-unordered:x86-windows@1.91.0
+  * boost-utility:x86-windows@1.91.0
+    boost-uuid:x86-windows@1.91.0
+  * boost-variant:x86-windows@1.91.0
+  * boost-variant2:x86-windows@1.91.0
+  * boost-winapi:x86-windows@1.91.0
+  * boost-xpressive:x86-windows@1.91.0
+  * bzip2[core,tool]:x86-windows@1.0.8#6
+    ctemplate:x86-windows@2020-09-14#6
+    gtest:x86-windows@1.18.0
+  * liblzma:x86-windows@5.8.3
+  * pcre2[core,platform-default-features,jit]:x86-windows@10.47#1
+    poco:x86-windows@1.14.1#2
+  * protobuf:x64-windows@6.33.4#2
+    protobuf:x86-windows@6.33.4#2
+  * utf8-range:x86-windows@6.33.4
+  * utf8-range:x64-windows@6.33.4
+  * utf8proc:x86-windows@2.11.3
+  * vcpkg-boost:x64-windows@2025-03-29
+  * vcpkg-cmake:x64-windows@2025-08-07
+  * vcpkg-cmake-config:x64-windows@2026-07-21
+  * zlib:x86-windows@1.3.2#2
+  * zstd:x86-windows@1.5.7
+The package boost-regex is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS regex)
+    target_link_libraries(main PRIVATE Boost::regex)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::regex)
+
+The package boost-optional is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS optional)
+    target_link_libraries(main PRIVATE Boost::optional)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::optional)
+
+The package boost-range is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS range)
+    target_link_libraries(main PRIVATE Boost::range)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::range)
+
+The package boost-algorithm is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS algorithm)
+    target_link_libraries(main PRIVATE Boost::algorithm)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::algorithm)
+
+The package boost-container is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS container)
+    target_link_libraries(main PRIVATE Boost::container)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::container)
+
+The package boost-filesystem is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS filesystem)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+The package boost-iostreams is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS iostreams)
+    target_link_libraries(main PRIVATE Boost::iostreams)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::iostreams)
+
+The package boost-locale is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS locale)
+    target_link_libraries(main PRIVATE Boost::locale)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::locale)
+
+The package boost-spirit is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS spirit)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+The package boost-property-tree is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS property_tree)
+    target_link_libraries(main PRIVATE Boost::property_tree)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::property_tree)
+
+The package boost-log is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS log)
+    target_link_libraries(main PRIVATE Boost::log)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::log)
+
+The package boost-program-options is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS program_options)
+    target_link_libraries(main PRIVATE Boost::program_options)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::program_options)
+
+The package boost-uuid is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS uuid)
+    target_link_libraries(main PRIVATE Boost::uuid)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::uuid)
+
+The package gtest is compatible with built-in CMake targets:
+
+    enable_testing()
+    
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+    
+    add_test(AllTestsInMain main)
+
+The package poco is compatible with built-in CMake targets:
+
+    find_package(Poco REQUIRED [COMPONENTS <libs>...])
+    target_link_libraries(main PRIVATE Poco::<libs>)
+
+protobuf provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(protobuf CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE protobuf::libprotobuf protobuf::libprotobuf-lite)
+
+protobuf provides pkg-config modules:
+
+  # Google's Data Interchange Format
+  protobuf-lite
+
+  # Google's Data Interchange Format
+  protobuf
+
+All requested installations completed successfully in: 3.53 ms
+VCPKG_ROOT=C:\Users\t-lsingoei\AppData\Local\OpenCppCoverage\vcpkg

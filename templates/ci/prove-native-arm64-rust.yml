@@ -1,0 +1,263 @@
+# Prove a Rust port is *natively* Windows ARM64 — not an emulated x64 binary.
+#
+# WHY THIS EXISTS
+# A green test job on an ARM64 runner does not prove a binary is ARM64. Windows on Arm
+# executes x64 binaries transparently under emulation, so "it built and passed on
+# windows-11-arm" is consistent with both a native ARM64 build and an emulated x64 one.
+#
+# Only a REFUSAL separates them. x64 Windows cannot execute an ARM64 image, so shipping the
+# same bytes to an x64 runner and requiring the process to FAIL TO START is a claim that an
+# emulated x64 binary could never satisfy. This workflow asserts both directions against one
+# checksum-pinned artifact:
+#
+#   must-run-arm64      the artifact starts on windows-11-arm
+#   must-not-run-x64    the same artifact is refused on windows-2022 AND windows-latest
+#
+# Adapted from the OpenCppCoverage port, which asserts the same pair in run 32396073242.
+#
+# TO USE: copy to .github/workflows/prove-native-arm64.yml in the ported repo, set BIN_NAME.
+#
+# This file lives in templates/ci/ rather than .github/workflows/ on purpose. It is a
+# template for a *ported* repository, not a gate for this workbench: it builds and runs a
+# specific Rust binary that does not exist here. Kept under .github/workflows/ with a
+# `push: branches: ["**"]` trigger, it fired on every push to every branch and failed.
+
+name: Prove native ARM64
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  # The [[bin]] / package name from Cargo.toml, without .exe
+  BIN_NAME: lacy
+
+jobs:
+  build-arm64:
+    name: Build on ARM64 and assert machine type
+    runs-on: windows-11-arm
+    outputs:
+      sha256: ${{ steps.pack.outputs.sha256 }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        shell: pwsh
+        run: rustup toolchain install stable --profile minimal --no-self-update
+
+      - name: Assert the HOST toolchain is ARM64
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          rustc -vV
+          $hostLine = (rustc -vV | Select-String '^host:').Line
+          $triple = $hostLine.Split(' ')[1].Trim()
+          "host triple = $triple"
+          # An x64 process running under emulation reports x86_64 here, so this rules out
+          # the case where the "ARM64 runner" is really an emulated x64 toolchain.
+          if ($triple -ne 'aarch64-pc-windows-msvc') {
+            throw "Expected aarch64-pc-windows-msvc host, found $triple"
+          }
+
+      - name: Build release
+        shell: pwsh
+        run: cargo build --release
+
+      - name: Run the test suite and assert it was not vacuous
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Continue'
+          cargo test --release 2>&1 | Tee-Object -Variable captured
+          $code = $LASTEXITCODE
+          $passed = 0
+          $captured | Select-String 'test result: ok\. (\d+) passed' | ForEach-Object {
+            $passed += [int]$_.Matches[0].Groups[1].Value
+          }
+          "cargo test exit=$code executed=$passed"
+          if ($code -ne 0) { throw "Test suite failed with exit $code." }
+          # A filter that matches nothing exits 0 with "0 passed", so exit status alone is
+          # not evidence that anything ran. Assert an executed count.
+          if ($passed -lt 1) { throw 'VACUOUS: the suite reported 0 executed tests.' }
+
+      - name: Assert the built image is PE machine 0xAA64
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = (Resolve-Path "target/release/$env:BIN_NAME.exe").Path
+          $fs = [System.IO.File]::OpenRead($exe)
+          try {
+            $br = New-Object System.IO.BinaryReader($fs)
+            $fs.Position = 0x3C
+            $fs.Position = $br.ReadInt32()
+            if ($br.ReadUInt32() -ne 0x00004550) { throw 'Not a PE image.' }
+            $machine = $br.ReadUInt16()
+          } finally { $fs.Dispose() }
+          '{0}.exe machine = 0x{1:X4}' -f $env:BIN_NAME, $machine
+          if ($machine -ne 0xAA64) { throw ('Expected 0xAA64 (ARM64), found 0x{0:X4}' -f $machine) }
+
+      - name: Package and checksum
+        id: pack
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Copy-Item "target/release/$env:BIN_NAME.exe" dist/
+          Compress-Archive -Path dist/* -DestinationPath "$env:BIN_NAME-arm64.zip" -Force
+          $sha = (Get-FileHash "$env:BIN_NAME-arm64.zip" -Algorithm SHA256).Hash.ToLowerInvariant()
+          "sha256=$sha"
+          "sha256=$sha" >> $env:GITHUB_OUTPUT
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arm64-package
+          path: ${{ env.BIN_NAME }}-arm64.zip
+          if-no-files-found: error
+
+  must-run-arm64:
+    name: "The package MUST run: windows-11-arm"
+    needs: build-arm64
+    runs-on: windows-11-arm
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: arm64-package
+
+      - name: Verify checksum and expand
+        shell: pwsh
+        env:
+          EXPECTED_SHA256: ${{ needs.build-arm64.outputs.sha256 }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $actual = (Get-FileHash "$env:BIN_NAME-arm64.zip" -Algorithm SHA256).Hash.ToLowerInvariant()
+          "actual=$actual expected=$env:EXPECTED_SHA256"
+          if ($actual -ne $env:EXPECTED_SHA256) { throw 'Checksum mismatch - not the same bytes.' }
+          Expand-Archive "$env:BIN_NAME-arm64.zip" -DestinationPath expanded -Force
+
+      - name: It starts
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = (Resolve-Path "expanded/$env:BIN_NAME.exe").Path
+          $started = $false; $native = $null; $code = $null
+          try {
+            $psi = New-Object System.Diagnostics.ProcessStartInfo
+            $psi.FileName = $exe
+            $psi.Arguments = '--help'
+            $psi.UseShellExecute = $false
+            $p = [System.Diagnostics.Process]::Start($psi)
+            $started = $true
+            $p.WaitForExit(30000) | Out-Null
+            $code = $p.ExitCode
+          } catch [System.ComponentModel.Win32Exception] {
+            $native = $_.Exception.NativeErrorCode
+          }
+          "Started=$started NativeErrorCode=$native ExitCode=$code"
+          if (-not $started) { throw "ARM64 Windows refused the ARM64 binary (error $native). The port is broken." }
+          'Correct: the ARM64 package runs on ARM64 Windows.'
+
+  must-not-run-x64:
+    name: "The package must NOT run"
+    needs: build-arm64
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, windows-latest]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: arm64-package
+
+      - name: Assert this runner is genuinely NOT ARM64
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $arch = [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture
+          "RunnerLabel=${{ matrix.os }} OSArchitecture=$arch"
+          # If this ever lands on ARM64 the control is meaningless and must fail loudly
+          # rather than pass for the wrong reason.
+          if ("$arch" -eq 'Arm64') { throw 'This control is only meaningful on a non-ARM64 runner.' }
+
+      - name: Verify checksum and expand
+        shell: pwsh
+        env:
+          EXPECTED_SHA256: ${{ needs.build-arm64.outputs.sha256 }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $actual = (Get-FileHash "$env:BIN_NAME-arm64.zip" -Algorithm SHA256).Hash.ToLowerInvariant()
+          "actual=$actual expected=$env:EXPECTED_SHA256"
+          if ($actual -ne $env:EXPECTED_SHA256) { throw 'Checksum mismatch - not the same bytes.' }
+          Expand-Archive "$env:BIN_NAME-arm64.zip" -DestinationPath expanded -Force
+
+      - name: Assert the image under test really is ARM64
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = (Resolve-Path "expanded/$env:BIN_NAME.exe").Path
+          $fs = [System.IO.File]::OpenRead($exe)
+          try {
+            $br = New-Object System.IO.BinaryReader($fs)
+            $fs.Position = 0x3C
+            $fs.Position = $br.ReadInt32()
+            if ($br.ReadUInt32() -ne 0x00004550) { throw 'Not a PE image.' }
+            $machine = $br.ReadUInt16()
+          } finally { $fs.Dispose() }
+          'machine = 0x{0:X4}' -f $machine
+          # Without this, a refusal could be blamed on a corrupt or missing file.
+          if ($machine -ne 0xAA64) { throw ('Expected 0xAA64, found 0x{0:X4}' -f $machine) }
+
+      - name: It is refused
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = (Resolve-Path "expanded/$env:BIN_NAME.exe").Path
+          $started = $false; $native = $null; $message = $null
+          try {
+            $psi = New-Object System.Diagnostics.ProcessStartInfo
+            $psi.FileName = $exe
+            $psi.Arguments = '--help'
+            $psi.UseShellExecute = $false
+            $p = [System.Diagnostics.Process]::Start($psi)
+            $started = $true
+            $p.WaitForExit(30000) | Out-Null
+            try { $p.Kill() } catch { }
+          } catch [System.ComponentModel.Win32Exception] {
+            $native = $_.Exception.NativeErrorCode
+            $message = $_.Exception.Message
+          } catch {
+            $message = $_.Exception.Message
+          }
+          "Started=$started"
+          "NativeErrorCode=$native"
+          "Message=$message"
+          # Windows has two distinct refusals for an image whose machine type the host
+          # cannot execute, and which one you get depends on the OS version:
+          #   193 ERROR_BAD_EXE_FORMAT            - "not a valid Win32 application"
+          #   216 ERROR_EXE_MACHINE_TYPE_MISMATCH - "not a valid application for this OS platform"
+          if ($started) {
+            throw 'FAILED: x64 Windows STARTED the binary. It is therefore not a pure ARM64 image.'
+          }
+          if ($native -ne 193 -and $native -ne 216) {
+            throw "Refused, but with unexpected error $native - not an architecture refusal."
+          }
+          "Correct: x64 Windows refused the ARM64 binary with error $native."
+
+  verdict:
+    name: Native ARM64 verdict
+    needs: [build-arm64, must-run-arm64, must-not-run-x64]
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          echo "Runs on ARM64:   yes"
+          echo "Refused on x64:  yes (windows-2022 and windows-latest)"
+          echo "PE machine:      0xAA64 asserted on both sides"
+          echo "Artifact sha256: ${{ needs.build-arm64.outputs.sha256 }}"
+          echo ""
+          echo "The same checksum-pinned bytes ran on ARM64 and were refused on x64."
+          echo "An emulated x64 binary could not produce this pair."

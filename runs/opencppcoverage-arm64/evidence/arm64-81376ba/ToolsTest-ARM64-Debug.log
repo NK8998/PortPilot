@@ -1,0 +1,38 @@
+[==========] Running 12 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 5 tests from MappedFileTest
+[ RUN      ] MappedFileTest.GetLine
+[       OK ] MappedFileTest.GetLine (1 ms)
+[ RUN      ] MappedFileTest.EmptyFile
+[       OK ] MappedFileTest.EmptyFile (0 ms)
+[ RUN      ] MappedFileTest.MissingFile
+[       OK ] MappedFileTest.MissingFile (0 ms)
+[ RUN      ] MappedFileTest.WholeFile
+[       OK ] MappedFileTest.WholeFile (1 ms)
+[ RUN      ] MappedFileTest.EmptyEndLine
+[       OK ] MappedFileTest.EmptyEndLine (0 ms)
+[----------] 5 tests from MappedFileTest (4 ms total)
+
+[----------] 4 tests from PEFileHeaderTest
+[ RUN      ] PEFileHeaderTest.LoadsI386Header
+[       OK ] PEFileHeaderTest.LoadsI386Header (0 ms)
+[ RUN      ] PEFileHeaderTest.LoadsAmd64Header
+[       OK ] PEFileHeaderTest.LoadsAmd64Header (0 ms)
+[ RUN      ] PEFileHeaderTest.LoadsArm64Header
+[       OK ] PEFileHeaderTest.LoadsArm64Header (0 ms)
+[ RUN      ] PEFileHeaderTest.RejectsUnsupportedMachine
+[       OK ] PEFileHeaderTest.RejectsUnsupportedMachine (0 ms)
+[----------] 4 tests from PEFileHeaderTest (0 ms total)
+
+[----------] 3 tests from Tool
+[ RUN      ] Tool.ToLocalString
+[       OK ] Tool.ToLocalString (0 ms)
+[ RUN      ] Tool.LocalToWString
+[       OK ] Tool.LocalToWString (0 ms)
+[ RUN      ] Tool.Uft8
+[       OK ] Tool.Uft8 (0 ms)
+[----------] 3 tests from Tool (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 12 tests from 3 test suites ran. (5 ms total)
+[  PASSED  ] 12 tests.

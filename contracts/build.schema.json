@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/winport/winport/contracts/build.schema.json",
+  "title": "PortPilot Build Evidence",
+  "description": "Emitted by port-migration. The measured before/after evidence for a port: every command actually run, its exit code, and whether it was executed or merely cross-compiled. Consumed by port-review and the orchestrator's build gate. The central rule this contract enforces is that a cross-compiled artifact is NEVER evidence that anything ran - 'mode' must say so, and arm64Execution must be disclosed either way.",
+  "type": "object",
+  "required": ["schemaVersion", "target", "baseline", "after", "arm64Execution", "testSummary"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "target": {
+      "type": "object",
+      "required": ["repo", "commit"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "path": { "type": "string" }
+      }
+    },
+    "baseline": {
+      "type": "array",
+      "description": "Measured on the UNMODIFIED source, before any task ran. Without this the 'after' numbers prove nothing.",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/step" }
+    },
+    "after": {
+      "type": "array",
+      "description": "Measured after migration. Must cover the same ground as baseline plus the required Windows gates.",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/step" }
+    },
+    "arm64Execution": {
+      "type": "object",
+      "description": "Mandatory disclosure. Cross-compiling for Arm64 does not satisfy the Arm64 gate; if nothing was executed on Arm64 hardware, that must be stated here rather than left implied by silence.",
+      "required": ["executed"],
+      "additionalProperties": false,
+      "properties": {
+        "executed": { "type": "boolean" },
+        "reason": {
+          "type": "string",
+          "description": "Required when executed is false: why no Arm64 execution happened."
+        },
+        "device": { "type": "string" },
+        "evidence": { "type": "string" }
+      },
+      "if": { "properties": { "executed": { "const": false } } },
+      "then": { "required": ["executed", "reason"] }
+    },
+    "testSummary": {
+      "type": "object",
+      "required": ["baseline", "after"],
+      "additionalProperties": false,
+      "properties": {
+        "baseline": { "type": "string" },
+        "after": { "type": "string" },
+        "baselinePassed": { "type": "integer", "minimum": 0 },
+        "baselineFailed": { "type": "integer", "minimum": 0 },
+        "afterPassed": { "type": "integer", "minimum": 0 },
+        "afterFailed": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "testSuites": {
+      "type": "array",
+      "description": "Per-suite measured results. A workflow-level success cannot hide continue-on-error or a summary step that failed to propagate a test process exit code.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "command", "exitCode", "ran", "passed", "failed", "evidence"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "command": { "type": "string", "minLength": 1 },
+          "exitCode": { "type": "integer" },
+          "ran": { "type": "integer", "minimum": 1 },
+          "passed": { "type": "integer", "minimum": 0 },
+          "failed": { "type": "integer", "minimum": 0 },
+          "evidence": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "requiredTestSuites": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Complete suite manifest derived from the project graph and plan. testSuites must match this set exactly."
+    },
+    "regressionChecks": {
+      "type": "array",
+      "description": "Evidence that the ORIGINAL platforms still build and lint. A port that greens Windows by breaking Linux is a failed port, and host-only linting cannot detect it.",
+      "items": { "$ref": "#/$defs/step" }
+    },
+    "toolchain": {
+      "type": "object",
+      "description": "Resolved compiler identity evidence. Required semantically before a run may pass so dependency restore and project compilation cannot silently use different MSVC installations.",
+      "required": [
+        "dependencyCompiler",
+        "buildCompiler",
+        "linker",
+        "vcToolsVersion",
+        "windowsSdkVersion",
+        "platformToolset",
+        "lib",
+        "include",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "dependencyCompiler": { "$ref": "#/$defs/tool" },
+        "buildCompiler": { "$ref": "#/$defs/tool" },
+        "linker": { "$ref": "#/$defs/tool" },
+        "vcToolsVersion": { "type": "string", "minLength": 1 },
+        "windowsSdkVersion": { "type": "string", "minLength": 1 },
+        "platformToolset": { "type": "string", "minLength": 1 },
+        "lib": { "type": "string", "minLength": 1 },
+        "include": { "type": "string", "minLength": 1 },
+        "evidence": { "type": "string", "minLength": 1 },
+        "legacyCompatibilityEvidence": { "type": "string", "minLength": 1 }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "tool": {
+      "type": "object",
+      "required": ["path", "version"],
+      "additionalProperties": false,
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 }
+      }
+    },
+    "step": {
+      "type": "object",
+      "required": ["name", "command", "target", "exitCode", "mode"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "command": {
+          "type": "string",
+          "description": "The literal command line run. Not a paraphrase - a reviewer must be able to paste and re-run it."
+        },
+        "target": {
+          "type": "string",
+          "description": "Triple or host label, e.g. aarch64-pc-windows-msvc, x86_64-pc-windows-msvc, x86_64-unknown-linux-gnu, host-x64."
+        },
+        "exitCode": { "type": "integer" },
+        "mode": {
+          "type": "string",
+          "description": "executed = the command ran to completion on this machine. cross-compiled-not-executed = an artifact was produced for a target that was never run. skipped = not attempted.",
+          "enum": ["executed", "cross-compiled-not-executed", "skipped"]
+        },
+        "result": { "type": "string" },
+        "artifactPath": { "type": ["string", "null"] },
+        "timestamp": { "type": "string" },
+        "completedAt": { "type": "string" }
+      }
+    }
+  }
+}

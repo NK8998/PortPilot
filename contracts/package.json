@@ -1,0 +1,15 @@
+{
+  "name": "winport-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Schema validator for PortPilot contract artifacts. Used as a gate by the orchestrator and CI.",
+  "license": "MIT",
+  "scripts": {
+    "validate": "node validate.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "adm-zip": "^0.6.0",
+    "ajv": "^8.17.1"
+  }
+}

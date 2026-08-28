@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0",
+  "target": {
+    "repo": "github.com/OpenCppCoverage/OpenCppCoverage",
+    "commit": "3e518697ea761935574af486bacd5fcc1aeab363"
+  },
+  "round": 1,
+  "rung": 4,
+  "rungJustification": "Rung 4 is the lowest rung that authorizes the work. The port cannot be reached by rebuilding (rung 1) because no ARM64 dependency payload exists, and not by dependency substitution alone (rung 2) because the coverage engine writes a one-byte x86 trap instruction and stores a one-byte restore value, which are architecture-locked source defects rather than dependency defects. It is not rung 5 because no Linux surface, UI framework, or process model is being replaced: the program remains a native Windows debugger and the changes are bounded to breakpoint width, instruction restore width, machine handling, the build graph, dependency acquisition, and packaging.",
+  "tasks": [
+    {
+      "id": "T-001",
+      "title": "Make breakpoint set and restore architecture-neutral",
+      "skill": "arm64-correctness",
+      "addressesFindings": [
+        "ARM-0001",
+        "ARM-0002"
+      ],
+      "effort": "L",
+      "risk": "high",
+      "status": "done",
+      "notes": "Write a 4-byte BRK on ARM64, preserve and restore the full instruction word, and reject unaligned addresses explicitly instead of writing at them."
+    },
+    {
+      "id": "T-002",
+      "title": "Recognise ARM64 and ARM64X modules during debugging",
+      "skill": "arm64-correctness",
+      "addressesFindings": [
+        "ARM-0003"
+      ],
+      "dependsOn": [
+        "T-001"
+      ],
+      "effort": "M",
+      "risk": "medium",
+      "status": "done"
+    },
+    {
+      "id": "T-003",
+      "title": "Add ARM64 solution and project configurations with no silent remap",
+      "skill": "build-retarget",
+      "addressesFindings": [
+        "BLD-0001",
+        "BLD-0003"
+      ],
+      "effort": "M",
+      "risk": "medium",
+      "status": "done",
+      "notes": "TestCppCli stays unselected for ARM64 because MSVC has no /clr for ARM64, and the exclusion is emitted into the test summary rather than left implicit."
+    },
+    {
+      "id": "T-004",
+      "title": "Acquire the dependency set for the arm64-windows triplet",
+      "skill": "native-dependency-analysis",
+      "addressesFindings": [
+        "NAT-0001"
+      ],
+      "dependsOn": [
+        "T-003"
+      ],
+      "effort": "XL",
+      "risk": "high",
+      "status": "done",
+      "notes": "Host build tools such as protoc are identified separately from shipped target binaries, and the dependency compiler is asserted to be the same MSVC instance as the build compiler."
+    },
+    {
+      "id": "T-005",
+      "title": "Add native ARM64 CI with host toolchain assertion",
+      "skill": "build-retarget",
+      "addressesFindings": [
+        "BLD-0002"
+      ],
+      "dependsOn": [
+        "T-003",
+        "T-004"
+      ],
+      "effort": "M",
+      "risk": "medium",
+      "status": "done",
+      "notes": "Resolve the ARM64 MSBuild host explicitly and parse the real cl and link command lines out of the build log, because the compiler that resolves is not necessarily the compiler that is invoked."
+    },
+    {
+      "id": "T-006",
+      "title": "Package ARM64 with architecture filtering and a packaged end-to-end gate",
+      "skill": "port-packaging",
+      "addressesFindings": [
+        "PKG-0001"
+      ],
+      "dependsOn": [
+        "T-005"
+      ],
+      "effort": "M",
+      "risk": "medium",
+      "status": "done",
+      "notes": "Filter redistributable DLLs by PE machine, keep the required Plugins\\Exporter directory, scan the staging tree and the re-expanded archive, and run the shipped binary from the expanded package."
+    }
+  ],
+  "acceptanceScenarios": [
+    {
+      "id": "SCN-001",
+      "name": "Collect ARM64 coverage from the freshly built binaries",
+      "command": "OpenCppCoverage.exe --export_type=cobertura:e2e-cobertura-ARM64-Release.xml --sources TestBasic -- TestCoverageConsole.exe",
+      "expectedResult": "CoverageExitCode 0, 2 of 24 lines covered in TestBasic.cpp, unreachable line 36 reported with 0 hits",
+      "requiredProjects": [
+        "OpenCppCoverage",
+        "CppCoverage",
+        "Exporter",
+        "Tools"
+      ]
+    },
+    {
+      "id": "SCN-002",
+      "name": "Collect ARM64 coverage from the expanded release package",
+      "command": "artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64\\Binaries\\OpenCppCoverage.exe --export_type=cobertura:e2e-cobertura-ARM64-Release-packaged.xml --sources TestBasic -- TestCoverageConsole.exe",
+      "expectedResult": "CoverageExitCode 0 from the packaged binary, identical 2 of 24 coverage and unreachable line 36 with 0 hits",
+      "requiredProjects": [
+        "OpenCppCoverage",
+        "CppCoverage",
+        "Exporter",
+        "Tools"
+      ]
+    },
+    {
+      "id": "SCN-003",
+      "name": "Scan every image in the re-expanded published ZIP for architecture purity",
+      "command": "winport-scan.exe artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64",
+      "expectedResult": "34 of 34 shipped images are ARM64 or ARM64X with zero findings",
+      "requiredProjects": [
+        "OpenCppCoverage",
+        "CppCoverage",
+        "Exporter",
+        "FileFilter",
+        "Tools"
+      ]
+    },
+    {
+      "id": "SCN-004",
+      "name": "Run the published asset on a native ARM64 runner without rebuilding it",
+      "command": "pwsh .github/workflows/winport-independent-verification.yml on windows-11-arm: download asset, verify SHA-256, expand, scan, execute shipped OpenCppCoverage.exe",
+      "expectedResult": "Checksum 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5 matches, 34 images ARM64, shipped binary exits 0 and reports the uncalled line as 0 hits under ProcessArchitecture Arm64",
+      "requiredProjects": [
+        "OpenCppCoverage",
+        "CppCoverage",
+        "Exporter",
+        "Tools"
+      ]
+    }
+  ],
+  "requiredTestSuites": [
+    "CppCoverageTest",
+    "ExporterTest",
+    "FileFilterTest",
+    "OpenCppCoverageTest",
+    "PluginTest",
+    "ToolsTest"
+  ],
+  "openQuestions": [
+    "Why the 32-bit MSBuild selected the HostX86 cross toolchain on a runner reporting ARM64 at ec2cce74, while another branch reached HostARM64 with the same binary, is still unexplained. Three mechanism theories were falsified by measurement and only the build-log parser was correct every time, so no mechanism is asserted here.",
+    "This analysis and plan were reconstructed by the coordinator from the delivered port and from baseline source at 3e518697, after the migration rather than before it. Every finding cites literal baseline text at a real line, but the ordering is disclosed so the record is not mistaken for a pre-migration plan."
+  ],
+  "outOfScope": [
+    "x86 and x64 behaviour must be preserved; the port adds an architecture rather than replacing one.",
+    "Publishing to the upstream OpenCppCoverage repository. The port and its releases live in a separate public repository so that source availability and provenance stay coherent."
+  ]
+}

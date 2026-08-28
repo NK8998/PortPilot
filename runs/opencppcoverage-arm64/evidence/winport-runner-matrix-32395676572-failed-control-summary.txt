@@ -1,0 +1,3 @@
+success	Native ARM64 - the package must run
+failure	windows-2022 - the package must NOT run
+failure	windows-latest - the package must NOT run

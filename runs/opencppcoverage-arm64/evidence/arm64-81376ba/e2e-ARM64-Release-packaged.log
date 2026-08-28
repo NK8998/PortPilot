@@ -1,0 +1,59 @@
+[info] Start Program:
+Path:"C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Release\\TestCoverageConsole.exe"
+Arguments:TestBasic 
+Working directory: not set.
+Modules: Selected: * Excluded: 
+Sources: Selected: TestCoverageConsole Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: cobertura artifacts\logs\e2e-cobertura-ARM64-Release-packaged.xml 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\TestCoverageConsole.exe is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\ntdll.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\kernel32.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\KernelBase.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\ucrtbase.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\TestCoverageSharedLib.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\Tools.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\PocoFoundation.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\TestCoverageOptimizedBuild.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\advapi32.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\msvcp140.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\vcruntime140.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\msvcrt.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\dbghelp.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\sechost.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\boost_iostreams-vc143-mt-a64-1_91.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\combase.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\rpcrt4.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\rpcrt4.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\oleaut32.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\boost_locale-vc143-mt-a64-1_91.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\boost_log-vc143-mt-a64-1_91.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\msvcp_win.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\boost_thread-vc143-mt-a64-1_91.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\ws2_32.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\Plugin.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\pcre2-8.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\z.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\utf8proc.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\IPHLPAPI.DLL is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\bz2.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\liblzma.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\zstd.dll is selected because it matches selected pattern: *
+[info] Module: C:\a\OpenCppCoverage-ARM64\OpenCppCoverage-ARM64\ARM64\Release\boost_filesystem-vc143-mt-a64-1_91.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\secur32.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\dbgcore.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\msvcp140_codecvt_ids.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\sspicli.dll is selected because it matches selected pattern: *
+[info] Module: C:\Windows\System32\kernel.appcore.dll is selected because it matches selected pattern: *
+[info] ----------------------------------------------------
+[info] Cobertura report generated: artifacts\logs\e2e-cobertura-ARM64-Release-packaged.xml
+[info] ----------------------------------------------------
+[info] The code coverage report is not what you expect? See the FAQ https://github.com/OpenCppCoverage/OpenCppCoverage/wiki/FAQ.

@@ -1,0 +1,39 @@
+Stable download alias verification for the published ARM64 release
+Produced by the winport coordinator session.
+
+Requirement under test
+  The port must expose an unauthenticated, stable download URL that does not change per version,
+  and that URL must serve the exact bytes that were verified.
+
+Release state, read from the releases API
+  latest tag        : arm64-e74bc2f
+  draft             : False
+  prerelease        : False
+  assets            : OpenCppCoverage-0.9.9.0-windows-arm64.zip
+                      OpenCppCoverage-0.9.9.0-windows-arm64.zip.sha256
+                      OpenCppCoverage-0.9.9.0-windows-arm64-expanded-pe-manifest.json
+
+  The alias only resolves when a non-draft, non-prerelease release exists, so both flags being
+  False is a precondition of the check below rather than an incidental detail.
+
+Stable alias
+  https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/latest/download/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+
+  HEAD request                      : HTTP 200
+  GET, unauthenticated, redirected  : 17003183 bytes
+  SHA-256 of the downloaded bytes   : c504a5eefaa42ce65519bff611228d98be569b3f177bd59d8168e1a99a09e633
+
+Immutable version URL
+  https://github.com/LynnSingoei/OpenCppCoverage-ARM64/releases/download/arm64-e74bc2f/OpenCppCoverage-0.9.9.0-windows-arm64.zip
+  Previously downloaded and hashed by this session to the same 17003183 bytes and the same
+  SHA-256, so the alias and the immutable URL serve identical content.
+
+Result
+  PASS for link stability and byte fidelity. Both URLs serve the artifact whose contents this
+  session independently expanded and scanned: 155 files, 34 of 34 PE images ARM64, no PE images
+  hidden under non-image extensions, Binaries\Plugins\Exporter present, and crt-manifest.json
+  recording the rejected x64 vcruntime140_1.dll.
+
+  This gate covers publication mechanics only. It says nothing about whether the release line
+  carries the pinned host toolchain or the byte-level source encoding gate, which are tracked
+  separately and are the reason the intake state is still pending.

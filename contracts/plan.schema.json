@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/winport/winport/contracts/plan.schema.json",
+  "title": "PortPilot Migration Plan",
+  "description": "Emitted by port-planning. The ONLY input port-migration is allowed to act on. Every task traces back to finding IDs from analysis.json.",
+  "type": "object",
+  "required": ["schemaVersion", "target", "rung", "rungJustification", "tasks", "round"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "target": {
+      "type": "object",
+      "required": ["repo", "commit"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "path": { "type": "string" }
+      }
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Which analysis round produced this plan. Incremented when port-review returns FAIL and forces a replan."
+    },
+    "rung": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 6,
+      "description": "Migration strategy ladder. 1=rebuild as-is, 2=rebuild+swap native deps, 3=shim the Linux surface, 4=Arm64EC hybrid, 5=replace UI layer, 6=native WinUI 3 rewrite of UI. The agent picks a rung and does not silently jump rungs mid-run."
+    },
+    "rungJustification": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Why this rung and not the one below it. Required - an unjustified rung is a rejected plan."
+    },
+    "supersedesRound": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Set when this plan replaces an earlier one after a FAIL verdict."
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "skill", "addressesFindings", "effort", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^T-[0-9]{3}$",
+            "description": "Task ID, e.g. T-001."
+          },
+          "title": { "type": "string", "minLength": 1 },
+          "skill": {
+            "type": "string",
+            "description": "Which migration skill executes this task, e.g. build-retarget, platform-abstraction."
+          },
+          "addressesFindings": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "pattern": "^[A-Z]{3}-[0-9]{4}$" },
+            "description": "Finding IDs this task resolves. A task with no finding behind it does not belong in the plan."
+          },
+          "dependsOn": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^T-[0-9]{3}$" },
+            "description": "Task IDs that must complete first. The plan is dependency-ordered."
+          },
+          "effort": { "type": "string", "enum": ["S", "M", "L", "XL"] },
+          "risk": { "type": "string", "enum": ["low", "medium", "high"] },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "done", "blocked", "deferred"],
+            "description": "Updated by port-migration as it works."
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "acceptanceScenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/acceptanceScenario" },
+      "description": "Product scenarios that migration must execute and review must bind to runtime evidence."
+    },
+    "requiredTestSuites": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Complete suite manifest inherited from analysis and required from build evidence."
+    },
+    "openQuestions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Things analysis could not resolve from evidence. Migration must not guess at these."
+    },
+    "outOfScope": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicitly excluded work, so review does not flag it as incomplete."
+    }
+  },
+  "$defs": {
+    "acceptanceScenario": {
+      "type": "object",
+      "required": ["id", "name", "command", "expectedResult", "requiredProjects"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^SCN-[0-9]{3}$" },
+        "name": { "type": "string", "minLength": 1 },
+        "command": { "type": "string", "minLength": 1 },
+        "expectedResult": { "type": "string", "minLength": 1 },
+        "requiredProjects": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

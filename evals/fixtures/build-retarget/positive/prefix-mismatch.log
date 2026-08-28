@@ -1,0 +1,4 @@
+vcpkg VCToolsVersion=14.44.35207
+MSBuild VCToolsVersion=14.44.35207.1
+resolved cl=C:\VS\VC\Tools\MSVC\14.44.35207\bin\Hostarm64\arm64\cl.exe
+resolved INCLUDE path=C:\VS\VC\Tools\MSVC\14.44.352070\include

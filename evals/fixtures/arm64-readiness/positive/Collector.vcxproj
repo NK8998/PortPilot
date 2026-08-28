@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0">
+  <PropertyGroup>
+    <CLRSupport>true</CLRSupport>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalOptions>/clr:pure</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Target Name="CopyTool">
+    <Copy SourceFiles="$(VCToolsInstallDir)bin\HostX64\x64\mspdbcore.dll" DestinationFolder="$(OutDir)" />
+  </Target>
+</Project>

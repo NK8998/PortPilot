@@ -1,0 +1,326 @@
+Note: Google Test filter = -CodeCoverageRunnerTest.OptimizedBuild:CppCliTest.ManagedUnManagedModule
+[==========] Running 116 tests from 23 test suites.
+[----------] Global test environment set-up.
+[----------] 6 tests from BreakPointTest
+[ RUN      ] BreakPointTest.SetBreakPoints
+[       OK ] BreakPointTest.SetBreakPoints (23 ms)
+[ RUN      ] BreakPointTest.SetBreakPointsSingle
+[       OK ] BreakPointTest.SetBreakPointsSingle (0 ms)
+[ RUN      ] BreakPointTest.RemovesDuplicateAddresses
+[       OK ] BreakPointTest.RemovesDuplicateAddresses (0 ms)
+[ RUN      ] BreakPointTest.RestoresCompleteInstruction
+[       OK ] BreakPointTest.RestoresCompleteInstruction (0 ms)
+[ RUN      ] BreakPointTest.SetsBreakPointsAcrossReadRanges
+[       OK ] BreakPointTest.SetsBreakPointsAcrossReadRanges (0 ms)
+[ RUN      ] BreakPointTest.RejectsUnalignedArm64Address
+[       OK ] BreakPointTest.RejectsUnalignedArm64Address (23 ms)
+[----------] 6 tests from BreakPointTest (47 ms total)
+
+[----------] 17 tests from CodeCoverageRunnerTest
+[ RUN      ] CodeCoverageRunnerTest.RunCoverage
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestBasic
+[       OK ] CodeCoverageRunnerTest.RunCoverage (274 ms)
+[ RUN      ] CodeCoverageRunnerTest.RunCoverageDll
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestSharedLib
+[       OK ] CodeCoverageRunnerTest.RunCoverageDll (232 ms)
+[ RUN      ] CodeCoverageRunnerTest.RunThread
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThread
+[       OK ] CodeCoverageRunnerTest.RunThread (236 ms)
+[ RUN      ] CodeCoverageRunnerTest.HandledException
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowHandledException
+[       OK ] CodeCoverageRunnerTest.HandledException (255 ms)
+[ RUN      ] CodeCoverageRunnerTest.UnHandledSEHException
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowUnHandledSEHException
+[       OK ] CodeCoverageRunnerTest.UnHandledSEHException (655 ms)
+[ RUN      ] CodeCoverageRunnerTest.UnHandledCppException
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowUnHandledCppException
+[       OK ] CodeCoverageRunnerTest.UnHandledCppException (369 ms)
+[ RUN      ] CodeCoverageRunnerTest.UnHandledCppExceptionContinue
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowUnHandledCppException
+[       OK ] CodeCoverageRunnerTest.UnHandledCppExceptionContinue (250 ms)
+[ RUN      ] CodeCoverageRunnerTest.UnHandledCppExceptionNotContinue
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowUnHandledCppException
+[       OK ] CodeCoverageRunnerTest.UnHandledCppExceptionNotContinue (371 ms)
+[ RUN      ] CodeCoverageRunnerTest.ChildProcess
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowHandledException
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowHandledException
+[       OK ] CodeCoverageRunnerTest.ChildProcess (287 ms)
+[ RUN      ] CodeCoverageRunnerTest.SeveralChildProcess
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowUnHandledCppException
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestThrowUnHandledSEHException
+[       OK ] CodeCoverageRunnerTest.SeveralChildProcess (391 ms)
+[ RUN      ] CodeCoverageRunnerTest.TestFileInSeveralModules
+[       OK ] CodeCoverageRunnerTest.TestFileInSeveralModules (100 ms)
+[ RUN      ] CodeCoverageRunnerTest.SpecialLineInfo
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestSpecialLineInfo
+[       OK ] CodeCoverageRunnerTest.SpecialLineInfo (259 ms)
+[ RUN      ] CodeCoverageRunnerTest.UnifiedDiff
+[       OK ] CodeCoverageRunnerTest.UnifiedDiff (81 ms)
+[ RUN      ] CodeCoverageRunnerTest.SpecialChars
+Unsupported type:
+[       OK ] CodeCoverageRunnerTest.SpecialChars (67 ms)
+[ RUN      ] CodeCoverageRunnerTest.UnloadReloadDll
+Start: "C:\\a\\OpenCppCoverage-ARM64\\OpenCppCoverage-ARM64\\ARM64\\Debug\\TestCoverageConsole.exe" with TestUnloadReloadDll
+[       OK ] CodeCoverageRunnerTest.UnloadReloadDll (584 ms)
+[ RUN      ] CodeCoverageRunnerTest.ExcludedLine
+[       OK ] CodeCoverageRunnerTest.ExcludedLine (143 ms)
+[ RUN      ] CodeCoverageRunnerTest.SubstitutePdbSourcePath
+Invalid number of argument:  1
+Invalid number of argument:  1
+[       OK ] CodeCoverageRunnerTest.SubstitutePdbSourcePath (156 ms)
+[----------] 17 tests from CodeCoverageRunnerTest (4719 ms total)
+
+[----------] 1 test from CoverageDataMergerRandomTest
+[ RUN      ] CoverageDataMergerRandomTest.RandomTest
+[       OK ] CoverageDataMergerRandomTest.RandomTest (26 ms)
+[----------] 1 test from CoverageDataMergerRandomTest (26 ms total)
+
+[----------] 7 tests from CoverageDataMergerTest
+[ RUN      ] CoverageDataMergerTest.CoverageData
+[       OK ] CoverageDataMergerTest.CoverageData (0 ms)
+[ RUN      ] CoverageDataMergerTest.NotZeroExitCode
+[       OK ] CoverageDataMergerTest.NotZeroExitCode (0 ms)
+[ RUN      ] CoverageDataMergerTest.Module
+[       OK ] CoverageDataMergerTest.Module (0 ms)
+[ RUN      ] CoverageDataMergerTest.File
+[       OK ] CoverageDataMergerTest.File (0 ms)
+[ RUN      ] CoverageDataMergerTest.Line
+[       OK ] CoverageDataMergerTest.Line (0 ms)
+[ RUN      ] CoverageDataMergerTest.MergeFileCoverageEmpty
+[       OK ] CoverageDataMergerTest.MergeFileCoverageEmpty (0 ms)
+[ RUN      ] CoverageDataMergerTest.MergeFileCoverageMultipleFiles
+[       OK ] CoverageDataMergerTest.MergeFileCoverageMultipleFiles (0 ms)
+[----------] 7 tests from CoverageDataMergerTest (1 ms total)
+
+[----------] 1 test from DebugInformationEnumeratorTest
+[ RUN      ] DebugInformationEnumeratorTest.Enumerate
+[       OK ] DebugInformationEnumeratorTest.Enumerate (8 ms)
+[----------] 1 test from DebugInformationEnumeratorTest (8 ms total)
+
+[----------] 4 tests from UnifiedDiffCoverageFilterManagerTest
+[ RUN      ] UnifiedDiffCoverageFilterManagerTest.TwoDiff
+[       OK ] UnifiedDiffCoverageFilterManagerTest.TwoDiff (0 ms)
+[ RUN      ] UnifiedDiffCoverageFilterManagerTest.GetWarningMessageLine
+[       OK ] UnifiedDiffCoverageFilterManagerTest.GetWarningMessageLine (0 ms)
+[ RUN      ] UnifiedDiffCoverageFilterManagerTest.GetWarningMessageLineTrunc
+[       OK ] UnifiedDiffCoverageFilterManagerTest.GetWarningMessageLineTrunc (0 ms)
+[ RUN      ] UnifiedDiffCoverageFilterManagerTest.IsLineSelected
+[       OK ] UnifiedDiffCoverageFilterManagerTest.IsLineSelected (0 ms)
+[----------] 4 tests from UnifiedDiffCoverageFilterManagerTest (2 ms total)
+
+[----------] 5 tests from OptionsParserUnifiedDifftTest
+[ RUN      ] OptionsParserUnifiedDifftTest.UnifiedDiffPath
+[       OK ] OptionsParserUnifiedDifftTest.UnifiedDiffPath (3 ms)
+[ RUN      ] OptionsParserUnifiedDifftTest.NotFoundUnifiedDiffPath
+[       OK ] OptionsParserUnifiedDifftTest.NotFoundUnifiedDiffPath (3 ms)
+[ RUN      ] OptionsParserUnifiedDifftTest.RootDiffFolder
+[       OK ] OptionsParserUnifiedDifftTest.RootDiffFolder (2 ms)
+[ RUN      ] OptionsParserUnifiedDifftTest.NotFoundRootDiffFolder
+[       OK ] OptionsParserUnifiedDifftTest.NotFoundRootDiffFolder (4 ms)
+[ RUN      ] OptionsParserUnifiedDifftTest.TwoDiff
+[       OK ] OptionsParserUnifiedDifftTest.TwoDiff (2 ms)
+[----------] 5 tests from OptionsParserUnifiedDifftTest (16 ms total)
+
+[----------] 2 tests from WildcardCoverageFilterTest
+[ RUN      ] WildcardCoverageFilterTest.IsModuleSelected
+[       OK ] WildcardCoverageFilterTest.IsModuleSelected (0 ms)
+[ RUN      ] WildcardCoverageFilterTest.IsSourceSelected
+[       OK ] WildcardCoverageFilterTest.IsSourceSelected (0 ms)
+[----------] 2 tests from WildcardCoverageFilterTest (1 ms total)
+
+[----------] 5 tests from CoverageRateComputerTest
+[ RUN      ] CoverageRateComputerTest.FileCoverage
+[       OK ] CoverageRateComputerTest.FileCoverage (0 ms)
+[ RUN      ] CoverageRateComputerTest.ModuleCoverage
+[       OK ] CoverageRateComputerTest.ModuleCoverage (0 ms)
+[ RUN      ] CoverageRateComputerTest.CoverageRate
+[       OK ] CoverageRateComputerTest.CoverageRate (0 ms)
+[ RUN      ] CoverageRateComputerTest.SortModulesByCoverageRate
+[       OK ] CoverageRateComputerTest.SortModulesByCoverageRate (0 ms)
+[ RUN      ] CoverageRateComputerTest.SortFileByCoverageRate
+[       OK ] CoverageRateComputerTest.SortFileByCoverageRate (0 ms)
+[----------] 5 tests from CoverageRateComputerTest (1 ms total)
+
+[----------] 2 tests from CoverageRateTest
+[ RUN      ] CoverageRateTest.BasicAccessors
+[       OK ] CoverageRateTest.BasicAccessors (0 ms)
+[ RUN      ] CoverageRateTest.Add
+[       OK ] CoverageRateTest.Add (0 ms)
+[----------] 2 tests from CoverageRateTest (0 ms total)
+
+[----------] 2 tests from CppCoverageException
+[ RUN      ] CppCoverageException.GetErrorMessage
+[       OK ] CppCoverageException.GetErrorMessage (0 ms)
+[ RUN      ] CppCoverageException.GetErrorMessageInvalid
+[       OK ] CppCoverageException.GetErrorMessageInvalid (0 ms)
+[----------] 2 tests from CppCoverageException (0 ms total)
+
+[----------] 1 test from DebugerTest
+[ RUN      ] DebugerTest.Debug
+Invalid number of argument:  1
+[       OK ] DebugerTest.Debug (25 ms)
+[----------] 1 test from DebugerTest (25 ms total)
+
+[----------] 6 tests from ExceptionHandlerTest
+[ RUN      ] ExceptionHandlerTest.TestUnHandleCppException
+[       OK ] ExceptionHandlerTest.TestUnHandleCppException (80 ms)
+[ RUN      ] ExceptionHandlerTest.TestUnHandleSEHException
+[       OK ] ExceptionHandlerTest.TestUnHandleSEHException (80 ms)
+[ RUN      ] ExceptionHandlerTest.TestFormatMessage
+[       OK ] ExceptionHandlerTest.TestFormatMessage (0 ms)
+[ RUN      ] ExceptionHandlerTest.TestUnknown
+[       OK ] ExceptionHandlerTest.TestUnknown (0 ms)
+[ RUN      ] ExceptionHandlerTest.ChildProcess
+[       OK ] ExceptionHandlerTest.ChildProcess (0 ms)
+[ RUN      ] ExceptionHandlerTest.ExitProcess
+[       OK ] ExceptionHandlerTest.ExitProcess (0 ms)
+[----------] 6 tests from ExceptionHandlerTest (162 ms total)
+
+[----------] 4 tests from ExecutedAddressManagerTest
+[ RUN      ] ExecutedAddressManagerTest.RegisterAddress
+[       OK ] ExecutedAddressManagerTest.RegisterAddress (0 ms)
+[ RUN      ] ExecutedAddressManagerTest.MarkAddressAsExecuted
+[       OK ] ExecutedAddressManagerTest.MarkAddressAsExecuted (0 ms)
+[ RUN      ] ExecutedAddressManagerTest.CreateCoverageData
+[       OK ] ExecutedAddressManagerTest.CreateCoverageData (0 ms)
+[ RUN      ] ExecutedAddressManagerTest.AddSameModuleTwice
+[       OK ] ExecutedAddressManagerTest.AddSameModuleTwice (0 ms)
+[----------] 4 tests from ExecutedAddressManagerTest (0 ms total)
+
+[----------] 1 test from HandleInformationTest
+[ RUN      ] HandleInformationTest.ComputeFilename
+Invalid number of argument:  1
+[       OK ] HandleInformationTest.ComputeFilename (19 ms)
+[----------] 1 test from HandleInformationTest (19 ms total)
+
+[----------] 4 tests from OptionsParserConfigTest
+[ RUN      ] OptionsParserConfigTest.ConfigurationFileMultipleValue
+[       OK ] OptionsParserConfigTest.ConfigurationFileMultipleValue (3 ms)
+[ RUN      ] OptionsParserConfigTest.ConfigurationFileCmdLineOverride
+[       OK ] OptionsParserConfigTest.ConfigurationFileCmdLineOverride (4 ms)
+[ RUN      ] OptionsParserConfigTest.ConfigurationFileMerge
+[       OK ] OptionsParserConfigTest.ConfigurationFileMerge (2 ms)
+[ RUN      ] OptionsParserConfigTest.ConfigurationFileInvalidOption
+[       OK ] OptionsParserConfigTest.ConfigurationFileInvalidOption (2 ms)
+[----------] 4 tests from OptionsParserConfigTest (14 ms total)
+
+[----------] 8 tests from OptionsParserExportTest
+[ RUN      ] OptionsParserExportTest.ExportTypesDefault
+[       OK ] OptionsParserExportTest.ExportTypesDefault (1 ms)
+[ RUN      ] OptionsParserExportTest.ExportTypesHtml
+[       OK ] OptionsParserExportTest.ExportTypesHtml (1 ms)
+[ RUN      ] OptionsParserExportTest.ExportTypesCoberturaValue
+[       OK ] OptionsParserExportTest.ExportTypesCoberturaValue (1 ms)
+[ RUN      ] OptionsParserExportTest.ExportTypesBoth
+[       OK ] OptionsParserExportTest.ExportTypesBoth (1 ms)
+[ RUN      ] OptionsParserExportTest.OutputPath
+[       OK ] OptionsParserExportTest.OutputPath (1 ms)
+[ RUN      ] OptionsParserExportTest.ExistingExportPath
+[       OK ] OptionsParserExportTest.ExistingExportPath (2 ms)
+[ RUN      ] OptionsParserExportTest.InvalidExportTypes
+[       OK ] OptionsParserExportTest.InvalidExportTypes (1 ms)
+[ RUN      ] OptionsParserExportTest.ExportPluginDescription
+[       OK ] OptionsParserExportTest.ExportPluginDescription (1 ms)
+[----------] 8 tests from OptionsParserExportTest (12 ms total)
+
+[----------] 5 tests from OptionsParserPatternTest
+[ RUN      ] OptionsParserPatternTest.SelectedModulePatterns
+[       OK ] OptionsParserPatternTest.SelectedModulePatterns (1 ms)
+[ RUN      ] OptionsParserPatternTest.ExcludedModulePatterns
+[       OK ] OptionsParserPatternTest.ExcludedModulePatterns (1 ms)
+[ RUN      ] OptionsParserPatternTest.SelectedSourcePatterns
+[       OK ] OptionsParserPatternTest.SelectedSourcePatterns (1 ms)
+[ RUN      ] OptionsParserPatternTest.ExcludedSourcePatterns
+[       OK ] OptionsParserPatternTest.ExcludedSourcePatterns (1 ms)
+[ RUN      ] OptionsParserPatternTest.CheckPattern
+[       OK ] OptionsParserPatternTest.CheckPattern (32 ms)
+[----------] 5 tests from OptionsParserPatternTest (37 ms total)
+
+[----------] 20 tests from OptionsParserTest
+[ RUN      ] OptionsParserTest.Default
+[       OK ] OptionsParserTest.Default (0 ms)
+[ RUN      ] OptionsParserTest.Help
+[       OK ] OptionsParserTest.Help (2 ms)
+[ RUN      ] OptionsParserTest.Verbose
+[       OK ] OptionsParserTest.Verbose (1 ms)
+[ RUN      ] OptionsParserTest.Quiet
+[       OK ] OptionsParserTest.Quiet (1 ms)
+[ RUN      ] OptionsParserTest.Plugin
+[       OK ] OptionsParserTest.Plugin (1 ms)
+[ RUN      ] OptionsParserTest.CoverChildren
+[       OK ] OptionsParserTest.CoverChildren (1 ms)
+[ RUN      ] OptionsParserTest.FileAggregate
+[       OK ] OptionsParserTest.FileAggregate (2 ms)
+[ RUN      ] OptionsParserTest.ContinueAfterCppException
+[       OK ] OptionsParserTest.ContinueAfterCppException (1 ms)
+[ RUN      ] OptionsParserTest.StopOnAssert
+[       OK ] OptionsParserTest.StopOnAssert (1 ms)
+[ RUN      ] OptionsParserTest.WorkingDirectory
+[       OK ] OptionsParserTest.WorkingDirectory (1 ms)
+[ RUN      ] OptionsParserTest.Program
+[       OK ] OptionsParserTest.Program (1 ms)
+[ RUN      ] OptionsParserTest.UnknownOption
+[       OK ] OptionsParserTest.UnknownOption (2 ms)
+[ RUN      ] OptionsParserTest.OptionOstream
+[       OK ] OptionsParserTest.OptionOstream (1 ms)
+[ RUN      ] OptionsParserTest.InputCoverage
+[       OK ] OptionsParserTest.InputCoverage (2 ms)
+[ RUN      ] OptionsParserTest.InvalidInputCoverage
+[       OK ] OptionsParserTest.InvalidInputCoverage (2 ms)
+[ RUN      ] OptionsParserTest.OptimizedBuild
+[       OK ] OptionsParserTest.OptimizedBuild (1 ms)
+[ RUN      ] OptionsParserTest.ExcludedLineRegex
+[       OK ] OptionsParserTest.ExcludedLineRegex (1 ms)
+[ RUN      ] OptionsParserTest.SubstitutePdbSourcePath
+[       OK ] OptionsParserTest.SubstitutePdbSourcePath (2 ms)
+[ RUN      ] OptionsParserTest.SubstitutePdbSourcePathTargetNotExist
+[       OK ] OptionsParserTest.SubstitutePdbSourcePathTargetNotExist (1 ms)
+[ RUN      ] OptionsParserTest.SubstitutePdbSourcePathPdbStartPathInvalid
+[       OK ] OptionsParserTest.SubstitutePdbSourcePathPdbStartPathInvalid (3 ms)
+[----------] 20 tests from OptionsParserTest (36 ms total)
+
+[----------] 4 tests from Process
+[ RUN      ] Process.StartWithArgument
+[       OK ] Process.StartWithArgument (2 ms)
+[ RUN      ] Process.InvalidProgram
+[       OK ] Process.InvalidProgram (5 ms)
+[ RUN      ] Process.FileNotExists
+[       OK ] Process.FileNotExists (1 ms)
+[ RUN      ] Process.ProgramInPath
+[       OK ] Process.ProgramInPath (10 ms)
+[----------] 4 tests from Process (20 ms total)
+
+[----------] 3 tests from StartInfoTest
+[ RUN      ] StartInfoTest.Constructor
+[       OK ] StartInfoTest.Constructor (0 ms)
+[ RUN      ] StartInfoTest.SetWorkingDirectoryNotExists
+[       OK ] StartInfoTest.SetWorkingDirectoryNotExists (0 ms)
+[ RUN      ] StartInfoTest.SetWorkingDirectoryExists
+[       OK ] StartInfoTest.SetWorkingDirectoryExists (0 ms)
+[----------] 3 tests from StartInfoTest (0 ms total)
+
+[----------] 6 tests from WildcardsTest
+[ RUN      ] WildcardsTest.BasicMatch
+[       OK ] WildcardsTest.BasicMatch (0 ms)
+[ RUN      ] WildcardsTest.BasicNoMatch
+[       OK ] WildcardsTest.BasicNoMatch (0 ms)
+[ RUN      ] WildcardsTest.StarsMatch
+[       OK ] WildcardsTest.StarsMatch (0 ms)
+[ RUN      ] WildcardsTest.StarsNoMatch
+[       OK ] WildcardsTest.StarsNoMatch (0 ms)
+[ RUN      ] WildcardsTest.SpecialCharMatch
+[       OK ] WildcardsTest.SpecialCharMatch (0 ms)
+[ RUN      ] WildcardsTest.Ostream
+[       OK ] WildcardsTest.Ostream (0 ms)
+[----------] 6 tests from WildcardsTest (4 ms total)
+
+[----------] 2 tests from FilterAssistantTest/FilterAssistantTest
+[ RUN      ] FilterAssistantTest/FilterAssistantTest.ComputeSuggestSourceFile/0
+[       OK ] FilterAssistantTest/FilterAssistantTest.ComputeSuggestSourceFile/0 (0 ms)
+[ RUN      ] FilterAssistantTest/FilterAssistantTest.ComputeSuggestSourceFile/1
+[       OK ] FilterAssistantTest/FilterAssistantTest.ComputeSuggestSourceFile/1 (0 ms)
+[----------] 2 tests from FilterAssistantTest/FilterAssistantTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 116 tests from 23 test suites ran. (5169 ms total)
+[  PASSED  ] 116 tests.

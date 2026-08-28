@@ -1,0 +1,12 @@
+{
+  "Package": "C:\\Users\\t-lsingoei\\.copilot\\session-state\\f0479a6a-aa4e-4897-82ef-ef3071b1e9d7\\files\\package-x64-commit\\OpenCppCoverage-0.9.9.0-windows-x64.zip",
+  "Size": 17080112,
+  "Sha256": "95c820c8e809af2f2f730629f41acc58039dee0ed495104d63c8479526781441",
+  "Checksum": "C:\\Users\\t-lsingoei\\.copilot\\session-state\\f0479a6a-aa4e-4897-82ef-ef3071b1e9d7\\files\\package-x64-commit\\OpenCppCoverage-0.9.9.0-windows-x64.zip.sha256",
+  "Staging": "C:\\Users\\t-lsingoei\\.copilot\\session-state\\f0479a6a-aa4e-4897-82ef-ef3071b1e9d7\\files\\package-x64-commit\\staging\\OpenCppCoverage-0.9.9.0-windows-x64",
+  "Expanded": "C:\\Users\\t-lsingoei\\.copilot\\session-state\\f0479a6a-aa4e-4897-82ef-ef3071b1e9d7\\files\\package-x64-commit\\expanded\\OpenCppCoverage-0.9.9.0-windows-x64",
+  "PeImageCount": 35,
+  "FileCount": 153,
+  "DependencyCount": 103,
+  "CrtSource": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Redist\\MSVC\\14.51.36231\\x64\\Microsoft.VC145.CRT"
+}

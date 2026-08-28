@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0",
+  "target": {
+    "repo": "github.com/OpenCppCoverage/OpenCppCoverage",
+    "commit": "3e518697ea761935574af486bacd5fcc1aeab363"
+  },
+  "runtimeTree": "artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64",
+  "x64": [
+    {
+      "name": "x64-compatibility-job",
+      "command": "GitHub Actions job Windows x64 compatibility on windows-2022",
+      "exitCode": 0,
+      "expectation": "Retained as a compatibility gate only. x64 execution is not evidence for ARM64 and is never counted as such."
+    }
+  ],
+  "arm64": [
+    {
+      "name": "e2e-build-output",
+      "command": "& .\\Build\\Scripts\\RunEndToEnd.ps1 -Platform ARM64 -Configuration Release",
+      "exitCode": 0,
+      "expectation": "On windows-11-arm: CoverageExitCode 0, 2 of 24 lines, unreachable line 36 with 0 hits"
+    },
+    {
+      "name": "e2e-expanded-package",
+      "command": "& .\\Build\\Scripts\\RunEndToEnd.ps1 -Platform ARM64 -Configuration Release -Label packaged",
+      "exitCode": 0,
+      "expectation": "On windows-11-arm: the same coverage result produced by the binary inside the expanded package, which is the only check that can catch a missing runtime dependency or directory"
+    },
+    {
+      "name": "published-asset-execution",
+      "command": "winport-independent-verification workflow on windows-11-arm at GitHub Actions run 32361171722",
+      "exitCode": 0,
+      "expectation": "The coordinator downloaded the published asset, verified its checksum, and executed the shipped binary without rebuilding anything"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "SCN-001",
+      "command": "OpenCppCoverage.exe --export_type=cobertura:e2e-cobertura-ARM64-Release.xml --sources TestBasic -- TestCoverageConsole.exe",
+      "expectedResult": "CoverageExitCode 0, 2 of 24 lines covered in TestBasic.cpp, unreachable line 36 reported with 0 hits",
+      "exitCode": 0,
+      "observedResult": "CoverageExitCode 0, 2 of 24 lines covered in TestBasic.cpp, unreachable line 36 reported with 0 hits",
+      "evidence": "evidence/arm64-81376ba/e2e-summary-ARM64-Release.json"
+    },
+    {
+      "id": "SCN-002",
+      "command": "artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64\\Binaries\\OpenCppCoverage.exe --export_type=cobertura:e2e-cobertura-ARM64-Release-packaged.xml --sources TestBasic -- TestCoverageConsole.exe",
+      "expectedResult": "CoverageExitCode 0 from the packaged binary, identical 2 of 24 coverage and unreachable line 36 with 0 hits",
+      "exitCode": 0,
+      "observedResult": "CoverageExitCode 0 from the packaged binary, identical 2 of 24 coverage and unreachable line 36 with 0 hits",
+      "evidence": "evidence/arm64-81376ba/e2e-summary-ARM64-Release-packaged.json"
+    },
+    {
+      "id": "SCN-003",
+      "command": "winport-scan.exe artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64",
+      "expectedResult": "34 of 34 shipped images are ARM64 or ARM64X with zero findings",
+      "exitCode": 0,
+      "observedResult": "34 of 34 shipped images are ARM64 or ARM64X with zero findings",
+      "evidence": "evidence/purity-winport-scan-arm64-81376ba.txt"
+    },
+    {
+      "id": "SCN-004",
+      "command": "pwsh .github/workflows/winport-independent-verification.yml on windows-11-arm: download asset, verify SHA-256, expand, scan, execute shipped OpenCppCoverage.exe",
+      "expectedResult": "Checksum 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5 matches, 34 images ARM64, shipped binary exits 0 and reports the uncalled line as 0 hits under ProcessArchitecture Arm64",
+      "exitCode": 0,
+      "observedResult": "Checksum 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5 matches, 34 images ARM64, shipped binary exits 0 and reports the uncalled line as 0 hits under ProcessArchitecture Arm64",
+      "evidence": "evidence/winport-independent-verification-run-32361171722.log"
+    }
+  ],
+  "notes": "SCN-003 and SCN-004 were produced by the coordinator rather than by the porting session. SCN-003 is the coordinator's own winport-scan over the re-expanded published ZIP, and SCN-004 is a workflow the coordinator authored that never builds the product and only executes the published bytes."
+}

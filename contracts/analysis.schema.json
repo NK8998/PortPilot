@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/winport/winport/contracts/analysis.schema.json",
+  "title": "PortPilot Analysis",
+  "description": "Emitted by port-analysis. The fused output of every analysis skill: ground-truth repo facts plus all findings. Consumed by port-planning and the orchestrator.",
+  "type": "object",
+  "required": ["schemaVersion", "target", "structure", "findings", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "target": {
+      "type": "object",
+      "required": ["repo", "commit"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "path": { "type": "string" }
+      }
+    },
+    "structure": {
+      "type": "object",
+      "description": "Ground truth from repo-structure. Facts, not findings - no severity, no evidence citation required.",
+      "required": ["languages", "buildSystems"],
+      "additionalProperties": false,
+      "properties": {
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "loc"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string" },
+              "loc": { "type": "integer", "minimum": 0 },
+              "percent": { "type": "number", "minimum": 0, "maximum": 100 }
+            }
+          }
+        },
+        "buildSystems": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["cmake", "meson", "autotools", "make", "cargo", "msbuild", "gradle", "npm", "pip", "go", "bazel", "other"]
+          }
+        },
+        "uiFramework": {
+          "type": "string",
+          "description": "Primary UI toolkit if any, e.g. gtk4, qt6, electron, tauri, flutter, imgui, none"
+        },
+        "entryPoints": { "type": "array", "items": { "type": "string" } },
+        "testCommand": { "type": "string" },
+        "acceptanceScenarios": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/acceptanceScenario" },
+          "description": "Deterministic user-visible scenarios that define what working means before migration starts."
+        },
+        "requiredTestSuites": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Suite names derived from the analyzed project graph, before migration evidence exists."
+        },
+        "ciPlatforms": { "type": "array", "items": { "type": "string" } },
+        "totalLoc": { "type": "integer", "minimum": 0 },
+        "existingWindowsSupport": {
+          "type": "string",
+          "enum": ["none", "partial", "full", "unknown"],
+          "description": "Does it build on Windows today at all?"
+        },
+        "existingArm64Support": {
+          "type": "string",
+          "enum": ["none", "partial", "full", "unknown"],
+          "description": "Is there a win-arm64 artifact in releases or CI?"
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "description": "Every finding from every analysis skill, merged and de-duplicated. Each conforms to finding.schema.json's finding definition.",
+      "items": { "$ref": "finding.schema.json#/$defs/finding" }
+    },
+    "skillsRun": {
+      "type": "array",
+      "description": "Which analysis skills actually ran. Lets review detect an incomplete analysis.",
+      "items": { "type": "string" }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["blockers", "high", "medium", "low"],
+      "additionalProperties": false,
+      "properties": {
+        "blockers": { "type": "integer", "minimum": 0 },
+        "high": { "type": "integer", "minimum": 0 },
+        "medium": { "type": "integer", "minimum": 0 },
+        "low": { "type": "integer", "minimum": 0 },
+        "info": { "type": "integer", "minimum": 0 },
+        "arm64Blockers": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Findings with arm64Impact=blocker. Tracked separately from severity blockers on purpose."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "acceptanceScenario": {
+      "type": "object",
+      "required": ["id", "name", "command", "expectedResult", "requiredProjects"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^SCN-[0-9]{3}$" },
+        "name": { "type": "string", "minLength": 1 },
+        "command": { "type": "string", "minLength": 1 },
+        "expectedResult": { "type": "string", "minLength": 1 },
+        "requiredProjects": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

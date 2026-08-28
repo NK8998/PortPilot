@@ -1,0 +1,213 @@
+name: portpilot-gates
+
+# The quality ratchet. These gates run on every change so a skill cannot
+# regress silently.
+#
+# Note on Windows-on-Arm: `runs-on: windows-11-arm` is free and generally
+# available for PUBLIC repositories. If this repository is private, ARM64 jobs
+# must cross-compile and verify PE headers rather than execute ARM64 code —
+# record that honestly in the run evidence as `cross-compiled-not-executed`
+# rather than claiming a native run. See `arm64-ci-integration`.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    name: Contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install --prefix contracts
+
+      # A .gitignore pattern that reaches the skill or fixture trees removes
+      # rules and fixtures without failing anything loudly - a missing NEGATIVE
+      # fixture just quietly weakens the false-positive gate. `build-*/`
+      # unanchored once swallowed the entire build-retarget skill this way.
+      - name: No catalogue content may be gitignored
+        run: |
+          set -euo pipefail
+          hits="$(git ls-files --others --ignored --exclude-standard \
+                    -- .github/skills evals agents contracts scripts docs \
+                       ':(exclude)**/node_modules/**' || true)"
+          if [ -n "$hits" ]; then
+            echo "::error::gitignore is excluding catalogue content:"
+            printf '%s\n' "$hits"
+            printf '%s\n' "$hits" | while read -r f; do
+              [ -n "$f" ] && git check-ignore -v "$f" || true
+            done
+            exit 1
+          fi
+          echo "no skill, fixture, agent, contract, script or doc file is ignored"
+
+      - name: Contract schema tests
+        run: npm test --prefix contracts
+
+      - name: Validate every run directory
+        run: |
+          set -uo pipefail
+          shopt -s nullglob
+          found=0
+          status=0
+          for d in runs/*/; do
+            case "$d" in runs/_*) continue;; esac
+            found=1
+            echo "::group::$d"
+            out="$(node contracts/validate.js "$d" 2>&1)" && rc=0 || rc=$?
+            echo "$out"
+            echo "::endgroup::"
+
+            if [ "$rc" -eq 0 ]; then
+              continue
+            fi
+
+            # validate.js exits 2 for "nothing to validate" and 1 for "invalid".
+            # A notes-only run (no contract artifacts) is not a failure, but say
+            # so out loud rather than passing silently.
+            if [ "$rc" -eq 2 ]; then
+              echo "::notice::${d} carries no contract artifacts - not machine-validatable"
+              continue
+            fi
+
+            # A hash mismatch is only tolerable if we can PROVE it is end-of-line
+            # encoding rather than altered evidence. verify-evidence-hashes.py
+            # reconstructs each recorded SHA-256 exactly, and fails if any
+            # mismatch is unexplained - so tampering still breaks the build.
+            if [ -f "${d}EVIDENCE-INTEGRITY.md" ]; then
+              echo "::group::${d} evidence hash forensics"
+              proof="$(python3 scripts/verify-evidence-hashes.py "$d" 2>&1)" && prc=0 || prc=$?
+              echo "$proof"
+              echo "::endgroup::"
+
+              residual="$(printf '%s\n' "$out" \
+                | grep -E '^\s+(FAIL|INVALID)|does not (match|exist)' \
+                | grep -vE '(prior)?[Ee]vidence\[[0-9]+\]\.(size|sha256)' \
+                | grep -vE 'artifacts\[[0-9]+\]\.(size|sha256)' \
+                | grep -vE 'run directory against cross-artifact semantic gates' || true)"
+
+              if [ "$prc" -eq 0 ] && [ -z "$residual" ]; then
+                echo "::warning file=${d}EVIDENCE-INTEGRITY.md::${d}: hash mismatches proven to be end-of-line encoding only, no content altered"
+                continue
+              fi
+              if [ "$prc" -ne 0 ]; then
+                echo "::error::${d}: evidence hash mismatch could NOT be explained by line-ending normalisation - evidence may have been altered"
+              fi
+              if [ -n "$residual" ]; then
+                echo "::error::${d} has failures beyond evidence hashes:"
+                printf '%s\n' "$residual"
+              fi
+            fi
+            status=1
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "no run directories found - nothing was validated"
+            exit 1
+          fi
+          exit "$status"
+
+      - name: Prove the evidence-integrity gate can fail
+        run: |
+          set -euo pipefail
+          # "A gate that cannot fail its author is not a gate." Mutate one
+          # content byte of retained evidence, preserving size and line count so
+          # only the CONTENT differs, and require the forensic prover to catch
+          # it. Without this, a prover that always returned 0 would silently
+          # turn the tamper-evidence gate into decoration.
+          target=runs/opencppcoverage-arm64/evidence/pe-machine-ARM64-run-32303203988.txt
+          cp "$target" /tmp/evidence.orig
+          python3 - "$target" <<'MUTATE'
+          import sys
+          path = sys.argv[1]
+          data = bytearray(open(path, "rb").read())
+          for i, ch in enumerate(data):
+              if ch in b"ABCDEFabcdef0123456789":
+                  data[i] = ord("9") if ch != ord("9") else ord("8")
+                  break
+          else:
+              raise SystemExit("no mutable byte found - negative control is vacuous")
+          open(path, "wb").write(bytes(data))
+          MUTATE
+
+          if cmp -s /tmp/evidence.orig "$target"; then
+            cp /tmp/evidence.orig "$target"
+            echo "mutation was a no-op - the negative control proves nothing"
+            exit 1
+          fi
+
+          if python3 scripts/verify-evidence-hashes.py runs/opencppcoverage-arm64/; then
+            cp /tmp/evidence.orig "$target"
+            echo "FAIL: altered evidence was accepted - the integrity gate cannot fail"
+            exit 1
+          fi
+
+          cp /tmp/evidence.orig "$target"
+          python3 scripts/verify-evidence-hashes.py runs/opencppcoverage-arm64/ >/dev/null
+          echo "gate correctly rejected a single altered byte, and passes once restored"
+
+  evals:
+    name: Skill evaluations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install --prefix contracts
+
+      # Enforces >=80% recall and <=20% false-positive rate for every skill
+      # that ships patterns/rules.json, and fails any rule-bearing skill with
+      # no golden evaluation behind it.
+      - name: Score every rule-bearing skill
+        run: NODE_PATH=contracts/node_modules node evals/run-evals.js
+
+  verifier:
+    name: Architecture verifier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The verifier is the gate everything else leans on. If it cannot
+      # correctly identify a known binary, no architecture claim in this repo
+      # can be trusted.
+      - name: Self-test against a known-architecture binary
+        run: |
+          set -euo pipefail
+          out="$(python3 scripts/verify_arch.py "$(command -v python3)")"
+          echo "$out"
+          echo "$out" | grep -qi 'x64' || {
+            echo "verify_arch.py failed to identify a known x64 binary"
+            exit 1
+          }
+
+      - name: Reject a non-binary
+        run: |
+          set -euo pipefail
+          if python3 scripts/verify_arch.py README.md; then
+            echo "verify_arch.py accepted a non-binary - the gate cannot fail"
+            exit 1
+          fi
+          echo "correctly rejected a non-binary"
+
+      # The PowerShell PE verifier is the gate the Windows side leans on. Its
+      # self-test synthesises a PE with machine 0x8664 and asserts the verifier
+      # both ACCEPTS it as AMD64 and REJECTS it as ARM64 - a positive and a
+      # negative control in one. pwsh is preinstalled on ubuntu-latest.
+      - name: PE architecture verifier self-test
+        shell: pwsh
+        run: ./scripts/tests/Test-PeArchitectureVerifier.ps1

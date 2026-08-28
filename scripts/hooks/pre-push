@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Refuse to push to the shared integration branches.
+#
+# PortPilot work happens on user/<name>/<topic> branches and reaches main by
+# pull request only. This hook exists because agent runs issue git commands
+# unattended, where a convention documented in a file is not a control.
+#
+# Installed locally (.git/hooks is not versioned). To reinstall:
+#   cp scripts/hooks/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+
+protected="main master"
+
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+  [[ -z "$remote_ref" ]] && continue
+  branch="${remote_ref#refs/heads/}"
+  for p in $protected; do
+    if [[ "$branch" == "$p" ]]; then
+      echo "pre-push: BLOCKED - refusing to push to protected branch '$branch'." >&2
+      echo "          Push a user/<name>/<topic> branch and open a pull request." >&2
+      echo "          Override (deliberately): git push --no-verify" >&2
+      exit 1
+    fi
+  done
+done
+
+exit 0

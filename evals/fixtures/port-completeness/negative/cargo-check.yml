@@ -1,0 +1,34 @@
+name: Rust Code Checks
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - target: aarch64-pc-windows-msvc
+            os: windows-11-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      # The suite is graded on its executed count, not only on the exit status.
+      # cargo exits 0 when a name filter matches nothing, so the count is the only
+      # thing that separates a passing suite from a suite that never ran.
+      - name: cargo test
+        shell: pwsh
+        run: |
+          $log = cargo test --release 2>&1 | Tee-Object -Variable out | Out-String
+          $ran = ([regex]::Matches($log, 'test result:')).Count
+          if ($ran -eq 0) { throw "no test result: line was produced; nothing ran" }
+
+      - name: detects powershell
+        shell: pwsh
+        run: |
+          $log = cargo test --release -- --ignored --exact is_powershell_true 2>&1 | Out-String
+          if ($log -match '0 tests? run' -or $log -notmatch 'test result:') {
+            throw "expected a nonzero run"
+          }

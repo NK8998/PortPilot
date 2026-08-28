@@ -1,0 +1,24 @@
+name: Rust Code Checks
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - target: aarch64-pc-windows-msvc
+            os: windows-11-arm
+    steps:
+      - uses: actions/checkout@v4
+      - name: cargo test
+        run: cargo test --release
+      - name: detects powershell
+        shell: pwsh
+        run: cargo test --release -- --ignored is_powershell_true
+      - name: doesn't detect powershell
+        shell: bash
+        run: cargo test --release -- --ignored is_powershell_false

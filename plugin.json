@@ -1,0 +1,18 @@
+{
+	"name": "portpilot",
+	"description": "Agent-driven workflow that analyses, ports, tests and packages an existing application from AMD64/x64 to native ARM64 on Windows. Staged S0-S7 process, adversarial review, machine-checkable evidence gates, and real ARM64 hardware verification.",
+	"version": "1.0.0",
+	"license": "MIT",
+	"keywords": [
+		"arm64",
+		"windows-on-arm",
+		"porting",
+		"cross-compilation",
+		"ci",
+		"cross-platform"
+	],
+	"category": "porting",
+	"tags": ["arm64", "windows-on-arm", "porting", "snapdragon", "cross-platform"],
+	"agents": "AGENTS.md",
+	"skills": [".github/skills/"]
+}

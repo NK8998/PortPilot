@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "1.0",
+  "target": {
+    "repo": "github.com/OpenCppCoverage/OpenCppCoverage",
+    "commit": "3e518697ea761935574af486bacd5fcc1aeab363"
+  },
+  "round": 2,
+  "planRound": 1,
+  "verdict": "PASS",
+  "verdictReason": "Every hard gate has measured evidence at 81376baeda1b5453c1fcfe6fc0a09ccec3f892c8, and the two gates that decide publication were re-run by the coordinator against the published bytes rather than accepted from the porting session. The earlier run 32303203988 remains recorded as a failure and is not converted into a pass, and the successor head is not accepted because its runs had not completed.",
+  "gates": {
+    "arm64Purity": {
+      "status": "pass",
+      "tool": "winport-scan",
+      "exitCode": 0,
+      "evidence": "evidence/purity-winport-scan-arm64-81376ba.txt",
+      "detail": "34 of 34 shipped images ARM64 or ARM64X in the re-expanded published ZIP"
+    },
+    "buildGreen": {
+      "status": "pass",
+      "tool": "MSBuild 17.14.51.32402 arm64 host",
+      "exitCode": 0,
+      "evidence": "evidence/arm64-81376ba/build-toolchain-Release-ARM64.json",
+      "detail": "Debug and Release built on windows-11-arm with every cl and link invocation from HostArm64 toolset 14.44.35207"
+    },
+    "runtimeValidated": {
+      "status": "pass",
+      "tool": "OpenCppCoverage.exe on windows-11-arm",
+      "exitCode": 0,
+      "evidence": "evidence/winport-independent-verification-run-32361171722.log",
+      "detail": "The published asset was downloaded, checksum-verified, expanded and executed on native ARM64 by a coordinator-authored workflow that does not build the product"
+    },
+    "planCompleteness": {
+      "status": "pass",
+      "tool": "port-review",
+      "exitCode": 0,
+      "evidence": "plan.json",
+      "detail": "Every task maps to findings and every finding of blocker or high severity is addressed by a task. The analysis and plan were reconstructed after the migration, which is disclosed in plan.json rather than concealed."
+    },
+    "projectGraphComplete": {
+      "status": "pass",
+      "tool": "Test-ProjectToolsets.ps1",
+      "exitCode": 0,
+      "evidence": "evidence/arm64-81376ba/msbuild-host-ARM64.json",
+      "detail": "The ARM64 project graph is validated and TestCppCli is explicitly excluded rather than remapped, because MSVC has no /clr for ARM64"
+    },
+    "scenarioValidated": {
+      "status": "pass",
+      "tool": "RunEndToEnd.ps1",
+      "exitCode": 0,
+      "evidence": "evidence/arm64-81376ba/e2e-summary-ARM64-Release-packaged.json",
+      "detail": "Coverage is collected on native ARM64 from the build output and again from the expanded package, with the unreachable line correctly reported as not executed"
+    },
+    "testFailurePropagation": {
+      "status": "pass",
+      "tool": "Test-FailClosed.ps1",
+      "exitCode": 0,
+      "evidence": "evidence/arm64-81376ba/test-summary-ARM64-Release.json",
+      "detail": "Fail-closed accounting is asserted in every job after run 32303203988 reported success over a failed ARM64 build"
+    },
+    "foreignArchRefusal": {
+      "status": "pass",
+      "tool": "winport-independent-verification.yml (3-runner matched set)",
+      "exitCode": 0,
+      "evidence": "evidence/winport-runner-matrix-32396073242-windows-2022-the-package-must-not-run.log",
+      "detail": "A green run on ARM64 hardware cannot distinguish a native package from an emulated x64 one, so the pass is paired with a refusal. The same OpenCppCoverage.exe from the published asset was executed on three runners: windows-11-arm returned CoverageExitCode=0 with ProcessArchitecture=Arm64, while windows-2022 and windows-latest both refused to start it with Started=False and NativeErrorCode=216 (ERROR_EXE_MACHINE_TYPE_MISMATCH). Run 32396073242, all three jobs green. The first attempt (32395676572) is retained as a failure: it asserted NativeErrorCode=193 only, and current Windows returns 216, so the gate failed a package that was behaving exactly as designed."
+    },
+    "hostToolchainSingle": {
+      "status": "pass",
+      "tool": "Assert-BuildToolchain.ps1",
+      "exitCode": 0,
+      "evidence": "evidence/arm64-81376ba/build-toolchain-Debug-ARM64.json",
+      "detail": "cl and link command lines parsed from the retained build log of run 32357865925 job 96390868682 at 81376ba: Debug 32 cl and 16 link, Release 31 cl and 16 link, every invocation from HostArm64\\arm64 at toolset 14.44.35207, zero HostX86. MSBuild resolved as Bin\\arm64\\MSBuild.exe 17.14.51.32402 with VCToolArchitecture=NativeARM64. The predecessor ec2cce74 passed its own preflight while compiling entirely from HostX86\\arm64, so this gate asserts the invoked command lines rather than the compiler that resolves."
+    },
+    "packaging": {
+      "status": "pass",
+      "tool": "CreateRelease.ps1 and winport-scan",
+      "exitCode": 0,
+      "evidence": "evidence/arm64-81376ba/package-ARM64.log",
+      "detail": "Redistributables filtered by PE machine with the rejection recorded, the required Plugins\\Exporter directory present, and the archive re-expanded and rescanned before publication"
+    },
+    "performance": {
+      "status": "not-run",
+      "detail": "No performance comparison between architectures was requested or measured, and none is claimed."
+    }
+  },
+  "findings": [],
+  "unresolvedFindings": [],
+  "regressions": [],
+  "summary": {
+    "blockers": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "info": 1
+  }
+}

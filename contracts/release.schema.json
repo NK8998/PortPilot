@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/winport/winport/contracts/release.schema.json",
+  "title": "PortPilot Release Evidence",
+  "description": "Evidence for a downloadable Windows ARM64 release. A ready or published release requires every hard gate to pass; publication additionally requires immutable and stable URLs.",
+  "type": "object",
+  "required": ["schemaVersion", "state", "target", "package", "gates"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "state": { "type": "string", "enum": ["candidate", "ready", "published"] },
+    "target": {
+      "type": "object",
+      "required": ["repo", "commit"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string", "minLength": 1 },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    },
+    "package": {
+      "type": "object",
+      "required": ["name", "path", "size", "sha256", "manifestPath", "checksumFile"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*\\.(zip|msix|msixbundle)$"
+        },
+        "path": { "$ref": "#/$defs/runRelativePath" },
+        "size": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "manifestPath": { "$ref": "#/$defs/runRelativePath" },
+        "checksumFile": { "$ref": "#/$defs/runRelativePath" }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "required": ["build", "tests", "arm64Runtime", "purity", "packageContents", "sourceAvailable", "checksum", "redownload"],
+      "additionalProperties": false,
+      "properties": {
+        "build": { "$ref": "#/$defs/gate" },
+        "tests": { "$ref": "#/$defs/gate" },
+        "arm64Runtime": { "$ref": "#/$defs/gate" },
+        "purity": { "$ref": "#/$defs/gate" },
+        "packageContents": { "$ref": "#/$defs/gate" },
+        "sourceAvailable": { "$ref": "#/$defs/gate" },
+        "checksum": { "$ref": "#/$defs/gate" },
+        "redownload": { "$ref": "#/$defs/gate" }
+      }
+    },
+    "version": { "type": "string", "minLength": 1 },
+    "tag": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$" },
+    "releaseRepository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "immutableUrl": {
+      "type": "string",
+      "pattern": "^https://github\\.com/[^/\\s]+/[^/\\s]+/releases/download/[^/\\s]+/[^/\\s]+$"
+    },
+    "stableUrl": {
+      "type": "string",
+      "pattern": "^https://github\\.com/[^/\\s]+/[^/\\s]+/releases/latest/download/[^/\\s]+$"
+    },
+    "publishedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "notes": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "state": { "enum": ["ready", "published"] } },
+        "required": ["state"]
+      },
+      "then": {
+        "properties": {
+          "gates": {
+            "properties": {
+              "build": { "$ref": "#/$defs/passedGate" },
+              "tests": { "$ref": "#/$defs/passedGate" },
+              "arm64Runtime": { "$ref": "#/$defs/passedGate" },
+              "purity": { "$ref": "#/$defs/passedGate" },
+              "packageContents": { "$ref": "#/$defs/passedGate" },
+              "sourceAvailable": { "$ref": "#/$defs/passedGate" },
+              "checksum": { "$ref": "#/$defs/passedGate" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "state": { "const": "published" } },
+        "required": ["state"]
+      },
+      "then": {
+        "required": ["version", "tag", "releaseRepository", "immutableUrl", "stableUrl", "publishedAt"],
+        "properties": {
+          "gates": {
+            "properties": {
+              "redownload": { "$ref": "#/$defs/passedGate" }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "gate": {
+      "type": "object",
+      "required": ["status", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "type": "string", "enum": ["pass", "fail", "not-run"] },
+        "evidence": { "$ref": "#/$defs/runRelativePath" },
+        "command": { "type": "string", "minLength": 1 },
+        "exitCode": { "type": "integer" },
+        "runner": { "type": "string", "minLength": 1 }
+      }
+    },
+    "passedGate": {
+      "allOf": [
+        { "$ref": "#/$defs/gate" },
+        {
+          "required": ["status", "evidence", "command", "exitCode", "runner"],
+          "properties": {
+            "status": { "const": "pass" },
+            "exitCode": { "const": 0 }
+          }
+        }
+      ]
+    },
+    "runRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:[\\\\/])(?![\\\\/])(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+$"
+    }
+  }
+}

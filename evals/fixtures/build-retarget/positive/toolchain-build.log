@@ -1,0 +1,8 @@
+Build started 8/20/2026 8:31:04 AM.
+  ClCompile:
+    C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /nologo /W3 /std:c++17 stdafx.cpp
+    C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\CL.exe /c /nologo /W3 /std:c++17 CodeCoverageRunnerTest.cpp
+    C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostArm64\arm64\CL.exe /c /nologo /W3 /std:c++17 Exporter.cpp
+  Link:
+    C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX86\arm64\link.exe /OUT:CppCoverageTest.exe
+Build succeeded.

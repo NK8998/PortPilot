@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "1.0",
+  "target": {
+    "repo": "github.com/OpenCppCoverage/OpenCppCoverage",
+    "commit": "3e518697ea761935574af486bacd5fcc1aeab363"
+  },
+  "structure": {
+    "languages": [
+      {
+        "name": "C++",
+        "loc": 18839
+      },
+      {
+        "name": "Batch",
+        "loc": 102
+      },
+      {
+        "name": "PowerShell",
+        "loc": 4
+      }
+    ],
+    "buildSystems": [
+      "msbuild"
+    ],
+    "entryPoints": [
+      "OpenCppCoverage/OpenCppCoverage.cpp"
+    ],
+    "testCommand": ".\\x64\\Debug\\CppCoverageTest.exe",
+    "acceptanceScenarios": [
+      {
+        "id": "SCN-001",
+        "name": "Collect ARM64 coverage from the freshly built binaries",
+        "command": "OpenCppCoverage.exe --export_type=cobertura:e2e-cobertura-ARM64-Release.xml --sources TestBasic -- TestCoverageConsole.exe",
+        "expectedResult": "CoverageExitCode 0, 2 of 24 lines covered in TestBasic.cpp, unreachable line 36 reported with 0 hits",
+        "requiredProjects": [
+          "OpenCppCoverage",
+          "CppCoverage",
+          "Exporter",
+          "Tools"
+        ]
+      },
+      {
+        "id": "SCN-002",
+        "name": "Collect ARM64 coverage from the expanded release package",
+        "command": "artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64\\Binaries\\OpenCppCoverage.exe --export_type=cobertura:e2e-cobertura-ARM64-Release-packaged.xml --sources TestBasic -- TestCoverageConsole.exe",
+        "expectedResult": "CoverageExitCode 0 from the packaged binary, identical 2 of 24 coverage and unreachable line 36 with 0 hits",
+        "requiredProjects": [
+          "OpenCppCoverage",
+          "CppCoverage",
+          "Exporter",
+          "Tools"
+        ]
+      },
+      {
+        "id": "SCN-003",
+        "name": "Scan every image in the re-expanded published ZIP for architecture purity",
+        "command": "winport-scan.exe artifacts\\expanded\\OpenCppCoverage-0.9.9.0-windows-arm64",
+        "expectedResult": "34 of 34 shipped images are ARM64 or ARM64X with zero findings",
+        "requiredProjects": [
+          "OpenCppCoverage",
+          "CppCoverage",
+          "Exporter",
+          "FileFilter",
+          "Tools"
+        ]
+      },
+      {
+        "id": "SCN-004",
+        "name": "Run the published asset on a native ARM64 runner without rebuilding it",
+        "command": "pwsh .github/workflows/winport-independent-verification.yml on windows-11-arm: download asset, verify SHA-256, expand, scan, execute shipped OpenCppCoverage.exe",
+        "expectedResult": "Checksum 83f0e1c19d89c534a13a67eef4ebdacb85593aa4696d06ca4925ac03ecfee7a5 matches, 34 images ARM64, shipped binary exits 0 and reports the uncalled line as 0 hits under ProcessArchitecture Arm64",
+        "requiredProjects": [
+          "OpenCppCoverage",
+          "CppCoverage",
+          "Exporter",
+          "Tools"
+        ]
+      }
+    ],
+    "requiredTestSuites": [
+      "CppCoverageTest",
+      "ExporterTest",
+      "FileFilterTest",
+      "OpenCppCoverageTest",
+      "PluginTest",
+      "ToolsTest"
+    ],
+    "ciPlatforms": [
+      "windows-latest x64 Debug"
+    ],
+    "existingWindowsSupport": "full",
+    "existingArm64Support": "none",
+    "totalLoc": 18945
+  },
+  "findings": [
+    {
+      "id": "ARM-0001",
+      "file": "CppCoverage/BreakPoint.cpp",
+      "line": 58,
+      "evidence": "const unsigned char BreakPoint::breakPointInstruction = 0xCC;",
+      "category": "arch-lock",
+      "severity": "blocker",
+      "explanation": "The debugger writes the one-byte x86 INT3 opcode into the target to set a coverage breakpoint. ARM64 is a fixed-width instruction set with no single-byte trap, so this both fails to trap and corrupts the instruction it partially overwrites.",
+      "recommendation": "Introduce an architecture-neutral breakpoint abstraction that writes a 4-byte BRK instruction on ARM64 and preserves the full original instruction word, and reject unaligned addresses instead of writing at them.",
+      "arm64Impact": "blocker",
+      "effort": "L",
+      "confidence": "high"
+    },
+    {
+      "id": "ARM-0002",
+      "file": "CppCoverage/ExecutedAddressManager.cpp",
+      "line": 41,
+      "evidence": "const unsigned char instructionToRestore_;",
+      "category": "arch-lock",
+      "severity": "blocker",
+      "explanation": "The saved original instruction is stored as a single unsigned char, which is only wide enough for the x86 byte that INT3 displaced. An ARM64 breakpoint displaces a whole 4-byte instruction word, so restoration would silently truncate.",
+      "recommendation": "Widen the stored instruction to a fixed-width type sized for the target architecture and restore exactly the bytes that were overwritten.",
+      "arm64Impact": "blocker",
+      "effort": "M",
+      "confidence": "high"
+    },
+    {
+      "id": "BLD-0001",
+      "file": "CppCoverage.sln",
+      "line": 63,
+      "evidence": "Debug|x64 = Debug|x64",
+      "category": "build-system",
+      "severity": "blocker",
+      "explanation": "The solution declares only Win32 and x64 solution configurations. With no ARM64 configuration, no project can be built for ARM64 and any attempt silently maps to another architecture.",
+      "recommendation": "Add Debug|ARM64 and Release|ARM64 solution configurations and map every buildable project to them, leaving projects that genuinely cannot target ARM64 explicitly unselected rather than remapped.",
+      "arm64Impact": "blocker",
+      "effort": "M",
+      "confidence": "high"
+    },
+    {
+      "id": "BLD-0002",
+      "file": ".github/workflows/continuous-integration-workflow.yml",
+      "line": 19,
+      "evidence": "run: msbuild /m CppCoverage.sln /p:Configuration=Debug /p:Platform=x64",
+      "category": "build-system",
+      "severity": "high",
+      "explanation": "CI builds and tests only Debug x64 on windows-latest. Nothing in the baseline can observe an ARM64 regression, and Release is never built at all, so a port has no signal to defend it.",
+      "recommendation": "Add a native windows-11-arm job that builds Debug and Release for ARM64, runs every suite, and asserts the host toolchain actually used, while keeping the x86 and x64 jobs as compatibility gates.",
+      "arm64Impact": "blocker",
+      "effort": "M",
+      "confidence": "high"
+    },
+    {
+      "id": "NAT-0001",
+      "file": "CppCoverage/packages.config",
+      "line": 3,
+      "evidence": "<package id=\"thirdparty\" version=\"1.4.0\" targetFramework=\"native\" />",
+      "category": "native-dep",
+      "severity": "blocker",
+      "explanation": "Every project consumes the prebuilt thirdparty 1.4.0 NuGet package, whose payload was inspected read-only and contains only x86-windows and x64-windows binaries for Poco, protobuf, GTest, ctemplate and Boost. No ARM64 import libraries exist, so linking an ARM64 target is impossible from this dependency source.",
+      "recommendation": "Acquire the dependency set for the arm64-windows triplet from source, keep host build tools such as protoc separate from shipped target binaries, and record resolved versions so the dependency compiler cannot diverge from the build compiler.",
+      "arm64Impact": "blocker",
+      "effort": "XL",
+      "confidence": "high"
+    },
+    {
+      "id": "PKG-0001",
+      "file": "CreateRelease.bat",
+      "line": 2,
+      "evidence": "mkdir NewRelease\\x86\\Binaries",
+      "category": "packaging",
+      "severity": "high",
+      "explanation": "Release packaging is a batch script hard-wired to x86 and x64 output folders. It cannot produce an ARM64 package, and it copies binaries without verifying the architecture of what it copied.",
+      "recommendation": "Replace it with a platform-parameterised packaging step that stages by explicit allowlist, filters redistributable DLLs by PE machine, and scans both the staging tree and the re-expanded archive before publishing.",
+      "arm64Impact": "source-change-required",
+      "effort": "M",
+      "confidence": "high"
+    },
+    {
+      "id": "ARM-0003",
+      "file": "CppCoverage/MonitoredLineRegister.cpp",
+      "line": 74,
+      "evidence": "const IMAGE_NT_HEADERS64& ntHeader) override",
+      "category": "arch-lock",
+      "severity": "medium",
+      "explanation": "Module inspection is written against the PE32+ header shape and the machine values the tool expects. An ARM64 build must continue to recognise the modules it debugs, including ARM64 and ARM64X images, rather than assuming an x64 machine value.",
+      "recommendation": "Keep the 64-bit header path but make machine handling explicit so ARM64 and ARM64X images are recognised as native, and cover it with a test that asserts on the machine value.",
+      "arm64Impact": "source-change-required",
+      "effort": "M",
+      "confidence": "medium"
+    },
+    {
+      "id": "BLD-0003",
+      "file": "CppCoverageTest/stdafx.h",
+      "line": 1,
+      "evidence": "#pragma once",
+      "category": "build-system",
+      "severity": "medium",
+      "explanation": "The test project TestCppCli is a C++/CLI assembly and CppCoverageTest exercises it. MSVC has no /clr code generation for ARM64, so this dependency cannot be satisfied on ARM64 and must be handled as an explicit, recorded exclusion rather than a silent skip or a remap to another architecture.",
+      "recommendation": "Leave TestCppCli unselected for the ARM64 solution configuration, exclude only the tests that require the managed module, and emit the exclusion and its reason into the test summary so the reduced suite count is auditable.",
+      "arm64Impact": "source-change-required",
+      "effort": "S",
+      "confidence": "high"
+    }
+  ],
+  "skillsRun": [
+    "build-retarget",
+    "native-dependency-analysis",
+    "arm64-correctness",
+    "port-packaging"
+  ],
+  "summary": {
+    "blockers": 5,
+    "high": 2,
+    "medium": 2,
+    "low": 0,
+    "info": 0,
+    "arm64Blockers": 5
+  }
+}
