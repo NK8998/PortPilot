@@ -20,6 +20,7 @@ than assert it.
 | Understand the S0→S7 stages in depth | [`docs/PORTING_PLAYBOOK.md`](docs/PORTING_PLAYBOOK.md) |
 | Pick ARM64 vs ARM64EC vs ARM64X | [`docs/DECISION_MATRIX.md`](docs/DECISION_MATRIX.md) |
 | Debug something that breaks only on ARM64 | [`docs/PITFALLS.md`](docs/PITFALLS.md) |
+| Port and benchmark Krokiet on Windows Arm64 | [`docs/KROKIET_WINDOWS_ARM64_BENCHMARK.md`](docs/KROKIET_WINDOWS_ARM64_BENCHMARK.md) |
 
 ```bash
 node contracts/validate.js    # validate agent output against the schemas
