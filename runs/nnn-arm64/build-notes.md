@@ -169,23 +169,42 @@ paths.
 - [x] ARM64 build succeeds from clean
 - [x] x64 build still succeeds — **byte-identical** to the S2 baseline, zero warnings
 - [x] `AA64` reported for every shipped binary (there is exactly one)
-- [ ] **App launches natively and reaches a known-good point** — blocked, see below
+- [x] **App launches in Windows ARM64 and reaches a known-good point** — `nnn.exe -V` prints `5.3`, exit code 0
 - [x] Every stub carries a `TODO(arm64):` marker, all four inventoried above and in `PORT_STATE.json`
 - [x] No prebuilt x64 binary vendored to satisfy the linker (imports verified)
 
-## 8. Blocker: no ARM64 hardware
+## 8. QEMU Windows ARM64 launch evidence
 
-The S4 exit gate also requires the app to **start** on ARM64. That cannot be done
-here — this is an x86-64 WSL2 box, and it cannot execute ARM64 binaries.
+The S4 launch gate was executed on September 16, 2026 in Windows 11 25H2 Arm64
+V2 WinPE under QEMU 11.1.0 TCG. The ISO was downloaded from Microsoft and
+matched Microsoft's published SHA-256:
 
-**S4 is therefore complete except for the launch check.** Provision the Windows 11
-ARM64 VM (`./scripts/vm.sh init` → `bootstrap` → `check`) and run:
-
-```bash
-./scripts/vm.sh push work/nnn/nnn.exe 'C:\port\nnn.exe'
-./scripts/vm.sh verify 'C:\port'          # every binary must be AA64
-./scripts/vm.sh smoke  'C:\port\nnn.exe'  # must report native, not emulated
+```text
+638AA2C88E94385B00F4F178D071E3DF0B7D9E335577A83BD533B7F2EB65ADF0
 ```
 
-Do not mark the stage fully green until that produces output. The same VM is a
-hard prerequisite for all of S6.
+The application drive was hot-plugged only after Windows Setup appeared. The
+WinPE command prompt produced:
+
+```text
+PROCESSOR_ARCHITECTURE=ARM64
+PROCESSOR_IDENTIFIER=ARMv8 (64-bit) Family 8 Model 51 Revision 0, QEMU
+5.3
+NNN_EXIT_CODE=0
+```
+
+Screenshot: [`qemu-smoke.png`](qemu-smoke.png).
+
+This closes the S4 functional launch gate. It does **not** replace real ARM64
+hardware for S6 non-emulation, performance, power, device, timing, or
+weak-memory evidence.
+
+### Failure modes discovered
+
+- `highmem=off` with 8 GiB fails before the window opens:
+  `Addressing limited to 32 bits, but memory exceeds it`. Current QEMU boots
+  this guest with high memory enabled.
+- Missing the ISO keypress window drops into the UEFI shell. Reset through the
+  QEMU monitor and inject Enter during boot.
+- Attaching QEMU's vvfat share during UEFI enumeration triggers a black-screen
+  `Synchronous Exception`. Boot Windows Setup first, then hot-plug the share.

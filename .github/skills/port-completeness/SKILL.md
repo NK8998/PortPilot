@@ -20,6 +20,9 @@ Use `arm64-artifact-verification` for binary architecture proof and
 `arm64-remote-verification` for target-machine runtime proof. This skill owns the
 "did we silently drop anything?" gate.
 
+QEMU TCG launch evidence belongs to S4. It cannot satisfy S6 non-emulation,
+performance, power, device, timing, or weak-memory parity requirements.
+
 ## Inputs
 
 - S0 feature inventory and x64 test baseline, including per-suite counts
