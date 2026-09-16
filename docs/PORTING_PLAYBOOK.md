@@ -214,6 +214,11 @@ dumpbin /headers app.exe | findstr machine
 At runtime, confirm you are not being emulated: Task Manager's **Architecture**
 column, or `IsWow64Process2`, or `RuntimeInformation.ProcessArchitecture` in .NET.
 
+If real ARM64 hardware is unavailable, Windows ARM64 WinPE under QEMU TCG may
+be used to close the S4 **functional launch** gate. Record the guest's ARM64
+architecture output and the application's known-good output. Do not carry QEMU
+timings or hardware behavior forward as S6 evidence.
+
 ### Exit gate
 
 - [ ] ARM64 build succeeds from clean, x64 build **still** succeeds

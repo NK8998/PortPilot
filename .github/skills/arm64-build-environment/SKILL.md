@@ -14,10 +14,11 @@ This skill supports `build-retarget`, `arm64-ci-integration`, and
 
 ## Core rule
 
-Cross-compiling on an x64 dev box is fine. **Runtime claims are not.** The dev
-box is x64 Linux/Windows and cannot execute Windows ARM64 binaries natively.
-Every statement about startup, tests, plugins, performance, or runtime behavior
-must come from CI on ARM64 hardware or the Windows 11 ARM64 VM.
+Cross-compiling on an x64 dev box is fine. The dev box cannot execute Windows
+ARM64 binaries natively. QEMU TCG may provide a limited S4 functional launch
+check through Windows ARM64 WinPE, but every claim about non-emulation, tests,
+plugins, performance, power, devices, timing, or weak-memory behavior must come
+from CI on ARM64 hardware or the Windows 11 ARM64 VM.
 
 If local verification is impossible because of missing components, permissions,
 or managed-machine policy, stop trying to force a workaround. Treat CI or the
@@ -86,13 +87,14 @@ libraries, and a coherent `VCToolsVersion`/SDK pair.
 | Build graph loads | yes | yes | yes |
 | Cross-compile/link | maybe | yes if components exist | yes |
 | PE architecture | yes, by inspection | yes, by inspection | yes |
-| App starts natively | no | only if native ARM64 hardware | yes |
+| App reaches an S4 known-good point | QEMU WinPE only | only if native ARM64 hardware | yes |
 | Tests/runtime behavior | no | only if native ARM64 hardware | yes |
 | Performance/power | no | only if native ARM64 hardware | yes |
 
 Use `arm64-artifact-verification` for PE inspection. Use
 `arm64-remote-verification` for the ARM64 VM and `arm64-ci-integration` for
-hosted or self-hosted ARM64 CI coverage.
+hosted or self-hosted ARM64 CI coverage. Use `arm64-qemu-verification` only when
+the S4 functional launch gate is blocked by unavailable hardware.
 
 ## When local setup is appropriate
 
@@ -137,6 +139,8 @@ verified; final link requires missing ARM64 CRT. Authority for link/run is
 
 - If build files need changes, continue with `build-retarget`.
 - If artifact architecture must be proven, run `arm64-artifact-verification`.
+- If only the S4 functional launch gate is blocked, run
+  `arm64-qemu-verification`.
 - If runtime behavior must be proven, run `arm64-remote-verification` or
   `arm64-ci-integration`.
 - If only CI can reproduce a failure, use `arm64-failure-diagnosis` in CI-only

@@ -6,8 +6,9 @@ description: Proves a Windows ARM64 build runs natively on real ARM64 hardware u
 # ARM64 remote verification
 
 Use this skill when a Windows ARM64 build must be executed on real hardware.
-Cross-compiling on an x64 dev box is fine, but you cannot execute ARM64 binaries
-there. Every runtime claim must come from the VM or from real ARM64 CI.
+Cross-compiling on an x64 dev box is fine. QEMU TCG can provide a limited S4
+functional launch check, but real ARM64 hardware is required for S6
+non-emulation, performance, power, device, timing, and weak-memory evidence.
 
 Use `arm64-artifact-verification` for static PE checks,
 `arm64-ci-integration` for hosted `windows-11-arm` automation, and
@@ -26,6 +27,10 @@ For examples below:
 ```bash
 VM=/home/t-neilkainga/hackathon/.consolidated/scripts/vm.sh
 ```
+
+If hardware is unavailable and only the S4 startup gate is open, use
+`arm64-qemu-verification`. Do not use QEMU results for S6 non-emulation,
+performance, power, device, timing, or weak-memory claims.
 
 Implemented subcommands:
 

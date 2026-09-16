@@ -118,9 +118,13 @@ without a golden evaluation proving they work.**
 
 ## 5. Verification hardware
 
-You **cannot** execute ARM64 binaries on an x64 dev box. Cross-compiling there is
-fine; every claim about *runtime* behaviour must come from real ARM64 hardware.
-There are two authoritative paths:
+You cannot execute ARM64 binaries **directly** on an x64 dev box.
+Cross-compiling there is fine. QEMU TCG may boot Windows ARM64 WinPE for the
+limited S4 functional launch gate; use `arm64-qemu-verification`. Every S6 claim
+about non-emulation, performance, power, timing, devices, or weak-memory
+reliability must still come from real ARM64 hardware.
+
+There are two authoritative real-hardware paths:
 
 **A GitHub-hosted `windows-11-arm` runner** — see `arm64-ci-integration` and
 `.github/workflows/`. This is the default when you have no local hardware.

@@ -143,6 +143,8 @@ BOM only to files that are meant to be UTF-8. See
 - `arm64-artifact-verification` confirms every shipped binary is AA64/expected PE.
 - Runtime verification is deferred to `arm64-remote-verification` or
   `arm64-ci-integration` when local native ARM64 execution is unavailable.
+- If only the S4 functional launch gate is blocked by unavailable hardware,
+  `arm64-qemu-verification` may run the artifact in Windows ARM64 WinPE.
 - S4 stubs are inventoried from `rg -n 'TODO\(arm64\)'` in `PORT_STATE.json`.
 
 ## Failure modes
@@ -157,3 +159,4 @@ BOM only to files that are meant to be UTF-8. See
 | Mojibake include `C1083` | Source encoding changed | Repair bytes; preserve fixtures |
 | `HostX86` appears in ARM64 job | Host toolchain not pinned/proven | Resolve host MSBuild and parse build log |
 | Runtime claimed after cross-build | No target run occurred | Use `arm64-remote-verification` or CI |
+| No hardware for the S4 launch gate | Native target unavailable | Use `arm64-qemu-verification` for functional startup only |

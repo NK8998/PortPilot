@@ -19,6 +19,7 @@ if you do not know which stage you are in.
 | **S3** | [`arm64-strategy-selection`](.github/skills/arm64-strategy-selection/SKILL.md) | Choosing classic ARM64 vs ARM64EC vs ARM64X, and writing the ADR | — |
 | **S4** | [`arm64-build-environment`](.github/skills/arm64-build-environment/SKILL.md) | Getting a working toolchain, and deciding whether local verification is even possible | — |
 | **S4** | [`build-retarget`](.github/skills/build-retarget/SKILL.md) | Making the project compile and link for ARM64 for the first time | ✅ |
+| **S4** | [`arm64-qemu-verification`](.github/skills/arm64-qemu-verification/SKILL.md) | Running a functional launch smoke test in Windows ARM64 WinPE when real hardware is unavailable | — |
 | **S5** | [`arm64-correctness`](.github/skills/arm64-correctness/SKILL.md) | Burning down `TODO(arm64)` markers: atomics, SIMD, asm, JIT, strings | ✅ |
 | **S5** | [`arm64-software-breakpoints`](.github/skills/arm64-software-breakpoints/SKILL.md) | The app patches instructions or manipulates process state — debuggers, profilers, coverage tools, hot-patchers | — |
 | **S6** | [`port-completeness`](.github/skills/port-completeness/SKILL.md) | Builds and tests are green, and you must prove nothing was silently dropped | ✅ |
