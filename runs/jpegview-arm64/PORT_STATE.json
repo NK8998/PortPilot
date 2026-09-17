@@ -1,0 +1,135 @@
+{
+  "app": "JPEGView",
+  "run_id": "jpegview-arm64",
+  "source": {
+    "url": "https://github.com/sylikc/jpegview",
+    "commit": "efd55a1a0b922bd7274c1d44717dac4104bb0fa3",
+    "version": "1.3.46",
+    "license": "GPL-2.0"
+  },
+  "target": {
+    "os": "windows",
+    "architecture": "arm64"
+  },
+  "current_stage": "S2",
+  "updated_at": "2026-09-17T14:52:00Z",
+  "stages": {
+    "S0": {
+      "status": "pass",
+      "artifact": "runs/jpegview-arm64/s0-baseline/baseline.md"
+    },
+    "S1": {
+      "status": "pass",
+      "artifact": "runs/jpegview-arm64/s1-recon/arch-surface.md"
+    },
+    "S2": {
+      "status": "in_progress"
+    },
+    "S3": {
+      "status": "not_started"
+    },
+    "S4": {
+      "status": "not_started"
+    },
+    "S5": {
+      "status": "not_started"
+    },
+    "S6": {
+      "status": "not_started"
+    },
+    "S7": {
+      "status": "not_started"
+    }
+  },
+  "blockers": [],
+  "decisions": [],
+  "arch_surface": [
+    {
+      "id": "JPV-ARCH-001",
+      "category": "cpu-detection",
+      "evidence": "src/JPEGView/Helpers.cpp:179-280",
+      "arm64Impact": "ARM64 enters x86 CPUID and XGETBV code because _WIN64 is used as an x64 test.",
+      "effort": "needs-thought"
+    },
+    {
+      "id": "JPV-ARCH-002",
+      "category": "simd",
+      "evidence": "src/JPEGView/BasicProcessing.cpp:7-10,1904-2002",
+      "arm64Impact": "ARM64 attempts to compile SSE2 intrinsics and x86-only headers.",
+      "effort": "needs-thought"
+    },
+    {
+      "id": "JPV-ARCH-003",
+      "category": "simd",
+      "evidence": "src/JPEGView/ApplyFilterAVX.cpp:1-112",
+      "arm64Impact": "AVX2 implementation uses 256-bit x86 intrinsics with no direct NEON equivalent.",
+      "effort": "needs-thought"
+    },
+    {
+      "id": "JPV-ARCH-004",
+      "category": "build",
+      "evidence": "src/JPEGView/JPEGView.vcxproj:299-302",
+      "arm64Impact": "AVX translation unit is not excluded from a future ARM64 platform.",
+      "effort": "mechanical"
+    },
+    {
+      "id": "JPV-ARCH-005",
+      "category": "build",
+      "evidence": "src/JPEGView.sln and native vcxproj platform tables",
+      "arm64Impact": "No ARM64 solution mapping, target machine, or output layout exists.",
+      "effort": "mechanical"
+    },
+    {
+      "id": "JPV-ARCH-006",
+      "category": "abi",
+      "evidence": "src/JPEGView/stdafx.h:43-72",
+      "arm64Impact": "Pointer and manifest architecture handling is not explicit for ARM64.",
+      "effort": "trivial"
+    },
+    {
+      "id": "JPV-ARCH-007",
+      "category": "memory-ordering",
+      "evidence": "WorkThread.h, WorkThread.cpp, ProcessingThreadPool.cpp, ImageLoadThread.h",
+      "arm64Impact": "Cross-thread volatile flags are not synchronization and may fail under weak ordering.",
+      "effort": "needs-thought"
+    },
+    {
+      "id": "JPV-ARCH-008",
+      "category": "runtime-dispatch",
+      "evidence": "BasicProcessing.h and JPEGImage.cpp",
+      "arm64Impact": "Dispatch has no ARM64/NEON identity, but an existing generic correctness path is available.",
+      "effort": "mechanical"
+    },
+    {
+      "id": "JPV-ARCH-009",
+      "category": "ci-packaging",
+      "evidence": ".github workflows/actions and extras/scripts",
+      "arm64Impact": "Dependency acquisition and packages are hardcoded to x86/x64 paths.",
+      "effort": "mechanical"
+    },
+    {
+      "id": "JPV-ARCH-010",
+      "category": "layout",
+      "evidence": "src/JPEGView/ParameterDB.h:5-78",
+      "arm64Impact": "Packed persistent records require runtime unaligned-access verification.",
+      "effort": "needs-thought"
+    }
+  ],
+  "next_actions": [
+    "Classify every JPEGView native dependency and staged binary for Windows ARM64.",
+    "Identify host tools separately from shipped target payloads.",
+    "Do not select the ABI until the S2 matrix contains zero unknown entries."
+  ],
+  "history": [
+    {
+      "at": "2026-09-17T14:48:00Z",
+      "stage": "S0",
+      "event": "Built the clean pinned source for x64, verified all 12 shipped PE files as 0x8664, and launched a responsive JPEGView window."
+    },
+    {
+      "at": "2026-09-17T14:52:00Z",
+      "stage": "S1",
+      "event": "Completed the architecture inventory: x86 CPU probing, SSE2/AVX2 paths, weak-memory risks, and x86/x64-only build/package surfaces are classified."
+    }
+  ]
+}
