@@ -11,8 +11,8 @@
     "os": "windows",
     "architecture": "arm64"
   },
-  "current_stage": "S2",
-  "updated_at": "2026-09-17T14:52:00Z",
+  "current_stage": "S3",
+  "updated_at": "2026-09-17T14:57:00Z",
   "stages": {
     "S0": {
       "status": "pass",
@@ -23,10 +23,11 @@
       "artifact": "runs/jpegview-arm64/s1-recon/arch-surface.md"
     },
     "S2": {
-      "status": "in_progress"
+      "status": "pass",
+      "artifact": "runs/jpegview-arm64/s2-deps/dependency-matrix.md"
     },
     "S3": {
-      "status": "not_started"
+      "status": "in_progress"
     },
     "S4": {
       "status": "not_started"
@@ -41,7 +42,17 @@
       "status": "not_started"
     }
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "id": "JPV-ENV-001",
+      "stage": "S4",
+      "severity": "environment",
+      "summary": "The local Visual Studio installation lacks ARM64 ATL.",
+      "evidence": "The ARM64 compiler exists, but atlmfc/lib contains only x86 and x64. Installer logs for two modify attempts report that quiet operations must start elevated.",
+      "owner": "local environment",
+      "next_step": "Install Microsoft.VisualStudio.Component.VC.ATL.ARM64 from an elevated Windows process before linking JPEGView ARM64."
+    }
+  ],
   "decisions": [],
   "arch_surface": [
     {
@@ -116,9 +127,9 @@
     }
   ],
   "next_actions": [
-    "Classify every JPEGView native dependency and staged binary for Windows ARM64.",
-    "Identify host tools separately from shipped target payloads.",
-    "Do not select the ABI until the S2 matrix contains zero unknown entries."
+    "Select classic ARM64, ARM64EC, or ARM64X using the completed dependency evidence.",
+    "Record the strategy and feature scope in an ADR.",
+    "Do not begin build retargeting until the S3 ADR is complete."
   ],
   "history": [
     {
@@ -130,6 +141,11 @@
       "at": "2026-09-17T14:52:00Z",
       "stage": "S1",
       "event": "Completed the architecture inventory: x86 CPU probing, SSE2/AVX2 paths, weak-memory risks, and x86/x64-only build/package surfaces are classified."
+    },
+    {
+      "at": "2026-09-17T14:57:00Z",
+      "stage": "S2",
+      "event": "Classified the full native payload graph with zero unknown or x64-only blockers. All codec modules are source-rebuildable for ARM64; local ARM64 ATL installation remains an S4 environment prerequisite."
     }
   ]
 }
