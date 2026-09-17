@@ -11,8 +11,8 @@
     "os": "windows",
     "architecture": "arm64"
   },
-  "current_stage": "S3",
-  "updated_at": "2026-09-17T14:57:00Z",
+  "current_stage": "S4",
+  "updated_at": "2026-09-17T15:00:00Z",
   "stages": {
     "S0": {
       "status": "pass",
@@ -27,10 +27,11 @@
       "artifact": "runs/jpegview-arm64/s2-deps/dependency-matrix.md"
     },
     "S3": {
-      "status": "in_progress"
+      "status": "pass",
+      "artifact": "docs/adr/0002-jpegview-arm64-strategy.md"
     },
     "S4": {
-      "status": "not_started"
+      "status": "in_progress"
     },
     "S5": {
       "status": "not_started"
@@ -53,7 +54,15 @@
       "next_step": "Install Microsoft.VisualStudio.Component.VC.ATL.ARM64 from an elevated Windows process before linking JPEGView ARM64."
     }
   ],
-  "decisions": [],
+  "decisions": [
+    {
+      "decision": "Build JPEGView and every shipped private DLL as classic ARM64.",
+      "rationale": "The complete in-process dependency graph is source-rebuildable for ARM64; no ARM64EC bridge or ARM64X mixed-host view is required.",
+      "stage": "S3",
+      "adr": "docs/adr/0002-jpegview-arm64-strategy.md",
+      "decided_at": "2026-09-17T15:00:00Z"
+    }
+  ],
   "arch_surface": [
     {
       "id": "JPV-ARCH-001",
@@ -127,9 +136,11 @@
     }
   ],
   "next_actions": [
-    "Select classic ARM64, ARM64EC, or ARM64X using the completed dependency evidence.",
-    "Record the strategy and feature scope in an ADR.",
-    "Do not begin build retargeting until the S3 ADR is complete."
+    "Install the optional ARM64 ATL component from an elevated Windows process.",
+    "Add ARM64 solution and project configurations without altering x86/x64 configurations.",
+    "Build ARM64 dependencies into architecture-specific directories.",
+    "Compile and link the first JPEGView ARM64 binary using generic processing stubs where required.",
+    "Verify every produced PE and static link input before attempting runtime launch."
   ],
   "history": [
     {
@@ -146,6 +157,11 @@
       "at": "2026-09-17T14:57:00Z",
       "stage": "S2",
       "event": "Classified the full native payload graph with zero unknown or x64-only blockers. All codec modules are source-rebuildable for ARM64; local ARM64 ATL installation remains an S4 environment prerequisite."
+    },
+    {
+      "at": "2026-09-17T15:00:00Z",
+      "stage": "S3",
+      "event": "Selected classic ARM64 for JPEGView.exe and all eleven shipped private runtime DLLs; ARM64EC and ARM64X were rejected."
     }
   ]
 }
