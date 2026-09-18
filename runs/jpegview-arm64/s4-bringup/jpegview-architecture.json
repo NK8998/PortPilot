@@ -1,0 +1,25 @@
+{
+    "inspectorVersion":  1,
+    "root":  "C:\\Users\\Public\\jpegview-arm64-build\\src\\JPEGView\\bin\\ARM64\\Release\\JPEGView.exe",
+    "expected":  "Arm64",
+    "inspected":  1,
+    "architectures":  [
+                          "Arm64"
+                      ],
+    "uniform":  true,
+    "mismatches":  [
+
+                   ],
+    "nonPeFiles":  [
+
+                   ],
+    "binaries":  [
+                     {
+                         "path":  "C:\\Users\\Public\\jpegview-arm64-build\\src\\JPEGView\\bin\\ARM64\\Release\\JPEGView.exe",
+                         "architecture":  "Arm64",
+                         "machine":  "0xAA64",
+                         "managed":  false,
+                         "sha256":  "29ab675971f0c48b22c4de15e92062016395d1dd5b69e18dc0dd85f7038a9139"
+                     }
+                 ]
+}

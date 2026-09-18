@@ -1,0 +1,14 @@
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/avif.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/brotlicommon.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/brotlidec.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/dav1d.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/heif.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/JPEGView.exe
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/jxl_dec.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/jxl_threads.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/lcms2.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/libde265.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/libraw.dll
+  OK            0xaa64  PE                     arm64      /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/WICLoader.dll
+
+All 12 file(s) verified as arm64.

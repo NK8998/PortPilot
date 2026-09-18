@@ -1,0 +1,43 @@
+**********************************************************************
+** Visual Studio 2026 Developer Command Prompt v18.9.3
+** Copyright (c) 2026 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64_arm64'
+
+  WICLoader.vcxproj -> C:\Users\Public\jpegview-arm64-build\src\JPEGView\bin\ARM64\Release\WICLoader.dll
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  JPEGView.vcxproj -> C:\Users\Public\jpegview-arm64-build\src\JPEGView\bin\ARM64\Release\JPEGView.exe
+  ----- Post-Build batch file: "C:\Users\Public\jpegview-arm64-build\src\..\extras\scripts\JPEGView.vcxproj-postbuild-event.bat" -----
+  % PLATFORM_ARCHITECTURE=ARM64
+  % PROJECT_NAME=JPEGView
+  % PROJECT_DIR=C:\Users\Public\jpegview-arm64-build\src\JPEGView\
+  % OUT_DIR_FULL_PATH=C:\Users\Public\jpegview-arm64-build\src\JPEGView\bin\ARM64\Release\
+  + XCopy Config\* ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy LICENSE.txt ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy ARM64-bit DLLs for "libjxl" if needed ...
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\libjxl\binarm64\brotlicommon.dll
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\libjxl\binarm64\brotlidec.dll
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\libjxl\binarm64\jxl_dec.dll
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\libjxl\binarm64\jxl_threads.dll
+  4 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy ARM64-bit DLLs for "libheif" if needed ...
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\libheif\binarm64\heif.dll
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\libheif\binarm64\libde265.dll
+  2 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy ARM64-bit DLLs for "libavif" if needed ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy ARM64-bit DLLs for "lcms2" if needed ...
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\lcms2\binarm64\lcms2.dll
+  1 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy ARM64-bit DLLs for "libraw" if needed ...
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\libraw\binarm64\libraw.dll
+  1 File(s) copied
+  ~ ErrorLevel: 0

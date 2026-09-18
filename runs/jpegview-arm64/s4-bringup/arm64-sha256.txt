@@ -1,0 +1,12 @@
+29ab675971f0c48b22c4de15e92062016395d1dd5b69e18dc0dd85f7038a9139  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/JPEGView.exe
+6428f84b357c73e47b3f3339007cec132d9f0c105e67991c33b9dfd0b81e41f7  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/WICLoader.dll
+ace5604e29fbc562e34629d78d09ebe907147ad1a7236ffa6b906317613449e9  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/avif.dll
+55b8ea9be774fe1e9ae7d1bdd945c9657f0b88d96ccd762d7d9105269889176f  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/brotlicommon.dll
+f83675ab23d349d08a77de0d2019220e49fa9ec73174399ae2abd2e336476ef5  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/brotlidec.dll
+e4684b1e7e04d51240e4f02c628103aab4f5810ce20796befb4a607d238ea1ea  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/dav1d.dll
+b4ca8ee139f1a0d6da3f47b64dda3fc26a54c1a437a29011a394d9d4032d3d14  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/heif.dll
+842e85f74914299b04a9e970114f1c6308d154e16793b2b786a2d0689143075f  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/jxl_dec.dll
+0f43807dd4c5a130f3c14ef31eb40980611a373b0d489ac63c6b1eed923f40f0  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/jxl_threads.dll
+796e848d1d7039df077eeda2fdf0d45a5c3b40f9ccb234983a8eabb34c6496bf  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/lcms2.dll
+6409364c760b054c2e20b7b2315481ac100b122428ed3f7d922bd037ab37d8f2  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/libde265.dll
+99336adb4aadd7a58d692046fdb457752c4f0c803ed740eb0f5848db81b53eee  /mnt/c/Users/Public/jpegview-arm64-build/src/JPEGView/bin/ARM64/Release/libraw.dll

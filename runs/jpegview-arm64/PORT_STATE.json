@@ -11,8 +11,8 @@
     "os": "windows",
     "architecture": "arm64"
   },
-  "current_stage": "S4",
-  "updated_at": "2026-09-17T15:00:00Z",
+  "current_stage": "S5",
+  "updated_at": "2026-09-18T09:46:44Z",
   "stages": {
     "S0": {
       "status": "pass",
@@ -31,10 +31,11 @@
       "artifact": "docs/adr/0002-jpegview-arm64-strategy.md"
     },
     "S4": {
-      "status": "in_progress"
+      "status": "pass",
+      "artifact": "runs/jpegview-arm64/s4-bringup/build-notes.md"
     },
     "S5": {
-      "status": "not_started"
+      "status": "in_progress"
     },
     "S6": {
       "status": "not_started"
@@ -45,13 +46,13 @@
   },
   "blockers": [
     {
-      "id": "JPV-ENV-001",
-      "stage": "S4",
-      "severity": "environment",
-      "summary": "The local Visual Studio installation lacks ARM64 ATL.",
-      "evidence": "The ARM64 compiler exists, but atlmfc/lib contains only x86 and x64. Installer logs for two modify attempts report that quiet operations must start elevated.",
-      "owner": "local environment",
-      "next_step": "Install Microsoft.VisualStudio.Component.VC.ATL.ARM64 from an elevated Windows process before linking JPEGView ARM64."
+      "id": "JPV-HW-001",
+      "stage": "S6",
+      "severity": "external",
+      "summary": "No accessible real Windows ARM64 machine currently exists for S6 parity.",
+      "evidence": "The configured Azure VM is no longer discoverable in accessible subscriptions. QEMU TCG proved only the S4 functional launch gate.",
+      "owner": "verification environment",
+      "next_step": "Use a GitHub-hosted windows-11-arm runner or initialize a new real ARM64 VM before S6."
     }
   ],
   "decisions": [
@@ -136,11 +137,11 @@
     }
   ],
   "next_actions": [
-    "Install the optional ARM64 ATL component from an elevated Windows process.",
-    "Add ARM64 solution and project configurations without altering x86/x64 configurations.",
-    "Build ARM64 dependencies into architecture-specific directories.",
-    "Compile and link the first JPEGView ARM64 binary using generic processing stubs where required.",
-    "Verify every produced PE and static link input before attempting runtime launch."
+    "Replace or correctly route around the temporary ARM64 image-filter stubs.",
+    "Replace cross-thread volatile communication with explicit synchronization.",
+    "Improve ARM64 CPU feature and physical-core detection without regressing x86/x64.",
+    "Run format and GUI correctness checks before removing any TODO(arm64) marker.",
+    "Provision real ARM64 authority for S6 parity and no-emulation evidence."
   ],
   "history": [
     {
@@ -162,6 +163,11 @@
       "at": "2026-09-17T15:00:00Z",
       "stage": "S3",
       "event": "Selected classic ARM64 for JPEGView.exe and all eleven shipped private runtime DLLs; ARM64EC and ARM64X were rejected."
+    },
+    {
+      "at": "2026-09-18T09:46:44Z",
+      "stage": "S4",
+      "event": "Rebuilt the complete dependency graph and product through committed scripts, verified all 12 ARM64 PEs as 0xAA64 with a matched 12-file x64 refusal control, and reached JPEGView's file-open window in Windows ARM64 WinPE under QEMU TCG."
     }
   ]
 }
