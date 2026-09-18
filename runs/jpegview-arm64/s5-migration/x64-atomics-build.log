@@ -1,0 +1,184 @@
+**********************************************************************
+** Visual Studio 2026 Developer Command Prompt v18.9.3
+** Copyright (c) 2026 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+Build started 9/18/2026 12:49:21 PM.
+
+Project "C:\Users\Public\jpegview-arm64-build\src\JPEGView.sln" on node 1 (JPEGView target(s)).
+ValidateSolutionConfiguration:
+  Building solution configuration "Release|x64".
+Project "C:\Users\Public\jpegview-arm64-build\src\JPEGView.sln" (1) is building "C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj.metaproj" (2) on node 1 (default targets).
+Project "C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj.metaproj" (2) is building "C:\Users\Public\jpegview-arm64-build\src\WICLoader\WICLoader.vcxproj" (3) on node 1 (default targets).
+InitializeBuildStatus:
+  Creating "obj\x64\Release\WICLoader.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "obj\x64\Release\WICLoader.tlog\unsuccessfulbuild".
+ClCompile:
+  All outputs are up-to-date.
+  All outputs are up-to-date.
+  All outputs are up-to-date.
+ResourceCompile:
+  All outputs are up-to-date.
+Link:
+  All outputs are up-to-date.
+  WICLoader.vcxproj -> C:\Users\Public\jpegview-arm64-build\src\JPEGView\bin\x64\Release\WICLoader.dll
+FinalizeBuildStatus:
+  Deleting file "obj\x64\Release\WICLoader.tlog\unsuccessfulbuild".
+  Touching "obj\x64\Release\WICLoader.tlog\WICLoader.lastbuildstate".
+Done Building Project "C:\Users\Public\jpegview-arm64-build\src\WICLoader\WICLoader.vcxproj" (default targets).
+Project "C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj.metaproj" (2) is building "C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj" (4) on node 1 (default targets).
+InitializeBuildStatus:
+  Creating "obj\x64\Release\JPEGView.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "obj\x64\Release\JPEGView.tlog\unsuccessfulbuild".
+ClCompile:
+  All outputs are up-to-date.
+  All outputs are up-to-date.
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64\CL.exe /c /nologo /W3 /WX- /diagnostics:column /O2 /D WIN32 /D _WINDOWS /D STRICT /D NDEBUG /D _UNICODE /D UNICODE /GF- /Gm- /EHa /MT /GS /Gy- /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /Zc:inline /GR /openmp- /std:c++17 /Yu"stdafx.h" /Fp"obj\x64\Release\JPEGView.pch" /Fo"obj\x64\Release\\" /Fd"obj\x64\Release\vc142.pdb" /external:W3 /Gd /TP /FC /errorReport:queue DirectoryWatcher.cpp FileList.cpp MainDlg.cpp
+  DirectoryWatcher.cpp
+  FileList.cpp
+  MainDlg.cpp
+C:\Users\Public\jpegview-arm64-build\src\JPEGView\MainDlg.cpp(2127,61): warning C4090: 'initializing': different '__unaligned' qualifiers [C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj]
+  Generating Code...
+ResourceCompile:
+  All outputs are up-to-date.
+Link:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:"bin\x64\Release\JPEGView.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:bin\x64\Release legacy_stdio_definitions.lib legacy_stdio_wide_specifiers.lib gdiplus.lib WICLoader.lib "turbojpeg-static.lib" libpng16.lib zlib.lib jxl_dec.lib jxl_threads.lib heif.lib libwebp.lib libwebpdemux.lib avif.lib lcms2.lib libraw.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Delayimp.lib /DELAYLOAD:WICLoader.dll /DELAYLOAD:jxl_dec.dll /DELAYLOAD:jxl_threads.dll /DELAYLOAD:heif.dll /DELAYLOAD:avif.dll /DELAYLOAD:lcms2.dll /DELAYLOAD:libraw.dll /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.29.30133\Include\Manifest\dpiaware.manifest" /PDB:"bin\x64\Release\JPEGView.pdb" /SUBSYSTEM:WINDOWS /LTCG:incremental /LTCGOUT:"obj\x64\Release\JPEGView.iobj" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"bin\x64\Release\JPEGView.lib" /MACHINE:X64 /IGNORE:4099 obj\x64\Release\JPEGView.res
+  obj\x64\Release\ApplyFilterAVX.obj
+  obj\x64\Release\AVIFWrapper.obj
+  obj\x64\Release\BasicProcessing.obj
+  obj\x64\Release\Clipboard.obj
+  obj\x64\Release\dcraw_mod.obj
+  obj\x64\Release\DesktopWallpaper.obj
+  obj\x64\Release\DirectoryWatcher.obj
+  obj\x64\Release\EXIFHelpers.obj
+  obj\x64\Release\EXIFReader.obj
+  obj\x64\Release\FileExtensionsDlg.obj
+  obj\x64\Release\FileExtensionsRegistry.obj
+  obj\x64\Release\FileList.obj
+  obj\x64\Release\HashCompareLPCTSTR.obj
+  obj\x64\Release\HEIFWrapper.obj
+  obj\x64\Release\HelpDlg.obj
+  obj\x64\Release\Helpers.obj
+  obj\x64\Release\HelpersGUI.obj
+  obj\x64\Release\HistogramCorr.obj
+  obj\x64\Release\ICCProfileTransform.obj
+  obj\x64\Release\ImageLoadThread.obj
+  obj\x64\Release\InfoButtonPanel.obj
+  obj\x64\Release\InfoButtonPanelCtl.obj
+  obj\x64\Release\JPEGImage.obj
+  obj\x64\Release\JPEGLosslessTransform.obj
+  obj\x64\Release\JPEGProvider.obj
+  obj\x64\Release\JPEGView.obj
+  obj\x64\Release\JXLWrapper.obj
+  obj\x64\Release\KeyMap.obj
+  obj\x64\Release\LocalDensityCorr.obj
+  obj\x64\Release\ManageOpenWithDlg.obj
+  obj\x64\Release\MultiMonitorSupport.obj
+  obj\x64\Release\NLS.obj
+  obj\x64\Release\ParameterDB.obj
+  obj\x64\Release\PNGWrapper.obj
+  obj\x64\Release\PrintDlg.obj
+  obj\x64\Release\PrintImage.obj
+  obj\x64\Release\ProcessingThreadPool.obj
+  obj\x64\Release\PSDWrapper.obj
+  obj\x64\Release\QOIWrapper.obj
+  obj\x64\Release\RAWWrapper.obj
+  obj\x64\Release\ReaderBMP.obj
+  obj\x64\Release\ReaderTGA.obj
+  obj\x64\Release\ResizeDlg.obj
+  obj\x64\Release\ResizeFilter.obj
+  obj\x64\Release\SaveImage.obj
+  obj\x64\Release\SettingsProvider.obj
+  obj\x64\Release\stdafx.obj
+  obj\x64\Release\TiltCorrectionPanel.obj
+  obj\x64\Release\TiltCorrectionPanelCtl.obj
+  obj\x64\Release\TJPEGWrapper.obj
+  obj\x64\Release\TransformPanel.obj
+  obj\x64\Release\TransformPanelCtl.obj
+  obj\x64\Release\UserCommand.obj
+  obj\x64\Release\WEBPWrapper.obj
+  obj\x64\Release\WorkThread.obj
+  obj\x64\Release\XMMImage.obj
+  obj\x64\Release\EXIFDisplay.obj
+  obj\x64\Release\GUIControls.obj
+  obj\x64\Release\HelpDisplay.obj
+  obj\x64\Release\ImageProcessingPanel.obj
+  obj\x64\Release\NavigationPanel.obj
+  obj\x64\Release\PaintMemDCMgr.obj
+  obj\x64\Release\Panel.obj
+  obj\x64\Release\RotationPanel.obj
+  obj\x64\Release\Tooltip.obj
+  obj\x64\Release\UnsharpMaskPanel.obj
+  obj\x64\Release\WndButtonPanel.obj
+  obj\x64\Release\ZoomNavigator.obj
+  obj\x64\Release\EXIFDisplayCtl.obj
+  obj\x64\Release\HelpDisplayCtl.obj
+  obj\x64\Release\ImageProcPanelCtl.obj
+  obj\x64\Release\NavigationPanelCtl.obj
+  obj\x64\Release\PanelController.obj
+  obj\x64\Release\PanelMgr.obj
+  obj\x64\Release\RotationPanelCtl.obj
+  obj\x64\Release\UnsharpMaskPanelCtl.obj
+  obj\x64\Release\WndButtonPanelCtl.obj
+  obj\x64\Release\ZoomNavigatorCtl.obj
+  obj\x64\Release\AboutDlg.obj
+  obj\x64\Release\BatchCopyDlg.obj
+  obj\x64\Release\CropCtl.obj
+  obj\x64\Release\CropSizeDlg.obj
+  obj\x64\Release\FileOpenDialog.obj
+  obj\x64\Release\MainDlg.obj
+  Generating code
+  0 of 406 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  JPEGView.vcxproj -> C:\Users\Public\jpegview-arm64-build\src\JPEGView\bin\x64\Release\JPEGView.exe
+PostBuildEvent:
+  call "C:\Users\Public\jpegview-arm64-build\src\..\extras\scripts\JPEGView.vcxproj-postbuild-event.bat" "x64" "JPEGView" "C:\Users\Public\jpegview-arm64-build\src\JPEGView\" "C:\Users\Public\jpegview-arm64-build\src\JPEGView\bin\x64\Release\"
+  :VCEnd
+  ----- Post-Build batch file: "C:\Users\Public\jpegview-arm64-build\src\..\extras\scripts\JPEGView.vcxproj-postbuild-event.bat" -----
+  % PLATFORM_ARCHITECTURE=x64
+  % PROJECT_NAME=JPEGView
+  % PROJECT_DIR=C:\Users\Public\jpegview-arm64-build\src\JPEGView\
+  % OUT_DIR_FULL_PATH=C:\Users\Public\jpegview-arm64-build\src\JPEGView\bin\x64\Release\
+  + XCopy Config\* ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy LICENSE.txt ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy x64-bit DLLs for "libjxl" if needed ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy x64-bit DLLs for "libheif" if needed ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy x64-bit DLLs for "libavif" if needed ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy x64-bit DLLs for "lcms2" if needed ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+  + XCopy x64-bit DLLs for "libraw" if needed ...
+  0 File(s) copied
+  ~ ErrorLevel: 0
+FinalizeBuildStatus:
+  Deleting file "obj\x64\Release\JPEGView.tlog\unsuccessfulbuild".
+  Touching "obj\x64\Release\JPEGView.tlog\JPEGView.lastbuildstate".
+Done Building Project "C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj" (default targets).
+Done Building Project "C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj.metaproj" (default targets).
+Done Building Project "C:\Users\Public\jpegview-arm64-build\src\JPEGView.sln" (JPEGView target(s)).
+
+Build succeeded.
+
+"C:\Users\Public\jpegview-arm64-build\src\JPEGView.sln" (JPEGView target) (1) ->
+"C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj.metaproj" (default target) (2) ->
+"C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj" (default target) (4) ->
+(ClCompile target) -> 
+  C:\Users\Public\jpegview-arm64-build\src\JPEGView\MainDlg.cpp(2127,61): warning C4090: 'initializing': different '__unaligned' qualifiers [C:\Users\Public\jpegview-arm64-build\src\JPEGView\JPEGView.vcxproj]
+
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.70

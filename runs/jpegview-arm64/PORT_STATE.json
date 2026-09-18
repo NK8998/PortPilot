@@ -12,7 +12,7 @@
     "architecture": "arm64"
   },
   "current_stage": "S5",
-  "updated_at": "2026-09-18T09:46:44Z",
+  "updated_at": "2026-09-18T09:58:29Z",
   "stages": {
     "S0": {
       "status": "pass",
@@ -35,7 +35,8 @@
       "artifact": "runs/jpegview-arm64/s4-bringup/build-notes.md"
     },
     "S5": {
-      "status": "in_progress"
+      "status": "in_progress",
+      "artifact": "runs/jpegview-arm64/s5-migration/migration-log.md"
     },
     "S6": {
       "status": "not_started"
@@ -137,10 +138,8 @@
     }
   ],
   "next_actions": [
-    "Replace or correctly route around the temporary ARM64 image-filter stubs.",
-    "Replace cross-thread volatile communication with explicit synchronization.",
-    "Improve ARM64 CPU feature and physical-core detection without regressing x86/x64.",
-    "Run format and GUI correctness checks before removing any TODO(arm64) marker.",
+    "Run repeated image-load, read-ahead, processing-pool, and shutdown stress on real ARM64 hardware.",
+    "Exercise the supported image-format matrix and GUI operations on real ARM64 hardware.",
     "Provision real ARM64 authority for S6 parity and no-emulation evidence."
   ],
   "history": [
@@ -168,6 +167,11 @@
       "at": "2026-09-18T09:46:44Z",
       "stage": "S4",
       "event": "Rebuilt the complete dependency graph and product through committed scripts, verified all 12 ARM64 PEs as 0xAA64 with a matched 12-file x64 refusal control, and reached JPEGView's file-open window in Windows ARM64 WinPE under QEMU TCG."
+    },
+    {
+      "at": "2026-09-18T09:58:29Z",
+      "stage": "S5",
+      "event": "Replaced volatile thread communication with atomics, removed ARM64 SIMD stubs, routed ARM64 through the complete generic high-quality path, added physical-core enumeration, and displayed a JPEG in WinPE with CPUType=AVX2 forced. Real-hardware stress remains outstanding."
     }
   ]
 }
